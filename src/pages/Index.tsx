@@ -513,14 +513,14 @@ const HowItWorks = () => (
 );
 
 const Testimonials = () => (
-  <section className="bg-background py-16 md:py-20">
+  <section className="bg-background py-12 md:py-20">
     <div className="container">
-      <div className="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-center">
+      <div className="grid gap-8 lg:gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-center">
         <div>
           <h2 className="text-3xl md:text-4xl font-black leading-tight">Lo que dicen nuestros estudiantes</h2>
           <div className="mt-3 h-2 w-40 rounded-full bg-sun" />
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((quote, index) => (
             <blockquote key={quote} className="rounded-[1.25rem] border border-border bg-card p-6 shadow-[0_14px_50px_rgba(0,0,0,0.08)]">
               <span className="font-hand text-5xl leading-none text-blue-pop">“</span>

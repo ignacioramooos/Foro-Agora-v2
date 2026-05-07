@@ -363,8 +363,8 @@ const Hero = () => {
           </div>
 
           <SectionFade delay={0.2}>
-            <div className="relative min-h-[420px] md:min-h-[500px]">
-              <div className="absolute inset-x-0 bottom-24 top-auto h-[420px] md:bottom-36 md:h-[500px]">
+            <div className="relative min-h-[340px] sm:min-h-[420px] md:min-h-[500px]">
+              <div className="absolute inset-x-0 bottom-20 sm:bottom-24 top-auto h-[340px] sm:h-[420px] md:bottom-36 md:h-[500px]">
                 <div className="absolute -left-16 -right-20 top-12 h-[90%] rotate-[5deg] rounded-[52%] border border-white/25 bg-[radial-gradient(circle_at_32%_24%,rgba(255,255,255,0.62),transparent_18%),linear-gradient(135deg,rgba(255,232,104,0.9),rgba(255,197,0,0.78)_55%,rgba(255,221,84,0.62))] shadow-[inset_0_3px_18px_rgba(255,255,255,0.5),inset_0_-26px_44px_rgba(255,178,0,0.24),0_24px_70px_rgba(255,200,0,0.28)] backdrop-blur-sm" />
                 <div className="absolute -right-5 top-2 h-24 w-32 rounded-[50%] border-[14px] border-blue-pop border-l-transparent border-b-transparent rotate-[-22deg]" />
                 <DynamicStockTickerAnimation />

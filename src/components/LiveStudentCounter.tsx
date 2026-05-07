@@ -8,10 +8,8 @@ const LiveStudentCounter = () => {
 
   useEffect(() => {
     const fetchCount = async () => {
-      const { count: total } = await supabase
-        .from("profiles")
-        .select("*", { count: "exact", head: true });
-      setCount(total ?? 0);
+      const { data } = await supabase.rpc("get_public_profiles_count");
+      setCount(typeof data === "number" ? data : Number(data ?? 0));
     };
     fetchCount();
 

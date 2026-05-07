@@ -18,10 +18,8 @@ const ImpactSection = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const { count } = await supabase
-        .from("profiles")
-        .select("*", { count: "exact", head: true });
-      setStudentCount(count ?? 0);
+      const { data } = await supabase.rpc("get_public_profiles_count");
+      setStudentCount(Number(data ?? 0));
     };
     fetch();
   }, []);

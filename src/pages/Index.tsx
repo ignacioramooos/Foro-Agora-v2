@@ -661,7 +661,8 @@ const Index = () => (
     <ValueProp />
     <OurValues />
     <HowItWorks />
-    <Testimonials />
+    {/* ⚠️ TESTIMONIALS HIDDEN FOR NOW - DO NOT DELETE ⚠️ Re-enable when we have actual reviews */}
+    {false && <Testimonials />}
     <UpcomingClasses />
     <FinalCTA />
   </>

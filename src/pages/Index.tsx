@@ -293,6 +293,7 @@ const DynamicStockTickerAnimation = () => {
 };
 
 const Hero = () => {
+  const { isLoggedIn } = useAuth();
   const [showScrollHint, setShowScrollHint] = useState(true);
 
   useEffect(() => {

@@ -416,12 +416,12 @@ const ProblemSection = () => (
 );
 
 const ValueProp = () => (
-  <section className="relative bg-background py-16 md:py-24">
+  <section className="relative bg-background py-12 md:py-24">
     <div className="container">
-      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <div className="grid gap-10 lg:gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div>
           <p className="font-hand text-3xl text-blue-pop">Qué enseñamos</p>
-          <h2 className="mt-2 max-w-lg text-4xl md:text-5xl font-black leading-tight">
+          <h2 className="mt-2 max-w-lg text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
             Habilidades financieras reales, no atajos
           </h2>
           <p className="mt-5 text-lg text-foreground/70">

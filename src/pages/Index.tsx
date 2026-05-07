@@ -24,18 +24,13 @@ const stockNameByTicker = new Map(SUPPORTED_STOCKS.map((stock) => [stock.ticker,
 
 const shuffleTickers = (tickers: string[]) => [...tickers].sort(() => Math.random() - 0.5);
 
-const getRandomTickers = (count = 6): string[] => {
-  const shuffled = shuffleTickers(SUPPORTED_STOCKS.map(s => s.ticker));
-  return shuffled.slice(0, count);
-};
-
 const demoQuoteByTicker: Record<string, Pick<StockQuote, "price" | "previousClose" | "changePercent">> = {
-  AAPL: { price: 213.49, previousClose: 211.38, changePercent: 1.0 },
-  MELI: { price: 2428.16, previousClose: 2391.72, changePercent: 1.52 },
-  NU: { price: 13.64, previousClose: 13.5, changePercent: 1.04 },
-  MSFT: { price: 473.31, previousClose: 467.7, changePercent: 1.2 },
-  META: { price: 609.46, previousClose: 602.31, changePercent: 1.19 },
-  SPY: { price: 560.89, previousClose: 556.2, changePercent: 0.84 },
+  AAPL: { price: null, previousClose: null, changePercent: null },
+  MELI: { price: null, previousClose: null, changePercent: null },
+  NU: { price: null, previousClose: null, changePercent: null },
+  MSFT: { price: null, previousClose: null, changePercent: null },
+  META: { price: null, previousClose: null, changePercent: null },
+  SPY: { price: null, previousClose: null, changePercent: null },
 };
 
 const getDisplayQuote = (ticker: string | undefined, quote: StockQuote | undefined): StockQuote | undefined => {
@@ -162,7 +157,6 @@ const DynamicStockTickerAnimation = () => {
   const [savedTickers, setSavedTickers] = useState<string[]>([]);
   const [savedLoading, setSavedLoading] = useState(false);
   const [demoTickers] = useState(() => shuffleTickers(DEFAULT_CAROUSEL_TICKERS));
-  const [randomUserTickers] = useState(() => getRandomTickers(6));
   const [quotes, setQuotes] = useState<StockQuote[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -184,7 +178,7 @@ const DynamicStockTickerAnimation = () => {
 
       if (!cancelled) {
         const tickers = data?.tickers || [];
-        setSavedTickers(tickers.length > 0 ? tickers : getRandomTickers(6));
+        setSavedTickers(tickers);
         setSavedLoading(false);
       }
     };
@@ -196,7 +190,12 @@ const DynamicStockTickerAnimation = () => {
   }, [isLoggedIn, session?.user?.id]);
 
   const carouselTickers = useMemo(
-    () => (isLoggedIn ? savedTickers : demoTickers),
+    () => {
+      if (isLoggedIn && savedTickers.length > 0) {
+        return savedTickers;
+      }
+      return demoTickers;
+    },
     [demoTickers, isLoggedIn, savedTickers]
   );
 
@@ -238,7 +237,7 @@ const DynamicStockTickerAnimation = () => {
   const companyName = displayQuote?.companyName || stockNameByTicker.get(activeTicker) || activeTicker;
   const incomeStatementRows = buildIncomeStatementRows(activeTicker || "AGORA");
   const barHeights = buildBarHeights(activeTicker || "AGORA", displayQuote?.changePercent);
-  const isEmptyPersonalList = isLoggedIn && !authLoading && !savedLoading && carouselTickers.length === 0;
+  const isEmptyPersonalList = isLoggedIn && !authLoading && !savedLoading && savedTickers.length === 0;
 
   return (
     <div className="absolute inset-x-0 bottom-6 mx-auto h-[76%] w-[92%] overflow-hidden rounded-[2rem] border-2 border-blue-pop bg-[#0b0d10] shadow-[0_30px_80px_rgba(0,0,0,0.16)]">

@@ -1,7 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
 
 export const SUPPORTED_STOCKS = [
-  // Tech Giants
+  // Top 100 Market Cap - Tech Giants
   { ticker: "AAPL", name: "Apple Inc.", sector: "Tecnología" },
   { ticker: "MSFT", name: "Microsoft Corp.", sector: "Tecnología" },
   { ticker: "GOOGL", name: "Alphabet Inc.", sector: "Tecnología" },
@@ -10,33 +10,27 @@ export const SUPPORTED_STOCKS = [
   { ticker: "TSLA", name: "Tesla Inc.", sector: "Automotriz" },
   { ticker: "NVDA", name: "NVIDIA Corp.", sector: "Semiconductores" },
   { ticker: "AVGO", name: "Broadcom Inc.", sector: "Semiconductores" },
+  { ticker: "ASML", name: "ASML Holding N.V.", sector: "Semiconductores" },
   { ticker: "QCOM", name: "Qualcomm Inc.", sector: "Semiconductores" },
   { ticker: "AMD", name: "Advanced Micro Devices", sector: "Semiconductores" },
   { ticker: "INTC", name: "Intel Corporation", sector: "Semiconductores" },
-  { ticker: "ASML", name: "ASML Holding N.V.", sector: "Semiconductores" },
   { ticker: "CRM", name: "Salesforce Inc.", sector: "Software" },
   { ticker: "ADBE", name: "Adobe Inc.", sector: "Software" },
-  { ticker: "SNPS", name: "Synopsys Inc.", sector: "Software" },
-  { ticker: "CDNS", name: "Cadence Design Systems", sector: "Software" },
   { ticker: "NFLX", name: "Netflix Inc.", sector: "Entretenimiento" },
   { ticker: "DIS", name: "The Walt Disney Company", sector: "Entretenimiento" },
-  { ticker: "ROKU", name: "Roku Inc.", sector: "Entretenimiento" },
   
-  // Finance & Banking
+  // Top 100 - Finance & Banking
   { ticker: "JPM", name: "JPMorgan Chase", sector: "Finanzas" },
   { ticker: "BAC", name: "Bank of America", sector: "Finanzas" },
   { ticker: "WFC", name: "Wells Fargo", sector: "Finanzas" },
   { ticker: "GS", name: "Goldman Sachs Group", sector: "Finanzas" },
   { ticker: "MS", name: "Morgan Stanley", sector: "Finanzas" },
   { ticker: "BLK", name: "BlackRock Inc.", sector: "Finanzas" },
-  { ticker: "SCHW", name: "The Charles Schwab Corporation", sector: "Finanzas" },
-  { ticker: "AXP", name: "American Express", sector: "Finanzas" },
   { ticker: "V", name: "Visa Inc.", sector: "Finanzas" },
   { ticker: "MA", name: "Mastercard Inc.", sector: "Finanzas" },
-  { ticker: "DFS", name: "Discover Financial Services", sector: "Finanzas" },
-  { ticker: "COF", name: "Capital One Financial", sector: "Finanzas" },
+  { ticker: "AXP", name: "American Express", sector: "Finanzas" },
   
-  // Healthcare & Pharma
+  // Top 100 - Healthcare & Pharma
   { ticker: "JNJ", name: "Johnson & Johnson", sector: "Salud" },
   { ticker: "UNH", name: "UnitedHealth Group", sector: "Salud" },
   { ticker: "PFE", name: "Pfizer Inc.", sector: "Farmacéutica" },
@@ -44,31 +38,11 @@ export const SUPPORTED_STOCKS = [
   { ticker: "ABBV", name: "AbbVie Inc.", sector: "Farmacéutica" },
   { ticker: "LLY", name: "Eli Lilly and Company", sector: "Farmacéutica" },
   { ticker: "TMO", name: "Thermo Fisher Scientific", sector: "Biotecnología" },
-  { ticker: "ILMN", name: "Illumina Inc.", sector: "Biotecnología" },
-  { ticker: "CRSP", name: "CRISPR Therapeutics", sector: "Biotecnología" },
-  { ticker: "BNTX", name: "BioNTech SE", sector: "Biotecnología" },
   
-  // Consumer & Retail
-  { ticker: "WMT", name: "Walmart Inc.", sector: "Retail" },
-  { ticker: "COST", name: "Costco Wholesale", sector: "Retail" },
-  { ticker: "HD", name: "The Home Depot", sector: "Retail" },
-  { ticker: "LOW", name: "Lowe's Companies", sector: "Retail" },
-  { ticker: "TGT", name: "Target Corporation", sector: "Retail" },
-  { ticker: "MCD", name: "McDonald's Corporation", sector: "Consumo" },
-  { ticker: "SBUX", name: "Starbucks Corporation", sector: "Consumo" },
-  { ticker: "YUM", name: "Yum! Brands", sector: "Consumo" },
-  { ticker: "NKE", name: "Nike Inc.", sector: "Consumo" },
-  { ticker: "LULU", name: "Lululemon Athletica", sector: "Consumo" },
-  { ticker: "VFC", name: "V.F. Corporation", sector: "Consumo" },
-  { ticker: "LVMH", name: "LVMH Moët Hennessy Louis Vuitton", sector: "Lujo" },
-  
-  // Energy & Industrials
+  // Top 100 - Energy & Industrials
   { ticker: "XOM", name: "Exxon Mobil Corporation", sector: "Energía" },
   { ticker: "CVX", name: "Chevron Corporation", sector: "Energía" },
   { ticker: "COP", name: "ConocoPhillips", sector: "Energía" },
-  { ticker: "SLB", name: "Schlumberger Limited", sector: "Energía" },
-  { ticker: "HAL", name: "Halliburton Company", sector: "Energía" },
-  { ticker: "MU", name: "Micron Technology", sector: "Semiconductores" },
   { ticker: "CAT", name: "Caterpillar Inc.", sector: "Industriales" },
   { ticker: "DE", name: "Deere & Company", sector: "Industriales" },
   { ticker: "GE", name: "General Electric", sector: "Industriales" },
@@ -76,16 +50,26 @@ export const SUPPORTED_STOCKS = [
   { ticker: "RTX", name: "Raytheon Technologies", sector: "Defensa" },
   { ticker: "LMT", name: "Lockheed Martin", sector: "Defensa" },
   
-  // Utilities & Real Estate
+  // Top 100 - Consumer & Retail
+  { ticker: "WMT", name: "Walmart Inc.", sector: "Retail" },
+  { ticker: "COST", name: "Costco Wholesale", sector: "Retail" },
+  { ticker: "HD", name: "The Home Depot", sector: "Retail" },
+  { ticker: "LOW", name: "Lowe's Companies", sector: "Retail" },
+  { ticker: "MCD", name: "McDonald's Corporation", sector: "Consumo" },
+  { ticker: "SBUX", name: "Starbucks Corporation", sector: "Consumo" },
+  { ticker: "NKE", name: "Nike Inc.", sector: "Consumo" },
+  { ticker: "PG", name: "Procter & Gamble", sector: "Consumo" },
+  { ticker: "KO", name: "The Coca-Cola Company", sector: "Bebidas" },
+  
+  // Top 100 - Utilities & Real Estate
   { ticker: "NEE", name: "NextEra Energy", sector: "Utilidades" },
   { ticker: "DUK", name: "Duke Energy", sector: "Utilidades" },
   { ticker: "SO", name: "The Southern Company", sector: "Utilidades" },
   { ticker: "SPG", name: "Simon Property Group", sector: "Real Estate" },
   { ticker: "VTR", name: "Ventas Inc.", sector: "Real Estate" },
   { ticker: "PLD", name: "Prologis Inc.", sector: "Real Estate" },
-  { ticker: "WELL", name: "Welltower Inc.", sector: "Real Estate" },
   
-  // ETFs
+  // ETFs & Index
   { ticker: "SPY", name: "S&P 500 ETF", sector: "ETF" },
   { ticker: "QQQ", name: "Nasdaq 100 ETF", sector: "ETF" },
   { ticker: "IWM", name: "Russell 2000 ETF", sector: "ETF" },
@@ -95,6 +79,37 @@ export const SUPPORTED_STOCKS = [
   { ticker: "TLT", name: "iShares 20+ Year Treasury ETF", sector: "ETF" },
   { ticker: "GLD", name: "SPDR Gold Shares", sector: "ETF" },
   { ticker: "USO", name: "U.S. Oil ETF", sector: "ETF" },
+  
+  // Popular & Common Stocks
+  { ticker: "SNPS", name: "Synopsys Inc.", sector: "Software" },
+  { ticker: "CDNS", name: "Cadence Design Systems", sector: "Software" },
+  { ticker: "ROKU", name: "Roku Inc.", sector: "Entretenimiento" },
+  { ticker: "RKLB", name: "Rocket Lab USA Inc.", sector: "Aeroespacial" },
+  { ticker: "PLTR", name: "Palantir Technologies", sector: "Software" },
+  { ticker: "COIN", name: "Coinbase Global", sector: "Cripto" },
+  { ticker: "HOOD", name: "Robinhood Markets", sector: "Finanzas" },
+  { ticker: "SCHW", name: "Charles Schwab", sector: "Finanzas" },
+  { ticker: "LRCX", name: "Lam Research", sector: "Semiconductores" },
+  { ticker: "AMAT", name: "Applied Materials", sector: "Semiconductores" },
+  { ticker: "MU", name: "Micron Technology", sector: "Semiconductores" },
+  { ticker: "MSTR", name: "MicroStrategy", sector: "Software" },
+  { ticker: "SLB", name: "Schlumberger Limited", sector: "Energía" },
+  { ticker: "HAL", name: "Halliburton Company", sector: "Energía" },
+  
+  // Transport & Airlines
+  { ticker: "AAL", name: "American Airlines", sector: "Transporte" },
+  { ticker: "DAL", name: "Delta Air Lines", sector: "Transporte" },
+  { ticker: "UAL", name: "United Airlines", sector: "Transporte" },
+  { ticker: "LUV", name: "Southwest Airlines", sector: "Transporte" },
+  { ticker: "ABNB", name: "Airbnb Inc.", sector: "Viajes" },
+  { ticker: "UBER", name: "Uber Technologies", sector: "Tecnología" },
+  { ticker: "LYFT", name: "Lyft Inc.", sector: "Transporte" },
+  
+  // Retail & Consumer Extra
+  { ticker: "TGT", name: "Target Corporation", sector: "Retail" },
+  { ticker: "YUM", name: "Yum! Brands", sector: "Consumo" },
+  { ticker: "LULU", name: "Lululemon Athletica", sector: "Consumo" },
+  { ticker: "VFC", name: "V.F. Corporation", sector: "Consumo" },
   
   // Latin America & Emerging Markets
   { ticker: "MELI", name: "MercadoLibre Inc.", sector: "E-commerce LatAm" },
@@ -106,13 +121,18 @@ export const SUPPORTED_STOCKS = [
   { ticker: "ITUB", name: "Itaú Unibanco Holding S.A.", sector: "Finanzas LatAm" },
   { ticker: "BBD", name: "Banco Bradesco S.A.", sector: "Finanzas LatAm" },
   { ticker: "GFI", name: "Grupo Financiero Inbursa S.A.", sector: "Finanzas LatAm" },
-  { ticker: "ASAI", name: "Assaí Atacadista S.A.", sector: "Retail LatAm" },
   
   // Holding & Diversified
-  { ticker: "BRK-B", name: "Berkshire Hathaway", sector: "Holding" },
+  { ticker: "BRK-B", name: "Berkshire Hathaway B", sector: "Holding" },
   { ticker: "BRK-A", name: "Berkshire Hathaway A", sector: "Holding" },
   { ticker: "BDX", name: "Becton, Dickinson and Company", sector: "Holding" },
   { ticker: "MMM", name: "3M Company", sector: "Holding" },
+  { ticker: "ILMN", name: "Illumina Inc.", sector: "Biotecnología" },
+  { ticker: "CRSP", name: "CRISPR Therapeutics", sector: "Biotecnología" },
+  { ticker: "BNTX", name: "BioNTech SE", sector: "Biotecnología" },
+  { ticker: "WELL", name: "Welltower Inc.", sector: "Real Estate" },
+  { ticker: "DFS", name: "Discover Financial Services", sector: "Finanzas" },
+  { ticker: "COF", name: "Capital One Financial", sector: "Finanzas" },
 ];
 
 export interface StockQuote {

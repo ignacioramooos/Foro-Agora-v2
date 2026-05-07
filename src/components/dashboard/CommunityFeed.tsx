@@ -9,6 +9,9 @@ interface CommunityPost {
   created_at: string;
 }
 
+const isCommunityPostType = (value: string): value is CommunityPost["type"] =>
+  value === "analysis" || value === "announcement";
+
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString("es-UY", { day: "numeric", month: "short", year: "numeric" });
 
@@ -17,14 +20,22 @@ const CommunityFeed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data } = await (supabase as any)
+      const { data } = await supabase
         .from("community_posts")
         .select("id, author, type, title, created_at")
         .eq("is_published", true)
         .order("created_at", { ascending: false })
         .limit(10);
 
-      if (data) setPosts(data as CommunityPost[]);
+      if (data) {
+        setPosts(
+          data.flatMap((post) =>
+            isCommunityPostType(post.type)
+              ? [{ ...post, type: post.type }]
+              : []
+          )
+        );
+      }
     };
 
     fetchPosts();

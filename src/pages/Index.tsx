@@ -195,10 +195,11 @@ const DynamicStockTickerAnimation = () => {
     },
     [demoTickers, isLoggedIn, savedTickers]
   );
+  const carouselSignature = useMemo(() => carouselTickers.join("|"), [carouselTickers]);
 
   useEffect(() => {
     setActiveIndex(0);
-  }, [carouselTickers.join("|")]);
+  }, [carouselSignature]);
 
   useEffect(() => {
     if (!carouselTickers.length) {
@@ -525,7 +526,7 @@ const UpcomingClasses = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const { data } = await (supabase as any)
+      const { data } = await supabase
         .from("class_sessions")
         .select("id, title, module_number, class_date, location, max_capacity")
         .eq("is_active", true)
@@ -604,7 +605,7 @@ const UpcomingClasses = () => {
               <Link to={registerUrl}>Sí, quiero registrarme</Link>
             </Button>
             <Button asChild variant="secondary">
-              <Link to="/auth">Ver clases grabadas --&gt;</Link>
+              <Link to="/auth">Ver clases grabadas →</Link>
             </Button>
           </div>
         </DialogContent>
@@ -648,7 +649,6 @@ const Index = () => (
     <OurValues />
     <HowItWorks />
     {/* ⚠️ TESTIMONIALS HIDDEN FOR NOW - DO NOT DELETE ⚠️ Re-enable when we have actual reviews */}
-    {false && <Testimonials />}
     <UpcomingClasses />
     <FinalCTA />
   </>

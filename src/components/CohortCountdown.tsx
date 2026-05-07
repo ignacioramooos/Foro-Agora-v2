@@ -16,7 +16,7 @@ const CohortCountdown = () => {
 
   useEffect(() => {
     const fetchClass = async () => {
-      const { data } = await (supabase as any)
+      const { data } = await supabase
         .from("class_sessions")
         .select("class_date")
         .eq("is_active", true)

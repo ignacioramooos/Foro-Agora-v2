@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Link, Navigate } from "react-router-dom";
 import { ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
+import { getAuthRedirectUrl } from "@/lib/authRedirect";
 
 const departments = [
   "Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores",
@@ -128,7 +129,7 @@ const AuthPage = () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.origin + "/auth",
+        redirectTo: getAuthRedirectUrl("/auth"),
       },
     });
     if (error) {
@@ -156,7 +157,7 @@ const AuthPage = () => {
 
     setSubmitting(true);
     const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth?reset-password=true`,
+      redirectTo: getAuthRedirectUrl("/auth?reset-password=true"),
     });
     setSubmitting(false);
 

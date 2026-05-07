@@ -34,15 +34,13 @@ const RankingPage = () => {
 
     if (!portfolios?.length) { setEntries([]); setLoading(false); return; }
 
-    const userIds = portfolios.map(p => p.user_id);
-    const { data: profiles } = await supabase
-      .from("profiles")
-      .select("user_id, display_name, full_name")
-      .in("user_id", userIds);
+    const userIds = new Set(portfolios.map(p => p.user_id));
+    const { data: profiles } = await supabase.rpc("get_public_profiles");
 
     const profileMap = new Map<string, string>();
-    profiles?.forEach(p => {
-      const name = p.display_name || p.full_name || "Anónimo";
+    (profiles ?? []).forEach((p: { user_id: string; display_name: string | null }) => {
+      if (!userIds.has(p.user_id)) return;
+      const name = p.display_name || "Anónimo";
       const parts = name.split(" ");
       const display = parts.length > 1 ? `${parts[0]} ${parts[parts.length - 1][0]}.` : parts[0];
       profileMap.set(p.user_id, display);

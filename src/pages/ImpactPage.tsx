@@ -69,20 +69,20 @@ const ImpactPage = () => {
   const [departmentCounts, setDepartmentCounts] = useState<Record<string, number>>({});
 
   const fetchImpactData = async () => {
-    const [studentsRes, classesRes, contentRes, departmentsRes] = await Promise.all([
-      supabase.from("profiles").select("id", { count: "exact", head: true }),
+    const [studentsCountRes, classesRes, contentRes, publicProfilesRes] = await Promise.all([
+      supabase.rpc("get_public_profiles_count"),
       (supabase as any).from("class_sessions").select("id", { count: "exact", head: true }).eq("is_active", true),
       supabase.from("content_items").select("id", { count: "exact", head: true }).eq("is_published", true),
-      supabase.from("profiles").select("department").not("department", "is", null),
+      supabase.rpc("get_public_profiles"),
     ]);
 
     setStats({
-      students: studentsRes.count ?? 0,
+      students: Number(studentsCountRes.data ?? 0),
       activeClasses: classesRes.count ?? 0,
       publishedContent: contentRes.count ?? 0,
     });
 
-    const grouped = (departmentsRes.data ?? []).reduce<Record<string, number>>((acc, row) => {
+    const grouped = ((publicProfilesRes.data as Array<{ department: string | null }> | null) ?? []).reduce<Record<string, number>>((acc, row) => {
       const department = (row.department || "").trim();
       if (!department) {
         return acc;

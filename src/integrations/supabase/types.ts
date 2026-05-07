@@ -620,6 +620,7 @@ export type Database = {
       profiles: {
         Row: {
           accepted_terms: boolean
+          age: number | null
           age_range: string | null
           avatar_url: string | null
           created_at: string
@@ -637,6 +638,7 @@ export type Database = {
         }
         Insert: {
           accepted_terms?: boolean
+          age?: number | null
           age_range?: string | null
           avatar_url?: string | null
           created_at?: string
@@ -654,6 +656,7 @@ export type Database = {
         }
         Update: {
           accepted_terms?: boolean
+          age?: number | null
           age_range?: string | null
           avatar_url?: string | null
           created_at?: string

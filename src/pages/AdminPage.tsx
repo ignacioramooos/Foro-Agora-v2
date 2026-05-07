@@ -117,7 +117,7 @@ const AdminPage = () => {
   };
 
   const fetchClasses = async () => {
-    const { data } = await (supabase as any)
+    const { data } = await supabase
       .from("class_sessions")
       .select("*")
       .order("class_date", { ascending: true });
@@ -125,7 +125,7 @@ const AdminPage = () => {
   };
 
   const fetchRegistrations = async () => {
-    const { data } = await (supabase as any)
+    const { data } = await supabase
       .from("class_registrations")
       .select("*")
       .order("created_at", { ascending: false });
@@ -275,9 +275,9 @@ const AdminPage = () => {
 
     let error;
     if (editingClassId) {
-      ({ error } = await (supabase as any).from("class_sessions").update(payload).eq("id", editingClassId));
+      ({ error } = await supabase.from("class_sessions").update(payload).eq("id", editingClassId));
     } else {
-      ({ error } = await (supabase as any).from("class_sessions").insert(payload));
+      ({ error } = await supabase.from("class_sessions").insert(payload));
     }
 
     setSaving(false);

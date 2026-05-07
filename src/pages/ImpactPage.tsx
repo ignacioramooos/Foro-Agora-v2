@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import SectionFade from "@/components/SectionFade";
 import CoreValues from "@/components/CoreValues";
 import { supabase } from "@/integrations/supabase/client";
@@ -40,17 +40,20 @@ const departmentPoints: DepartmentPoint[] = [
 
 const LiveCounter = ({ value }: { value: number }) => {
   const [display, setDisplay] = useState(0);
+  const displayRef = useRef(0);
 
   useEffect(() => {
     let frame = 0;
     const start = performance.now();
-    const from = display;
+    const from = displayRef.current;
     const duration = 900;
 
     const tick = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplay(Math.round(from + (value - from) * eased));
+      const nextValue = Math.round(from + (value - from) * eased);
+      displayRef.current = nextValue;
+      setDisplay(nextValue);
       if (progress < 1) {
         frame = requestAnimationFrame(tick);
       }
@@ -71,7 +74,7 @@ const ImpactPage = () => {
   const fetchImpactData = async () => {
     const [studentsCountRes, classesRes, contentRes, publicProfilesRes] = await Promise.all([
       supabase.rpc("get_public_profiles_count"),
-      (supabase as any).from("class_sessions").select("id", { count: "exact", head: true }).eq("is_active", true),
+      supabase.from("class_sessions").select("id", { count: "exact", head: true }).eq("is_active", true),
       supabase.from("content_items").select("id", { count: "exact", head: true }).eq("is_published", true),
       supabase.rpc("get_public_profiles"),
     ]);

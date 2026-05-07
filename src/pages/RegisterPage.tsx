@@ -76,7 +76,7 @@ const RegisterPage = () => {
     }, 5000);
 
     const fetchClasses = async () => {
-      const { data, error } = await (supabase as any)
+      const { data, error } = await supabase
         .from("class_sessions")
         .select("id, title, module_number, class_date, location, max_capacity")
         .eq("is_active", true)
@@ -93,8 +93,8 @@ const RegisterPage = () => {
       if (cancelled) return;
       const sessions = (data || []) as ClassSession[];
       setClasses(sessions);
-      if (!selectedClassId && sessions.length > 0) {
-        setSelectedClassId(sessions[0].id);
+      if (sessions.length > 0) {
+        setSelectedClassId((current) => current || sessions[0].id);
       }
       setClassesLoading(false);
     };
@@ -103,7 +103,7 @@ const RegisterPage = () => {
       cancelled = true;
       window.clearTimeout(fallback);
     };
-  }, [selectedClassId]);
+  }, []);
 
   const set = (field: string, value: string | boolean) => {
     setForm((p) => ({ ...p, [field]: value }));
@@ -127,7 +127,7 @@ const RegisterPage = () => {
     setLoading(true);
     setErrors((prev) => ({ ...prev, submit: "" }));
 
-    const { error } = await (supabase as any).from("class_registrations").insert({
+    const { error } = await supabase.from("class_registrations").insert({
       class_id: selectedClassId,
       name: form.name,
       age: Number(form.age),
@@ -366,7 +366,7 @@ const RegisterPage = () => {
               Sí, quiero registrarme
             </Button>
             <Button asChild variant="secondary">
-              <Link to="/auth">Ver clases grabadas --&gt;</Link>
+              <Link to="/auth">Ver clases grabadas →</Link>
             </Button>
           </div>
         </DialogContent>

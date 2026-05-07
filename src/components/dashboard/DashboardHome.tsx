@@ -23,6 +23,9 @@ interface CommunityPost {
   created_at: string;
 }
 
+const isCommunityPostType = (value: string): value is CommunityPost["type"] =>
+  value === "analysis" || value === "announcement";
+
 interface DashboardHomeProps {
   onTabChange?: (tab: DashboardTab) => void;
 }
@@ -119,14 +122,22 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
     const fetchCommunity = async () => {
       setLoadingCommunity(true);
       try {
-        const { data } = await (supabase as any)
+        const { data } = await supabase
           .from("community_posts")
           .select("id, author, type, title, created_at")
           .eq("is_published", true)
           .order("created_at", { ascending: false })
           .limit(4);
 
-        if (data) setCommunityPosts(data as CommunityPost[]);
+        if (data) {
+          setCommunityPosts(
+            data.flatMap((post) =>
+              isCommunityPostType(post.type)
+                ? [post]
+                : []
+            )
+          );
+        }
       } finally {
         setLoadingCommunity(false);
       }

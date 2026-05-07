@@ -153,9 +153,8 @@ const buildIncomeStatementRows = (ticker: string) =>
   ];
 
 const DynamicStockTickerAnimation = () => {
-  const { isLoggedIn, session, loading: authLoading } = useAuth();
+  const { isLoggedIn, session } = useAuth();
   const [savedTickers, setSavedTickers] = useState<string[]>([]);
-  const [savedLoading, setSavedLoading] = useState(false);
   const [demoTickers] = useState(() => shuffleTickers(DEFAULT_CAROUSEL_TICKERS));
   const [quotes, setQuotes] = useState<StockQuote[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -169,7 +168,6 @@ const DynamicStockTickerAnimation = () => {
         return;
       }
 
-      setSavedLoading(true);
       const { data } = await supabase
         .from("landing_page_widgets")
         .select("tickers")
@@ -179,7 +177,6 @@ const DynamicStockTickerAnimation = () => {
       if (!cancelled) {
         const tickers = data?.tickers || [];
         setSavedTickers(tickers);
-        setSavedLoading(false);
       }
     };
 
@@ -198,10 +195,11 @@ const DynamicStockTickerAnimation = () => {
     },
     [demoTickers, isLoggedIn, savedTickers]
   );
+  const carouselSignature = useMemo(() => carouselTickers.join("|"), [carouselTickers]);
 
   useEffect(() => {
     setActiveIndex(0);
-  }, [carouselTickers.join("|")]);
+  }, [carouselSignature]);
 
   useEffect(() => {
     if (!carouselTickers.length) {
@@ -237,8 +235,6 @@ const DynamicStockTickerAnimation = () => {
   const companyName = displayQuote?.companyName || stockNameByTicker.get(activeTicker) || activeTicker;
   const incomeStatementRows = buildIncomeStatementRows(activeTicker || "AGORA");
   const barHeights = buildBarHeights(activeTicker || "AGORA", displayQuote?.changePercent);
-  const isEmptyPersonalList = isLoggedIn && !authLoading && !savedLoading && savedTickers.length === 0;
-
   return (
     <div className="absolute inset-x-0 bottom-6 mx-auto h-[76%] w-[92%] overflow-hidden rounded-[2rem] border-2 border-blue-pop bg-[#0b0d10] shadow-[0_30px_80px_rgba(0,0,0,0.16)]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(59,130,246,0.34),transparent_30%),radial-gradient(circle_at_88%_12%,rgba(255,200,0,0.22),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.12),transparent_45%)]" />
@@ -247,37 +243,28 @@ const DynamicStockTickerAnimation = () => {
       </div>
       <div className="relative h-full px-5 pb-5 pt-14">
         <div key={`card-${activeTicker || "empty"}`} className="stock-ticker-card absolute left-1/2 top-1/2 w-[72%] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/15 bg-white/[0.09] p-5 backdrop-blur-md">
-          {isEmptyPersonalList ? (
-            <div className="py-4">
-              <p className="font-heading text-3xl font-black leading-none text-white">Tu lista</p>
-              <p className="mt-3 font-heading text-sm font-semibold leading-tight text-white/60">
-                Haz clic en Herramientas para personalizar.
-              </p>
+          <>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="font-heading text-4xl font-black leading-none text-white">{activeTicker}</p>
+                <p className="mt-2 font-heading text-sm font-semibold leading-none text-white/55">{companyName}</p>
+              </div>
+              <span className={`rounded-full px-3 py-1.5 font-heading text-sm font-black ${changeClassName(displayQuote?.changePercent)}`}>
+                {formatPercent(displayQuote?.changePercent)}
+              </span>
             </div>
-          ) : (
-            <>
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="font-heading text-4xl font-black leading-none text-white">{activeTicker}</p>
-                  <p className="mt-2 font-heading text-sm font-semibold leading-none text-white/55">{companyName}</p>
-                </div>
-                <span className={`rounded-full px-3 py-1.5 font-heading text-sm font-black ${changeClassName(displayQuote?.changePercent)}`}>
-                  {formatPercent(displayQuote?.changePercent)}
-                </span>
+            <div className="mt-5 flex items-end justify-between">
+              <div>
+                <p className="font-heading text-xs font-bold uppercase tracking-[0.18em] text-white/45">Precio</p>
+                <p className="mt-1 font-heading text-2xl font-black leading-none text-white">{formatUsd(displayQuote?.price)}</p>
               </div>
-              <div className="mt-5 flex items-end justify-between">
-                <div>
-                  <p className="font-heading text-xs font-bold uppercase tracking-[0.18em] text-white/45">Precio</p>
-                  <p className="mt-1 font-heading text-2xl font-black leading-none text-white">{formatUsd(displayQuote?.price)}</p>
-                </div>
-                <div className="flex h-16 w-32 items-end gap-2">
-                  {barHeights.map((height, index) => (
-                    <span key={`${activeTicker}-${height}-${index}`} className="stock-ticker-bar flex-1 rounded-t-full bg-blue-pop" style={{ height: `${height}%`, animationDelay: `${index * 90}ms` }} />
-                  ))}
-                </div>
+              <div className="flex h-16 w-32 items-end gap-2">
+                {barHeights.map((height, index) => (
+                  <span key={`${activeTicker}-${height}-${index}`} className="stock-ticker-bar flex-1 rounded-t-full bg-blue-pop" style={{ height: `${height}%`, animationDelay: `${index * 90}ms` }} />
+                ))}
               </div>
-            </>
-          )}
+            </div>
+          </>
         </div>
 
         <div key={`window-${activeTicker || "empty"}`} className="income-window absolute inset-x-5 bottom-5 top-10 overflow-hidden rounded-3xl border border-white/15 bg-[#f8fbff] text-[#0b1320] shadow-2xl">
@@ -539,7 +526,7 @@ const UpcomingClasses = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const { data } = await (supabase as any)
+      const { data } = await supabase
         .from("class_sessions")
         .select("id, title, module_number, class_date, location, max_capacity")
         .eq("is_active", true)
@@ -618,7 +605,7 @@ const UpcomingClasses = () => {
               <Link to={registerUrl}>Sí, quiero registrarme</Link>
             </Button>
             <Button asChild variant="secondary">
-              <Link to="/auth">Ver clases grabadas --&gt;</Link>
+              <Link to="/auth">Ver clases grabadas →</Link>
             </Button>
           </div>
         </DialogContent>
@@ -662,7 +649,6 @@ const Index = () => (
     <OurValues />
     <HowItWorks />
     {/* ⚠️ TESTIMONIALS HIDDEN FOR NOW - DO NOT DELETE ⚠️ Re-enable when we have actual reviews */}
-    {false && <Testimonials />}
     <UpcomingClasses />
     <FinalCTA />
   </>

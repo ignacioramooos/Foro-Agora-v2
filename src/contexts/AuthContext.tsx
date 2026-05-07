@@ -74,7 +74,7 @@ const calculateCurrentStreak = (completedAtValues: Array<string | null>) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  let cursor = new Date(today);
+  const cursor = new Date(today);
   if (!completedDays.has(toISODate(cursor))) {
     cursor.setDate(cursor.getDate() - 1);
     if (!completedDays.has(toISODate(cursor))) {

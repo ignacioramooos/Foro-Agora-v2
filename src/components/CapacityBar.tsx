@@ -8,7 +8,7 @@ const CapacityBar = () => {
 
   useEffect(() => {
     const fetch = async () => {
-      const { data: classes } = await (supabase as any)
+      const { data: classes } = await supabase
         .from("class_sessions")
         .select("id, max_capacity")
         .eq("is_active", true)
@@ -23,7 +23,7 @@ const CapacityBar = () => {
 
       setMaxCapacity(classes[0].max_capacity);
 
-      const { count } = await (supabase as any)
+      const { count } = await supabase
         .from("class_registrations")
         .select("*", { count: "exact", head: true })
         .eq("class_id", classes[0].id);

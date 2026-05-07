@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { fetchStockPrices, StockQuote } from "@/lib/stockData";
@@ -39,6 +39,7 @@ export function usePortfolio() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const loadAllRef = useRef<(() => Promise<void>) | null>(null);
 
   const fetchPortfolio = useCallback(async () => {
     if (!userId) return null;
@@ -63,7 +64,10 @@ export function usePortfolio() {
   }, []);
 
   const enrichHoldings = useCallback(async (rawHoldings: Tables<"portfolio_holdings">[]) => {
-    if (!rawHoldings.length) { setHoldingsWithPrices([]); return; }
+    if (!rawHoldings.length) {
+      setHoldingsWithPrices([]);
+      return [];
+    }
     const tickers = rawHoldings.map(h => h.ticker);
     const quotes = await fetchStockPrices(tickers);
     const quoteMap = new Map<string, StockQuote>();
@@ -87,6 +91,16 @@ export function usePortfolio() {
       };
     });
     setHoldingsWithPrices(enriched);
+    return enriched;
+  }, []);
+
+  const updateLastPortfolioValue = useCallback(async (portfolioId: string, cashBalanceAmount: number, enrichedHoldings: HoldingWithPrice[]) => {
+    const totalHoldings = enrichedHoldings.reduce((sum, holding) => sum + holding.currentValue, 0);
+    const totalValue = cashBalanceAmount + totalHoldings;
+    await supabase
+      .from("portfolios")
+      .update({ last_portfolio_value: totalValue })
+      .eq("id", portfolioId);
   }, []);
 
   const loadAll = useCallback(async () => {
@@ -94,42 +108,38 @@ export function usePortfolio() {
     const p = await fetchPortfolio();
     if (p) {
       const h = await fetchHoldings(p.id);
-      await Promise.all([enrichHoldings(h), fetchTransactions(p.id)]);
-      // Update last_portfolio_value
-      const totalHoldings = holdingsWithPrices.reduce((s, x) => s + x.currentValue, 0);
-      const totalVal = Number(p.cash_balance) + totalHoldings;
-      supabase.from("portfolios").update({ last_portfolio_value: totalVal }).eq("id", p.id).then(() => {});
+      const [enriched] = await Promise.all([enrichHoldings(h), fetchTransactions(p.id)]);
+      await updateLastPortfolioValue(p.id, Number(p.cash_balance), enriched);
     }
     setIsLoading(false);
-  }, [fetchPortfolio, fetchHoldings, enrichHoldings, fetchTransactions]);
+  }, [fetchPortfolio, fetchHoldings, enrichHoldings, fetchTransactions, updateLastPortfolioValue]);
 
   const refresh = useCallback(async () => {
     setIsRefreshing(true);
     if (portfolio) {
       const h = await fetchHoldings(portfolio.id);
-      await enrichHoldings(h);
-      // Update last_portfolio_value
-      const totalHoldings = holdingsWithPrices.reduce((s, x) => s + x.currentValue, 0);
-      const totalVal = Number(portfolio.cash_balance) + totalHoldings;
-      supabase.from("portfolios").update({ last_portfolio_value: totalVal }).eq("id", portfolio.id).then(() => {});
+      const enriched = await enrichHoldings(h);
+      await updateLastPortfolioValue(portfolio.id, Number(portfolio.cash_balance), enriched);
     }
     setIsRefreshing(false);
-  }, [portfolio, fetchHoldings, enrichHoldings]);
+  }, [portfolio, fetchHoldings, enrichHoldings, updateLastPortfolioValue]);
 
-  useEffect(() => { loadAll(); }, [userId]);
+  useEffect(() => {
+    loadAllRef.current = loadAll;
+  }, [loadAll]);
+
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    loadAllRef.current?.();
+  }, [userId]);
 
   const cashBalance = Number(portfolio?.cash_balance || 0);
   const totalHoldingsValue = holdingsWithPrices.reduce((s, h) => s + h.currentValue, 0);
   const totalPortfolioValue = cashBalance + totalHoldingsValue;
   const totalReturn = ((totalPortfolioValue / 10000) - 1) * 100;
   const totalPnL = totalPortfolioValue - 10000;
-
-  // Update last_portfolio_value when prices change
-  useEffect(() => {
-    if (portfolio && holdingsWithPrices.length > 0) {
-      supabase.from("portfolios").update({ last_portfolio_value: totalPortfolioValue }).eq("id", portfolio.id).then(() => {});
-    }
-  }, [totalPortfolioValue, portfolio?.id]);
 
   const buyStock = async (ticker: string, companyName: string, shares: number, price: number) => {
     if (!portfolio) return { success: false, error: "No portfolio" };

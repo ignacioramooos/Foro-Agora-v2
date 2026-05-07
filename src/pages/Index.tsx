@@ -486,14 +486,14 @@ const OurValues = () => (
 );
 
 const HowItWorks = () => (
-  <section className="py-16 md:py-24 bg-background">
+  <section className="py-12 md:py-24 bg-background">
     <div className="container">
-      <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
+      <div className="grid gap-8 lg:gap-10 lg:grid-cols-[0.75fr_1.25fr]">
         <div>
           <p className="font-hand text-3xl text-blue-pop">Cómo funciona</p>
-          <h2 className="mt-2 text-4xl md:text-5xl font-black">Cuatro pasos</h2>
+          <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-black">Cuatro pasos</h2>
         </div>
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           {[
             { step: "01", title: "Inscribite", desc: "Completá el formulario de inscripción en 2 minutos." },
             { step: "02", title: "Asistí", desc: "Vení a clases presenciales en Montevideo." },

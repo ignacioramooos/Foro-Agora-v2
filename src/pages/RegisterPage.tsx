@@ -316,7 +316,7 @@ const RegisterPage = () => {
           </div>
 
           <div className="md:col-span-2">
-            <div className="border border-border rounded-lg p-8 sticky top-28 space-y-6">
+            <div className="border border-border rounded-lg p-6 md:p-8 md:sticky md:top-28 space-y-6">
               <h3 className="font-heading font-semibold text-foreground text-lg">¿Qué incluye?</h3>
               <div className="space-y-4 text-sm">
                 <div className="flex items-start gap-3">

@@ -404,7 +404,7 @@ const ProblemSection = () => (
         <div className="relative">
           <div className="absolute -left-8 bottom-10 h-20 w-20 rounded-full bg-sun" />
           <div className="relative rounded-[2rem] border-2 border-foreground bg-card p-8 shadow-[10px_10px_0_#ffc800]">
-            <span className="block font-heading text-7xl md:text-8xl font-black text-foreground">80%</span>
+            <span className="block font-heading text-6xl sm:text-7xl md:text-8xl font-black text-foreground">80%</span>
             <p className="mt-3 max-w-md text-lg text-foreground/70">
               de los jóvenes en Latinoamérica nunca recibió educación financiera formal.
             </p>

@@ -45,13 +45,28 @@ const RegisterPage = () => {
   const selectedClass = classes.find((c) => c.id === selectedClassId) || null;
 
   useEffect(() => {
-    if (user) {
+    if (!user) return;
+    setForm((p) => ({
+      ...p,
+      name: user.name || p.name,
+      email: user.email || p.email,
+    }));
+    (async () => {
+      const { data } = await supabase
+        .from("profiles")
+        .select("full_name, age, department, institution, how_found_us")
+        .eq("user_id", user.id)
+        .maybeSingle();
+      if (!data) return;
       setForm((p) => ({
         ...p,
-        name: user.name || p.name,
-        email: user.email || p.email,
+        name: p.name || data.full_name || "",
+        age: p.age || (data.age ? String(data.age) : ""),
+        school: p.school || data.institution || "",
+        department: p.department || data.department || "",
+        hearAbout: p.hearAbout || data.how_found_us || "",
       }));
-    }
+    })();
   }, [user]);
 
   useEffect(() => {

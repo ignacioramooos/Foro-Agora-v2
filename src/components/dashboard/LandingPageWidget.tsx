@@ -4,6 +4,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { SUPPORTED_STOCKS } from "@/lib/stockData";
 import { Sparkles, Plus, X } from "lucide-react";
 
+const landingPageWidgetsTable = () => (supabase as any).from("landing_page_widgets");
+
 const LandingPageWidget = () => {
   const { session } = useAuth();
   const [selectedTickers, setSelectedTickers] = useState<string[]>([]);
@@ -15,8 +17,7 @@ const LandingPageWidget = () => {
     const loadTickers = async () => {
       if (!session?.user?.id) return;
       setLoading(true);
-      const { data } = await supabase
-        .from("landing_page_widgets")
+      const { data } = await landingPageWidgetsTable()
         .select("tickers")
         .eq("user_id", session.user.id)
         .maybeSingle();
@@ -41,8 +42,7 @@ const LandingPageWidget = () => {
     if (!session?.user?.id) return;
     setSaving(true);
     
-    const { error } = await supabase
-      .from("landing_page_widgets")
+    const { error } = await landingPageWidgetsTable()
       .upsert({
         user_id: session.user.id,
         tickers: selectedTickers,

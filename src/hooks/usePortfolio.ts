@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { fetchStockPrices, StockQuote } from "@/lib/stockData";
@@ -39,6 +39,7 @@ export function usePortfolio() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const loadAllRef = useRef<(() => Promise<void>) | null>(null);
 
   const fetchPortfolio = useCallback(async () => {
     if (!userId) return null;
@@ -123,7 +124,16 @@ export function usePortfolio() {
     setIsRefreshing(false);
   }, [portfolio, fetchHoldings, enrichHoldings, updateLastPortfolioValue]);
 
-  useEffect(() => { loadAll(); }, [loadAll]);
+  useEffect(() => {
+    loadAllRef.current = loadAll;
+  }, [loadAll]);
+
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    loadAllRef.current?.();
+  }, [userId]);
 
   const cashBalance = Number(portfolio?.cash_balance || 0);
   const totalHoldingsValue = holdingsWithPrices.reduce((s, h) => s + h.currentValue, 0);

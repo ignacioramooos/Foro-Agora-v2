@@ -31,7 +31,7 @@ const CommunityFeed = () => {
         setPosts(
           data.flatMap((post) =>
             isCommunityPostType(post.type)
-              ? [{ ...post, type: post.type }]
+              ? [post]
               : []
           )
         );

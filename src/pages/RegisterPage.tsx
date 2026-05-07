@@ -93,7 +93,9 @@ const RegisterPage = () => {
       if (cancelled) return;
       const sessions = (data || []) as ClassSession[];
       setClasses(sessions);
-      setSelectedClassId((current) => current || sessions[0]?.id || "");
+      if (sessions.length > 0) {
+        setSelectedClassId((current) => current || sessions[0].id);
+      }
       setClassesLoading(false);
     };
     fetchClasses();

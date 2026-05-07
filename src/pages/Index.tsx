@@ -293,6 +293,7 @@ const DynamicStockTickerAnimation = () => {
 };
 
 const Hero = () => {
+  const { isLoggedIn } = useAuth();
   const [showScrollHint, setShowScrollHint] = useState(true);
 
   useEffect(() => {
@@ -328,8 +329,8 @@ const Hero = () => {
             <SectionFade delay={0.15}>
               <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
                 <Button asChild variant="cta" size="cta">
-                  <Link to="/registro">
-                    Inscribite ahora
+                  <Link to={isLoggedIn ? "/dashboard" : "/registro"}>
+                    {isLoggedIn ? "Ir al dashboard" : "Inscribite ahora"}
                     <ArrowRight size={17} />
                   </Link>
                 </Button>

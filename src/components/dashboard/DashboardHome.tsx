@@ -133,7 +133,7 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
           setCommunityPosts(
             data.flatMap((post) =>
               isCommunityPostType(post.type)
-                ? [post]
+                ? [{ id: post.id, author: post.author, type: post.type, title: post.title, created_at: post.created_at }]
                 : []
             )
           );

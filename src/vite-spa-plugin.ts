@@ -1,9 +1,9 @@
 // SPA routing plugin for Vite dev server
 export default {
   name: 'spa-router',
-  configureServer(server) {
+  configureServer(server: any) {
     return () => {
-      server.middlewares.use((req, res, next) => {
+      server.middlewares.use((req: any, res: any, next: any) => {
         // Skip if it's an API or has a file extension
         if (req.url.includes('/api') || /\.\w+$/.test(req.url) || req.url.includes('__vite')) {
           return next();

@@ -112,13 +112,13 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <div className="fixed top-20 left-0 right-0 z-50 h-[3px] bg-transparent pointer-events-none">
+      <div className="fixed top-16 sm:top-20 left-0 right-0 z-50 h-[3px] bg-transparent pointer-events-none">
         <div className="h-full bg-sun transition-[width] duration-75" style={{ width: `${scrollProgress}%` }} />
       </div>
 
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-background flex flex-col pt-24 pb-8 px-6 lg:hidden">
-          <div className="flex flex-col gap-6 flex-1">
+        <div className="fixed inset-0 z-40 bg-background flex flex-col pt-20 pb-8 px-6 lg:hidden overflow-y-auto safe-bottom">
+          <div className="flex flex-col gap-5 flex-1">
             {navLinks.map((l) => (
               <Link
                 key={l.path}
@@ -131,7 +131,7 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-          <div className="space-y-3">
+          <div className="space-y-3 pt-6">
             {isLoggedIn ? (
               <>
                 <Button asChild variant="cta" size="cta" className="w-full">

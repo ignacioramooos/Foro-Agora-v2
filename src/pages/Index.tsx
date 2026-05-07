@@ -332,7 +332,7 @@ const Hero = () => {
           <div className="relative z-10">
             <SectionFade>
               <p className="font-hand text-3xl md:text-4xl text-blue-pop mb-4">Educación financiera accesible</p>
-              <h1 className="max-w-3xl text-5xl md:text-6xl lg:text-[4.6rem] font-black leading-[0.92] tracking-normal text-foreground mb-7">
+              <h1 className="max-w-3xl text-[2.25rem] sm:text-5xl md:text-6xl lg:text-[4.6rem] font-black leading-[0.95] sm:leading-[0.92] tracking-normal text-foreground mb-6 md:mb-7">
                 Aprendé a analizar empresas e invertir con criterio propio, <strong className="font-black">gratis.</strong>
               </h1>
             </SectionFade>

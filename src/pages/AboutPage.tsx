@@ -1,0 +1,165 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import SectionFade from "@/components/SectionFade";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import { supabase } from "@/integrations/supabase/client";
+import teamIgnacio from "@/assets/team-ignacio.jpeg";
+import teamNicolas from "@/assets/team-nicolas.jpeg";
+import teamPhoto from "@/assets/team-photo.jpeg";
+
+const team = [
+  { name: "Nicolás Sales", age: 17, role: "Co-fundador & Instructor", email: "nicolas@foroagora.org", bio: "El que sabe. Especialista en análisis fundamental y mercados financieros.", photo: teamNicolas },
+  { name: "Juan Ignacio Ramos", age: 18, role: "Co-fundador", email: "ignacio@foroagora.org", bio: "Apasionado por las finanzas y la educación. Lidera la visión y estrategia de Foro Agora.", photo: teamIgnacio },
+];
+
+const ImpactSection = () => {
+  const [studentCount, setStudentCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const { count } = await supabase
+        .from("profiles")
+        .select("*", { count: "exact", head: true });
+      setStudentCount(count ?? 0);
+    };
+    fetch();
+  }, []);
+
+  if (studentCount === null || studentCount === 0) return null;
+
+  return (
+    <section className="py-16 md:py-24">
+      <div className="container">
+        <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-4">
+          Nuestro impacto
+        </p>
+        <h2 className="text-3xl md:text-4xl text-foreground mb-12">
+          Números que importan
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+          <div>
+            <div className="text-4xl md:text-5xl font-heading font-semibold text-foreground mb-2">
+              <AnimatedCounter end={studentCount} />
+            </div>
+            <div className="text-muted-foreground text-sm">Estudiantes inscriptos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const AboutPage = () => (
+  <>
+    <section className="pt-32 md:pt-40 pb-16">
+      <div className="container">
+        <SectionFade>
+          <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-6">
+            Nuestra misión
+          </p>
+          <h1 className="text-3xl md:text-5xl text-foreground max-w-4xl mb-8 leading-tight">
+            Que cada joven en Uruguay pueda tomar decisiones financieras con criterio propio.
+          </h1>
+          <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
+            Somos un grupo de jóvenes voluntarios que creemos que la educación financiera
+            no debería ser un privilegio. Enseñamos análisis fundamental —
+            presencial y en tu idioma.
+          </p>
+        </SectionFade>
+      </div>
+    </section>
+
+    <section className="py-16 md:py-24 border-y border-border">
+      <div className="container">
+        <div className="grid md:grid-cols-5 gap-10 md:gap-12 items-start">
+          <div className="md:col-span-3">
+            <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-4">
+              Nuestra historia
+            </p>
+            <h2 className="text-3xl md:text-4xl text-foreground mb-8">
+              Empezamos porque nadie más lo hacía
+            </h2>
+            <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
+              <p>
+                En 2026, dos estudiantes en Montevideo — Nicolás e Ignacio — se dieron cuenta
+                de algo que tenían enfrente: muchos jóvenes a su alrededor mostraban interés
+                por las finanzas, pero casi ninguno conocía las herramientas para informarse.
+                Esa formación simplemente no llegaba en el liceo, como debería.
+              </p>
+              <p>
+                Decidieron tomar el asunto como un problema real y resolverlo ellos mismos,
+                o al menos aportar un granito de arena. Armaron un sistema de clases
+                voluntarias de análisis fundamental — la misma metodología que usan inversores
+                como Warren Buffett — adaptada para estudiantes de liceo sin experiencia previa.
+              </p>
+              <p>
+                El objetivo es simple: acercar la educación financiera a la juventud.
+                Sin barreras económicas ni de conocimiento. Puramente por motivación y voluntad.
+              </p>
+            </div>
+          </div>
+          <div className="md:col-span-2">
+            <img src={teamPhoto} alt="El equipo de Foro Agora" className="rounded-lg w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="py-16 md:py-24">
+      <div className="container">
+        <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-4">
+          El equipo
+        </p>
+        <h2 className="text-3xl md:text-4xl text-foreground mb-12">
+          Jóvenes que enseñan a jóvenes
+        </h2>
+        <div className="grid sm:grid-cols-2 gap-8 max-w-2xl">
+          {team.map((m) => (
+            <div key={m.name} className="flex items-start gap-4">
+              <img src={m.photo} alt={m.name} className="w-20 h-20 rounded-full object-cover object-[center_20%] shrink-0" />
+              <div className="pt-1">
+                <h3 className="font-heading font-semibold text-foreground text-lg">{m.name}</h3>
+                <span className="text-muted-foreground text-sm">{m.role} · {m.age} años</span>
+                <a href={`mailto:${m.email}`} className="mt-1 block text-sm font-heading font-semibold text-blue-pop hover:text-blue-pop/80">
+                  {m.email}
+                </a>
+                <p className="text-muted-foreground text-sm mt-2 leading-relaxed">{m.bio}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-12">
+          <Button asChild variant="cta-outline" size="cta">
+            <Link to="/contacto">Sumarte al equipo</Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+
+    <section className="py-16 md:py-24 border-y border-border">
+      <div className="container max-w-4xl">
+        <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-4">
+          Nuestros valores
+        </p>
+        <div className="grid md:grid-cols-2 gap-x-12 divide-y md:divide-y-0 divide-border">
+          {[
+            { title: "Acceso universal", desc: "La educación financiera es un derecho, no un privilegio." },
+            { title: "Rigor intelectual", desc: "Enseñamos con la misma seriedad que una universidad, pero sin barreras." },
+            { title: "Comunidad", desc: "Aprender juntos es más poderoso que aprender solo." },
+            { title: "Impacto local", desc: "Empezamos en Montevideo, con la visión de llegar a todo Uruguay." },
+          ].map((v) => (
+            <div key={v.title} className="py-5 first:pt-0">
+              <h3 className="font-heading font-semibold text-foreground text-lg mb-1">{v.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{v.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <ImpactSection />
+  </>
+);
+
+export default AboutPage;

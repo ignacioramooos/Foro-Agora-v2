@@ -46,8 +46,8 @@ const Navbar = () => {
         }`}
       >
         <div className="container flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center gap-3 text-2xl font-heading font-black leading-none text-foreground hover:opacity-80 transition-opacity">
-            <img src={logoMark} alt="" className="h-14 w-11 object-contain object-center dark:invert" />
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 text-xl sm:text-2xl font-heading font-black leading-none text-foreground hover:opacity-80 transition-opacity">
+            <img src={logoMark} alt="" className="h-10 w-8 sm:h-14 sm:w-11 object-contain object-center dark:invert" />
             <span className="hidden sm:inline">
               Foro
               <br />

@@ -636,20 +636,20 @@ const UpcomingClasses = () => {
 };
 
 const FinalCTA = () => (
-  <section className="relative overflow-hidden bg-sun py-14 md:py-20">
+  <section className="relative overflow-hidden bg-sun py-12 md:py-20">
     <div className="absolute left-0 top-10 h-24 w-36 rounded-[50%] border-[14px] border-blue-pop border-r-transparent border-b-transparent rotate-[-10deg]" />
     <div className="container relative">
       <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
         <div>
-          <h2 className="max-w-3xl text-4xl md:text-5xl font-black leading-tight">
+          <h2 className="max-w-3xl text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
             Sumate a una comunidad que aprende, comparte y transforma.
           </h2>
-          <p className="mt-4 text-lg text-foreground/75">
+          <p className="mt-4 text-base md:text-lg text-foreground/75">
             No se necesitan conocimientos previos. Solo ganas de aprender y crecer.
           </p>
         </div>
-        <div className="space-y-4">
-          <Button asChild variant="default" size="cta" className="bg-foreground text-background hover:bg-foreground/80">
+        <div className="space-y-4 w-full md:w-auto">
+          <Button asChild variant="default" size="cta" className="bg-foreground text-background hover:bg-foreground/80 w-full md:w-auto">
             <Link to="/registro">
               Quiero participar
               <ArrowRight size={17} />

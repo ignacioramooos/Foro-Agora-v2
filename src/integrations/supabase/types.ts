@@ -89,6 +89,90 @@ export type Database = {
         }
         Relationships: []
       }
+      class_registrations: {
+        Row: {
+          age: number
+          class_id: string | null
+          consent: boolean
+          created_at: string
+          department: string
+          email: string
+          hear_about: string | null
+          id: string
+          name: string
+          phone: string | null
+          school: string
+          why: string | null
+        }
+        Insert: {
+          age: number
+          class_id?: string | null
+          consent: boolean
+          created_at?: string
+          department: string
+          email: string
+          hear_about?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          school: string
+          why?: string | null
+        }
+        Update: {
+          age?: number
+          class_id?: string | null
+          consent?: boolean
+          created_at?: string
+          department?: string
+          email?: string
+          hear_about?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          school?: string
+          why?: string | null
+        }
+        Relationships: []
+      }
+      class_sessions: {
+        Row: {
+          class_date: string
+          created_at: string
+          id: string
+          is_active: boolean
+          location: string
+          max_capacity: number
+          module_number: number
+          notes: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          class_date: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          location: string
+          max_capacity?: number
+          module_number?: number
+          notes?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          class_date?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          location?: string
+          max_capacity?: number
+          module_number?: number
+          notes?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       cohorts: {
         Row: {
           created_at: string
@@ -119,6 +203,57 @@ export type Database = {
           name?: string
           start_date?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      community_posts: {
+        Row: {
+          author: string
+          created_at: string
+          id: string
+          is_published: boolean
+          title: string
+          type: string
+        }
+        Insert: {
+          author: string
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          title: string
+          type: string
+        }
+        Update: {
+          author?: string
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          title?: string
+          type?: string
+        }
+        Relationships: []
+      }
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
         }
         Relationships: []
       }
@@ -195,15 +330,7 @@ export type Database = {
           registered_at?: string
           user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "event_registrations_event_id_fkey"
-            columns: ["event_id"]
-            isOneToOne: false
-            referencedRelation: "events"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       events: {
         Row: {
@@ -272,15 +399,7 @@ export type Database = {
           lesson_id?: string
           user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "lesson_progress_lesson_id_fkey"
-            columns: ["lesson_id"]
-            isOneToOne: false
-            referencedRelation: "lessons"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       lessons: {
         Row: {
@@ -433,15 +552,7 @@ export type Database = {
           shares?: number
           ticker?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "portfolio_holdings_portfolio_id_fkey"
-            columns: ["portfolio_id"]
-            isOneToOne: false
-            referencedRelation: "portfolios"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       portfolio_transactions: {
         Row: {
@@ -477,15 +588,7 @@ export type Database = {
           total_amount?: number
           transaction_type?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "portfolio_transactions_portfolio_id_fkey"
-            columns: ["portfolio_id"]
-            isOneToOne: false
-            referencedRelation: "portfolios"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       portfolios: {
         Row: {
@@ -512,15 +615,7 @@ export type Database = {
           last_portfolio_value?: number | null
           user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "portfolios_cohort_id_fkey"
-            columns: ["cohort_id"]
-            isOneToOne: false
-            referencedRelation: "cohorts"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       profiles: {
         Row: {

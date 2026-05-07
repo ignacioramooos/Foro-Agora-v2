@@ -326,9 +326,9 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden pt-28 md:pt-32 pb-10 md:pb-12">
+    <section className="relative overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-12">
       <div className="container relative">
-        <div className="grid lg:grid-cols-[0.92fr_1.08fr] gap-12 items-center">
+        <div className="grid lg:grid-cols-[0.92fr_1.08fr] gap-8 md:gap-12 items-center">
           <div className="relative z-10">
             <SectionFade>
               <p className="font-hand text-3xl md:text-4xl text-blue-pop mb-4">Educación financiera accesible</p>

@@ -24,6 +24,11 @@ const stockNameByTicker = new Map(SUPPORTED_STOCKS.map((stock) => [stock.ticker,
 
 const shuffleTickers = (tickers: string[]) => [...tickers].sort(() => Math.random() - 0.5);
 
+const getRandomTickers = (count = 6): string[] => {
+  const shuffled = shuffleTickers(SUPPORTED_STOCKS.map(s => s.ticker));
+  return shuffled.slice(0, count);
+};
+
 const demoQuoteByTicker: Record<string, Pick<StockQuote, "price" | "previousClose" | "changePercent">> = {
   AAPL: { price: 213.49, previousClose: 211.38, changePercent: 1.0 },
   MELI: { price: 2428.16, previousClose: 2391.72, changePercent: 1.52 },
@@ -157,6 +162,7 @@ const DynamicStockTickerAnimation = () => {
   const [savedTickers, setSavedTickers] = useState<string[]>([]);
   const [savedLoading, setSavedLoading] = useState(false);
   const [demoTickers] = useState(() => shuffleTickers(DEFAULT_CAROUSEL_TICKERS));
+  const [randomUserTickers] = useState(() => getRandomTickers(6));
   const [quotes, setQuotes] = useState<StockQuote[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -170,28 +176,15 @@ const DynamicStockTickerAnimation = () => {
       }
 
       setSavedLoading(true);
-      const { data: portfolio } = await supabase
-        .from("portfolios")
-        .select("id")
+      const { data } = await supabase
+        .from("landing_page_widgets")
+        .select("tickers")
         .eq("user_id", session.user.id)
         .maybeSingle();
 
-      if (!portfolio) {
-        if (!cancelled) {
-          setSavedTickers([]);
-          setSavedLoading(false);
-        }
-        return;
-      }
-
-      const { data } = await supabase
-        .from("portfolio_holdings")
-        .select("ticker")
-        .eq("portfolio_id", portfolio.id);
-
       if (!cancelled) {
-        const uniqueTickers = Array.from(new Set((data ?? []).map((row) => row.ticker.toUpperCase())));
-        setSavedTickers(uniqueTickers);
+        const tickers = data?.tickers || [];
+        setSavedTickers(tickers.length > 0 ? tickers : getRandomTickers(6));
         setSavedLoading(false);
       }
     };
@@ -259,7 +252,7 @@ const DynamicStockTickerAnimation = () => {
             <div className="py-4">
               <p className="font-heading text-3xl font-black leading-none text-white">Tu lista</p>
               <p className="mt-3 font-heading text-sm font-semibold leading-tight text-white/60">
-                Agregá acciones en el dashboard para personalizar este carrusel.
+                Haz clic en Herramientas para personalizar.
               </p>
             </div>
           ) : (

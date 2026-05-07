@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DollarSign, HeartPulse, UserCheck } from "lucide-react";
 import GlossaryContent from "@/components/GlossaryContent";
+import LandingPageWidget from "@/components/dashboard/LandingPageWidget";
 
 /* ---- Opportunity Cost Calculator ---- */
 const OpportunityCostCalc = () => {
@@ -207,6 +208,7 @@ const Toolkit = () => (
     <h1 className="text-2xl md:text-3xl text-foreground mb-2">Herramientas</h1>
     <p className="text-muted-foreground mb-10">Calculadoras y recursos interactivos para practicar.</p>
     <div className="grid md:grid-cols-2 gap-6">
+      <LandingPageWidget />
       <OpportunityCostCalc />
       <ValuationLite />
       <InvestorQuiz />

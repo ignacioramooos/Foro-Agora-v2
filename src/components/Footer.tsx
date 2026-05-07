@@ -5,12 +5,12 @@ import logoMark from "@/assets/stone-trail-logo.png";
 
 const Footer = () => (
   <footer className="border-t border-border bg-background">
-    <div className="container py-16">
-      <div className="grid md:grid-cols-3 gap-12">
+    <div className="container py-10 md:py-16">
+      <div className="grid gap-10 md:gap-12 sm:grid-cols-2 md:grid-cols-3">
         <div>
           <div className="mb-4 flex items-center gap-3">
-            <img src={logoMark} alt="" className="h-14 w-11 object-contain object-center dark:invert" />
-            <h3 className="text-2xl font-heading font-black leading-none text-foreground">
+            <img src={logoMark} alt="" className="h-12 w-9 sm:h-14 sm:w-11 object-contain object-center dark:invert" />
+            <h3 className="text-xl sm:text-2xl font-heading font-black leading-none text-foreground">
               Foro
               <br />
               Agora

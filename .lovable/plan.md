@@ -1,60 +1,104 @@
-## Problema
+## Objetivo
 
-1. **Google se saltea el onboarding** — el flujo actual pide email/password primero, después los pasos del perfil. Con Google, el OAuth crea sesión y el `handle_new_user` trigger crea un `profiles` con `onboarding_completed=false` pero los campos (edad, liceo, etc.) quedan vacíos. El código intenta detectar esto después y mostrar los pasos, pero es frágil y la info ya no se reusa al inscribirse a clases.
+Hacer un refactor responsive completo del sitio público y dashboard, con foco principal en **375–1024px** (mobile + tablet), sin tocar la lógica de negocio. Audito cada vista, arreglo lo roto y normalizo tipografía, espaciado y navegación para que se sienta nativa en mobile, no apretada.
 
-2. **"No se pudo guardar el perfil"** — en `handleSignupSubmit`, después de `supabase.auth.signUp` se llama `getSession()`. Si en el proyecto Supabase está activada la confirmación de email, **no hay sesión** después del signup → `newUserId` queda `null` → al final `handleFinishOnboarding` no puede hacer el UPDATE de profiles (y aunque tuviera el id, la RLS `Profiles update own` exige `auth.uid() = user_id`, que sin sesión también falla).
+## Diagnóstico inicial
 
-3. **RegisterPage no usa el perfil** — el formulario de inscripción a clase pide todo de nuevo aunque el usuario esté logueado y ya tenga su perfil cargado.
+Patrones repetidos que hay que normalizar:
 
-## Solución
+- **Hero titles** muy grandes en mobile (`text-5xl`, `text-6xl`, `text-7xl`, `text-8xl` sin escalado) en `Index.tsx`, `ImpactPage`, `NotFound`. Generan overflow y line-breaks feos en 375px.
+- **Padding horizontal inconsistente**. Algunas secciones usan `container`, otras `px-6`, otras nada → el contenido no respira igual.
+- **Grids `md:grid-cols-N`** con valores chicos en mobile pero gaps grandes (`gap-12`, `gap-16`) que dejan demasiado vertical scroll.
+- **Tablas / listas wide** (Brokers, Admin, Ranking, Portfolio) con scroll horizontal mal aprovechado o sin él.
+- **Dashboard**: bottom nav fixed pisa contenido en algunas vistas largas; el sidebar mobile no usa la ruta segura del notch (`safe-area-inset`).
+- **Formularios** (Auth, Register, Contact) con inputs `h-12` pero sin `font-size: 16px` en mobile → iOS hace zoom al focus.
+- **Navbar**: el logo "Foro / Agora" se oculta < `sm` (640px), correcto, pero el icono `h-14 w-11` ocupa demasiado y compite con el botón menu.
+- **WhatsApp button** posición fija puede tapar CTAs en mobile.
+- **Footer** `md:grid-cols-3` con `gap-12` se ve apilado y muy espaciado en mobile.
 
-Invertir el flujo: **primero el onboarding, después la creación de cuenta**. Los datos del perfil viajan dentro de `user_metadata` del signup (email) o en `sessionStorage` (Google), y el trigger `handle_new_user` los escribe directamente en `profiles` con `onboarding_completed=true`. Así no dependemos de tener una sesión para hacer un UPDATE post-signup.
+## Plan de trabajo
 
-### Cambios
+### 1. Fundamentos globales (`src/styles.css`, `src/index.css`)
+- Asegurar `html { -webkit-text-size-adjust: 100%; }` y `body { overflow-x: hidden; }` para evitar scroll horizontal accidental.
+- Inputs/textarea/select con `font-size: 16px` en mobile (evita auto-zoom de iOS).
+- Definir tokens de tipografía fluida con `clamp()` para títulos hero (`--font-hero`, `--font-h1`, `--font-h2`) y aplicarlos donde corresponda.
+- Agregar utilities para `padding-bottom: env(safe-area-inset-bottom)` en bottom nav del dashboard.
 
-**1. `supabase/migrations/...` — actualizar `handle_new_user`**
-Leer todos los campos de onboarding desde `raw_user_meta_data` y persistirlos en `profiles`. Si vienen, marcar `onboarding_completed=true`.
-Campos: `full_name`, `display_name`, `age_range`, `department`, `institution`, `how_found_us`, `interests` (jsonb→text[]), `accepted_terms`.
+### 2. Navbar (`src/components/Navbar.tsx`)
+- Reducir el logo en mobile (`h-10 w-8` < sm; `h-14 w-11` en lg+).
+- Asegurar que el menú mobile fullscreen scrollee si hay muchos items (overflow + max-height).
+- Mejorar contraste y tap targets (mín. 44px).
 
-**2. `src/pages/AuthPage.tsx` — reordenar flujo**
+### 3. Footer (`src/components/Footer.tsx`)
+- En mobile: 1 columna con `gap-8` (no 12). Typography más chica.
+- Centrar / alinear consistentemente.
 
-Nuevo orden:
-```
-landing (login | empezar-registro)
-  → step-1 (nombre, edad)
-  → step-2 (depto, institución, cómo nos conociste)
-  → step-3 (intereses, términos)
-  → step-final (elegir: continuar con Google | crear con email+contraseña)
-  → email-confirmation o redirect /dashboard
-```
+### 4. Index / Landing (`src/pages/Index.tsx`) — el más pesado
+- Escalar todos los hero titles con `clamp` o cadenas `text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4.6rem]`.
+- Stats grandes (`text-7xl md:text-8xl 80%`) bajar a `text-5xl sm:text-6xl md:text-7xl`.
+- Grids `md:grid-cols-3` agregar breakpoint `sm:grid-cols-2` cuando haga sentido.
+- Sección "Próxima clase" `md:grid-cols-2`: confirmar que en mobile la imagen no sea gigante.
+- CTA grande final: ancho 100% en mobile.
+- Padding vertical entre secciones reducirlo en mobile (`py-12 md:py-20`).
 
-- Eliminar el branch "isLoggedIn && !onboardingCompleted → mostrar steps" (ya no es necesario para signup nuevo, pero se mantiene como fallback de seguridad por si un usuario Google viejo entra sin perfil).
-- En "step-final":
-  - **Email**: `supabase.auth.signUp({ email, password, options: { data: { display_name, full_name, age_range, department, institution, how_found_us, interests, accepted_terms } } })`. El trigger arma el perfil completo. Se muestra `email-confirmation`.
-  - **Google**: guardar `onboardingData` en `sessionStorage` con clave `pending_onboarding`, luego `signInWithOAuth`. Al volver del OAuth, un `useEffect` en AuthPage detecta sesión + `pending_onboarding` y hace UPDATE de `profiles` (esto sí tiene sesión, así que la RLS pasa), borra el storage y redirige a `/dashboard`.
-- Para usuarios Google que ya existieran sin perfil completo, mantener el fallback actual de mostrar los pasos.
+### 5. Páginas públicas (auditar y arreglar caso por caso)
+- **AboutPage**: stats `grid-cols-2 md:grid-cols-4`, gap-12 → `gap-6 md:gap-12`. Bajar `text-4xl md:text-5xl` de números a `text-3xl sm:text-4xl md:text-5xl`.
+- **ProgramPage**: hero `text-3xl md:text-5xl` ok; revisar bullets y curriculum cards.
+- **ImpactPage**: hero `text-4xl md:text-6xl` → `text-3xl sm:text-4xl md:text-6xl`. Stats grid revisar.
+- **PartnersPage**: hero + grids partners (logos no deben deformarse).
+- **ResourcesPage**, **GlossaryPage**, **BrokersPage**: tablas → `overflow-x-auto` con scroll-shadow o convertir a cards en mobile.
+- **ContactPage**: `md:grid-cols-5` con info-card sticky → en mobile la card va arriba o abajo, sin sticky.
+- **RegisterPage**: `md:grid-cols-5 gap-16` → en mobile gap-8 y info-card no sticky.
+- **AuthPage**: max-w ya está bien; revisar paddings `pt-24` cuando navbar mobile cambia altura.
+- **PrivacyPage**, **TermsPage**: tipografía body, line-height legible. Asegurar `prose`-like spacing.
+- **RankingPage**: `hidden md:grid grid-cols-3` → ofrecer versión card-stack en mobile.
+- **NotFound**: `text-5xl md:text-6xl` ok pero centrar.
 
-**3. `src/pages/RegisterPage.tsx` — prellenar desde perfil**
+### 6. Dashboard (`src/components/dashboard/*`)
+- **DashboardLayout**: bottom nav con `pb-[env(safe-area-inset-bottom)]`. Sidebar mobile fullscreen ya está bien, agregar scroll si overflow.
+- **DashboardHome**: stats grids `grid-cols-1 sm:grid-cols-3` ok pero verificar paddings `p-6 md:p-10`.
+- **PortfolioTab**: grids 2/4 cols en mobile pueden quedar apretados; tablas de holdings necesitan `overflow-x-auto` con sticky first column o card view.
+- **ContentLibrary**: cards grid ya tiene `sm:grid-cols-2 lg:grid-cols-3`, ok.
+- **EventsSection**, **CommunityFeed**, **Toolkit**, **ThesisBuilder**, **LearningRoadmap**: revisar paddings y CTA width.
+- **AdminPage**: tablas wide → `overflow-x-auto` + min-width. En mobile hacer collapsible row.
+- **DashboardSettings**: ya simple, sólo ajustar paddings.
 
-Si `user` está logueado, hacer un `select` a `profiles` (full_name, age_range, department, institution, etc.) y prellenar los campos. El usuario puede igual editarlos antes de mandar. `age` queda manual (en perfil sólo guardamos `age_range`), o agregamos un campo `age` numérico al perfil — mantengo `age_range` para no cambiar schema más de lo necesario y dejo el input de edad vacío sólo cuando no hay valor previo.
+### 7. Componentes UI compartidos
+- **WhatsAppButton**: subir un poco en mobile para no chocar con bottom-nav del dashboard.
+- **NewsletterSignup**: form inline en desktop, stack en mobile.
+- **CohortCountdown**, **CapacityBar**, **LiveStudentCounter**: revisar tamaños de números.
 
-**4. Validación**
+### 8. QA de cada cambio
+- Probar en 3 viewports: 375, 414, 768, 1024 con browser tool.
+- Screenshots por página antes/después de las páginas más importantes (Landing, Auth, Register, Dashboard Home, Portfolio).
+- Verificar que no haya scroll horizontal en ninguna ruta (`document.body.scrollWidth === window.innerWidth`).
+- Verificar tap targets mínimos 44x44 en CTAs y botones de nav.
 
-- Verificar que después del signup con email, el perfil quede con todos los campos seteados (consulta a `profiles` por `user_id`).
-- Probar Google flow: completar pasos → redirigir → volver → ver `/dashboard` con perfil completo.
-- Probar inscripción a clase con sesión iniciada: campos prellenados.
+## Estrategia
 
-### Detalles técnicos
+Hacer una pasada por capa, en este orden, commiteando cambios visibles cada vez:
 
-- El cast del array `interests` desde jsonb requiere `(NEW.raw_user_meta_data->'interests')::jsonb` y conversión a `text[]` con `ARRAY(SELECT jsonb_array_elements_text(...))`.
-- Mantener `ON CONFLICT (user_id) DO NOTHING` pero cambiarlo a `DO UPDATE SET ...` para sobreescribir si ya existía un perfil vacío (caso de re-signup tras error).
-- El `sessionStorage` evita perder los datos al hacer el round-trip OAuth; se borra después de aplicarlos.
+1. **Globals + Navbar + Footer** (afectan todo)
+2. **Landing (Index.tsx)** — la página más vista
+3. **Auth + Register + Contact** — flujos de conversión
+4. **Resto de páginas públicas** (About, Programa, Impacto, Partners, Resources, Glossary, Brokers, Privacy, Terms, Ranking, NotFound)
+5. **Dashboard layout + bottom nav**
+6. **Dashboard sub-vistas** (Home, Portfolio, Content, Events, Community, Toolkit, Thesis, Roadmap, Settings)
+7. **Admin**
+8. **QA final** con screenshots a 375 y 768.
 
-### Archivos a tocar
-- `supabase/migrations/<nuevo>.sql` (actualizar `handle_new_user`)
-- `src/pages/AuthPage.tsx` (reordenar flujo, agregar step-final, manejo de Google con sessionStorage)
-- `src/pages/RegisterPage.tsx` (prellenar desde profiles)
+## Lo que NO voy a tocar
 
-### Preguntas antes de implementar
-1. ¿Querés que el campo "edad" en la inscripción a clase tome del `age_range` del perfil (ej: "15 a 18" → input vacío y muestra el rango como hint), o preferís agregar un campo `age` numérico al perfil para guardarlo exacto y reusarlo siempre?
-2. Para usuarios que ya hayan creado cuenta vía Google sin perfil completo (los actuales): ¿les forzamos a completar onboarding la próxima vez que entren, o los dejamos pasar al dashboard?
+- Lógica de negocio, queries Supabase, auth.
+- Diseño desktop existente (sólo refino donde el responsive lo requiera).
+- Colores / tokens del design system.
+- Estructura de rutas o navegación.
+
+## Resultado esperado
+
+- Cero overflow horizontal en cualquier ruta entre 375 y 1024px.
+- Tipografía hero escala de manera proporcional.
+- Tablas wide tienen scroll horizontal explícito o card view.
+- Forms no hacen zoom en iOS.
+- Dashboard bottom nav respeta safe-area.
+- Tap targets cumplen 44px mínimo.

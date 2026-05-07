@@ -326,13 +326,13 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden pt-28 md:pt-32 pb-10 md:pb-12">
+    <section className="relative overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-12">
       <div className="container relative">
-        <div className="grid lg:grid-cols-[0.92fr_1.08fr] gap-12 items-center">
+        <div className="grid lg:grid-cols-[0.92fr_1.08fr] gap-8 md:gap-12 items-center">
           <div className="relative z-10">
             <SectionFade>
               <p className="font-hand text-3xl md:text-4xl text-blue-pop mb-4">Educación financiera accesible</p>
-              <h1 className="max-w-3xl text-5xl md:text-6xl lg:text-[4.6rem] font-black leading-[0.92] tracking-normal text-foreground mb-7">
+              <h1 className="max-w-3xl text-[2.25rem] sm:text-5xl md:text-6xl lg:text-[4.6rem] font-black leading-[0.95] sm:leading-[0.92] tracking-normal text-foreground mb-6 md:mb-7">
                 Aprendé a analizar empresas e invertir con criterio propio, <strong className="font-black">gratis.</strong>
               </h1>
             </SectionFade>
@@ -363,8 +363,8 @@ const Hero = () => {
           </div>
 
           <SectionFade delay={0.2}>
-            <div className="relative min-h-[420px] md:min-h-[500px]">
-              <div className="absolute inset-x-0 bottom-24 top-auto h-[420px] md:bottom-36 md:h-[500px]">
+            <div className="relative min-h-[340px] sm:min-h-[420px] md:min-h-[500px]">
+              <div className="absolute inset-x-0 bottom-20 sm:bottom-24 top-auto h-[340px] sm:h-[420px] md:bottom-36 md:h-[500px]">
                 <div className="absolute -left-16 -right-20 top-12 h-[90%] rotate-[5deg] rounded-[52%] border border-white/25 bg-[radial-gradient(circle_at_32%_24%,rgba(255,255,255,0.62),transparent_18%),linear-gradient(135deg,rgba(255,232,104,0.9),rgba(255,197,0,0.78)_55%,rgba(255,221,84,0.62))] shadow-[inset_0_3px_18px_rgba(255,255,255,0.5),inset_0_-26px_44px_rgba(255,178,0,0.24),0_24px_70px_rgba(255,200,0,0.28)] backdrop-blur-sm" />
                 <div className="absolute -right-5 top-2 h-24 w-32 rounded-[50%] border-[14px] border-blue-pop border-l-transparent border-b-transparent rotate-[-22deg]" />
                 <DynamicStockTickerAnimation />
@@ -385,12 +385,12 @@ const Hero = () => {
 };
 
 const ProblemSection = () => (
-  <section className="relative overflow-hidden bg-blue-soft py-16 md:py-24">
+  <section className="relative overflow-hidden bg-blue-soft py-12 md:py-24">
     <div className="container">
-      <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div className="grid gap-10 lg:gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <p className="font-hand text-3xl text-blue-pop">El problema</p>
-          <h2 className="mt-2 max-w-xl text-4xl md:text-5xl font-black leading-tight">
+          <h2 className="mt-2 max-w-xl text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
             Nadie nos enseña sobre dinero
           </h2>
           <div className="mt-6 space-y-4 text-lg text-foreground/70">
@@ -404,7 +404,7 @@ const ProblemSection = () => (
         <div className="relative">
           <div className="absolute -left-8 bottom-10 h-20 w-20 rounded-full bg-sun" />
           <div className="relative rounded-[2rem] border-2 border-foreground bg-card p-8 shadow-[10px_10px_0_#ffc800]">
-            <span className="block font-heading text-7xl md:text-8xl font-black text-foreground">80%</span>
+            <span className="block font-heading text-6xl sm:text-7xl md:text-8xl font-black text-foreground">80%</span>
             <p className="mt-3 max-w-md text-lg text-foreground/70">
               de los jóvenes en Latinoamérica nunca recibió educación financiera formal.
             </p>
@@ -416,12 +416,12 @@ const ProblemSection = () => (
 );
 
 const ValueProp = () => (
-  <section className="relative bg-background py-16 md:py-24">
+  <section className="relative bg-background py-12 md:py-24">
     <div className="container">
-      <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <div className="grid gap-10 lg:gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
         <div>
           <p className="font-hand text-3xl text-blue-pop">Qué enseñamos</p>
-          <h2 className="mt-2 max-w-lg text-4xl md:text-5xl font-black leading-tight">
+          <h2 className="mt-2 max-w-lg text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
             Habilidades financieras reales, no atajos
           </h2>
           <p className="mt-5 text-lg text-foreground/70">
@@ -435,7 +435,7 @@ const ValueProp = () => (
           </Button>
         </div>
 
-        <div className="grid gap-px overflow-hidden rounded-[1.5rem] border border-border bg-border md:grid-cols-3">
+        <div className="grid gap-px overflow-hidden rounded-[1.5rem] border border-border bg-border sm:grid-cols-2 md:grid-cols-3">
           {[
             {
               num: "01",
@@ -466,14 +466,14 @@ const ValueProp = () => (
 );
 
 const OurValues = () => (
-  <section className="relative py-16 md:py-24 overflow-hidden bg-background">
+  <section className="relative py-12 md:py-24 overflow-hidden bg-background">
     <div className="container">
       <SectionFade>
         <p className="font-hand text-3xl text-orange-pop">Nuestros principios</p>
-        <h2 className="mt-2 text-4xl md:text-5xl font-black leading-tight">
+        <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
           Educamos hoy para transformar el mañana
         </h2>
-        <p className="text-foreground/70 text-lg max-w-2xl mt-4 mb-12">
+        <p className="text-foreground/70 text-base md:text-lg max-w-2xl mt-4 mb-10 md:mb-12">
           Cada decisión que tomamos está guiada por nuestros valores fundamentales, que reflejan nuestro compromiso con la educación de calidad y el impacto real.
         </p>
       </SectionFade>
@@ -486,14 +486,14 @@ const OurValues = () => (
 );
 
 const HowItWorks = () => (
-  <section className="py-16 md:py-24 bg-background">
+  <section className="py-12 md:py-24 bg-background">
     <div className="container">
-      <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
+      <div className="grid gap-8 lg:gap-10 lg:grid-cols-[0.75fr_1.25fr]">
         <div>
           <p className="font-hand text-3xl text-blue-pop">Cómo funciona</p>
-          <h2 className="mt-2 text-4xl md:text-5xl font-black">Cuatro pasos</h2>
+          <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-black">Cuatro pasos</h2>
         </div>
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           {[
             { step: "01", title: "Inscribite", desc: "Completá el formulario de inscripción en 2 minutos." },
             { step: "02", title: "Asistí", desc: "Vení a clases presenciales en Montevideo." },
@@ -513,14 +513,14 @@ const HowItWorks = () => (
 );
 
 const Testimonials = () => (
-  <section className="bg-background py-16 md:py-20">
+  <section className="bg-background py-12 md:py-20">
     <div className="container">
-      <div className="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-center">
+      <div className="grid gap-8 lg:gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-center">
         <div>
           <h2 className="text-3xl md:text-4xl font-black leading-tight">Lo que dicen nuestros estudiantes</h2>
           <div className="mt-3 h-2 w-40 rounded-full bg-sun" />
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((quote, index) => (
             <blockquote key={quote} className="rounded-[1.25rem] border border-border bg-card p-6 shadow-[0_14px_50px_rgba(0,0,0,0.08)]">
               <span className="font-hand text-5xl leading-none text-blue-pop">“</span>
@@ -568,18 +568,18 @@ const UpcomingClasses = () => {
   const requiresModuleWarning = classSession.module_number > 1;
 
   return (
-    <section className="py-16 md:py-24 bg-blue-soft">
+    <section className="py-12 md:py-24 bg-blue-soft">
       <div className="container">
-        <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             <p className="font-hand text-3xl text-blue-pop">Próximas clases</p>
-            <h2 className="mt-2 text-4xl md:text-5xl font-black">Próxima clase</h2>
-            <p className="text-foreground/70 text-lg leading-relaxed mt-4 mb-6">
+            <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-black">Próxima clase</h2>
+            <p className="text-foreground/70 text-base md:text-lg leading-relaxed mt-4 mb-6">
               Las clases son presenciales, con fecha, hora y cupos definidos.
             </p>
             <CohortCountdown />
           </div>
-          <div className="rounded-[1.5rem] border-2 border-foreground bg-card p-8 shadow-[10px_10px_0_#ffc800]">
+          <div className="rounded-[1.5rem] border-2 border-foreground bg-card p-6 md:p-8 shadow-[10px_10px_0_#ffc800]">
             <h3 className="mb-4 text-2xl font-black">{classSession.title}</h3>
             <div className="space-y-4 mb-6">
               <div className="flex items-center gap-3 text-foreground/70">
@@ -636,20 +636,20 @@ const UpcomingClasses = () => {
 };
 
 const FinalCTA = () => (
-  <section className="relative overflow-hidden bg-sun py-14 md:py-20">
+  <section className="relative overflow-hidden bg-sun py-12 md:py-20">
     <div className="absolute left-0 top-10 h-24 w-36 rounded-[50%] border-[14px] border-blue-pop border-r-transparent border-b-transparent rotate-[-10deg]" />
     <div className="container relative">
       <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
         <div>
-          <h2 className="max-w-3xl text-4xl md:text-5xl font-black leading-tight">
+          <h2 className="max-w-3xl text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
             Sumate a una comunidad que aprende, comparte y transforma.
           </h2>
-          <p className="mt-4 text-lg text-foreground/75">
+          <p className="mt-4 text-base md:text-lg text-foreground/75">
             No se necesitan conocimientos previos. Solo ganas de aprender y crecer.
           </p>
         </div>
-        <div className="space-y-4">
-          <Button asChild variant="default" size="cta" className="bg-foreground text-background hover:bg-foreground/80">
+        <div className="space-y-4 w-full md:w-auto">
+          <Button asChild variant="default" size="cta" className="bg-foreground text-background hover:bg-foreground/80 w-full md:w-auto">
             <Link to="/registro">
               Quiero participar
               <ArrowRight size={17} />

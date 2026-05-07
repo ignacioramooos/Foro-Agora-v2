@@ -65,9 +65,9 @@ const ContactPage = () => {
         </div>
       </section>
 
-      <section className="py-24 md:py-32 border-y border-border">
+      <section className="py-16 md:py-32 border-y border-border">
         <div className="container max-w-4xl">
-          <div className="grid md:grid-cols-5 gap-16">
+          <div className="grid md:grid-cols-5 gap-10 md:gap-16">
             <div className="md:col-span-3">
               {sent ? (
                 <div className="text-center py-12">

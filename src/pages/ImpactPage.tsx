@@ -134,7 +134,7 @@ const ImpactPage = () => {
                 Impacto público
               </p>
             </div>
-            <h1 className="text-4xl md:text-6xl leading-[0.95] text-foreground max-w-4xl mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl leading-[1] md:leading-[0.95] text-foreground max-w-4xl mb-6">
               Impacto de Foro Agora en tiempo real
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl">

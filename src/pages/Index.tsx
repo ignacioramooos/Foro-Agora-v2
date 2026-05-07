@@ -385,12 +385,12 @@ const Hero = () => {
 };
 
 const ProblemSection = () => (
-  <section className="relative overflow-hidden bg-blue-soft py-16 md:py-24">
+  <section className="relative overflow-hidden bg-blue-soft py-12 md:py-24">
     <div className="container">
-      <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div className="grid gap-10 lg:gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <p className="font-hand text-3xl text-blue-pop">El problema</p>
-          <h2 className="mt-2 max-w-xl text-4xl md:text-5xl font-black leading-tight">
+          <h2 className="mt-2 max-w-xl text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
             Nadie nos enseña sobre dinero
           </h2>
           <div className="mt-6 space-y-4 text-lg text-foreground/70">

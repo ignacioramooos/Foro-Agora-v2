@@ -466,14 +466,14 @@ const ValueProp = () => (
 );
 
 const OurValues = () => (
-  <section className="relative py-16 md:py-24 overflow-hidden bg-background">
+  <section className="relative py-12 md:py-24 overflow-hidden bg-background">
     <div className="container">
       <SectionFade>
         <p className="font-hand text-3xl text-orange-pop">Nuestros principios</p>
-        <h2 className="mt-2 text-4xl md:text-5xl font-black leading-tight">
+        <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
           Educamos hoy para transformar el mañana
         </h2>
-        <p className="text-foreground/70 text-lg max-w-2xl mt-4 mb-12">
+        <p className="text-foreground/70 text-base md:text-lg max-w-2xl mt-4 mb-10 md:mb-12">
           Cada decisión que tomamos está guiada por nuestros valores fundamentales, que reflejan nuestro compromiso con la educación de calidad y el impacto real.
         </p>
       </SectionFade>

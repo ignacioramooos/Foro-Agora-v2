@@ -568,18 +568,18 @@ const UpcomingClasses = () => {
   const requiresModuleWarning = classSession.module_number > 1;
 
   return (
-    <section className="py-16 md:py-24 bg-blue-soft">
+    <section className="py-12 md:py-24 bg-blue-soft">
       <div className="container">
-        <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             <p className="font-hand text-3xl text-blue-pop">Próximas clases</p>
-            <h2 className="mt-2 text-4xl md:text-5xl font-black">Próxima clase</h2>
-            <p className="text-foreground/70 text-lg leading-relaxed mt-4 mb-6">
+            <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-black">Próxima clase</h2>
+            <p className="text-foreground/70 text-base md:text-lg leading-relaxed mt-4 mb-6">
               Las clases son presenciales, con fecha, hora y cupos definidos.
             </p>
             <CohortCountdown />
           </div>
-          <div className="rounded-[1.5rem] border-2 border-foreground bg-card p-8 shadow-[10px_10px_0_#ffc800]">
+          <div className="rounded-[1.5rem] border-2 border-foreground bg-card p-6 md:p-8 shadow-[10px_10px_0_#ffc800]">
             <h3 className="mb-4 text-2xl font-black">{classSession.title}</h3>
             <div className="space-y-4 mb-6">
               <div className="flex items-center gap-3 text-foreground/70">

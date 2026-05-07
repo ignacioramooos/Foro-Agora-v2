@@ -212,9 +212,9 @@ const RegisterPage = () => {
     }`;
 
   return (
-    <div className="min-h-screen bg-background pt-28 md:pt-36 pb-20">
+    <div className="min-h-screen bg-background pt-24 md:pt-36 pb-20">
       <div className="container max-w-5xl">
-        <div className="grid md:grid-cols-5 gap-16">
+        <div className="grid md:grid-cols-5 gap-10 md:gap-16">
           <div className="md:col-span-3">
             <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-4">
               Inscripción

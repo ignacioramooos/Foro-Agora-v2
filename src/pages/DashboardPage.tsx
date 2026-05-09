@@ -1,5 +1,6 @@
-import { useState } from "react";
-import DashboardLayout, { DashboardTab } from "@/components/dashboard/DashboardLayout";
+import { useAuth } from "@/contexts/AuthContext";
+import { useDashboardState } from "@/hooks/useDashboardState";
+import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import DashboardHome from "@/components/dashboard/DashboardHome";
 import LearningRoadmap from "@/components/dashboard/LearningRoadmap";
 import Toolkit from "@/components/dashboard/Toolkit";
@@ -10,8 +11,11 @@ import DashboardSettings from "@/components/dashboard/DashboardSettings";
 import ContentLibrary from "@/components/dashboard/ContentLibrary";
 import PortfolioTab from "@/components/dashboard/PortfolioTab";
 
+export type DashboardTab = "home" | "progress" | "tools" | "community" | "theses" | "events" | "content" | "portfolio" | "settings";
+
 const DashboardPage = () => {
-  const [activeTab, setActiveTab] = useState<DashboardTab>("home");
+  const { session } = useAuth();
+  const { activeTab, setActiveTab } = useDashboardState(session?.user?.id);
 
   const renderTab = () => {
     switch (activeTab) {

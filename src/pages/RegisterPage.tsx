@@ -3,10 +3,12 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import SectionFade from "@/components/SectionFade";
-import { CheckCircle2, MapPin, Calendar, Gift, Users, Loader2 } from "lucide-react";
+import { CheckCircle2, MapPin, Calendar, Gift, Users, Loader2, Save } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useProfile } from "@/hooks/useProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { curriculumClassCount } from "@/lib/curriculum";
+import { toast } from "sonner";
 
 const departments = [
   "Montevideo", "Canelones", "Maldonado", "Salto", "Colonia", "Paysandú",
@@ -27,10 +29,12 @@ interface ClassSession {
 
 const RegisterPage = () => {
   const { user } = useAuth();
+  const { updateProfile } = useProfile();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [savingProfile, setSavingProfile] = useState(false);
   const [classesLoading, setClassesLoading] = useState(true);
   const [classes, setClasses] = useState<ClassSession[]>([]);
   const [selectedClassId, setSelectedClassId] = useState(searchParams.get("class") || "");
@@ -176,6 +180,32 @@ const RegisterPage = () => {
     await submitRegistration();
   };
 
+  const saveProfileChanges = async () => {
+    if (!user?.id) {
+      toast.error("No user session");
+      return;
+    }
+
+    setSavingProfile(true);
+    try {
+      const result = await updateProfile(user.id, {
+        full_name: form.name,
+        age: form.age ? Number(form.age) : null,
+        department: form.department,
+        institution: form.school,
+        how_found_us: form.hearAbout,
+      });
+
+      if (result.success) {
+        toast.success("Perfil actualizado exitosamente");
+      } else {
+        toast.error(result.error || "Error al actualizar perfil");
+      }
+    } finally {
+      setSavingProfile(false);
+    }
+  };
+
   const formatClassDate = (value: string) => {
     const date = new Date(value);
     return `${date.toLocaleDateString("es-UY", { weekday: "long", day: "numeric", month: "long" })}, ${date.toLocaleTimeString("es-UY", { hour: "2-digit", minute: "2-digit" })}`;
@@ -309,9 +339,24 @@ const RegisterPage = () => {
               </div>
               {errors.consent && <p className="text-destructive text-xs">{errors.consent}</p>}
               {errors.submit && <p className="text-destructive text-xs">{errors.submit}</p>}
-              <Button type="submit" variant="cta" size="cta" className="w-full" disabled={loading}>
-                {loading ? <Loader2 size={16} className="animate-spin" /> : "Inscribirme"}
-              </Button>
+              <div className="flex gap-3">
+                <Button type="submit" variant="cta" size="cta" className="flex-1" disabled={loading}>
+                  {loading ? <Loader2 size={16} className="animate-spin" /> : "Inscribirme"}
+                </Button>
+                {user && (
+                  <Button 
+                    type="button" 
+                    variant="outline" 
+                    size="default"
+                    onClick={saveProfileChanges}
+                    disabled={savingProfile}
+                    className="flex items-center gap-2"
+                  >
+                    {savingProfile ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
+                    Guardar Perfil
+                  </Button>
+                )}
+              </div>
             </form>
           </div>
 

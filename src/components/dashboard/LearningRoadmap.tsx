@@ -1,6 +1,9 @@
+import { useState, useCallback } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useProfile } from "@/hooks/useProfile";
 import { buildCurriculumProgress, type CurriculumProgressStatus } from "@/lib/curriculum";
-import { CheckCircle2, Circle, Lock } from "lucide-react";
+import { CheckCircle2, Circle, Lock, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const statusConfig: Record<CurriculumProgressStatus, { icon: typeof CheckCircle2; label: string; color: string }> = {
   completed: { icon: CheckCircle2, label: "Completado", color: "text-foreground" },
@@ -9,8 +12,30 @@ const statusConfig: Record<CurriculumProgressStatus, { icon: typeof CheckCircle2
 };
 
 const LearningRoadmap = () => {
-  const { user } = useAuth();
+  const { user, session, refreshProfile } = useAuth();
+  const { markLessonComplete } = useProfile();
+  const [completingLessonId, setCompletingLessonId] = useState<string | null>(null);
+  
   const progressItems = buildCurriculumProgress(user?.completedClasses ?? 0);
+
+  const handleCompleteLesson = useCallback(async (lessonId: string) => {
+    if (!session?.user?.id) return;
+
+    setCompletingLessonId(lessonId);
+    try {
+      const result = await markLessonComplete(session.user.id, lessonId);
+      
+      if (result.success) {
+        // Refresh profile to update completed classes count
+        await refreshProfile();
+        toast.success("¡Clase completada! Excelente trabajo.");
+      } else {
+        toast.error(result.error || "Error al marcar la clase como completada");
+      }
+    } finally {
+      setCompletingLessonId(null);
+    }
+  }, [session?.user?.id, markLessonComplete, refreshProfile]);
 
   return (
     <div className="p-6 md:p-10 max-w-3xl">
@@ -22,6 +47,7 @@ const LearningRoadmap = () => {
           const config = statusConfig[item.status];
           const Icon = config.icon;
           const isLast = i === progressItems.length - 1;
+          const isCompleting = completingLessonId === item.id;
 
           return (
             <div key={item.id} className="flex gap-5">
@@ -53,8 +79,19 @@ const LearningRoadmap = () => {
                 {item.status === "in_progress" && (
                   <div className="mt-3">
                     <p className="text-sm text-muted-foreground mb-2">{item.duration}</p>
-                    <button className="h-9 px-4 rounded-md bg-foreground text-background text-sm font-heading font-medium hover:bg-foreground/80 transition-colors">
-                      Continuar Clase {item.classNumber}
+                    <button 
+                      onClick={() => handleCompleteLesson(item.id)}
+                      disabled={isCompleting}
+                      className="h-9 px-4 rounded-md bg-foreground text-background text-sm font-heading font-medium hover:bg-foreground/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+                    >
+                      {isCompleting ? (
+                        <>
+                          <Loader2 size={14} className="animate-spin" />
+                          Marcando...
+                        </>
+                      ) : (
+                        `Continuar Clase ${item.classNumber}`
+                      )}
                     </button>
                   </div>
                 )}

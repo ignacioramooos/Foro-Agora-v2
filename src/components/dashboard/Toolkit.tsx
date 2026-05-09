@@ -129,9 +129,19 @@ const InvestorQuiz = () => {
   };
 
   const getProfile = () => {
-    const score = answers.reduce((a, b) => a + b, 0);
-    if (score <= 4) return { profile: "Conservador", desc: "Preferís la seguridad y estabilidad. Ideal para empezar con renta fija y fondos indexados de bajo riesgo." };
-    if (score <= 8) return { profile: "Moderado", desc: "Buscás un balance entre seguridad y crecimiento. Una mezcla de renta fija y acciones puede funcionar bien." };
+    const riskScores = [
+      [0, 1, 2], // Q1: reaction to 20% drop (conservative to aggressive)
+      [0, 1, 2], // Q2: investment horizon (short to long)
+      [0, 1, 2], // Q3: risk preference (safe to high-risk)
+      [2, 1, 0], // Q4: emergency fund (has fund=conservative, no fund=aggressive)
+      [0, 1, 2], // Q5: investment knowledge (no knowledge=conservative to expert=aggressive)
+    ];
+    
+    const score = answers.reduce((sum, answer, idx) => sum + (riskScores[idx]?.[answer] ?? 0), 0);
+    const avgScore = score / answers.length;
+    
+    if (avgScore < 0.7) return { profile: "Conservador", desc: "Preferís la seguridad y estabilidad. Ideal para empezar con renta fija y fondos indexados de bajo riesgo." };
+    if (avgScore < 1.4) return { profile: "Moderado", desc: "Buscás un balance entre seguridad y crecimiento. Una mezcla de renta fija y acciones puede funcionar bien." };
     return { profile: "Agresivo", desc: "Estás dispuesto a tolerar volatilidad a cambio de mayor retorno potencial. Las acciones individuales y mercados emergentes pueden ser para vos." };
   };
 

@@ -21,7 +21,7 @@ const testimonials = [
 
 const DEFAULT_CAROUSEL_TICKERS = ["AAPL", "MELI", "NU", "MSFT", "META", "SPY"];
 const stockNameByTicker = new Map(SUPPORTED_STOCKS.map((stock) => [stock.ticker, stock.name]));
-const landingPageWidgetsTable = () => (supabase as any).from("landing_page_widgets");
+const landingPageWidgetsTable = () => supabase.from("landing_page_widgets");
 
 const shuffleTickers = (tickers: string[]) => [...tickers].sort(() => Math.random() - 0.5);
 

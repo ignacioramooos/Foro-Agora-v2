@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { SUPPORTED_STOCKS } from "@/lib/stockData";
-import { Sparkles, Plus, X } from "lucide-react";
+import { Sparkles, X } from "lucide-react";
+import { toast } from "sonner";
 
-const landingPageWidgetsTable = () => (supabase as any).from("landing_page_widgets");
+const landingPageWidgetsTable = () => supabase.from("landing_page_widgets");
 
 const LandingPageWidget = () => {
   const { session } = useAuth();
@@ -14,18 +15,43 @@ const LandingPageWidget = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
+    let cancelled = false;
+
     const loadTickers = async () => {
-      if (!session?.user?.id) return;
+      if (!session?.user?.id) {
+        setSelectedTickers([]);
+        setLoading(false);
+        return;
+      }
+
       setLoading(true);
-      const { data } = await landingPageWidgetsTable()
-        .select("tickers")
-        .eq("user_id", session.user.id)
-        .maybeSingle();
-      
-      setSelectedTickers(data?.tickers || []);
-      setLoading(false);
+      try {
+        const { data, error } = await landingPageWidgetsTable()
+          .select("tickers")
+          .eq("user_id", session.user.id)
+          .maybeSingle();
+
+        if (error) throw error;
+
+        if (!cancelled) {
+          setSelectedTickers(data?.tickers || []);
+        }
+      } catch (error) {
+        console.error("[LandingPageWidget] Error loading tickers:", error);
+        if (!cancelled) {
+          toast.error("No se pudieron cargar las acciones guardadas");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
     };
+
     loadTickers();
+    return () => {
+      cancelled = true;
+    };
   }, [session?.user?.id]);
 
   const handleAddTicker = (ticker: string) => {
@@ -39,18 +65,35 @@ const LandingPageWidget = () => {
   };
 
   const handleSave = async () => {
-    if (!session?.user?.id) return;
-    setSaving(true);
-    
-    const { error } = await landingPageWidgetsTable()
-      .upsert({
-        user_id: session.user.id,
-        tickers: selectedTickers,
-      }, {
-        onConflict: "user_id"
-      });
+    if (!session?.user?.id) {
+      toast.error("Tenés que iniciar sesión para guardar este widget");
+      return;
+    }
 
-    if (!error) {
+    setSaving(true);
+
+    try {
+      const { data, error } = await landingPageWidgetsTable()
+        .upsert(
+          {
+            user_id: session.user.id,
+            tickers: selectedTickers,
+          },
+          {
+            onConflict: "user_id",
+          },
+        )
+        .select("tickers")
+        .single();
+
+      if (error) throw error;
+
+      setSelectedTickers(data?.tickers || []);
+      toast.success("Widget de landing actualizado");
+    } catch (error) {
+      console.error("[LandingPageWidget] Error saving tickers:", error);
+      toast.error("No se pudo guardar. Revisá la conexión e intentá de nuevo.");
+    } finally {
       setSaving(false);
     }
   };

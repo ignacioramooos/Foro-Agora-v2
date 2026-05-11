@@ -434,30 +434,6 @@ export type Database = {
         }
         Relationships: []
       }
-      landing_page_widgets: {
-        Row: {
-          created_at: string
-          id: string
-          tickers: string[]
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          tickers?: string[]
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          tickers?: string[]
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       newsletter_subscribers: {
         Row: {
           created_at: string | null
@@ -695,36 +671,6 @@ export type Database = {
           onboarding_completed?: boolean
           updated_at?: string
           user_id?: string
-        }
-        Relationships: []
-      }
-      user_preferences: {
-        Row: {
-          id: string
-          user_id: string
-          theme: "light" | "dark"
-          dashboard_active_tab: string
-          locale: string
-          created_at: string
-          updated_at: string
-        }
-        Insert: {
-          id?: string
-          user_id: string
-          theme?: "light" | "dark"
-          dashboard_active_tab?: string
-          locale?: string
-          created_at?: string
-          updated_at?: string
-        }
-        Update: {
-          id?: string
-          user_id?: string
-          theme?: "light" | "dark"
-          dashboard_active_tab?: string
-          locale?: string
-          created_at?: string
-          updated_at?: string
         }
         Relationships: []
       }

@@ -76,6 +76,21 @@ const buildMetadata = (d: OnboardingData) => ({
   accepted_terms: d.acceptedTerms,
 });
 
+const buildProfileOnboardingPayload = (userId: string, userEmail: string, d: OnboardingData) => ({
+  user_id: userId,
+  email: userEmail,
+  full_name: d.fullName,
+  display_name: d.fullName,
+  age: d.age ? Number(d.age) : null,
+  age_range: d.ageRange,
+  department: d.department,
+  institution: d.institution,
+  how_found_us: d.howFoundUs,
+  interests: d.interests,
+  accepted_terms: d.acceptedTerms,
+  onboarding_completed: true,
+});
+
 const AuthPage = () => {
   const { isLoggedIn, user, login, refreshProfile, loading } = useAuth();
   const [step, setStep] = useState<FlowStep>(() => {
@@ -111,38 +126,45 @@ const AuthPage = () => {
     (async () => {
       const { error: updateError } = await supabase
         .from("profiles")
-        .update({
-          full_name: parsed.fullName,
-          display_name: parsed.fullName,
-          age: parsed.age ? Number(parsed.age) : null,
-          age_range: parsed.ageRange,
-          department: parsed.department,
-          institution: parsed.institution,
-          how_found_us: parsed.howFoundUs,
-          interests: parsed.interests,
-          accepted_terms: parsed.acceptedTerms,
-          onboarding_completed: true,
-        })
-        .eq("user_id", user.id);
-      sessionStorage.removeItem(PENDING_KEY);
-      if (!updateError) {
-        await refreshProfile();
+        .upsert(buildProfileOnboardingPayload(user.id, user.email, parsed), { onConflict: "user_id" });
+
+      if (updateError) {
+        setCompletingProfile(true);
+        setOnboardingData(parsed);
+        setStep("step-1");
+        setError("No se pudo guardar tu perfil. Revisá los datos e intentá de nuevo.");
+        return;
       }
+
+      sessionStorage.removeItem(PENDING_KEY);
+      await refreshProfile();
     })();
   }, [loading, isLoggedIn, user, refreshProfile]);
+
+  useEffect(() => {
+    if (
+      loading ||
+      !isLoggedIn ||
+      !user ||
+      user.onboardingCompleted ||
+      completingProfile ||
+      step === "reset-password" ||
+      step === "password-updated" ||
+      sessionStorage.getItem(PENDING_KEY)
+    ) {
+      return;
+    }
+
+    setCompletingProfile(true);
+    setOnboardingData((prev) => ({ ...prev, fullName: user.name || "" }));
+    setStep("step-1");
+  }, [loading, isLoggedIn, user, completingProfile, step]);
 
   if (loading) return null;
 
   // Logged-in + onboarding complete → dashboard
   if (isLoggedIn && user?.onboardingCompleted && !completingProfile && step !== "reset-password" && step !== "password-updated") {
     return <Navigate to="/dashboard" replace />;
-  }
-
-  // Fallback: logged in (e.g. legacy Google user) but no onboarding → show steps
-  if (isLoggedIn && user && !user.onboardingCompleted && !completingProfile && step !== "reset-password" && step !== "password-updated" && !sessionStorage.getItem(PENDING_KEY)) {
-    setCompletingProfile(true);
-    setOnboardingData((prev) => ({ ...prev, fullName: user.name || "" }));
-    setStep("step-1");
   }
 
   const set = <K extends keyof OnboardingData>(key: K, value: OnboardingData[K]) =>
@@ -252,21 +274,10 @@ const AuthPage = () => {
     setSubmitting(true);
     const { error: updateError } = await supabase
       .from("profiles")
-      .update({
-        full_name: onboardingData.fullName,
-        display_name: onboardingData.fullName,
-        age: onboardingData.age ? Number(onboardingData.age) : null,
-        age_range: onboardingData.ageRange,
-        department: onboardingData.department,
-        institution: onboardingData.institution,
-        how_found_us: onboardingData.howFoundUs,
-        interests: onboardingData.interests,
-        accepted_terms: onboardingData.acceptedTerms,
-        onboarding_completed: true,
-      })
-      .eq("user_id", user.id);
+      .upsert(buildProfileOnboardingPayload(user.id, user.email, onboardingData), { onConflict: "user_id" });
     setSubmitting(false);
     if (updateError) { setError("No se pudo guardar el perfil. Intentá de nuevo."); return; }
+    sessionStorage.removeItem(PENDING_KEY);
     await refreshProfile();
     window.location.href = "/dashboard";
   };

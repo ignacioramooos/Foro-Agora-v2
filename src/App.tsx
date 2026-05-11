@@ -33,9 +33,9 @@ const PublicPage = ({ children }: { children: React.ReactNode }) => (
 );
 
 const AppRoutes = () => {
-  const { isLoggedIn, loading } = useAuth();
+  const { isLoggedIn, loading, user } = useAuth();
 
-  if (loading) {
+  if (loading || (isLoggedIn && !user)) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <span className="text-muted-foreground text-sm font-heading">Cargando...</span>
@@ -66,7 +66,10 @@ const AppRoutes = () => {
     return (
       <>
         <Routes>
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route
+            path="/dashboard"
+            element={user?.onboardingCompleted ? <DashboardPage /> : <Navigate to="/auth" replace />}
+          />
           <Route path="/admin" element={<AdminPage />} />
           {publicRoutes}
           <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />

@@ -36,7 +36,7 @@ const Footer = () => (
               ["Ranking", "/ranking"],
               ["Contacto", "/contacto"],
               ["Inscripción", "/registro"],
-              ["Privacidad", "/privacidad"],
+              ["Política de privacidad", "/privacidad"],
               ["Términos", "/terminos"],
             ].map(([label, path]) => (
               <Link key={path} to={path} className="text-sm font-heading font-semibold text-foreground/60 hover:text-foreground transition-colors">

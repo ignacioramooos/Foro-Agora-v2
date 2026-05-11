@@ -339,6 +339,17 @@ const Hero = () => {
                   <ArrowRight size={17} />
                 </Link>
               </div>
+              <p className="mt-4 max-w-xl text-xs leading-relaxed text-foreground/55">
+                Al continuar aceptás nuestros {" "}
+                <Link to="/terminos" className="underline underline-offset-4 hover:text-foreground transition-colors">
+                  términos
+                </Link>
+                {" "}y la {" "}
+                <Link to="/privacidad" className="underline underline-offset-4 hover:text-foreground transition-colors">
+                  política de privacidad
+                </Link>
+                .
+              </p>
             </SectionFade>
           </div>
 

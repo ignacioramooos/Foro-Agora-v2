@@ -4,14 +4,20 @@ import { glossaryTerms, categoryLabels, type GlossaryCategory } from "@/lib/glos
 
 const allCategories: GlossaryCategory[] = ['conceptos-basicos', 'estados-financieros', 'ratios', 'valoracion', 'mercado'];
 
-const GlossaryContent = () => {
+interface GlossaryContentProps {
+  defaultVisibleCount?: number;
+  showFilters?: boolean;
+}
+
+const GlossaryContent = ({ defaultVisibleCount, showFilters = true }: GlossaryContentProps) => {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<GlossaryCategory | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const hasSearch = search.trim().length > 0;
 
   const filtered = useMemo(() => {
     let items = glossaryTerms;
-    if (activeCategory) items = items.filter((t) => t.category === activeCategory);
+    if (showFilters && activeCategory) items = items.filter((t) => t.category === activeCategory);
     if (search.trim()) {
       const q = search.toLowerCase();
       items = items.filter(
@@ -22,12 +28,17 @@ const GlossaryContent = () => {
       );
     }
     return items;
-  }, [search, activeCategory]);
+  }, [search, activeCategory, showFilters]);
+
+  const displayedTerms = useMemo(
+    () => (!hasSearch && defaultVisibleCount ? filtered.slice(0, defaultVisibleCount) : filtered),
+    [filtered, defaultVisibleCount, hasSearch]
+  );
 
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
   const availableLetters = useMemo(
-    () => new Set(filtered.map((t) => t.term[0].toUpperCase())),
-    [filtered]
+    () => new Set(displayedTerms.map((t) => t.term[0].toUpperCase())),
+    [displayedTerms]
   );
 
   const scrollToLetter = (letter: string) => {
@@ -37,14 +48,14 @@ const GlossaryContent = () => {
 
   // Group by first letter
   const grouped = useMemo(() => {
-    const map = new Map<string, typeof filtered>();
-    filtered.forEach((t) => {
+    const map = new Map<string, typeof displayedTerms>();
+    displayedTerms.forEach((t) => {
       const letter = t.term[0].toUpperCase();
       if (!map.has(letter)) map.set(letter, []);
       map.get(letter)!.push(t);
     });
     return Array.from(map.entries()).sort(([a], [b]) => a.localeCompare(b));
-  }, [filtered]);
+  }, [displayedTerms]);
 
   return (
     <div ref={containerRef}>
@@ -60,32 +71,40 @@ const GlossaryContent = () => {
         />
       </div>
 
+      {defaultVisibleCount && !hasSearch && (
+        <p className="mb-6 text-xs text-muted-foreground">
+          Mostrando 5 términos destacados. Usá el buscador para encontrar el resto.
+        </p>
+      )}
+
       {/* Category filters */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        <button
-          onClick={() => setActiveCategory(null)}
-          className={`px-3 py-1.5 rounded-md text-sm font-heading font-medium transition-colors ${
-            !activeCategory
-              ? "bg-accent text-accent-foreground"
-              : "border border-border text-muted-foreground hover:text-foreground"
-          }`}
-        >
-          Todos
-        </button>
-        {allCategories.map((cat) => (
+      {showFilters && (
+        <div className="flex flex-wrap gap-2 mb-6">
           <button
-            key={cat}
-            onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
+            onClick={() => setActiveCategory(null)}
             className={`px-3 py-1.5 rounded-md text-sm font-heading font-medium transition-colors ${
-              activeCategory === cat
+              !activeCategory
                 ? "bg-accent text-accent-foreground"
                 : "border border-border text-muted-foreground hover:text-foreground"
             }`}
           >
-            {categoryLabels[cat]}
+            Todos
           </button>
-        ))}
-      </div>
+          {allCategories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(activeCategory === cat ? null : cat)}
+              className={`px-3 py-1.5 rounded-md text-sm font-heading font-medium transition-colors ${
+                activeCategory === cat
+                  ? "bg-accent text-accent-foreground"
+                  : "border border-border text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {categoryLabels[cat]}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Alpha jump bar */}
       <div className="flex flex-wrap gap-1 mb-8">
@@ -149,7 +168,7 @@ const GlossaryContent = () => {
       )}
 
       <p className="text-xs text-muted-foreground mt-10 text-center">
-        {glossaryTerms.length} términos en total
+        {hasSearch ? `${filtered.length} resultados` : `${glossaryTerms.length} términos en total`}
       </p>
     </div>
   );

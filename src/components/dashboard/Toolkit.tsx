@@ -208,7 +208,7 @@ const InvestorQuiz = () => {
 const DashboardGlossary = () => (
   <div className="border border-border rounded-lg p-6">
     <h3 className="font-heading font-semibold text-foreground text-lg mb-4">Glosario</h3>
-    <GlossaryContent />
+    <GlossaryContent defaultVisibleCount={5} showFilters={false} />
   </div>
 );
 

@@ -306,13 +306,13 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-10 md:pb-12">
+    <section className="relative overflow-hidden pt-20 sm:pt-28 md:pt-32 pb-10 md:pb-12">
       <div className="container relative">
         <div className="grid lg:grid-cols-[0.92fr_1.08fr] gap-8 md:gap-12 items-center">
           <div className="relative z-10">
             <SectionFade>
               <p className="font-hand text-3xl md:text-4xl text-blue-pop mb-4">Educación financiera accesible</p>
-              <h1 className="max-w-3xl text-[2.25rem] sm:text-5xl md:text-6xl lg:text-[4.6rem] font-black leading-[0.95] sm:leading-[0.92] tracking-normal text-foreground mb-6 md:mb-7">
+              <h1 className="max-w-3xl text-[2.25rem] sm:text-5xl md:text-6xl lg:text-[4.35rem] font-black leading-[0.95] sm:leading-[0.92] tracking-normal text-foreground mb-6 md:mb-7">
                 Aprendé a analizar empresas e invertir con criterio propio, <strong className="font-black">gratis.</strong>
               </h1>
             </SectionFade>
@@ -327,14 +327,14 @@ const Hero = () => {
               </div>
             </SectionFade>
             <SectionFade delay={0.15}>
-              <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
-                <Button asChild variant="cta" size="cta">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+                <Button asChild variant="cta" size="cta" className="w-full sm:w-auto">
                   <Link to={isLoggedIn ? "/dashboard" : "/registro"}>
                     {isLoggedIn ? "Ir al dashboard" : "Inscribite ahora"}
                     <ArrowRight size={17} />
                   </Link>
                 </Button>
-                <Link to="/programa" className="group inline-flex w-fit items-center gap-2 rounded-full bg-blue-pop px-5 py-3 text-sm font-heading font-bold text-white transition-colors hover:bg-blue-pop/90">
+                <Link to="/programa" className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-blue-pop px-8 py-3 text-sm font-heading font-bold text-white shadow-[0_8px_0_rgba(0,0,0,0.12)] transition-colors hover:bg-blue-pop/90 sm:w-fit">
                   Ver programa
                   <ArrowRight size={17} />
                 </Link>

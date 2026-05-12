@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 
 const distDir = join(process.cwd(), "dist");
 const indexFile = join(distDir, "index.html");
+const fallbackFile = join(distDir, "404.html");
 
 const appRoutes = [
   "admin",
@@ -32,3 +33,5 @@ for (const route of appRoutes) {
   mkdirSync(dirname(targetFile), { recursive: true });
   copyFileSync(indexFile, targetFile);
 }
+
+copyFileSync(indexFile, fallbackFile);

@@ -293,7 +293,7 @@ const AuthPage = () => {
     if (updateError) { setError("No se pudo guardar el perfil. Intentá de nuevo."); return; }
     sessionStorage.removeItem(PENDING_KEY);
     await refreshProfile();
-    window.location.href = "/dashboard";
+    window.location.hash = "/dashboard";
   };
 
   const inputClass = "w-full h-12 px-4 rounded-md border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 transition-shadow font-heading";

@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
+import { HashRouter, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -32,8 +33,36 @@ const PublicPage = ({ children }: { children: React.ReactNode }) => (
   <><Navbar /><main>{children}</main><Footer /></>
 );
 
+const getPendingAuthRedirectPath = () => {
+  const requestedPath = new URLSearchParams(window.location.search).get("authRedirect");
+  if (!requestedPath) return null;
+
+  const normalizedPath = requestedPath.startsWith("/") ? requestedPath : `/${requestedPath}`;
+  return normalizedPath.startsWith("//") ? "/auth" : normalizedPath;
+};
+
+const clearPendingAuthRedirectParam = () => {
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has("authRedirect")) return;
+
+  url.searchParams.delete("authRedirect");
+  window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
+};
+
 const AppRoutes = () => {
   const { isLoggedIn, loading, user } = useAuth();
+  const location = useLocation();
+  const pendingAuthRedirectPath = getPendingAuthRedirectPath();
+
+  useEffect(() => {
+    if (pendingAuthRedirectPath && `${location.pathname}${location.search}` === pendingAuthRedirectPath) {
+      clearPendingAuthRedirectParam();
+    }
+  }, [pendingAuthRedirectPath, location.pathname, location.search]);
+
+  if (pendingAuthRedirectPath && `${location.pathname}${location.search}` !== pendingAuthRedirectPath) {
+    return <Navigate to={pendingAuthRedirectPath} replace />;
+  }
 
   if (loading || (isLoggedIn && !user)) {
     return (
@@ -61,6 +90,10 @@ const AppRoutes = () => {
       <Route path="/auth" element={<AuthPage />} />
     </>
   );
+
+  if (isLoggedIn && user && !user.onboardingCompleted && location.pathname !== "/auth") {
+    return <Navigate to="/auth" replace />;
+  }
 
   if (isLoggedIn) {
     return (

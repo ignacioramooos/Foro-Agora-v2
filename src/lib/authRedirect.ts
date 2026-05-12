@@ -13,5 +13,5 @@ export const getAuthRedirectOrigin = (): string => {
 export const getAuthRedirectUrl = (path: string = "/auth"): string => {
   const origin = getAuthRedirectOrigin();
   const normalized = path.startsWith("/") ? path : `/${path}`;
-  return `${origin}${normalized}`;
+  return `${origin}/#${normalized}`;
 };

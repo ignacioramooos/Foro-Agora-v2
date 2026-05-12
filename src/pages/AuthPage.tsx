@@ -91,11 +91,25 @@ const buildProfileOnboardingPayload = (userId: string, userEmail: string, d: Onb
   onboarding_completed: true,
 });
 
+const getAuthUrlParams = () => {
+  const params = new URLSearchParams(window.location.search);
+  const hashQueryStart = window.location.hash.indexOf("?");
+
+  if (hashQueryStart >= 0) {
+    const hashQuery = window.location.hash.slice(hashQueryStart + 1).split("#")[0];
+    new URLSearchParams(hashQuery).forEach((value, key) => {
+      if (!params.has(key)) params.set(key, value);
+    });
+  }
+
+  return params;
+};
+
 const AuthPage = () => {
   const { isLoggedIn, user, login, refreshProfile, loading } = useAuth();
   const [step, setStep] = useState<FlowStep>(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (window.location.search.includes("reset-password=true") || window.location.hash.includes("type=recovery")) {
+    const params = getAuthUrlParams();
+    if (params.get("reset-password") === "true" || window.location.hash.includes("type=recovery")) {
       return "reset-password";
     }
     if (params.get("mode") === "signup") {
@@ -103,7 +117,7 @@ const AuthPage = () => {
     }
     return "login";
   });
-  const [email, setEmail] = useState(() => new URLSearchParams(window.location.search).get("email") || "");
+  const [email, setEmail] = useState(() => getAuthUrlParams().get("email") || "");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");

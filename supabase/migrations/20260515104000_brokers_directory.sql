@@ -39,8 +39,8 @@ INSERT INTO public.brokers (name, type, min_deposit, commission, regulator, note
 SELECT *
 FROM (
   VALUES
-    ('Sura Inversiones', 'local', 'USD 1.000', '0.5% + IVA', 'BCU', 'Broker uruguayo con presencia regional', null, 10, true),
-    ('Gastón Bengochea', 'local', 'USD 5.000', 'Variable', 'BCU', 'Casa de bolsa tradicional en Uruguay', null, 20, true),
+    ('Sura Inversiones', 'local', 'USD 1,000', '0.5% + IVA', 'BCU', 'Broker uruguayo con presencia regional', null, 10, true),
+    ('Gastón Bengochea', 'local', 'USD 5,000', 'Variable', 'BCU', 'Casa de bolsa tradicional en Uruguay', null, 20, true),
     ('Interactive Brokers', 'internacional', 'USD 0', 'Desde USD 1 por orden', 'SEC / FINRA', 'Acceso a mercados globales; verificar requisitos para residentes UY', 'https://www.interactivebrokers.com', 30, true),
     ('Charles Schwab', 'internacional', 'USD 25.000', 'USD 0 acciones US', 'SEC / FINRA', 'Cuenta internacional; confirmar elegibilidad por residencia', 'https://www.schwab.com', 40, true),
     ('TD Ameritrade', 'internacional', 'USD 0', 'USD 0 acciones US', 'SEC / FINRA', 'Plataforma con foco en herramientas de análisis', null, 50, false)

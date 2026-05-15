@@ -217,18 +217,18 @@ const EventsSection = () => {
           {availableEvents.map((event) => {
             const spotsLeft = event.spots_total - event.spots_taken;
             const isLow = spotsLeft <= 5;
-            const isFull = spotsLeft <= 0;
+            const isEventFull = spotsLeft <= 0;
             return (
               <button
                 key={event.id}
                 onClick={() => setSelectedEvent(event)}
-                disabled={isFull}
+                disabled={isEventFull}
                 className="border border-border rounded-lg p-5 text-left hover:bg-secondary/50 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <h3 className="font-heading font-semibold text-foreground">{event.title}</h3>
-                  <Badge variant={isFull || isLow ? "default" : "outline"} className="shrink-0 text-xs">
-                    {isFull ? "Sin cupos" : isLow ? "Últimos lugares" : "Cupos disponibles"}
+                  <Badge variant={isEventFull || isLow ? "default" : "outline"} className="shrink-0 text-xs">
+                    {isEventFull ? "Sin cupos" : isLow ? "Últimos lugares" : "Cupos disponibles"}
                   </Badge>
                 </div>
                 <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-3">

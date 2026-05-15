@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import { Thesis } from "@/lib/mockData";
-import { Plus, FileText } from "lucide-react";
+import { Plus } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 
 const companies = ["Mercado Libre", "Globant", "Vista Energy", "Dlocal", "YPF", "Nu Holdings", "Coca-Cola", "Apple", "Google", "Otra"];
+
+interface Thesis {
+  id: string;
+  company: string;
+  date: string;
+  status: "borrador" | "publicado";
+  content: string;
+}
 
 const ThesisBuilder = () => {
   const { session, user } = useAuth();
@@ -83,9 +90,9 @@ const ThesisBuilder = () => {
       ]);
     }
 
-    setShowForm(false);
-    setStep(1);
-    setForm({ company: "", content: "" });
+      setShowForm(false);
+      setStep(1);
+      setForm({ company: "", content: "" });
   };
 
   return (
@@ -104,7 +111,7 @@ const ThesisBuilder = () => {
       {showForm && (
         <div className="border border-border rounded-lg p-6 mb-8">
           <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-4">
-            Paso {step} de 3
+            Paso {step} de 2
           </p>
           {step === 1 && (
             <>
@@ -148,30 +155,9 @@ const ThesisBuilder = () => {
                   Atrás
                 </button>
                 <button
-                  onClick={() => form.content.trim() && setStep(3)}
+                  onClick={handleSubmit}
                   disabled={!form.content.trim()}
                   className="h-9 px-4 rounded-md bg-foreground text-background text-sm font-heading font-medium hover:bg-foreground/80 transition-colors disabled:opacity-40"
-                >
-                  Siguiente
-                </button>
-              </div>
-            </>
-          )}
-          {step === 3 && (
-            <>
-              <p className="text-sm font-heading font-medium text-foreground mb-3">Adjuntar archivo (opcional)</p>
-              <div className="border-2 border-dashed border-border rounded-lg p-8 text-center mb-4">
-                <FileText size={24} className="mx-auto text-muted-foreground/40 mb-2" />
-                <p className="text-sm text-muted-foreground">Arrastrá un PDF o imagen acá</p>
-                <p className="text-xs text-muted-foreground/60 mt-1">(Simulado — no se sube nada)</p>
-              </div>
-              <div className="flex gap-2">
-                <button onClick={() => setStep(2)} className="h-9 px-4 rounded-md border border-border text-sm font-heading text-muted-foreground hover:text-foreground transition-colors">
-                  Atrás
-                </button>
-                <button
-                  onClick={handleSubmit}
-                  className="h-9 px-4 rounded-md bg-foreground text-background text-sm font-heading font-medium hover:bg-foreground/80 transition-colors"
                 >
                   Guardar Tesis
                 </button>

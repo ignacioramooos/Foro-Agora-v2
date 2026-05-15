@@ -89,6 +89,51 @@ export type Database = {
         }
         Relationships: []
       }
+      brokers: {
+        Row: {
+          commission: string
+          created_at: string
+          id: string
+          is_active: boolean
+          min_deposit: string
+          name: string
+          notes: string | null
+          regulator: string
+          sort_order: number
+          type: string
+          updated_at: string
+          website_url: string | null
+        }
+        Insert: {
+          commission: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          min_deposit: string
+          name: string
+          notes?: string | null
+          regulator: string
+          sort_order?: number
+          type: string
+          updated_at?: string
+          website_url?: string | null
+        }
+        Update: {
+          commission?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          min_deposit?: string
+          name?: string
+          notes?: string | null
+          regulator?: string
+          sort_order?: number
+          type?: string
+          updated_at?: string
+          website_url?: string | null
+        }
+        Relationships: []
+      }
       class_registrations: {
         Row: {
           age: number

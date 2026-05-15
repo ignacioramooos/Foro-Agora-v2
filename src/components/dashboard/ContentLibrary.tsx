@@ -39,21 +39,33 @@ const extractYouTubeId = (url: string) => {
   return match?.[1] || null;
 };
 
-const ContentLibrary = () => {
+interface ContentLibraryProps {
+  mode?: "dashboard" | "public";
+  showHeader?: boolean;
+}
+
+const ContentLibrary = ({ mode = "dashboard", showHeader = true }: ContentLibraryProps) => {
   const [items, setItems] = useState<ContentItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<ContentItem | null>(null);
   const [filterType, setFilterType] = useState<ContentType | "all">("all");
 
   useEffect(() => {
     const fetchContent = async () => {
-      const { data } = await supabase
+      setLoading(true);
+      setError(null);
+      const { data, error: fetchError } = await supabase
         .from("content_items")
         .select("*")
         .eq("is_published", true)
         .order("sort_order", { ascending: true });
 
-      if (data) setItems(data as ContentItem[]);
+      if (fetchError) {
+        setError("No pudimos cargar el contenido en este momento.");
+      } else if (data) {
+        setItems(data as ContentItem[]);
+      }
       setLoading(false);
     };
     fetchContent();
@@ -63,11 +75,13 @@ const ContentLibrary = () => {
   const modules = [...new Set(filtered.map((i) => i.module_name).filter(Boolean))];
 
   return (
-    <div className="p-4 md:p-8 space-y-6">
-      <div>
-        <h1 className="text-2xl font-heading font-semibold text-foreground">Clases y Recursos</h1>
-        <p className="text-muted-foreground text-sm mt-1">Accedé a todas las clases grabadas, artículos y materiales del programa.</p>
-      </div>
+    <div className={`${mode === "dashboard" ? "p-4 md:p-8" : ""} space-y-6`}>
+      {showHeader && (
+        <div>
+          <h1 className="text-2xl font-heading font-semibold text-foreground">Clases y Recursos</h1>
+          <p className="text-muted-foreground text-sm mt-1">Accedé a todas las clases grabadas, artículos y materiales del programa.</p>
+        </div>
+      )}
 
       {/* Filters */}
       <div className="flex gap-2 flex-wrap">
@@ -98,6 +112,11 @@ const ContentLibrary = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+      ) : error ? (
+        <div className="text-center py-16 space-y-3">
+          <BookOpen className="mx-auto text-muted-foreground" size={40} />
+          <p className="text-muted-foreground">{error}</p>
         </div>
       ) : filtered.length === 0 ? (
         <div className="text-center py-16 space-y-3">

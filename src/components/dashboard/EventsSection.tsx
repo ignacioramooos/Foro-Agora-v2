@@ -21,6 +21,11 @@ interface Event {
   is_active: boolean;
 }
 
+interface EventRegistration {
+  event_id: string;
+  user_id: string;
+}
+
 const formatDate = (iso: string) => {
   const d = new Date(iso);
   return d.toLocaleDateString("es-UY", { weekday: "long", day: "numeric", month: "long" });
@@ -43,6 +48,7 @@ const getCountdown = (iso: string) => {
 
 const EventsSection = () => {
   const { user, session } = useAuth();
+  const userId = session?.user?.id;
   const [events, setEvents] = useState<Event[]>([]);
   const [registeredIds, setRegisteredIds] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
@@ -51,28 +57,80 @@ const EventsSection = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data: evts } = await supabase
+      const { data: evts, error: eventsError } = await supabase
         .from("events")
         .select("*")
         .eq("is_active", true)
         .order("event_date", { ascending: true });
 
-      setEvents((evts as Event[]) || []);
+      if (eventsError) {
+        setEvents([]);
+        setRegisteredIds(new Set());
+        setLoading(false);
+        return;
+      }
 
-      if (session?.user) {
+      const safeEvents = (evts as Event[]) || [];
+
+      if (safeEvents.length > 0) {
+        const eventIds = safeEvents.map((event) => event.id);
         const { data: regs } = await supabase
           .from("event_registrations")
-          .select("event_id")
-          .eq("user_id", session.user.id);
-        setRegisteredIds(new Set((regs || []).map((r: { event_id: string }) => r.event_id)));
+          .select("event_id, user_id")
+          .in("event_id", eventIds);
+
+        const registrations = (regs as EventRegistration[]) || [];
+        const registrationsByEvent = registrations.reduce<Record<string, number>>((acc, row) => {
+          acc[row.event_id] = (acc[row.event_id] || 0) + 1;
+          return acc;
+        }, {});
+
+        setEvents(
+          safeEvents.map((event) => ({
+            ...event,
+            spots_taken: registrationsByEvent[event.id] ?? 0,
+          }))
+        );
+
+        if (userId) {
+          setRegisteredIds(
+            new Set(
+              registrations.filter((registration) => registration.user_id === userId).map((registration) => registration.event_id)
+            )
+          );
+        } else {
+          setRegisteredIds(new Set());
+        }
+      } else {
+        setEvents([]);
+        setRegisteredIds(new Set());
       }
+
       setLoading(false);
     };
+
     fetchData();
-  }, [session]);
+
+    const channel = supabase
+      .channel("events-section-live")
+      .on("postgres_changes", { event: "*", schema: "public", table: "events" }, fetchData)
+      .on("postgres_changes", { event: "*", schema: "public", table: "event_registrations" }, fetchData)
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [userId]);
 
   const handleRegister = async (event: Event) => {
     if (!session?.user || !user) return;
+
+    const spotsLeftBeforeInsert = event.spots_total - event.spots_taken;
+    if (spotsLeftBeforeInsert <= 0) {
+      toast.error("Este evento ya no tiene cupos disponibles.");
+      return;
+    }
+
     setRegistering(true);
 
     // Insert registration
@@ -81,7 +139,11 @@ const EventsSection = () => {
       .insert({ event_id: event.id, user_id: session.user.id });
 
     if (error) {
-      toast.error("Error al registrarte. Intentá de nuevo.");
+      if (error.code === "23505") {
+        toast.error("Ya estabas anotado en este evento.");
+      } else {
+        toast.error("Error al registrarte. Intentá de nuevo.");
+      }
       setRegistering(false);
       return;
     }
@@ -162,16 +224,18 @@ const EventsSection = () => {
           {availableEvents.map((event) => {
             const spotsLeft = event.spots_total - event.spots_taken;
             const isLow = spotsLeft <= 5;
+            const isEventFull = spotsLeft <= 0;
             return (
               <button
                 key={event.id}
                 onClick={() => setSelectedEvent(event)}
-                className="border border-border rounded-lg p-5 text-left hover:bg-secondary/50 transition-colors"
+                disabled={isEventFull}
+                className="border border-border rounded-lg p-5 text-left hover:bg-secondary/50 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <h3 className="font-heading font-semibold text-foreground">{event.title}</h3>
-                  <Badge variant={isLow ? "default" : "outline"} className="shrink-0 text-xs">
-                    {isLow ? "Últimos lugares" : "Cupos disponibles"}
+                  <Badge variant={isEventFull || isLow ? "default" : "outline"} className="shrink-0 text-xs">
+                    {isEventFull ? "Sin cupos" : isLow ? "Últimos lugares" : "Cupos disponibles"}
                   </Badge>
                 </div>
                 <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-3">
@@ -180,6 +244,9 @@ const EventsSection = () => {
                 </div>
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                   <MapPin size={14} /> {event.location}
+                </div>
+                <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-2">
+                  <Users size={14} /> {event.spots_taken}/{event.spots_total} anotados
                 </div>
               </button>
             );
@@ -240,6 +307,10 @@ const EventsSection = () => {
               {registeredIds.has(selectedEvent.id) ? (
                 <Button variant="secondary" size="cta" className="w-full" disabled>
                   <CheckCircle2 size={16} /> Ya estás anotado
+                </Button>
+              ) : selectedEvent.spots_taken >= selectedEvent.spots_total ? (
+                <Button variant="secondary" size="cta" className="w-full" disabled>
+                  Sin cupos disponibles
                 </Button>
               ) : (
                 <Button

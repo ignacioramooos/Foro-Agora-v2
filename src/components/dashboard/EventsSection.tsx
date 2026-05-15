@@ -153,13 +153,6 @@ const EventsSection = () => {
     });
 
     setRegisteredIds((prev) => new Set([...prev, event.id]));
-    setEvents((prev) =>
-      prev.map((currentEvent) =>
-        currentEvent.id === event.id
-          ? { ...currentEvent, spots_taken: Math.min(currentEvent.spots_total, currentEvent.spots_taken + 1) }
-          : currentEvent
-      )
-    );
     toast.success(`¡Listo, ${user.name.split(" ")[0]}! Ya estás anotado.`);
     setRegistering(false);
     setSelectedEvent(null);

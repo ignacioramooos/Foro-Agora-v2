@@ -57,11 +57,18 @@ const EventsSection = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data: evts } = await supabase
+      const { data: evts, error: eventsError } = await supabase
         .from("events")
         .select("*")
         .eq("is_active", true)
         .order("event_date", { ascending: true });
+
+      if (eventsError) {
+        setEvents([]);
+        setRegisteredIds(new Set());
+        setLoading(false);
+        return;
+      }
 
       const safeEvents = (evts as Event[]) || [];
 

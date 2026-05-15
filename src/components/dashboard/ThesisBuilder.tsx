@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 
 const companies = ["Mercado Libre", "Globant", "Vista Energy", "Dlocal", "YPF", "Nu Holdings", "Coca-Cola", "Apple", "Google", "Otra"];
-const THESIS_FORM_STEPS = 2;
+const THESIS_FORM_STEP_COUNT = 2;
 
 interface Thesis {
   id: string;
@@ -112,7 +112,7 @@ const ThesisBuilder = () => {
       {showForm && (
         <div className="border border-border rounded-lg p-6 mb-8">
           <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-4">
-            Paso {step} de {THESIS_FORM_STEPS}
+            Paso {step} de {THESIS_FORM_STEP_COUNT}
           </p>
           {step === 1 && (
             <>

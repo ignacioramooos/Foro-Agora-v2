@@ -48,6 +48,7 @@ const getCountdown = (iso: string) => {
 
 const EventsSection = () => {
   const { user, session } = useAuth();
+  const userId = session?.user?.id;
   const [events, setEvents] = useState<Event[]>([]);
   const [registeredIds, setRegisteredIds] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
@@ -84,10 +85,10 @@ const EventsSection = () => {
           }))
         );
 
-        if (session?.user) {
+        if (userId) {
           setRegisteredIds(
             new Set(
-              registrations.filter((registration) => registration.user_id === session.user.id).map((registration) => registration.event_id)
+              registrations.filter((registration) => registration.user_id === userId).map((registration) => registration.event_id)
             )
           );
         } else {
@@ -112,7 +113,7 @@ const EventsSection = () => {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [session?.user?.id]);
+  }, [userId]);
 
   const handleRegister = async (event: Event) => {
     if (!session?.user || !user) return;

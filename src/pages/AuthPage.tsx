@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
 import { getAuthRedirectUrl } from "@/lib/authRedirect";
 
@@ -110,6 +110,7 @@ const getAuthUrlParams = () => {
 const AuthPage = () => {
   const { isLoggedIn, user, login, refreshProfile, loading } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const [step, setStep] = useState<FlowStep>(() => {
     const params = getAuthUrlParams();
     if (params.get("reset-password") === "true" || window.location.hash.includes("type=recovery")) {
@@ -308,7 +309,7 @@ const AuthPage = () => {
     if (updateError) { setError("No se pudo guardar el perfil. Intentá de nuevo."); return; }
     sessionStorage.removeItem(PENDING_KEY);
     await refreshProfile();
-    window.location.hash = "/dashboard";
+    navigate("/dashboard", { replace: true });
   };
 
   const inputClass = "w-full h-12 px-4 rounded-md border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 transition-shadow font-heading";

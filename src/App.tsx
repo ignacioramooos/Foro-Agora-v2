@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { HashRouter, Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -28,6 +28,17 @@ import TermsPage from "./pages/TermsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+const normalizeLegacyHashRoute = () => {
+  if (typeof window === "undefined") return;
+  const { hash } = window.location;
+  if (!hash.startsWith("#/")) return;
+
+  const cleanPath = hash.slice(1);
+  window.history.replaceState(window.history.state, "", cleanPath);
+};
+
+normalizeLegacyHashRoute();
 
 const PublicPage = ({ children }: { children: React.ReactNode }) => (
   <><Navbar /><main>{children}</main><Footer /></>
@@ -130,11 +141,11 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <HashRouter>
+        <BrowserRouter>
           <AuthProvider>
             <AppRoutes />
           </AuthProvider>
-        </HashRouter>
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
   </ThemeProvider>

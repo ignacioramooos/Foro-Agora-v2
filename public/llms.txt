@@ -1,0 +1,24 @@
+# Foro Agora
+
+> Institución educativa digital uruguaya que enseña educación financiera y análisis fundamental a jóvenes mediante clases presenciales gratuitas y recursos en línea.
+
+Foro Agora prioriza la educación sobre la especulación: enseñamos a entender empresas, estados financieros, ahorro e inversión a largo plazo, con foco en el contexto uruguayo (UI, BCU, Clearing, IRPF).
+
+## Pages
+
+- [Inicio](/): Resumen del proyecto, próxima cohorte y cómo participar.
+- [Programa](/programa): Plan de estudios de 5 módulos sobre fundamentos, mercado uruguayo, análisis fundamental y comunidad.
+- [Nosotros](/nosotros): Misión, visión y valores de Foro Agora.
+- [Registro](/registro): Inscripción gratuita para estudiantes uruguayos.
+- [Recursos](/recursos): Materiales educativos complementarios.
+- [Glosario](/glosario): Definiciones de términos financieros clave.
+- [Brokers](/brokers): Comparativa de brokers accesibles desde Uruguay.
+- [Partners](/partners): Alianzas institucionales.
+- [Impacto](/impacto): Resultados y métricas de la comunidad.
+- [Ranking](/ranking): Tabla de progreso de estudiantes.
+- [Contacto](/contacto): Cómo contactarnos.
+
+## Optional
+
+- [Privacidad](/privacidad)
+- [Términos](/terminos)

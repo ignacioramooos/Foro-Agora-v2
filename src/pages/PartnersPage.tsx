@@ -98,13 +98,13 @@ const PartnersPage = () => {
       <section className="pt-32 md:pt-40 pb-16 bg-white text-foreground dark:bg-black dark:text-white">
         <div className="container">
           <SectionFade>
-            <p className="text-xs font-heading font-medium uppercase tracking-widest text-foreground/55 dark:text-white/60 mb-6">
+            <p className="text-xs font-heading font-medium uppercase tracking-widest text-foreground/80 dark:text-white/80 mb-6">
               Alianzas
             </p>
             <h1 className="text-3xl md:text-5xl text-foreground dark:text-white max-w-3xl mb-6">
               Sumá tu organización al movimiento
             </h1>
-            <p className="text-foreground/65 dark:text-white/70 text-lg max-w-xl mb-8">
+            <p className="text-foreground/85 dark:text-white/85 text-lg max-w-xl mb-8">
               Apoyá el acceso a educación financiera real para jóvenes en Uruguay.
             </p>
             <Button

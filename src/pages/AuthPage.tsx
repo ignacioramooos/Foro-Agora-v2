@@ -7,8 +7,8 @@ import { ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
 import { getAuthRedirectUrl } from "@/lib/authRedirect";
 
 const departments = [
-  "Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores",
-  "Florida", "Lavalleja", "Maldonado", "Montevideo", "Paysandú", "Río Negro",
+  "Montevideo", "Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores",
+  "Florida", "Lavalleja", "Maldonado", "Paysandú", "Río Negro",
   "Rivera", "Rocha", "Salto", "San José", "Soriano", "Tacuarembó", "Treinta y Tres",
 ];
 
@@ -26,8 +26,6 @@ const interestOptions = [
   "Certificar mis conocimientos",
 ];
 
-const ageRanges = ["Menor de 15", "15 a 18", "19 a 25", "Más de 25"];
-
 const PENDING_KEY = "pending_onboarding";
 
 type FlowStep =
@@ -44,36 +42,39 @@ type FlowStep =
 
 interface OnboardingData {
   fullName: string;
-  ageRange: string;
   age: string;
   department: string;
   institution: string;
   howFoundUs: string;
   interests: string[];
+  participationReason: string;
   acceptedTerms: boolean;
+  newsletterOptIn: boolean;
 }
 
 const emptyOnboarding: OnboardingData = {
   fullName: "",
-  ageRange: "",
   age: "",
   department: "",
   institution: "",
   howFoundUs: "",
   interests: [],
+  participationReason: "",
   acceptedTerms: false,
+  newsletterOptIn: false,
 };
 
 const buildMetadata = (d: OnboardingData) => ({
   display_name: d.fullName,
   full_name: d.fullName,
-  age_range: d.ageRange,
   age: d.age ? Number(d.age) : null,
   department: d.department,
   institution: d.institution,
   how_found_us: d.howFoundUs,
   interests: d.interests,
+  participation_reason: d.participationReason.trim() || null,
   accepted_terms: d.acceptedTerms,
+  newsletter_email_opt_in: d.newsletterOptIn,
 });
 
 const buildProfileOnboardingPayload = (userId: string, userEmail: string, d: OnboardingData) => ({
@@ -82,12 +83,13 @@ const buildProfileOnboardingPayload = (userId: string, userEmail: string, d: Onb
   full_name: d.fullName,
   display_name: d.fullName,
   age: d.age ? Number(d.age) : null,
-  age_range: d.ageRange,
   department: d.department,
   institution: d.institution,
   how_found_us: d.howFoundUs,
   interests: d.interests,
+  participation_reason: d.participationReason.trim() || null,
   accepted_terms: d.acceptedTerms,
+  newsletter_email_opt_in: d.newsletterOptIn,
   onboarding_completed: true,
 });
 
@@ -204,7 +206,10 @@ const AuthPage = () => {
   };
 
   const canAdvanceStep = () => {
-    if (step === "step-1") return onboardingData.fullName.trim().length > 0 && onboardingData.ageRange !== "";
+    if (step === "step-1") {
+      const age = Number(onboardingData.age);
+      return onboardingData.fullName.trim().length > 0 && Number.isFinite(age) && age >= 10 && age <= 99;
+    }
     if (step === "step-2") return onboardingData.department !== "" && onboardingData.institution.trim().length > 0 && onboardingData.howFoundUs !== "";
     if (step === "step-3") return onboardingData.interests.length > 0 && onboardingData.acceptedTerms;
     return false;
@@ -410,18 +415,9 @@ const AuthPage = () => {
                   <label className="block text-sm font-heading font-medium text-foreground mb-1.5">Nombre y Apellido *</label>
                   <input className={inputClass} value={onboardingData.fullName} onChange={(e) => set("fullName", e.target.value)} placeholder="Ej: Ignacio Pérez" />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-sm font-heading font-medium text-foreground mb-1.5">Rango de edad *</label>
-                    <select className={inputClass} value={onboardingData.ageRange} onChange={(e) => set("ageRange", e.target.value)}>
-                      <option value="">Seleccionar...</option>
-                      {ageRanges.map((a) => <option key={a} value={a}>{a}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-heading font-medium text-foreground mb-1.5">Edad <span className="text-muted-foreground font-normal text-xs">(opcional)</span></label>
-                    <input type="number" min={10} max={99} className={inputClass} value={onboardingData.age} onChange={(e) => set("age", e.target.value)} placeholder="17" />
-                  </div>
+                <div>
+                  <label className="block text-sm font-heading font-medium text-foreground mb-1.5">Edad *</label>
+                  <input type="number" min={10} max={99} className={inputClass} value={onboardingData.age} onChange={(e) => set("age", e.target.value)} placeholder="17" />
                 </div>
               </div>
             </div>
@@ -474,10 +470,28 @@ const AuthPage = () => {
                     ))}
                   </div>
                 </div>
+                <div>
+                  <label className="block text-sm font-heading font-medium text-foreground mb-1.5">
+                    ¿Por qué te interesa participar? <span className="text-muted-foreground font-normal text-xs">(opcional)</span>
+                  </label>
+                  <textarea
+                    className={`${inputClass} h-24 py-3 resize-none`}
+                    maxLength={300}
+                    value={onboardingData.participationReason}
+                    onChange={(e) => set("participationReason", e.target.value)}
+                    placeholder="Contanos qué te gustaría aprender o lograr."
+                  />
+                </div>
                 <div className="flex items-start gap-3 pt-2">
                   <input type="checkbox" checked={onboardingData.acceptedTerms} onChange={(e) => set("acceptedTerms", e.target.checked)} className="mt-1 w-4 h-4" />
                   <label className="text-sm text-muted-foreground">
                     Acepto que Foro Agora es un movimiento educativo sin fines de lucro y acepto los <Link to="/terminos" className="text-foreground underline">términos</Link> y la <Link to="/privacidad" className="text-foreground underline">política de privacidad</Link>. *
+                  </label>
+                </div>
+                <div className="flex items-start gap-3">
+                  <input type="checkbox" checked={onboardingData.newsletterOptIn} onChange={(e) => set("newsletterOptIn", e.target.checked)} className="mt-1 w-4 h-4" />
+                  <label className="text-sm text-muted-foreground">
+                    Quiero recibir emails con novedades, recursos y recordatorios de Foro Agora.
                   </label>
                 </div>
               </div>

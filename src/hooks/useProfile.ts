@@ -39,7 +39,7 @@ export function useProfile() {
     try {
       const { error } = await supabase
         .from("profiles")
-        .update({ [field]: value })
+        .update({ [field]: value } as never)
         .eq("user_id", userId);
 
       if (error) {

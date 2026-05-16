@@ -37,8 +37,8 @@ export function useUserPreferences(userId: string | undefined) {
         return null;
       }
 
-      setPreferences(data);
-      return data;
+      setPreferences(data as UserPreferences);
+      return data as UserPreferences;
     } catch (err) {
       console.error("[useUserPreferences] Unexpected error:", err);
       return null;
@@ -68,8 +68,8 @@ export function useUserPreferences(userId: string | undefined) {
         return null;
       }
 
-      setPreferences(data);
-      return data;
+      setPreferences(data as UserPreferences);
+      return data as UserPreferences;
     } catch (err) {
       console.error("[useUserPreferences] Unexpected error creating preferences:", err);
       return null;

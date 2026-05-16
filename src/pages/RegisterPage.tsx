@@ -16,7 +16,16 @@ const departments = [
   "Florida", "Durazno", "Artigas", "Treinta y Tres", "Lavalleja", "Flores", "Río Negro",
 ];
 
-const hearOptions = ["Instagram", "Un amigo/a", "Mi liceo", "LinkedIn", "Google", "Otro"];
+const hearOptions = [
+  "Instagram",
+  "Amigo / Boca a boca",
+  "Charla en mi centro educativo",
+  "Un amigo/a",
+  "Mi liceo",
+  "LinkedIn",
+  "Google",
+  "Otro",
+];
 
 interface ClassSession {
   id: string;

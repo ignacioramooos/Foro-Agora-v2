@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { buildCurriculumProgress, curriculumClassCount } from "@/lib/curriculum";
-import { Flame, BookOpen, FileText, Target, MapPin, Clock, CalendarDays, ArrowRight, CheckCircle2, BarChart3, Wallet, CalendarCheck } from "lucide-react";
+import { Flame, BookOpen, FileText, Target, MapPin, Clock, CalendarDays, ArrowRight, CheckCircle2, BarChart3, Wallet, CalendarCheck, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { DashboardTab } from "@/components/dashboard/DashboardLayout";
@@ -224,6 +224,30 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
         <p className="text-muted-foreground flex items-center gap-2">
           Tu racha actual: {user.streak} días <Flame size={16} className="text-orange-500" />
         </p>
+      </div>
+
+      <div className="mb-10 rounded-lg border-2 border-foreground bg-secondary p-6 md:p-8">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="max-w-xl">
+            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-sun text-foreground">
+              <GraduationCap size={24} />
+            </div>
+            <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-2">
+              Clases presenciales
+            </p>
+            <h2 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-3">
+              Reservá tu lugar en la próxima clase
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Usaremos los datos de tu cuenta para completar el formulario de inscripción y que solo tengas que revisar la clase elegida.
+            </p>
+          </div>
+          <Button asChild variant="cta" size="cta" className="w-full md:w-auto">
+            <Link to="/registro">
+              Registrarme a clase <ArrowRight size={16} />
+            </Link>
+          </Button>
+        </div>
       </div>
 
       {/* Quick actions */}

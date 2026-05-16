@@ -96,7 +96,7 @@ const Navbar = () => {
                   <Link to="/auth"><LogIn size={14} /> Log In</Link>
                 </Button>
                 <Button asChild variant="cta" size="sm">
-                  <Link to="/registro">Quiero participar</Link>
+                  <Link to="/auth?mode=signup">Quiero participar</Link>
                 </Button>
               </>
             )}
@@ -147,7 +147,7 @@ const Navbar = () => {
                   <Link to="/auth">Log In</Link>
                 </Button>
                 <Button asChild variant="cta" size="cta" className="w-full">
-                  <Link to="/registro">Inscribite</Link>
+                  <Link to="/auth?mode=signup">Inscribite</Link>
                 </Button>
               </>
             )}

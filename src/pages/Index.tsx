@@ -641,7 +641,7 @@ const FinalCTA = () => (
         </div>
         <div className="space-y-4 w-full md:w-auto">
           <Button asChild variant="default" size="cta" className="bg-foreground text-background hover:bg-foreground/80 w-full md:w-auto">
-            <Link to="/registro">
+            <Link to="/auth?mode=signup">
               Quiero participar
               <ArrowRight size={17} />
             </Link>

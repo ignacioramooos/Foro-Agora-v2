@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
 import { getAuthRedirectUrl } from "@/lib/authRedirect";
 
@@ -107,6 +107,7 @@ const getAuthUrlParams = () => {
 
 const AuthPage = () => {
   const { isLoggedIn, user, login, refreshProfile, loading } = useAuth();
+  const location = useLocation();
   const [step, setStep] = useState<FlowStep>(() => {
     const params = getAuthUrlParams();
     if (params.get("reset-password") === "true" || window.location.hash.includes("type=recovery")) {
@@ -124,6 +125,15 @@ const AuthPage = () => {
   const [submitting, setSubmitting] = useState(false);
   const [completingProfile, setCompletingProfile] = useState(false);
   const [onboardingData, setOnboardingData] = useState<OnboardingData>(emptyOnboarding);
+
+  useEffect(() => {
+    const params = getAuthUrlParams();
+    if (params.get("mode") === "signup" && !isLoggedIn && step === "login") {
+      setError("");
+      setOnboardingData(emptyOnboarding);
+      setStep("step-1");
+    }
+  }, [isLoggedIn, location.search, location.hash, step]);
 
   // After Google OAuth round-trip: apply pending onboarding to profile
   useEffect(() => {

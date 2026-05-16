@@ -247,7 +247,7 @@ const DynamicStockTickerAnimation = () => {
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="font-heading text-4xl font-black leading-none text-white">{activeTicker}</p>
-                <p className="mt-2 font-heading text-sm font-semibold leading-none text-white/55">{companyName}</p>
+                <p className="mt-2 font-heading text-sm font-semibold leading-none text-white/80">{companyName}</p>
               </div>
               <span className={`rounded-full px-3 py-1.5 font-heading text-sm font-black ${changeClassName(displayQuote?.changePercent)}`}>
                 {formatPercent(displayQuote?.changePercent)}
@@ -255,7 +255,7 @@ const DynamicStockTickerAnimation = () => {
             </div>
             <div className="mt-5 flex items-end justify-between">
               <div>
-                <p className="font-heading text-xs font-bold uppercase tracking-[0.18em] text-white/45">Precio</p>
+                <p className="font-heading text-xs font-bold uppercase tracking-[0.18em] text-white/75">Precio</p>
                 <p className="mt-1 font-heading text-2xl font-black leading-none text-white">{formatUsd(displayQuote?.price)}</p>
               </div>
               <div className="flex h-16 w-32 items-end gap-2">

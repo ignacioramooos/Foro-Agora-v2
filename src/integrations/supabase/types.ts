@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      brokers: {
+        Row: {
+          commission: string
+          created_at: string
+          id: string
+          is_active: boolean
+          min_deposit: string
+          name: string
+          notes: string | null
+          regulator: string
+          sort_order: number
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          commission?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          min_deposit?: string
+          name: string
+          notes?: string | null
+          regulator?: string
+          sort_order?: number
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          commission?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          min_deposit?: string
+          name?: string
+          notes?: string | null
+          regulator?: string
+          sort_order?: number
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       case_studies: {
         Row: {
           author_first_name: string
@@ -380,6 +422,30 @@ export type Database = {
         }
         Relationships: []
       }
+      landing_page_widgets: {
+        Row: {
+          created_at: string
+          id: string
+          tickers: string[]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          tickers?: string[]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          tickers?: string[]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       lesson_progress: {
         Row: {
           completed_at: string | null
@@ -669,6 +735,36 @@ export type Database = {
           institution?: string | null
           interests?: string[] | null
           onboarding_completed?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_preferences: {
+        Row: {
+          created_at: string
+          dashboard_active_tab: string
+          id: string
+          locale: string
+          theme: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          dashboard_active_tab?: string
+          id?: string
+          locale?: string
+          theme?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          dashboard_active_tab?: string
+          id?: string
+          locale?: string
+          theme?: string
           updated_at?: string
           user_id?: string
         }

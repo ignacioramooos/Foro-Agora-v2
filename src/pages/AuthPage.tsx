@@ -85,9 +85,7 @@ const buildProfileOnboardingPayload = (userId: string, userEmail: string, d: Onb
   institution: d.institution,
   how_found_us: d.howFoundUs,
   interests: d.interests,
-  participation_reason: d.participationReason.trim() || null,
   accepted_terms: d.acceptedTerms,
-  newsletter_email_opt_in: d.newsletterOptIn,
   onboarding_completed: true,
 });
 

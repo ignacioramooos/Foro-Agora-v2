@@ -329,7 +329,7 @@ const Hero = () => {
             <SectionFade delay={0.15}>
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <Button asChild variant="cta" size="cta" className="w-full sm:w-auto">
-                  <Link to={isLoggedIn ? "/dashboard" : "/registro"}>
+                  <Link to={isLoggedIn ? "/dashboard" : "/auth?mode=signup"}>
                     {isLoggedIn ? "Ir al dashboard" : "Inscribite ahora"}
                     <ArrowRight size={17} />
                   </Link>

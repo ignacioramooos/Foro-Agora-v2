@@ -698,9 +698,7 @@ export type Database = {
           id: string
           institution: string | null
           interests: string[] | null
-          newsletter_email_opt_in: boolean
           onboarding_completed: boolean
-          participation_reason: string | null
           updated_at: string
           user_id: string
         }
@@ -718,9 +716,7 @@ export type Database = {
           id?: string
           institution?: string | null
           interests?: string[] | null
-          newsletter_email_opt_in?: boolean
           onboarding_completed?: boolean
-          participation_reason?: string | null
           updated_at?: string
           user_id: string
         }
@@ -738,9 +734,7 @@ export type Database = {
           id?: string
           institution?: string | null
           interests?: string[] | null
-          newsletter_email_opt_in?: boolean
           onboarding_completed?: boolean
-          participation_reason?: string | null
           updated_at?: string
           user_id?: string
         }

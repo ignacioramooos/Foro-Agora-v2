@@ -9,8 +9,6 @@ export interface UserProfileData {
   department?: string | null;
   institution?: string | null;
   how_found_us?: string | null;
-  participation_reason?: string | null;
-  newsletter_email_opt_in?: boolean | null;
   onboarding_completed?: boolean | null;
 }
 

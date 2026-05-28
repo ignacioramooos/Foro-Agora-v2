@@ -13,3 +13,5 @@ No ense?aremos ni trading ni especulaci?n, solo educaci?n sobre c?mo analizar em
 Vimos que el formulario para el uso de espacios ya est? cerrado, pero queremos, con este pedido, conseguir un lugar para hacer el primer encuentro y ver si hay inter?s y si funciona la din?mica. A partir de ah? consideramos hacer m?s encuentros.
 
 Nos motiva ver que el INJU es un espacio precisamente para esto. Nuestra propuesta es obviamente sin fines de lucro alguno ni promoci?n de nada. Adem?s queremos que sea abierto a cualquier joven sin ning?n tipo de filtro ni discriminacion. Investigando vimos que el INJU se alinea con estas ideas casi al 100%.
+No hay antecedentes
+El publico destinatario de nuestra propuesta es cualquier joven mayor de 15 a?os que este interesado en aprender sob

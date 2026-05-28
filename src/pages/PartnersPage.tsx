@@ -22,21 +22,6 @@ const orgTypes = [
   "Otro",
 ];
 
-const InjuPartnerCard = () => (
-  <div className="flex min-h-28 items-center gap-5 rounded-lg border border-border bg-card px-6 py-5">
-    <div className="flex h-20 w-20 shrink-0 items-center justify-center bg-[#5f18ea] p-2">
-      <span className="font-hand text-4xl font-bold leading-none text-white">Inju!</span>
-    </div>
-    <div>
-      <h3 className="font-heading text-2xl font-black text-foreground">INJU</h3>
-      <p className="mt-1 max-w-sm text-sm font-heading font-bold uppercase tracking-wide text-muted-foreground">
-        Instituto Nacional de la Juventud
-      </p>
-      <p className="mt-1 text-sm font-heading font-semibold text-blue-pop">Uruguay</p>
-    </div>
-  </div>
-);
-
 const PartnersPage = () => {
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -144,7 +129,6 @@ const PartnersPage = () => {
             Nuestros aliados
           </p>
           <div className="grid gap-4 md:grid-cols-2">
-            <InjuPartnerCard />
             {partners.map((p) => (
               <div key={p.id} className="flex min-h-28 items-center justify-center rounded-lg border border-border bg-card px-8 py-5">
                 {p.logo_url ? (

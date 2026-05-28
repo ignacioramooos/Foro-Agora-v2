@@ -15,4 +15,4 @@ Vimos que el formulario para el uso de espacios ya est? cerrado, pero queremos, 
 Nos motiva ver que el INJU es un espacio precisamente para esto. Nuestra propuesta es obviamente sin fines de lucro alguno ni promoci?n de nada. Adem?s queremos que sea abierto a cualquier joven sin ning?n tipo de filtro ni discriminacion. Investigando vimos que el INJU se alinea con estas ideas casi al 100%.
 No hay antecedentes
 El p?blico destinatario de nuestra propuesta es cualquier joven mayor de 15 a?os que est? interesado en aprender sobre finanzas e inversiones. No queremos requerir conocimientos previos sobre el ?rea. 
-Nuestro plan de difusion es en varios medios. Primero, hicimos una pagina web prototipo para la iniciativa: fo
+Nuestro plan de difusi?n es en varios medios. Primero, hicimos una pagina web prototipo para la iniciativa: foroagora.org .La idea es que a partir de 

@@ -7,3 +7,5 @@ Antecedentes de la propuesta
 Describe brevemente el p?blico destinatario de la propuesta
 Plan de difusi?n y promoci?n de la actividad
 
+
+Nuestra propuesta es crear un espacio abierto y gratuito de educaci?n financiera para j?venes. La idea seria proporcionar clases, charlas y encuentros donde los jovenes que atiendan  

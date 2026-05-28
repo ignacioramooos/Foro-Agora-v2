@@ -1,0 +1,9 @@
+# mails
+
+florencia.argul@mides.gub.uy
+
+nllanesdi@gmail.com
+
+
+Hola! Como estas?Somos Nicolas e Ignacio. Creo que nico llanes ya te comento un poco el porque te escribimos, pero es por nuestro proyecto sobre educacion financiera. Nos parece que estaria genial poder organizar una reunion para comentarte todo en detalle, pero para que tengas una idea, nos dimos cuenta que entre jovenes de nuestra edad (entre 16 y 20 mas o menos), si bien las finanzas e inversiones son un tema de mucho interes, terminan cayendo un poco en el olvido: y esto se debe a que nadie nos ensena ? como manejar nuestro dinero. Siendo ahora o en un futuro cercano, la realidad es que saber manejar este recurso es cada vez mas importante. 
+Si bien no somos expertos, Nico maneja desde hace unos cuantos anos la cartera de inversiones de su familia. Leyo mucho sobre el tema, y, a mi parecer, tiene un entendimiento del tema muy privilegiado. Por esto se nos ocurrio unir habilidades y desarrollar este noble proyecto que busca democratizar conocimiento y educacion financiera para jovenes en nuestro pais. Nuestro plan es generar encuentros presenciales cada mas o menos dos semanas. La idea es que se puedan sumar profesionales y miembros de la comunidad sobre el final de los encuentros, para explicar conceptos mas complejos y dar acceso ? aquellos puntos de vista. Despues de un proceso de investigacion de posibles lugares donde orrganizar los encuentros, dimos con el INJU; el cual ya habiamos podido visitar de la mano de nico llanes hace unos anos. Nos parecio que nuestra propuesta se alinea perfectamente con la del inju, y eso lo hace un match casi perfecto. Nos encantaria poder organizar una reunion contigo, Flor, para contarte mas sobre nuestro proyecto, lo que necesitariamos, y para empezar ? actuar. Muchas gracias por todo. Esperamos tu respuesta.Ignacio y nicolas 

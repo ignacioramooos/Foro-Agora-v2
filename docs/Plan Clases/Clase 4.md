@@ -10,4 +10,4 @@
 		One time tax 
 	. Psicologia de mercado
 		Buy when others are fearful
-	. Discount r
+	. Discount rate y valuations

@@ -2,6 +2,7 @@
 
 Cuantas clases vamos a hacer? Estimo que 5?
 Cada una de 1h 20m
+https://docs.google.com/presentation/d/1SXB1RIKJ7R262rNvWhCf0aWOtYJNXXHOswyXLBjlKVs/edit?usp=sharing 
 
 Topics en orden
 	. Que temas vamos a dar y modalidad (clases presenciales y recursos online)

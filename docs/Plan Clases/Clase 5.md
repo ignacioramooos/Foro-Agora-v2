@@ -1,6 +1,6 @@
 # Clase 5
 
-z. Conceptos de margin of safety
+. Conceptos de margin of safety
 	La desconexion entre valor que estimamos y el valor a que cotiza tiene que ser grande
 A lo largo del tiempo somos compradores netos cuando este es grande y vendedores cuando el valor cotizado supera ampliamente el valor que estimamos
 . Conceptos extras

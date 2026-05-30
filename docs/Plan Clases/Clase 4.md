@@ -11,4 +11,4 @@
 	. Psicologia de mercado
 		Buy when others are fearful
 	. Discount rate y valuations
-.
+	. Share buybacks 

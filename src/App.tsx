@@ -17,6 +17,7 @@ const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
 const PartnersPage = lazy(() => import("./pages/PartnersPage"));
+const InstitutionsPage = lazy(() => import("./pages/InstitutionsPage"));
 const AmbassadorsPage = lazy(() => import("./pages/AmbassadorsPage"));
 const BrokersPage = lazy(() => import("./pages/BrokersPage"));
 const GlossaryPage = lazy(() => import("./pages/GlossaryPage"));
@@ -101,6 +102,7 @@ const AppRoutes = () => {
       <Route path="/recursos" element={<PublicPage><ResourcesPage /></PublicPage>} />
       <Route path="/glosario" element={<PublicPage><GlossaryPage /></PublicPage>} />
       <Route path="/partners" element={<PublicPage><PartnersPage /></PublicPage>} />
+      <Route path="/instituciones" element={<PublicPage><InstitutionsPage /></PublicPage>} />
       <Route path="/embajadores" element={<PublicPage><AmbassadorsPage /></PublicPage>} />
       <Route path="/brokers" element={<PublicPage><BrokersPage /></PublicPage>} />
       <Route path="/ranking" element={<PublicPage><RankingPage /></PublicPage>} />

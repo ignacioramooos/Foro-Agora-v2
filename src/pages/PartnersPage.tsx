@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import SectionFade from "@/components/SectionFade";
 import { CheckCircle2 } from "lucide-react";
@@ -99,6 +100,9 @@ const PartnersPage = () => {
               onClick={() => document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" })}
             >
               Quiero ser aliado
+            </Button>
+            <Button asChild variant="cta-outline" size="cta" className="mt-3 bg-transparent dark:border-white/30 dark:text-white">
+              <Link to="/instituciones">Ver propuesta para instituciones</Link>
             </Button>
           </SectionFade>
         </div>

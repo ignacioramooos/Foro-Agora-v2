@@ -32,6 +32,7 @@ const Footer = () => (
               ["Nosotros", "/nosotros"],
               ["Programa", "/programa"],
               ["Recursos", "/recursos"],
+              ["Instituciones", "/instituciones"],
               ["Embajadores", "/embajadores"],
               ["Partners", "/partners"],
               ["Ranking", "/ranking"],

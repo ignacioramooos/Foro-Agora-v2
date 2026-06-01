@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import SectionFade from "@/components/SectionFade";
 import { CheckCircle2 } from "lucide-react";
@@ -23,7 +23,12 @@ const orgTypes = [
   "Otro",
 ];
 
+const institutionMessage =
+  "Nos interesa evaluar una charla o clase gratuita de educación financiera para estudiantes. Nos gustaría conversar sobre formato, fecha, público y necesidades técnicas.";
+
 const PartnersPage = () => {
+  const [searchParams] = useSearchParams();
+  const fromInstitutions = searchParams.get("source") === "instituciones";
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
@@ -31,9 +36,9 @@ const PartnersPage = () => {
     organization: "",
     role: "",
     email: "",
-    org_type: "",
-    collaboration_types: [] as string[],
-    message: "",
+    org_type: fromInstitutions ? "Universidad/Instituto Educativo" : "",
+    collaboration_types: fromInstitutions ? ["Ofrecer espacio para clases"] : [] as string[],
+    message: fromInstitutions ? institutionMessage : "",
   });
   const [partners, setPartners] = useState<Tables<"partners">[]>([]);
 
@@ -48,6 +53,13 @@ const PartnersPage = () => {
     };
     fetchPartners();
   }, []);
+
+  useEffect(() => {
+    if (!fromInstitutions) return;
+    window.setTimeout(() => {
+      document.getElementById("form-section")?.scrollIntoView({ behavior: "smooth" });
+    }, 250);
+  }, [fromInstitutions]);
 
   const handleCollabToggle = (option: string) => {
     setForm((p) => ({
@@ -158,6 +170,11 @@ const PartnersPage = () => {
           <p className="text-muted-foreground mb-10">
             Completá el formulario y te contactamos en menos de 48 horas.
           </p>
+          {fromInstitutions && !sent && (
+            <div className="mb-6 rounded-lg border border-border bg-blue-soft p-4 text-sm leading-relaxed text-foreground/75">
+              Este formulario ya está preparado para instituciones educativas. Podés ajustar el mensaje antes de enviarlo.
+            </div>
+          )}
           {sent ? (
             <div className="border border-border rounded-lg p-8 text-center">
               <CheckCircle2 size={40} className="text-accent mx-auto mb-4" />

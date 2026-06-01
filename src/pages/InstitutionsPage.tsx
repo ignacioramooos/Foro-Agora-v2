@@ -43,7 +43,7 @@ const InstitutionsPage = () => (
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="cta" size="cta">
-              <Link to="/partners">
+              <Link to="/partners?source=instituciones">
                 Coordinar una instancia
                 <ArrowRight size={17} />
               </Link>
@@ -130,7 +130,7 @@ const InstitutionsPage = () => (
           </div>
           <div className="flex flex-col gap-3">
             <Button asChild variant="default" size="cta" className="bg-foreground text-background hover:bg-foreground/85">
-              <Link to="/partners">Completar formulario</Link>
+              <Link to="/partners?source=instituciones">Completar formulario</Link>
             </Button>
             <a href="mailto:contacto@foroagora.org" className="inline-flex items-center justify-center gap-2 font-heading text-sm font-black text-foreground underline underline-offset-4">
               <Mail size={16} />

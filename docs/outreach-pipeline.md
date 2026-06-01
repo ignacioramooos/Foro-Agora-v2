@@ -10,6 +10,7 @@ Estado inicial para convertir difusión en conversaciones concretas.
 | 2026-06-01 | Instagram | Revisión de sesión activa. | No publicado: Chrome estaba en cuenta personal `ignacio.ramooos` y el handle `@foroagora` visible pertenece a otro proyecto. |
 | 2026-06-01 | Casa INJU | Revisión del formulario vigente de eventos 2026. | Preparado; no enviado porque requiere cédula, fecha de nacimiento, teléfono e integrantes. |
 | 2026-06-01 | Sitio web | Creación de página pública `/instituciones` para que colegios, liceos y organizaciones evalúen una charla gratuita sin aterrizar en una home genérica. | Implementado |
+| 2026-06-01 | Sitio web | Optimización del CTA institucional: `/instituciones` ahora lleva a `/partners?source=instituciones`, con tipo de organización, colaboración y mensaje base prellenados. | Implementado |
 
 ## Prioridad alta
 
@@ -48,6 +49,7 @@ El enfoque es estrictamente educativo: no damos recomendaciones de inversión, n
 Nos gustaría conversar para evaluar si puede tener sentido llevar una instancia gratuita a su institución.
 
 Propuesta para instituciones: https://foroagora.org/instituciones
+Formulario directo para coordinar: https://foroagora.org/partners?source=instituciones
 Sitio: https://foroagora.org
 Contacto: contacto@foroagora.org
 

@@ -13,10 +13,7 @@ Foro Agora prioriza la educación sobre la especulación: enseñamos a entender 
 - [Recursos](/recursos): Materiales educativos complementarios.
 - [Glosario](/glosario): Definiciones de términos financieros clave.
 - [Brokers](/brokers): Comparativa de brokers accesibles desde Uruguay.
-- [Partners](/partners): Alianzas institucionales.
-- [Instituciones](/instituciones): Propuesta para coordinar charlas gratuitas de educacion financiera en instituciones educativas.
-- [Propuesta institucional](/propuesta-instituciones): Documento imprimible/PDF para evaluar formato, contenidos y requisitos de una instancia educativa.
-- [Embajadores](/embajadores): Programa para jovenes que quieren abrir puertas y llevar Foro Agora a nuevas comunidades.
+- [Partners](/partners): Aliados que apoyan el crecimiento abierto de Foro Agora.
 - [Difundir](/difundir): Kit publico con textos y links listos para compartir Foro Agora.
 - [Prensa](/prensa): Media kit con boilerplate, datos clave, links oficiales y pautas de uso.
 - [Impacto](/impacto): Resultados y métricas de la comunidad.

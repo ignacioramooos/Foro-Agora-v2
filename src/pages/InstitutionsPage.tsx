@@ -19,55 +19,55 @@ import SectionFade from "@/components/SectionFade";
 
 const formats = [
   {
-    title: "Charla introductoria",
+    title: "Encuentro introductorio",
     time: "45-60 min",
-    desc: "Una instancia clara para estudiantes que nunca tuvieron educación financiera formal.",
+    desc: "Una instancia abierta para jovenes que nunca tuvieron educacion financiera formal.",
   },
   {
-    title: "Clase taller",
+    title: "Taller abierto",
     time: "75-90 min",
-    desc: "Trabajo práctico con conceptos de ahorro, riesgo, instrumentos y lectura básica de empresas.",
+    desc: "Trabajo practico con conceptos de ahorro, riesgo, instrumentos y lectura basica de empresas.",
   },
   {
-    title: "Ciclo de clases",
+    title: "Ciclo abierto",
     time: "3-6 encuentros",
-    desc: "Un recorrido progresivo desde finanzas personales hasta análisis fundamental inicial.",
+    desc: "Un recorrido progresivo desde finanzas personales hasta analisis fundamental inicial.",
   },
 ];
 
 const safeguards = [
-  "No damos recomendaciones personalizadas de inversión.",
-  "No promovemos trading, señales ni promesas de retorno.",
-  "El lenguaje se adapta a estudiantes sin experiencia previa.",
-  "El foco está en pensamiento crítico, hábitos y responsabilidad.",
+  "No damos recomendaciones personalizadas de inversion.",
+  "No promovemos trading, senales ni promesas de retorno.",
+  "El lenguaje se adapta a jovenes sin experiencia previa.",
+  "El foco esta en pensamiento critico, habitos y responsabilidad.",
 ];
 
 const steps = [
   {
     icon: MessageSquare,
     title: "1. Conversamos 15 minutos",
-    desc: "Alineamos edad, tamano del grupo, objetivo de la instancia y modalidad.",
+    desc: "Alineamos objetivo, formato y condiciones para que la actividad sea abierta y gratuita.",
   },
   {
     icon: CalendarCheck,
     title: "2. Confirmamos formato",
-    desc: "Elegimos charla, taller o ciclo breve segun disponibilidad y necesidades.",
+    desc: "Elegimos encuentro, taller o ciclo breve segun disponibilidad y necesidades.",
   },
   {
     icon: BookOpen,
-    title: "3. Llevamos la clase",
-    desc: "Foro Agora prepara la instancia y mantiene el enfoque educativo acordado.",
+    title: "3. Cuidamos el acceso",
+    desc: "Foro Agora mantiene el enfoque educativo, abierto y sin fines de lucro.",
   },
 ];
 
 const faqs = [
   {
-    q: "Tiene costo para la institucion?",
-    a: "No. La propuesta institucional de Foro Agora es gratuita y sin fines de lucro.",
+    q: "Tiene costo para asistir?",
+    a: "No. La propuesta de Foro Agora es gratuita y sin fines de lucro.",
   },
   {
     q: "Necesitan conocimientos previos?",
-    a: "No. La charla esta pensada para estudiantes que pueden estar viendo estos temas por primera vez.",
+    a: "No. La actividad esta pensada para jovenes que pueden estar viendo estos temas por primera vez.",
   },
   {
     q: "Hablan de trading o recomiendan inversiones?",
@@ -78,8 +78,8 @@ const faqs = [
     a: "El foco ideal es jovenes de 15 a 25 anos. Podemos ajustar ejemplos y profundidad segun el grupo.",
   },
   {
-    q: "Que necesita preparar la institucion?",
-    a: "Un referente para coordinar, un espacio adecuado y, si es posible, proyector o pantalla. El resto se conversa segun el formato.",
+    q: "La actividad es cerrada?",
+    a: "No. El objetivo de Foro Agora es que las actividades sean abiertas a cualquier joven que se registre, sin pertenecer a una institucion especifica.",
   },
 ];
 
@@ -89,19 +89,19 @@ const InstitutionsPage = () => (
       <div className="absolute -left-20 top-24 h-64 w-64 rounded-full bg-sun" />
       <div className="container relative">
         <SectionFade>
-          <p className="font-hand text-3xl text-blue-pop md:text-4xl">Para instituciones</p>
+          <p className="font-hand text-3xl text-blue-pop md:text-4xl">Actividades abiertas</p>
           <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
-            Una charla gratuita de educación financiera para tus estudiantes
+            Educacion financiera gratuita, abierta a cualquier joven
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground/75 dark:text-white/75">
-            Foro Agora acerca herramientas de finanzas personales, inversión responsable y análisis fundamental a jóvenes de Uruguay, con un enfoque educativo y sin fines de lucro.
+            Este material sirve para conversaciones directas del equipo de Foro Agora. La prioridad es organizar actividades publicas, gratuitas y abiertas, no encuentros cerrados para una institucion.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="cta" size="cta">
-              <Link to="/partners?source=instituciones">
-                Coordinar una instancia
+              <a href="mailto:contacto@foroagora.org">
+                Contactar al equipo
                 <ArrowRight size={17} />
-              </Link>
+              </a>
             </Button>
             <Button asChild variant="cta-outline" size="cta">
               <Link to="/propuesta-instituciones">
@@ -118,9 +118,9 @@ const InstitutionsPage = () => (
       <div className="container">
         <div className="grid gap-4 md:grid-cols-4">
           {[
-            { icon: Users, label: "Público", value: "Jóvenes de 15 a 25 años" },
-            { icon: MapPin, label: "Ubicación", value: "Montevideo o modalidad a coordinar" },
-            { icon: Clock, label: "Duración", value: "45 a 90 minutos" },
+            { icon: Users, label: "Publico", value: "Jovenes de 15 a 25 anos" },
+            { icon: MapPin, label: "Acceso", value: "Actividad abierta con registro" },
+            { icon: Clock, label: "Duracion", value: "45 a 90 minutos" },
             { icon: BookOpen, label: "Nivel", value: "Sin conocimientos previos" },
           ].map((item) => (
             <div key={item.label} className="rounded-lg border border-border bg-card p-6">
@@ -136,17 +136,17 @@ const InstitutionsPage = () => (
     <section className="bg-background py-16 md:py-24">
       <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <div>
-          <p className="font-hand text-3xl text-orange-pop">Qué proponemos</p>
+          <p className="font-hand text-3xl text-orange-pop">Que proponemos</p>
           <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">
-            Educación financiera seria, cercana y cuidada
+            Educacion financiera seria, cercana y cuidada
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            La propuesta está pensada para instituciones que quieren sumar una instancia práctica sin convertir la educación financiera en especulación. Enseñamos conceptos, criterios y preguntas útiles.
+            La propuesta esta pensada para actividades abiertas donde cualquier joven pueda registrarse. Ensenamos conceptos, criterios y preguntas utiles sin convertir la educacion financiera en especulacion.
           </p>
           <div className="mt-8 rounded-lg border border-border bg-card p-6">
             <div className="mb-3 flex items-center gap-2 font-heading font-black text-foreground">
               <ShieldCheck size={20} className="text-blue-pop" />
-              Estándar educativo
+              Estandar educativo
             </div>
             <div className="space-y-3">
               {safeguards.map((item) => (
@@ -183,7 +183,7 @@ const InstitutionsPage = () => (
             Simple, gratuito y sin letra chica
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            La idea es que una institucion pueda evaluar rapido si tiene sentido, sin reuniones largas ni compromisos raros. Primero entendemos el grupo; despues adaptamos la instancia.
+            La idea es evaluar rapido si una actividad abierta tiene sentido. Primero definimos condiciones de acceso; despues adaptamos la instancia.
           </p>
           <div className="mt-7 grid gap-3">
             {steps.map((step) => (
@@ -224,15 +224,15 @@ const InstitutionsPage = () => (
         <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
           <div>
             <h2 className="text-3xl font-black leading-tight md:text-5xl">
-              ¿Querés evaluar una charla para tu institución?
+              Queres conversar con Foro Agora?
             </h2>
             <p className="mt-4 max-w-2xl text-foreground/75">
-              Podemos coordinar fecha, formato, público y necesidades técnicas. La propuesta es gratuita y se adapta al contexto de cada grupo.
+              Podemos conversar sobre formato, publico, registro y necesidades tecnicas. La prioridad es mantener actividades abiertas y gratuitas.
             </p>
           </div>
           <div className="flex flex-col gap-3">
             <Button asChild variant="default" size="cta" className="bg-foreground text-background hover:bg-foreground/85">
-              <Link to="/partners?source=instituciones">Completar formulario</Link>
+              <a href="mailto:contacto@foroagora.org">Escribir al equipo</a>
             </Button>
             <Button asChild variant="outline" size="lg" className="border-foreground/20 bg-white/40 font-heading font-black">
               <Link to="/propuesta-instituciones">

@@ -17,19 +17,19 @@ import { Button } from "@/components/ui/button";
 
 const formats = [
   {
-    title: "Charla introductoria",
+    title: "Encuentro introductorio",
     detail: "45 a 60 minutos",
-    text: "Una primera instancia clara para grupos que todavia no tuvieron educacion financiera formal.",
+    text: "Una primera instancia clara para jovenes que todavia no tuvieron educacion financiera formal.",
   },
   {
-    title: "Clase taller",
+    title: "Taller abierto",
     detail: "75 a 90 minutos",
     text: "Trabajo aplicado con conceptos de ahorro, riesgo, instrumentos, empresas y toma de decisiones.",
   },
   {
-    title: "Ciclo breve",
+    title: "Ciclo abierto",
     detail: "3 a 6 encuentros",
-    text: "Un recorrido progresivo para instituciones que quieran profundizar despues de una primera charla.",
+    text: "Un recorrido progresivo para profundizar despues de una primera actividad abierta.",
   },
 ];
 
@@ -45,34 +45,34 @@ const safeguards = [
   "No damos recomendaciones personalizadas de inversion.",
   "No promovemos trading, senales ni promesas de retorno.",
   "No vendemos cursos, productos financieros ni servicios de intermediacion.",
-  "Adaptamos el lenguaje a estudiantes sin conocimientos previos.",
+  "Adaptamos el lenguaje a jovenes sin conocimientos previos.",
 ];
 
 const requirements = [
   "Proyector o pantalla para presentar.",
   "Audio basico si el grupo o el salon lo requiere.",
-  "Un referente institucional para coordinar fecha, duracion y perfil del grupo.",
+  "Registro abierto para cualquier joven interesado.",
   "Modalidad presencial en Montevideo o formato a coordinar.",
 ];
 
 const nextSteps = [
-  "Enviar el formulario institucional o escribir a contacto@foroagora.org.",
-  "Coordinar una llamada breve para definir publico, duracion y modalidad.",
-  "Confirmar fecha, espacio y referente institucional.",
+  "Escribir a contacto@foroagora.org.",
+  "Coordinar una llamada breve para definir publico, duracion, modalidad y registro abierto.",
+  "Confirmar fecha, comunicacion y condiciones de acceso.",
 ];
 
 const faqs = [
   {
     question: "Tiene costo?",
-    answer: "No. La propuesta para instituciones es gratuita y sin fines de lucro.",
+    answer: "No. La propuesta es gratuita y sin fines de lucro.",
   },
   {
     question: "Se recomienda invertir en algun producto?",
     answer: "No. La instancia es educativa y no incluye recomendaciones personalizadas, senales ni promesas de retorno.",
   },
   {
-    question: "Puede adaptarse al grupo?",
-    answer: "Si. Ajustamos ejemplos, profundidad y duracion segun edad, experiencia previa y objetivo de la institucion.",
+    question: "La actividad es cerrada?",
+    answer: "No. Foro Agora prioriza actividades abiertas para cualquier joven que se registre.",
   },
 ];
 
@@ -89,10 +89,10 @@ const InstitutionalProposalPage = () => {
                 Foro Agora
               </p>
               <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight md:text-6xl print:text-4xl">
-                Propuesta gratuita de educacion financiera para instituciones
+                Propuesta para actividades abiertas de educacion financiera
               </h1>
               <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground print:text-base">
-                Una instancia educativa para jovenes de Uruguay sobre finanzas personales, inversion responsable
+                Una instancia educativa abierta para jovenes de Uruguay sobre finanzas personales, inversion responsable
                 y pensamiento critico, con enfoque sin fines de lucro y sin recomendaciones de inversion.
               </p>
             </div>
@@ -102,10 +102,10 @@ const InstitutionalProposalPage = () => {
                 Imprimir / PDF
               </Button>
               <Button asChild variant="cta-outline" size="cta">
-                <Link to="/partners?source=instituciones">
-                  Coordinar
+                <a href="mailto:contacto@foroagora.org">
+                  Contactar
                   <ArrowRight size={17} />
-                </Link>
+                </a>
               </Button>
             </div>
           </div>
@@ -136,7 +136,7 @@ const InstitutionalProposalPage = () => {
           <div>
             <h2 className="text-3xl font-black leading-tight print:text-2xl">Objetivo</h2>
             <p className="mt-4 leading-relaxed text-muted-foreground print:text-zinc-700">
-              Acercar educacion financiera seria, cercana y cuidada a estudiantes que estan empezando a tomar
+              Acercar educacion financiera seria, cercana y cuidada a jovenes que estan empezando a tomar
               decisiones sobre ahorro, consumo, trabajo, deuda e inversion. La meta es que salgan con mejores
               preguntas, criterios mas claros y menos vulnerabilidad frente a promesas faciles.
             </p>
@@ -253,21 +253,17 @@ const InstitutionalProposalPage = () => {
             <div>
               <h2 className="text-3xl font-black leading-tight print:text-2xl">Contacto y coordinacion</h2>
               <p className="mt-3 max-w-2xl text-foreground/75 print:text-zinc-700">
-                Para coordinar una instancia, definir el formato o ajustar la propuesta al grupo, pueden escribir
-                a contacto@foroagora.org o completar el formulario institucional.
+                Para conversar sobre formato o ajustar la propuesta, escribir a contacto@foroagora.org.
               </p>
             </div>
             <div className="flex flex-col gap-3 print:hidden">
-              <Button asChild variant="default" size="cta" className="bg-foreground text-background hover:bg-foreground/85">
-                <Link to="/partners?source=instituciones">Completar formulario</Link>
-              </Button>
               <a href="mailto:contacto@foroagora.org" className="inline-flex items-center justify-center gap-2 font-heading text-sm font-black text-foreground underline underline-offset-4">
                 <Mail size={16} />
                 contacto@foroagora.org
               </a>
             </div>
             <div className="hidden print:block print:text-sm print:text-zinc-700">
-              contacto@foroagora.org - https://foroagora.org/partners?source=instituciones
+              contacto@foroagora.org
             </div>
           </div>
         </div>

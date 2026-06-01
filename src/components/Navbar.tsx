@@ -12,7 +12,7 @@ const navLinks = [
   { label: "Clases", path: "/programa" },
   { label: "Impacto", path: "/impacto" },
   { label: "Recursos", path: "/recursos" },
-  { label: "Embajadores", path: "/embajadores" },
+  { label: "Difundir", path: "/difundir" },
   { label: "Partners", path: "/partners" },
 ];
 

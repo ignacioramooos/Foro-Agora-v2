@@ -510,27 +510,27 @@ const MovementCTA = () => (
         <div>
           <p className="font-hand text-3xl text-orange-pop">Hagámoslo crecer</p>
           <h2 className="mt-2 max-w-3xl text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
-            Foro Agora puede llegar más lejos si alguien abre la primera puerta.
+            Foro Agora puede llegar más lejos si más gente lo comparte.
           </h2>
           <p className="mt-5 max-w-2xl text-base md:text-lg text-foreground/70">
-            Si podés presentar el proyecto en tu liceo, facultad, club o comunidad, sumate como embajador y ayudanos a acercar educación financiera gratuita a más jóvenes.
+            Si conocés a alguien que quiere aprender educación financiera desde cero, compartile el sitio, el registro o el kit de difusión. Las actividades son abiertas y gratuitas.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="cta" size="cta">
-              <Link to="/embajadores">
+              <Link to="/difundir">
                 Quiero difundir Foro Agora
                 <ArrowRight size={17} />
               </Link>
             </Button>
             <Button asChild variant="cta-outline" size="cta">
-              <Link to="/partners">Conectar una institución</Link>
+              <Link to="/registro">Inscribirme</Link>
             </Button>
           </div>
         </div>
         <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
           {[
-            { title: "Liceos y facultades", desc: "Charlas introductorias, clases presenciales y grupos de estudiantes." },
-            { title: "Docentes y referentes", desc: "Puentes con personas que pueden validar, alojar o recomendar el programa." },
+            { title: "Compartir el registro", desc: "Pasale Foro Agora a cualquier joven que quiera aprender desde cero." },
+            { title: "Usar mensajes claros", desc: "El kit de difusión tiene textos listos para WhatsApp, historias y LinkedIn." },
             { title: "Redes con propósito", desc: "Difusión clara: educación antes que especulación, siempre gratis." },
           ].map((item) => (
             <div key={item.title} className="rounded-[1.25rem] border border-border bg-background p-6">

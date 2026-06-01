@@ -1,12 +1,14 @@
 # Calendario de contenido - Junio 2026
 
-Calendario inicial para publicar desde cuentas oficiales de Foro Agora. No publicar desde cuentas personales. Antes de cada publicacion, verificar que el actor activo sea una cuenta o pagina administrada por Foro Agora.
+Calendario corregido para publicar desde cuentas oficiales de Foro Agora. No publicar desde cuentas personales. Antes de cada publicacion, verificar que el actor activo sea una cuenta o pagina administrada por Foro Agora.
 
 ## Reglas editoriales
 
 - Mantener el foco en educacion financiera, no asesoramiento financiero.
 - Evitar promesas de retorno, urgencia artificial o lenguaje de trading.
-- Usar llamadas a la accion concretas: registro, instituciones, embajadores, difusion o prensa.
+- Usar llamadas a la accion concretas: registro, difusion, recursos o prensa.
+- No convocar voluntarios para gestionar sedes o coordinar lugares.
+- No pedir a voluntarios que consigan espacios publicos. Eso lo gestiona el equipo de Foro Agora.
 - Linkear una sola accion principal por publicacion.
 - Registrar cada publicacion en `docs/outreach-pipeline.md` si se ejecuta.
 
@@ -14,56 +16,57 @@ Calendario inicial para publicar desde cuentas oficiales de Foro Agora. No publi
 
 | Dia | Canal | Objetivo | CTA principal |
 | --- | --- | --- | --- |
-| Lunes | LinkedIn | Presentar propuesta institucional | `/propuesta-instituciones` |
+| Lunes | LinkedIn | Presentar Foro Agora como iniciativa abierta | `/registro` |
 | Martes | Instagram / historias | Convocar estudiantes | `/registro` |
-| Miercoles | LinkedIn | Convocar docentes y referentes | `/instituciones` |
-| Jueves | Instagram / carrusel | Explicar que Foro Agora no es trading | `/difundir` |
-| Viernes | LinkedIn | Abrir programa de embajadores | `/embajadores` |
-| Sabado | Instagram / historias | Compartir kit de difusion | `/difundir` |
-| Domingo | LinkedIn o newsletter | Recap semanal y llamado a alianzas | `/prensa` |
+| Miercoles | LinkedIn | Invitar a difundir sin intermediarios cerrados | `/difundir` |
+| Jueves | Instagram / carrusel | Explicar que Foro Agora no es trading | `/recursos` |
+| Viernes | LinkedIn | Pedir difusion organica | `/difundir` |
+| Sabado | Instagram / historias | Compartir recursos educativos | `/recursos` |
+| Domingo | LinkedIn o newsletter | Recap semanal abierto | `/prensa` |
 
 ## Piezas listas para publicar
 
-### 1. LinkedIn - propuesta institucional
+### 1. LinkedIn - convocatoria abierta
 
 ```text
-Creamos una propuesta institucional para que liceos, colegios, universidades y organizaciones puedan evaluar una charla gratuita de educacion financiera para jovenes.
+Foro Agora es una iniciativa gratuita para jovenes en Uruguay que quieren aprender educacion financiera desde cero.
 
-El enfoque es educativo: finanzas personales, inversion responsable y pensamiento critico.
+Finanzas personales.
+Inversion responsable.
+Analisis fundamental introductorio.
+Pensamiento critico para tomar mejores decisiones.
 
 Sin trading.
 Sin senales.
 Sin promesas de retorno.
 
-Propuesta: https://foroagora.org/propuesta-instituciones
-Formulario directo: https://foroagora.org/partners?source=instituciones
+La inscripcion es abierta: https://foroagora.org/registro
 ```
 
 ### 2. Instagram / historias - estudiantes
 
 ```text
-¿Te gustaria aprender educacion financiera desde cero?
+Queres aprender educacion financiera desde cero?
 
-Foro Agora es una iniciativa gratuita para jovenes en Uruguay.
+Foro Agora es gratuito y abierto para jovenes en Uruguay.
 
-Finanzas personales.
-Inversion responsable.
-Analisis fundamental introductorio.
-
-Sin trading. Sin senales. Sin promesas raras.
+No importa de que liceo, facultad, barrio o comunidad vengas.
 
 Inscripcion: https://foroagora.org/registro
 ```
 
-### 3. LinkedIn - docentes y referentes
+### 3. LinkedIn - difusion
 
 ```text
-Si trabajas con jovenes, estudiantes o comunidades educativas, Foro Agora puede sumar una instancia gratuita de educacion financiera.
+Si conoces a alguien que podria aprovechar Foro Agora, compartile el registro.
 
-La propuesta se adapta al grupo y aborda ahorro, deuda, riesgo, inversion responsable y pensamiento critico.
+La idea es simple: educacion financiera gratuita, clara y responsable para jovenes en Uruguay.
 
-Pagina institucional: https://foroagora.org/instituciones
-Propuesta imprimible: https://foroagora.org/propuesta-instituciones
+No hace falta ser parte de ninguna institucion para sumarse.
+No hace falta experiencia previa.
+No hay trading ni promesas de retorno.
+
+Kit para compartir: https://foroagora.org/difundir
 ```
 
 ### 4. Instagram / carrusel - no es trading
@@ -82,39 +85,43 @@ Si ensenamos:
 - lectura basica de empresas
 - pensamiento critico
 
-Kit para compartir: https://foroagora.org/difundir
+Recursos: https://foroagora.org/recursos
 ```
 
-### 5. LinkedIn - embajadores
+### 5. LinkedIn - difusion organica
 
 ```text
-Estamos abriendo el programa de embajadores de Foro Agora.
+Foro Agora crece cuando mas personas lo comparten con cuidado.
 
-Buscamos jovenes, estudiantes y referentes que quieran ayudar a llevar educacion financiera gratuita a mas comunidades.
+Si queres ayudar:
+1. Compartile el registro a alguien que pueda aprovecharlo.
+2. Reposteanos desde una cuenta propia si te representa.
+3. Usa los textos del kit de difusion para explicar bien el proyecto.
 
-No hace falta ser experto. Si hace falta tener ganas de abrir puertas, compartir el proyecto y cuidar el enfoque educativo.
-
-Sumate: https://foroagora.org/embajadores
-```
-
-### 6. Instagram / historias - kit de difusion
-
-```text
-¿Queres ayudar a que Foro Agora llegue a mas jovenes?
-
-Armamos un kit con mensajes listos para compartir por WhatsApp, LinkedIn, historias o con instituciones.
+No buscamos puertas cerradas. Buscamos que cualquier joven interesado pueda enterarse y anotarse.
 
 Kit: https://foroagora.org/difundir
 ```
 
-### 7. LinkedIn - recap y alianzas
+### 6. Instagram / historias - recursos
 
 ```text
-Esta semana dejamos disponibles nuevas herramientas para acercar Foro Agora a mas estudiantes e instituciones:
+Queremos que mas jovenes entiendan dinero, riesgo e inversion responsable.
 
-- Propuesta institucional
+Arrancamos desde cero y con enfoque educativo.
+
+Recursos: https://foroagora.org/recursos
+Registro: https://foroagora.org/registro
+```
+
+### 7. LinkedIn - recap
+
+```text
+Esta semana dejamos disponibles nuevas herramientas para conocer y compartir Foro Agora:
+
+- Registro abierto
 - Kit de difusion
-- Programa de embajadores
+- Recursos educativos
 - Media kit para prensa y aliados
 
 Todo con el mismo foco: educacion financiera gratuita, responsable y sin promesas de retorno.
@@ -144,21 +151,21 @@ CTA: `https://foroagora.org/registro`
 
 CTA: `https://foroagora.org/difundir`
 
-### Carrusel C - "Para instituciones"
+### Carrusel C - "Foro Agora es abierto"
 
-1. Charla gratuita de educacion financiera.
-2. Para jovenes de 15 a 25 anos.
-3. Sin conocimientos previos.
-4. Formato flexible: charla, taller o ciclo breve.
-5. Enfoque educativo y responsable.
+1. No necesitás venir de una institucion especifica.
+2. No necesitás experiencia previa.
+3. No necesitás pagar.
+4. Solo necesitás curiosidad y ganas de aprender.
+5. El registro es publico y directo.
 
-CTA: `https://foroagora.org/propuesta-instituciones`
+CTA: `https://foroagora.org/registro`
 
 ## Checklist antes de publicar
 
 - Cuenta activa verificada como Foro Agora.
 - Link probado.
 - Texto sin promesas de retorno.
+- Texto alineado con la gestion interna de sedes.
 - Imagen o asset correcto si corresponde.
 - Publicacion registrada en pipeline despues de publicar.
-

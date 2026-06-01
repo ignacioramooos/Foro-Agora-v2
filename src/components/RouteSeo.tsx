@@ -20,24 +20,19 @@ const defaultMeta: RouteSeoMeta = {
 const routeMeta: Record<string, RouteSeoMeta> = {
   "/": defaultMeta,
   "/instituciones": {
-    title: "Charlas gratuitas para instituciones - Foro Agora",
+    title: "Actividades abiertas - Foro Agora",
     description:
-      "Propuesta gratuita de educacion financiera para liceos, colegios, universidades y organizaciones de Uruguay.",
+      "Informacion para conversaciones del equipo sobre actividades abiertas, gratuitas y accesibles para cualquier joven.",
   },
   "/propuesta-instituciones": {
-    title: "Propuesta institucional imprimible - Foro Agora",
+    title: "Propuesta de actividad abierta - Foro Agora",
     description:
-      "Documento para coordinar charlas gratuitas de educacion financiera para jovenes: objetivo, formatos, contenidos y cuidado educativo.",
-  },
-  "/embajadores": {
-    title: "Embajadores - Foro Agora",
-    description:
-      "Programa para jovenes que quieren abrir puertas, difundir educacion financiera y llevar Foro Agora a nuevas comunidades.",
+      "Documento de apoyo para presentar una actividad abierta de educacion financiera, con registro publico y cupos transparentes.",
   },
   "/difundir": {
     title: "Kit de difusion - Foro Agora",
     description:
-      "Textos y links listos para compartir Foro Agora con estudiantes, docentes, instituciones y comunidades.",
+      "Textos y links listos para compartir Foro Agora con estudiantes, amigos, familias y referentes.",
   },
   "/prensa": {
     title: "Prensa y media kit - Foro Agora",
@@ -45,9 +40,9 @@ const routeMeta: Record<string, RouteSeoMeta> = {
       "Informacion oficial, boilerplate, links y pautas para presentar Foro Agora en medios, eventos y alianzas.",
   },
   "/partners": {
-    title: "Aliados institucionales - Foro Agora",
+    title: "Aliados - Foro Agora",
     description:
-      "Canal para instituciones, docentes, organizaciones y aliados que quieren colaborar con Foro Agora.",
+      "Canal para organizaciones y aliados que quieren apoyar la difusion o el crecimiento abierto de Foro Agora.",
   },
   "/programa": {
     title: "Programa - Foro Agora",

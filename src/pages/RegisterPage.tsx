@@ -19,7 +19,7 @@ const departments = [
 const hearOptions = [
   "Instagram",
   "Amigo / Boca a boca",
-  "Charla en mi centro educativo",
+  "Actividad abierta",
   "Un amigo/a",
   "Mi liceo",
   "LinkedIn",

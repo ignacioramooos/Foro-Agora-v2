@@ -1,86 +1,62 @@
 # Foro Agora Outreach Pipeline
 
-Estado inicial para convertir difusión en conversaciones concretas.
+Estado corregido para convertir difusion en conversaciones concretas sin cerrar el acceso a Foro Agora.
+
+## Principio operativo
+
+Foro Agora debe quedar abierto a cualquier joven interesado. No ejecutar mensajes que pidan a terceros gestionar sedes, lugares o accesos cerrados. La gestion de espacios la hace el equipo.
 
 ## Ya ejecutado
 
-| Fecha | Canal | Acción | Estado |
+| Fecha | Canal | Accion | Estado |
 | --- | --- | --- | --- |
-| 2026-06-01 | LinkedIn | Publicación desde la página de empresa Foro Agora convocando jóvenes, docentes y referentes a abrir puertas en liceos, facultades y comunidades. | Publicado |
-| 2026-06-01 | Instagram | Revisión de sesión activa. | No publicado: Chrome estaba en cuenta personal `ignacio.ramooos` y el handle `@foroagora` visible pertenece a otro proyecto. |
-| 2026-06-01 | Casa INJU | Revisión del formulario vigente de eventos 2026. | Preparado; no enviado porque requiere cédula, fecha de nacimiento, teléfono e integrantes. |
-| 2026-06-01 | Sitio web | Creación de página pública `/instituciones` para que colegios, liceos y organizaciones evalúen una charla gratuita sin aterrizar en una home genérica. | Implementado |
-| 2026-06-01 | Sitio web | Optimización del CTA institucional: `/instituciones` ahora lleva a `/partners?source=instituciones`, con tipo de organización, colaboración y mensaje base prellenados. | Implementado |
-| 2026-06-01 | Sitio web | Creación de propuesta institucional imprimible `/propuesta-instituciones` para enviar en outreach y guardar como PDF. | Implementado |
-| 2026-06-01 | Operaciones | Creación de kit de outreach institucional y tracker CSV para ejecutar contactos, follow-ups y registro de respuestas. | Implementado |
-| 2026-06-01 | Sitio web | Agregado de FAQ y próximos pasos en páginas institucionales para responder costo, edad, formato y seguridad educativa antes del contacto. | Implementado |
-| 2026-06-01 | Sitio web | Creación de `/difundir`, kit público con textos copiables para WhatsApp, LinkedIn, historias y derivaciones institucionales. | Implementado |
-| 2026-06-01 | Sitio web | Creación de `/prensa`, media kit público con boilerplate, datos clave, pautas de uso y links oficiales. | Implementado |
-| 2026-06-01 | Operaciones | Creación de handoff de crecimiento para retomar con prioridades, links, bloqueos y primer lote de outreach. | Implementado |
-| 2026-06-01 | Contenido | Creación de calendario semanal de publicaciones con captions listos para LinkedIn e Instagram. | Implementado |
+| 2026-06-01 | LinkedIn | Publicacion previa desde la pagina de empresa Foro Agora con framing de accesos por terceros. | Corregir criterio: no repetir ese mensaje. |
+| 2026-06-01 | Instagram | Revision de sesion activa. | No publicado: Chrome estaba en cuenta personal `ignacio.ramooos` y el handle `@foroagora` visible pertenece a otro proyecto. |
+| 2026-06-01 | Casa INJU | Revision del formulario vigente de eventos 2026. | Preparado; no enviado porque requiere cedula, fecha de nacimiento, telefono e integrantes. Gestion solo del equipo. |
+| 2026-06-01 | Sitio web | Paginas institucionales creadas durante la noche. | Corregidas para hablar de actividades abiertas y no promocionadas en sitemap/footer. |
+| 2026-06-01 | Sitio web | `/difundir` y `/prensa` creadas como superficies publicas. | Mantener: sirven para difusion abierta. |
+| 2026-06-01 | Operaciones | Docs de outreach y handoff creados. | Corregidos para reforzar apertura y gestion interna de sedes. |
 
 ## Herramientas operativas
 
-- Kit de mensajes: `docs/outreach-institution-kit.md`
-- Tracker de contactos: `docs/outreach-tracker.csv`
-- Handoff de crecimiento: `docs/morning-growth-handoff-2026-06-01.md`
-- Calendario de contenido: `docs/content-calendar-2026-06.md`
+- Kit de mensajes corregido: `docs/outreach-institution-kit.md`
+- Tracker corregido: `docs/outreach-tracker.csv`
+- Handoff corregido: `docs/morning-growth-handoff-2026-06-01.md`
+- Calendario corregido: `docs/content-calendar-2026-06.md`
 
 ## Prioridad alta
 
-| Objetivo | Contacto público | Próxima acción | Fuente |
-| --- | --- | --- | --- |
-| Casa INJU eventos 2026 | casainju@mides.gub.uy | Completar formulario o enviar consulta desde cuenta de Foro Agora. | https://www.gub.uy/ministerio-desarrollo-social/comunicacion/convocatorias/convocatoria-propuestas-para-realizacion-eventos-casa-inju-0 |
-| Casa INJU uso de espacios 2026 | casainju@mides.gub.uy / colectivoscasainju@gmail.com | Pedir orientación para charla educativa gratuita. | https://www.gub.uy/ministerio-desarrollo-social/comunicacion/convocatorias/llamado-uso-espacios-casa-inju |
-| Escuela Integral Bachillerato | bachillerato@integral.edu.uy | Enviar propuesta de charla gratuita. | https://escuelaintegral.edu.uy/contacto/ |
-| Colegio Stella Maris Secundaria | info@stellamaris.edu.uy | Enviar propuesta a secretaría secundaria/dirección. | https://www.stellamaris.edu.uy/es/formulario-de-contacto |
-| Colegio San Ignacio | contacto@sanignacio.edu.uy | Enviar propuesta de charla gratuita. | https://www.sanignacio.edu.uy/contacto |
-| Colegio Inglés | info@colegioingles.edu.uy | Enviar propuesta de charla gratuita. | https://web.colegioingles.edu.uy/contacto/ |
-| Talleres Don Bosco Bachillerato | secretaria@talleresdonbosco.edu.uy | Enviar propuesta por foco en bachilleratos. | https://talleresdonbosco.edu.uy/tipo-de-bachillerato/administracion/ |
-| HCA Secundaria | ed.secundaria@hca.edu.uy | Enviar propuesta de charla gratuita. | https://www.hca.edu.uy/contacto |
-| Colegio Santo Domingo | info@santodomingo.edu.uy | Enviar propuesta de charla gratuita. | https://santodomingo.edu.uy/informacion/secundaria/ |
-| Colegio Seminario | colegio@seminario.edu.uy / inscripciones@seminario.edu.uy | Enviar propuesta educativa y pedir derivación a bachillerato. | https://www.seminario.edu.uy/ |
+| Objetivo | Proxima accion | Responsable |
+| --- | --- | --- |
+| Registro abierto | Compartir `https://foroagora.org/registro` desde cuentas oficiales de Foro Agora. | Equipo / cuentas oficiales |
+| Difusion organica | Usar `https://foroagora.org/difundir` para que otros compartan el proyecto sin pedir espacios. | Comunidad |
+| Casa INJU u otros espacios publicos | Completar solo si el equipo tiene datos aprobados y cuenta institucional verificada. | Equipo Foro Agora |
+| Instagram oficial | No publicar hasta confirmar una cuenta real de Foro Agora. | Equipo |
 
-## Mensaje recomendado
-
-Asunto:
+## Mensaje recomendado para difusion
 
 ```text
-Propuesta gratuita de educación financiera para jóvenes
-```
+Foro Agora es una iniciativa gratuita y abierta para jovenes en Uruguay que quieren aprender educacion financiera desde cero.
 
-Cuerpo:
+El enfoque es educativo: finanzas personales, inversion responsable y pensamiento critico. Sin trading, sin senales y sin promesas de retorno.
 
-```text
-Hola, ¿cómo están?
+No hace falta pertenecer a ninguna institucion para sumarse.
 
-Somos Foro Agora, una iniciativa uruguaya sin fines de lucro que busca acercar educación financiera gratuita a jóvenes.
-
-Proponemos una charla o clase introductoria para estudiantes sobre finanzas personales, inversión responsable, lectura de estados financieros y análisis fundamental.
-
-El enfoque es estrictamente educativo: no damos recomendaciones de inversión, no hacemos trading, no damos señales y no prometemos retornos.
-
-Nos gustaría conversar para evaluar si puede tener sentido llevar una instancia gratuita a su institución.
-
-Propuesta para instituciones: https://foroagora.org/instituciones
-Propuesta imprimible/PDF: https://foroagora.org/propuesta-instituciones
-Formulario directo para coordinar: https://foroagora.org/partners?source=instituciones
-Sitio: https://foroagora.org
-Contacto: contacto@foroagora.org
-
-Muchas gracias,
-Equipo Foro Agora
+Registro: https://foroagora.org/registro
+Kit para compartir: https://foroagora.org/difundir
 ```
 
 ## Datos necesarios para Casa INJU
 
+No completar formularios externos sin aprobacion del equipo y sin cuenta institucional verificada.
+
 - Nombre completo de referente.
 - Fecha de nacimiento.
 - Edad.
-- Cédula sin guion.
-- Teléfono.
-- Currículum breve de la persona referente.
-- Datos de los demás integrantes del colectivo, si aplica.
+- Cedula sin guion.
+- Telefono.
+- Curriculum breve de la persona referente.
+- Datos de los demas integrantes del colectivo, si aplica.
 - Fecha tentativa del evento.
-- Horario de comienzo y finalización.
-- Espacio preferido: sala audiovisual recomendada para charla con presentación.
+- Horario de comienzo y finalizacion.
+- Espacio preferido.

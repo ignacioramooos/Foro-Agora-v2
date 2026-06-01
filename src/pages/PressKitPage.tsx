@@ -20,15 +20,14 @@ const facts = [
   { icon: GraduationCap, label: "Foco", value: "Educacion financiera para jovenes en Uruguay" },
   { icon: BookOpen, label: "Formato", value: "Clases, charlas y recursos introductorios" },
   { icon: ShieldCheck, label: "Enfoque", value: "Sin trading, sin senales, sin promesas de retorno" },
-  { icon: Users, label: "Audiencia", value: "Jovenes, estudiantes, docentes e instituciones" },
+  { icon: Users, label: "Audiencia", value: "Jovenes, estudiantes, familias y referentes" },
 ];
 
 const officialLinks = [
   ["Sitio web", "https://foroagora.org"],
   ["Inscripcion", "https://foroagora.org/registro"],
-  ["Instituciones", "https://foroagora.org/instituciones"],
-  ["Propuesta institucional", "https://foroagora.org/propuesta-instituciones"],
   ["Kit de difusion", "https://foroagora.org/difundir"],
+  ["Recursos", "https://foroagora.org/recursos"],
   ["LinkedIn", "https://linkedin.com/company/foro-agora/"],
 ];
 
@@ -130,7 +129,7 @@ const PressKitPage = () => {
               Textos oficiales para copiar
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-              Estos textos pueden usarse en notas, newsletters, agendas, convocatorias o presentaciones institucionales.
+              Estos textos pueden usarse en notas, newsletters, agendas, convocatorias abiertas o presentaciones del proyecto.
             </p>
           </div>
 

@@ -7,16 +7,16 @@ import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
 
 const collaborationOptions = [
-  "Ofrecer espacio para clases",
+  "Difusión general",
   "Brindar materiales o recursos",
-  "Visibilidad y difusión",
+  "Visibilidad como aliado",
   "Acceso a nuestro equipo",
   "Apoyo económico",
   "Otro",
 ];
 
 const orgTypes = [
-  "Universidad/Instituto Educativo",
+  "Organización",
   "Empresa Privada",
   "ONG/Fundación",
   "Medio de Comunicación",
@@ -24,7 +24,7 @@ const orgTypes = [
 ];
 
 const institutionMessage =
-  "Nos interesa evaluar una charla o clase gratuita de educación financiera para estudiantes. Nos gustaría conversar sobre formato, fecha, público y necesidades técnicas.";
+  "Nos interesa apoyar la difusión de Foro Agora y conversar sobre formas de colaborar sin cerrar el acceso a la comunidad.";
 
 const PartnersPage = () => {
   const [searchParams] = useSearchParams();
@@ -36,8 +36,8 @@ const PartnersPage = () => {
     organization: "",
     role: "",
     email: "",
-    org_type: fromInstitutions ? "Universidad/Instituto Educativo" : "",
-    collaboration_types: fromInstitutions ? ["Ofrecer espacio para clases"] : [] as string[],
+    org_type: fromInstitutions ? "Organización" : "",
+    collaboration_types: fromInstitutions ? ["Difusión general"] : [] as string[],
     message: fromInstitutions ? institutionMessage : "",
   });
   const [partners, setPartners] = useState<Tables<"partners">[]>([]);
@@ -100,10 +100,10 @@ const PartnersPage = () => {
               Alianzas
             </p>
             <h1 className="text-3xl md:text-5xl text-foreground dark:text-white max-w-3xl mb-6">
-              Sumá tu organización al movimiento
+              Sumá tu organización como aliada
             </h1>
             <p className="text-foreground/85 dark:text-white/85 text-lg max-w-xl mb-8">
-              Apoyá el acceso a educación financiera real para jóvenes en Uruguay.
+              Apoyá el acceso abierto a educación financiera real para jóvenes en Uruguay.
             </p>
             <Button
               variant="cta"
@@ -114,7 +114,7 @@ const PartnersPage = () => {
               Quiero ser aliado
             </Button>
             <Button asChild variant="cta-outline" size="cta" className="mt-3 bg-transparent dark:border-white/30 dark:text-white">
-              <Link to="/instituciones">Ver propuesta para instituciones</Link>
+              <Link to="/difundir">Ver kit de difusión</Link>
             </Button>
           </SectionFade>
         </div>
@@ -172,7 +172,7 @@ const PartnersPage = () => {
           </p>
           {fromInstitutions && !sent && (
             <div className="mb-6 rounded-lg border border-border bg-blue-soft p-4 text-sm leading-relaxed text-foreground/75">
-              Este formulario ya está preparado para instituciones educativas. Podés ajustar el mensaje antes de enviarlo.
+              Este formulario está preparado para consultas de alianza o difusión. La gestión de actividades queda en manos del equipo de Foro Agora.
             </div>
           )}
           {sent ? (
@@ -201,7 +201,7 @@ const PartnersPage = () => {
                   <input className={inputClass} value={form.role} onChange={(e) => setForm((p) => ({ ...p, role: e.target.value }))} />
                 </div>
                 <div>
-                  <label className="block text-sm font-heading font-medium text-foreground mb-1.5">Email institucional *</label>
+                  <label className="block text-sm font-heading font-medium text-foreground mb-1.5">Email de contacto *</label>
                   <input type="email" className={inputClass} value={form.email} onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))} required />
                 </div>
               </div>

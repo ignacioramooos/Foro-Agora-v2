@@ -1,115 +1,89 @@
 # Handoff de crecimiento - 2026-06-01
 
-Resumen operativo para retomar Foro Agora despues del trabajo nocturno.
+Resumen operativo corregido para retomar Foro Agora despues del trabajo nocturno.
+
+## Correccion de rumbo
+
+Foro Agora debe ser abierto a cualquier joven interesado. Queda descartada cualquier convocatoria publica para que terceros gestionen sedes, lugares o accesos cerrados. La gestion de espacios la hace el equipo de Foro Agora.
+
+La ayuda externa que si queremos pedir es difusion: compartir el registro, compartir el kit de difusion y explicar bien el proyecto.
 
 ## Estado general
 
-Durante la noche se dejaron listas piezas publicas, operativas y de conversion para empujar tres frentes:
+Durante la noche se crearon piezas publicas, operativas y de conversion. Algunas quedaron con framing demasiado institucional; este handoff reemplaza ese criterio.
 
-- Instituciones educativas y organizaciones.
-- Embajadores y difusion organica.
-- Prensa, aliados y presentaciones institucionales.
+No se deben enviar mensajes desde cuentas personales. Instagram no se uso porque la sesion activa era personal y el handle `@foroagora` visible no correspondia al proyecto.
 
-No se enviaron mensajes desde cuentas personales. Se publico previamente solo desde la pagina de empresa de LinkedIn de Foro Agora, verificada como superficie administrada de Foro Agora. Instagram no se uso porque la sesion activa era personal y el handle `@foroagora` visible no correspondia al proyecto.
-
-## Commits subidos a `main`
-
-| Commit | Cambio |
-| --- | --- |
-| `3d344c9` | Funnel de embajadores: pagina publica, formulario, docs y migracion Supabase. |
-| `e65c7ae` | Pagina publica `/instituciones`. |
-| `591fd27` | Prefill del formulario institucional desde `/instituciones`. |
-| `b34edc4` | Propuesta institucional imprimible `/propuesta-instituciones`. |
-| `ccd2f9a` | Kit de outreach institucional y tracker CSV. |
-| `a88db82` | SEO por rutas, sitemap y metadata social. |
-| `605c9cb` | FAQ y pasos de coordinacion en paginas institucionales. |
-| `f5618cd` | Kit publico de difusion `/difundir`. |
-| `e62e7dc` | Media kit publico `/prensa`. |
-
-## Links publicos listos para usar
+## Links publicos recomendados
 
 - Sitio: https://foroagora.org
-- Registro: https://foroagora.org/registro
-- Instituciones: https://foroagora.org/instituciones
-- Propuesta institucional: https://foroagora.org/propuesta-instituciones
-- Formulario institucional prellenado: https://foroagora.org/partners?source=instituciones
-- Embajadores: https://foroagora.org/embajadores
+- Registro abierto: https://foroagora.org/registro
 - Kit de difusion: https://foroagora.org/difundir
+- Recursos: https://foroagora.org/recursos
 - Prensa / media kit: https://foroagora.org/prensa
 
-## Documentos operativos
+## Links que no se deben promover publicamente
 
-- `docs/outreach-pipeline.md`: pipeline general, estado y mensaje recomendado.
-- `docs/outreach-institution-kit.md`: mensajes listos para email, LinkedIn y follow-ups.
-- `docs/outreach-tracker.csv`: 10 contactos priorizados, con canal y proxima accion.
-- `docs/content-calendar-2026-06.md`: calendario inicial de publicaciones y captions listos.
+- `/embajadores`: redirige a `/difundir`.
+- `/instituciones`: queda como material de apoyo, no como convocatoria publica.
+- `/propuesta-instituciones`: queda como material de apoyo interno/equipo, no como CTA principal.
+
+## Documentos operativos corregidos
+
+- `docs/outreach-pipeline.md`: pipeline general corregido.
+- `docs/outreach-institution-kit.md`: mensajes para actividades abiertas gestionadas por el equipo.
+- `docs/outreach-tracker.csv`: tracker sin colegios ni gestion externa de sedes.
+- `docs/content-calendar-2026-06.md`: calendario de publicaciones abierto.
 - `docs/morning-growth-handoff-2026-06-01.md`: este documento.
 
 ## Primer bloque recomendado: 45 minutos
 
-1. Verificar que el email activo sea una cuenta de Foro Agora.
-2. Enviar 5 contactos del tracker:
-   - Escuela Integral Bachillerato.
-   - Colegio San Ignacio.
-   - Colegio Ingles.
-   - HCA Secundaria.
-   - Colegio Santo Domingo.
-3. Usar el mensaje de `docs/outreach-institution-kit.md`, version "Email principal para instituciones educativas".
-4. Registrar en `docs/outreach-tracker.csv`:
-   - `status=sent`
-   - `last_contact_date=2026-06-01`
-   - `next_follow_up_date=2026-06-06`
-   - nota breve con el canal usado.
+1. Verificar que la cuenta activa sea una cuenta oficial de Foro Agora.
+2. Publicar o programar una pieza de registro abierto.
+3. Compartir `https://foroagora.org/difundir` desde la cuenta oficial para que otros difundan.
+4. Registrar cualquier publicacion ejecutada en `docs/outreach-pipeline.md`.
 
 ## Segundo bloque recomendado: 30 minutos
 
 Desde LinkedIn company page de Foro Agora, no desde perfil personal:
 
 ```text
-Creamos una propuesta institucional para que liceos, colegios, universidades y organizaciones puedan evaluar una charla gratuita de educacion financiera para jovenes.
+Foro Agora es una iniciativa gratuita y abierta para jovenes en Uruguay que quieren aprender educacion financiera desde cero.
 
 El enfoque es educativo: finanzas personales, inversion responsable y pensamiento critico. Sin trading, sin senales y sin promesas de retorno.
 
-Propuesta: https://foroagora.org/propuesta-instituciones
+No hace falta pertenecer a ninguna institucion para sumarse.
+
+Registro: https://foroagora.org/registro
 Kit para compartir: https://foroagora.org/difundir
 ```
 
 Antes de publicar, verificar que el actor sea la pagina de empresa Foro Agora.
 
-## Tercer bloque recomendado: 20 minutos
+## Tercer bloque recomendado: Casa INJU / espacios
 
-Revisar la migracion de embajadores:
+Gestion solo del equipo. No convertir esto en una tarea de voluntarios.
 
-- Archivo: `supabase/migrations/20260601013000_ambassador_applications.sql`
-- Pendiente: confirmar si fue aplicada en la base de datos de produccion.
-- No asumir que el formulario de `/embajadores` esta persistiendo en produccion hasta verificar Supabase.
+- No completar formularios sin aprobacion y datos no sensibles definidos.
+- El formulario puede pedir cedula, fecha de nacimiento, telefono y datos de integrantes.
+- Usar la narrativa de actividad abierta, gratuita y con registro publico.
 
 ## Bloqueado o requiere cuidado
 
-- Instagram: no publicar hasta confirmar acceso a una cuenta oficial de Foro Agora. La sesion vista durante la noche era personal.
+- Instagram: no publicar hasta confirmar acceso a una cuenta oficial de Foro Agora.
 - Gmail/email: no enviar desde `ignacioramosgu@gmail.com` ni otra cuenta personal.
-- Casa INJU formulario: no completar sin aprobacion y datos no sensibles definidos. El formulario pide cedula, fecha de nacimiento, telefono y datos de integrantes.
+- Formularios externos: no completar datos personales sensibles sin aprobacion.
 - No gastar dinero, no crear suscripciones pagas, no prometer cupos ni fechas sin confirmacion.
+- No usar mensajes que conviertan la gestion de sedes en una convocatoria publica.
 
-## Follow-up operativo
+## Verificacion tecnica previa
 
-Para cada email enviado:
-
-- Follow-up 1: 4 a 6 dias despues.
-- Follow-up 2: 10 a 14 dias despues.
-- Si responden derivando a otra persona, actualizar `contact_name`, `contact_role`, `email_or_url` y `notes`.
-
-## Verificacion tecnica acumulada
-
-Las ultimas rondas pasaron:
+Antes de cerrar el cambio actual, correr:
 
 - `npm run build`
-- `npm test` con 24 tests
-- `npm run lint` con 0 errores y 11 warnings conocidas
-- Verificacion local en navegador para `/instituciones`, `/propuesta-instituciones`, `/difundir` y `/prensa`
+- `npm test`
+- `npm run lint`
 
 ## Prioridad de manana
 
-La mejor proxima accion no es crear mas paginas. Es ejecutar el primer lote de outreach desde una cuenta institucional verificada, registrar respuestas y cerrar 1 o 2 reuniones exploratorias.
-
-Si hay acceso confirmado a cuentas oficiales de redes, usar `docs/content-calendar-2026-06.md` para publicar la primera pieza de LinkedIn y programar la semana.
+La mejor proxima accion es reforzar registro abierto y difusion oficial. La gestion de espacios sigue por el equipo y no debe convertirse en una tarea de voluntarios.

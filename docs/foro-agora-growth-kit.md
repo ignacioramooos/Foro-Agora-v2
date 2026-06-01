@@ -1,145 +1,144 @@
 # Foro Agora Growth Kit
 
-Documento operativo para impulsar Foro Agora sin salirnos del posicionamiento: educación financiera gratuita, seria, joven y sin promesas de retorno.
+Documento operativo corregido para impulsar Foro Agora sin salirnos del posicionamiento: educacion financiera gratuita, seria, joven, abierta y sin promesas de retorno.
+
+## Decision de posicionamiento
+
+Foro Agora debe sentirse abierto a cualquier joven interesado. No vamos a crear una convocatoria publica para que terceros gestionen sedes, lugares o accesos cerrados. La gestion de espacios y sedes la hace el equipo de Foro Agora.
+
+Si alguien quiere ayudar, la ayuda correcta es difundir: compartir el registro, explicar el proyecto con cuidado y derivar al sitio oficial.
 
 ## Prioridades de esta semana
 
-1. Activar embajadores: mandar el link `/embajadores` a estudiantes, amigos y referentes que puedan abrir puertas en liceos, facultades, clubes o comunidades.
-2. Postular o contactar Casa INJU: la convocatoria 2026 de uso de espacios menciona salas, tecnología, comunicación y logística, pero no apoyo económico directo. Página base: https://www.gub.uy/ministerio-desarrollo-social/comunicacion/convocatorias/llamado-uso-espacios-casa-inju
-3. Contactar 15 instituciones educativas: coordinación, adscripción, centros de estudiantes, docentes de economía/administración y referentes de orientación vocacional.
-4. Publicar 3 piezas de contenido: problema, propuesta y convocatoria a clase/embajadores.
-5. Medir de dónde viene cada contacto: pedir que al registrarse indiquen si llegaron por Instagram, LinkedIn, embajador, docente, liceo o amigo.
+1. Empujar registro abierto: que cualquier joven pueda anotarse sin depender de una institucion.
+2. Mejorar difusion organica: compartir `https://foroagora.org/difundir` con textos claros y seguros.
+3. Preparar piezas de contenido sobre el problema: nadie nos ensena finanzas personales temprano.
+4. Presentar Foro Agora como comunidad educativa abierta: gratis, sin trading, sin senales, sin promesas.
+5. Medir de donde viene cada contacto: Instagram, LinkedIn, amigo, actividad abierta, Google u otro.
 
 ## Copy corto para Instagram
 
 Post 1:
-```
-En Uruguay aprendemos muchas cosas antes de terminar el liceo, pero casi nadie nos enseña a entender el dinero.
 
-Foro Agora es una iniciativa gratuita para jóvenes que quieren aprender finanzas, inversión responsable y análisis fundamental.
+```text
+En Uruguay aprendemos muchas cosas antes de terminar el liceo, pero casi nadie nos ensena a entender el dinero.
 
-No es trading. No son señales. Es educación para pensar con criterio propio.
+Foro Agora es una iniciativa gratuita y abierta para jovenes que quieren aprender finanzas, inversion responsable y analisis fundamental.
 
-Sumate en foroagora.org
+No es trading. No son senales. Es educacion para pensar con criterio propio.
+
+Sumate en foroagora.org/registro
 ```
 
 Post 2:
-```
-¿Qué es una acción? ¿Cómo se lee un estado de resultados? ¿Por qué invertir no es lo mismo que apostar?
+
+```text
+Que es una accion? Como se lee un estado de resultados? Por que invertir no es lo mismo que apostar?
 
 En Foro Agora lo aprendemos desde cero, gratis y en comunidad.
 
-Si querés que llevemos una charla a tu liceo, facultad o grupo, postulate como embajador/a en foroagora.org/embajadores
+La inscripcion es abierta para jovenes interesados:
+foroagora.org/registro
 ```
 
 Story:
-```
-Estamos buscando jóvenes que quieran llevar educación financiera gratuita a más lugares de Uruguay.
 
-Si podés abrir una puerta en tu liceo, facultad o comunidad: foroagora.org/embajadores
+```text
+Foro Agora es educacion financiera gratuita para jovenes en Uruguay.
+
+Abierto. Sin experiencia previa. Sin trading.
+
+Registro: foroagora.org/registro
 ```
 
 ## Copy corto para LinkedIn
 
-```
-Foro Agora busca acercar educación financiera gratuita y rigurosa a jóvenes en Uruguay.
+```text
+Foro Agora busca acercar educacion financiera gratuita y rigurosa a jovenes en Uruguay.
 
-El proyecto enseña análisis fundamental, lectura de estados financieros, pensamiento crítico y hábitos de largo plazo. No promovemos trading ni promesas de rentabilidad.
+El proyecto ensena finanzas personales, inversion responsable, lectura basica de empresas, pensamiento critico y habitos de largo plazo.
 
-Estamos abriendo conversaciones con instituciones educativas, espacios juveniles, docentes, empresas y referentes que quieran apoyar clases, charlas o difusión.
+No promovemos trading, senales ni promesas de rentabilidad.
 
-Contacto: contacto@foroagora.org
-Sitio: https://foroagora.org
-```
+La convocatoria es abierta: cualquier joven interesado puede registrarse desde el sitio.
 
-## Mensaje para instituciones educativas
-
-Asunto:
-```
-Propuesta gratuita de educación financiera para jóvenes
+Registro: https://foroagora.org/registro
+Kit para compartir: https://foroagora.org/difundir
 ```
 
-Cuerpo:
-```
-Hola, ¿cómo están?
+## Mensaje para difusion por WhatsApp
 
-Somos Foro Agora, una iniciativa uruguaya sin fines de lucro que busca acercar educación financiera gratuita a jóvenes. Enseñamos conceptos prácticos como ahorro, inversión responsable, lectura de estados financieros y análisis fundamental.
+```text
+Te comparto Foro Agora por si te interesa o conoces a alguien que pueda aprovecharlo.
 
-No damos recomendaciones de inversión, señales de trading ni promesas de retorno. El objetivo es formativo: que los estudiantes desarrollen pensamiento crítico y puedan entender mejor cómo funciona el dinero.
+Es una iniciativa gratuita para jovenes en Uruguay que quieren aprender educacion financiera desde cero: finanzas personales, inversion responsable y analisis fundamental introductorio.
 
-Nos gustaría conversar para evaluar una charla introductoria o una clase gratuita para estudiantes de su institución.
+No es trading, no dan senales y no prometen retornos.
 
-Sitio: https://foroagora.org
-Contacto: contacto@foroagora.org
-
-Muchas gracias,
-Equipo Foro Agora
+Registro abierto: https://foroagora.org/registro
 ```
 
-## Respuestas base para Casa INJU
+## Respuestas base para Casa INJU u otros espacios gestionados por el equipo
+
+Estas respuestas son solo para uso del equipo de Foro Agora. No son una convocatoria a voluntarios.
 
 Nombre del proyecto:
-```
+
+```text
 Foro Agora
 ```
 
-Descripción de la propuesta:
-```
-Foro Agora es una iniciativa educativa sin fines de lucro creada por jóvenes para acercar educación financiera gratuita a jóvenes en Uruguay. Proponemos realizar clases y charlas presenciales sobre finanzas personales, instrumentos de inversión, lectura de estados financieros y análisis fundamental de empresas.
+Descripcion de la propuesta:
 
-El enfoque es estrictamente educativo. No enseñamos trading, no damos señales de compra o venta y no prometemos retornos. Buscamos que los participantes puedan entender conceptos financieros básicos y desarrollar pensamiento crítico para tomar mejores decisiones en el futuro.
-```
+```text
+Foro Agora es una iniciativa educativa sin fines de lucro creada por jovenes para acercar educacion financiera gratuita a jovenes en Uruguay. Proponemos realizar actividades presenciales abiertas sobre finanzas personales, instrumentos de inversion, lectura de estados financieros y analisis fundamental de empresas.
 
-Motivación para Casa INJU:
-```
-Casa INJU es un espacio de referencia para jóvenes y colectivos juveniles. Foro Agora se alinea con ese propósito porque promueve participación, inclusión, redes entre jóvenes y acceso gratuito a herramientas educativas que normalmente no están disponibles en etapas tempranas de formación.
-
-Nos interesa usar el espacio para validar una primera instancia presencial, medir interés real y construir una comunidad de aprendizaje abierta, gratuita y responsable.
+El enfoque es estrictamente educativo. No ensenamos trading, no damos senales de compra o venta y no prometemos retornos. Buscamos que los participantes puedan entender conceptos financieros basicos y desarrollar pensamiento critico para tomar mejores decisiones en el futuro.
 ```
 
-Antecedentes:
-```
-El proyecto nace de conversaciones informales con amigos y estudiantes que querían entender cómo invertir, qué significan términos financieros básicos y cuáles son los riesgos. A partir de esa demanda, decidimos transformar explicaciones individuales en una propuesta abierta, gratuita y más profunda.
+Motivacion para Casa INJU:
 
-Ya contamos con sitio web, formularios de inscripción, materiales iniciales y presencia en redes para difundir el programa.
-```
+```text
+Casa INJU es un espacio de referencia para jovenes y colectivos juveniles. Foro Agora se alinea con ese proposito porque promueve participacion, inclusion, redes entre jovenes y acceso gratuito a herramientas educativas que normalmente no estan disponibles en etapas tempranas de formacion.
 
-Público destinatario:
-```
-Jóvenes de Uruguay, especialmente estudiantes de liceo y primeros años universitarios, desde 15 años en adelante. No se requieren conocimientos previos. La propuesta está pensada para personas que quieran aprender desde cero sobre dinero, inversión responsable y análisis de empresas.
+Nos interesa usar el espacio para una actividad abierta, gratuita y con registro publico, sin restringir la participacion a una institucion especifica.
 ```
 
-Plan de difusión:
-```
-Difundiremos la actividad desde foroagora.org, Instagram, LinkedIn, contactos con instituciones educativas, centros de estudiantes, docentes y una red de embajadores voluntarios. También invitaremos a los participantes a registrarse previamente para ordenar cupos y poder dar seguimiento educativo.
+Publico destinatario:
+
+```text
+Jovenes de Uruguay, especialmente estudiantes de liceo y primeros anos universitarios, desde 15 anos en adelante. No se requieren conocimientos previos. La propuesta esta pensada para personas que quieran aprender desde cero sobre dinero, inversion responsable y analisis de empresas.
 ```
 
-Sala recomendada:
-```
-Sala audiovisual, por capacidad y necesidad de presentar material visual. Alternativa: una sala de reunión o espacio apto para una charla participativa.
+Plan de difusion:
+
+```text
+Difundiremos la actividad desde foroagora.org, Instagram, LinkedIn, el kit publico de difusion y contactos directos de la comunidad. Invitaremos a los participantes a registrarse previamente para ordenar cupos y poder dar seguimiento educativo.
 ```
 
-## Lista inicial de contactos a construir
+## Lista inicial de difusion a construir
 
-- Casa INJU / colectivoscasainju@gmail.com / casainju@mides.gub.uy
-- Liceos privados y públicos de Montevideo con orientación social/económica
-- Centros de estudiantes universitarios
-- Docentes de Economía, Administración, Contabilidad y Matemática
-- Clubes, espacios juveniles y organizaciones barriales
-- Medios o newsletters educativos
-- Brokers, AFAPs, consultoras o fintechs que puedan apoyar desde educación, no venta
+- Estudiantes interesados que ya se registraron.
+- Amigos y conocidos que puedan compartir el registro.
+- Familias y referentes que puedan derivar jovenes.
+- Medios o newsletters educativos.
+- Aliados que puedan amplificar el proyecto sin condicionar el acceso.
 
 ## Regla de oro de marca
 
 Siempre decir:
-```
-Educación financiera gratuita. Análisis fundamental. No trading. No asesoramiento financiero.
+
+```text
+Educacion financiera gratuita. Analisis fundamental. No trading. No asesoramiento financiero. Abierto a jovenes interesados.
 ```
 
 Nunca decir:
-```
-Aprendé a ganar dinero rápido.
-Te mostramos qué comprar.
+
+```text
+Aprende a ganar dinero rapido.
+Te mostramos que comprar.
 Retornos garantizados.
-Señales de inversión.
+Senales de inversion.
+Abrinos la puerta de tu liceo o asociacion.
+La gestion de sedes forma parte del trabajo interno del equipo.
 ```

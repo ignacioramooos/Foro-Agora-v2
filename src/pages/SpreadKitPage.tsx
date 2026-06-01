@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Check, Copy, Link as LinkIcon, MessageCircle, Send, Share2, Users } from "lucide-react";
+import { Check, Copy, Link as LinkIcon, MessageCircle, Send, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionFade from "@/components/SectionFade";
 
 const shareLinks = [
   { label: "Sitio", url: "https://foroagora.org" },
   { label: "Inscripcion", url: "https://foroagora.org/registro" },
-  { label: "Instituciones", url: "https://foroagora.org/instituciones" },
-  { label: "Propuesta PDF", url: "https://foroagora.org/propuesta-instituciones" },
-  { label: "Embajadores", url: "https://foroagora.org/embajadores" },
+  { label: "Recursos", url: "https://foroagora.org/recursos" },
+  { label: "Prensa", url: "https://foroagora.org/prensa" },
 ];
 
 const messages = [
@@ -25,14 +24,15 @@ Inscripcion: https://foroagora.org/registro
 Sitio: https://foroagora.org`,
   },
   {
-    title: "LinkedIn para docentes o referentes",
+    title: "LinkedIn para compartir el proyecto",
     channel: "LinkedIn",
     icon: Send,
     text: `Conoci Foro Agora, una iniciativa uruguaya sin fines de lucro que acerca educacion financiera gratuita a jovenes.
 
-Estan coordinando charlas para instituciones educativas y organizaciones, con foco en finanzas personales, inversion responsable y pensamiento critico. El enfoque es educativo: sin recomendaciones de inversion, sin trading y sin promesas de retorno.
+El enfoque es educativo: finanzas personales, inversion responsable y pensamiento critico. Sin recomendaciones de inversion, sin trading y sin promesas de retorno.
 
-Propuesta institucional: https://foroagora.org/propuesta-instituciones`,
+Sitio: https://foroagora.org
+Inscripcion: https://foroagora.org/registro`,
   },
   {
     title: "Mensaje corto para historias",
@@ -45,17 +45,6 @@ Foro Agora ensena finanzas personales, inversion responsable y analisis fundamen
 Sin trading. Sin senales. Sin promesas raras.
 
 https://foroagora.org`,
-  },
-  {
-    title: "Derivacion a una institucion",
-    channel: "Email/DM",
-    icon: Users,
-    text: `Hola, queria acercarles Foro Agora, una iniciativa uruguaya sin fines de lucro que ofrece charlas gratuitas de educacion financiera para jovenes.
-
-La propuesta es introductoria y cuidada: finanzas personales, inversion responsable y pensamiento critico, sin recomendaciones personalizadas ni trading.
-
-Propuesta para evaluar: https://foroagora.org/propuesta-instituciones
-Contacto: contacto@foroagora.org`,
   },
 ];
 
@@ -108,14 +97,14 @@ const SpreadKitPage = () => {
               Ayudanos a que Foro Agora llegue a mas jovenes
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground/75 dark:text-white/75">
-              Textos listos para compartir con estudiantes, docentes, instituciones y comunidades. Copia, pega y adapta el mensaje segun el contexto.
+              Textos listos para compartir con estudiantes, amigos, familias y referentes. Copia, pega y adapta el mensaje segun el contexto.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild variant="cta" size="cta">
                 <Link to="/registro">Inscribir a alguien</Link>
               </Button>
               <Button asChild variant="cta-outline" size="cta">
-                <Link to="/embajadores">Sumarse como embajador</Link>
+                <Link to="/recursos">Ver recursos</Link>
               </Button>
             </div>
           </SectionFade>
@@ -124,7 +113,7 @@ const SpreadKitPage = () => {
 
       <section className="border-y border-border bg-background py-12 md:py-16">
         <div className="container">
-          <div className="grid gap-4 md:grid-cols-5">
+          <div className="grid gap-4 md:grid-cols-4">
             {shareLinks.map((item) => (
               <div key={item.label} className="rounded-lg border border-border bg-card p-5">
                 <div className="mb-3 flex items-center gap-2 font-heading font-black">

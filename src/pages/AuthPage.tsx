@@ -15,7 +15,7 @@ const departments = [
 const howFoundOptions = [
   "Instagram",
   "Amigo / Boca a boca",
-  "Charla en mi centro educativo",
+  "Actividad abierta",
   "Otro",
 ];
 

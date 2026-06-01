@@ -11,7 +11,7 @@ Foro Agora debe quedar abierto a cualquier joven interesado. No ejecutar mensaje
 | Fecha | Canal | Accion | Estado |
 | --- | --- | --- | --- |
 | 2026-06-01 | LinkedIn | Publicacion previa desde la pagina de empresa Foro Agora con framing de accesos por terceros. | Corregir criterio: no repetir ese mensaje. |
-| 2026-06-01 | Instagram | Revision de sesion activa. | No publicado: Chrome estaba en cuenta personal `ignacio.ramooos` y el handle `@foroagora` visible pertenece a otro proyecto. |
+| 2026-06-01 | Instagram | Revision de sesion activa. | No publicado: Chrome estaba en cuenta personal `ignacio.ramooos`. La cuenta correcta de Foro Agora es `@foro.agora`. |
 | 2026-06-01 | Casa INJU | Revision del formulario vigente de eventos 2026. | Preparado; no enviado porque requiere cedula, fecha de nacimiento, telefono e integrantes. Gestion solo del equipo. |
 | 2026-06-01 | Sitio web | Paginas institucionales creadas durante la noche. | Corregidas para hablar de actividades abiertas y no promocionadas en sitemap/footer. |
 | 2026-06-01 | Sitio web | `/difundir` y `/prensa` creadas como superficies publicas. | Mantener: sirven para difusion abierta. |

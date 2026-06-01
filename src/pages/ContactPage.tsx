@@ -102,8 +102,8 @@ const ContactPage = () => {
                 <a href="mailto:contacto@foroagora.org" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
                   <Mail size={18} /> contacto@foroagora.org
                 </a>
-                <a href="https://instagram.com/foroagora" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
-                  <Instagram size={18} /> @foroagora
+                <a href="https://instagram.com/foro.agora" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+                  <Instagram size={18} /> @foro.agora
                 </a>
                 <a href="https://linkedin.com/company/foroagora" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
                   <Linkedin size={18} /> Foro Agora

@@ -12,7 +12,7 @@ La ayuda externa que si queremos pedir es difusion: compartir el registro, compa
 
 Durante la noche se crearon piezas publicas, operativas y de conversion. Algunas quedaron con framing demasiado institucional; este handoff reemplaza ese criterio.
 
-No se deben enviar mensajes desde cuentas personales. Instagram no se uso porque la sesion activa era personal y el handle `@foroagora` visible no correspondia al proyecto.
+No se deben enviar mensajes desde cuentas personales. Instagram no se uso porque la sesion activa era personal. La cuenta correcta de Foro Agora es `@foro.agora`.
 
 ## Links publicos recomendados
 

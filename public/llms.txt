@@ -18,6 +18,7 @@ Foro Agora prioriza la educación sobre la especulación: enseñamos a entender 
 - [Propuesta institucional](/propuesta-instituciones): Documento imprimible/PDF para evaluar formato, contenidos y requisitos de una instancia educativa.
 - [Embajadores](/embajadores): Programa para jovenes que quieren abrir puertas y llevar Foro Agora a nuevas comunidades.
 - [Difundir](/difundir): Kit publico con textos y links listos para compartir Foro Agora.
+- [Prensa](/prensa): Media kit con boilerplate, datos clave, links oficiales y pautas de uso.
 - [Impacto](/impacto): Resultados y métricas de la comunidad.
 - [Ranking](/ranking): Tabla de progreso de estudiantes.
 - [Contacto](/contacto): Cómo contactarnos.

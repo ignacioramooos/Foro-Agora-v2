@@ -22,6 +22,7 @@ const InstitutionsPage = lazy(() => import("./pages/InstitutionsPage"));
 const InstitutionalProposalPage = lazy(() => import("./pages/InstitutionalProposalPage"));
 const AmbassadorsPage = lazy(() => import("./pages/AmbassadorsPage"));
 const SpreadKitPage = lazy(() => import("./pages/SpreadKitPage"));
+const PressKitPage = lazy(() => import("./pages/PressKitPage"));
 const BrokersPage = lazy(() => import("./pages/BrokersPage"));
 const GlossaryPage = lazy(() => import("./pages/GlossaryPage"));
 const DashboardPage = lazy(() => import("./pages/DashboardPage"));
@@ -113,6 +114,7 @@ const AppRoutes = () => {
       <Route path="/propuesta-instituciones" element={<PublicPage><InstitutionalProposalPage /></PublicPage>} />
       <Route path="/embajadores" element={<PublicPage><AmbassadorsPage /></PublicPage>} />
       <Route path="/difundir" element={<PublicPage><SpreadKitPage /></PublicPage>} />
+      <Route path="/prensa" element={<PublicPage><PressKitPage /></PublicPage>} />
       <Route path="/brokers" element={<PublicPage><BrokersPage /></PublicPage>} />
       <Route path="/ranking" element={<PublicPage><RankingPage /></PublicPage>} />
       <Route path="/impacto" element={<PublicPage><ImpactPage /></PublicPage>} />

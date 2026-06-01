@@ -39,6 +39,11 @@ const routeMeta: Record<string, RouteSeoMeta> = {
     description:
       "Textos y links listos para compartir Foro Agora con estudiantes, docentes, instituciones y comunidades.",
   },
+  "/prensa": {
+    title: "Prensa y media kit - Foro Agora",
+    description:
+      "Informacion oficial, boilerplate, links y pautas para presentar Foro Agora en medios, eventos y alianzas.",
+  },
   "/partners": {
     title: "Aliados institucionales - Foro Agora",
     description:

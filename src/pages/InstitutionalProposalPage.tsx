@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   BookOpen,
+  CalendarCheck,
   CheckCircle2,
   Clock,
   FileText,
+  HelpCircle,
   Mail,
+  MessageSquare,
   Printer,
   ShieldCheck,
   Users,
@@ -50,6 +53,27 @@ const requirements = [
   "Audio basico si el grupo o el salon lo requiere.",
   "Un referente institucional para coordinar fecha, duracion y perfil del grupo.",
   "Modalidad presencial en Montevideo o formato a coordinar.",
+];
+
+const nextSteps = [
+  "Enviar el formulario institucional o escribir a contacto@foroagora.org.",
+  "Coordinar una llamada breve para definir publico, duracion y modalidad.",
+  "Confirmar fecha, espacio y referente institucional.",
+];
+
+const faqs = [
+  {
+    question: "Tiene costo?",
+    answer: "No. La propuesta para instituciones es gratuita y sin fines de lucro.",
+  },
+  {
+    question: "Se recomienda invertir en algun producto?",
+    answer: "No. La instancia es educativa y no incluye recomendaciones personalizadas, senales ni promesas de retorno.",
+  },
+  {
+    question: "Puede adaptarse al grupo?",
+    answer: "Si. Ajustamos ejemplos, profundidad y duracion segun edad, experiencia previa y objetivo de la institucion.",
+  },
 ];
 
 const InstitutionalProposalPage = () => {
@@ -180,6 +204,42 @@ const InstitutionalProposalPage = () => {
                 <div key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground print:text-zinc-700">
                   <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-accent print:text-zinc-700" />
                   <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 print:py-8">
+        <div className="container grid gap-10 lg:grid-cols-2">
+          <div className="rounded-lg border border-border bg-card p-6 print:border-zinc-300 print:bg-white">
+            <div className="mb-4 flex items-center gap-2 font-heading text-xl font-black">
+              <CalendarCheck size={21} className="text-blue-pop print:text-zinc-700" />
+              Proximos pasos
+            </div>
+            <div className="space-y-3">
+              {nextSteps.map((item) => (
+                <div key={item} className="flex gap-3 text-sm leading-relaxed text-muted-foreground print:text-zinc-700">
+                  <MessageSquare size={16} className="mt-0.5 shrink-0 text-accent print:text-zinc-700" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-border bg-card p-6 print:border-zinc-300 print:bg-white">
+            <div className="mb-4 flex items-center gap-2 font-heading text-xl font-black">
+              <HelpCircle size={21} className="text-orange-pop print:text-zinc-700" />
+              Preguntas frecuentes
+            </div>
+            <div className="space-y-4">
+              {faqs.map((faq) => (
+                <div key={faq.question}>
+                  <h3 className="font-heading font-black">{faq.question}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground print:text-zinc-700">
+                    {faq.answer}
+                  </p>
                 </div>
               ))}
             </div>

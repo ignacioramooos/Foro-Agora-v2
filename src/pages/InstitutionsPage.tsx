@@ -1,6 +1,20 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, CheckCircle2, Clock, FileText, Mail, MapPin, ShieldCheck, Users } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  CalendarCheck,
+  CheckCircle2,
+  Clock,
+  FileText,
+  HelpCircle,
+  Mail,
+  MapPin,
+  MessageSquare,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import SectionFade from "@/components/SectionFade";
 
 const formats = [
@@ -26,6 +40,47 @@ const safeguards = [
   "No promovemos trading, señales ni promesas de retorno.",
   "El lenguaje se adapta a estudiantes sin experiencia previa.",
   "El foco está en pensamiento crítico, hábitos y responsabilidad.",
+];
+
+const steps = [
+  {
+    icon: MessageSquare,
+    title: "1. Conversamos 15 minutos",
+    desc: "Alineamos edad, tamano del grupo, objetivo de la instancia y modalidad.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "2. Confirmamos formato",
+    desc: "Elegimos charla, taller o ciclo breve segun disponibilidad y necesidades.",
+  },
+  {
+    icon: BookOpen,
+    title: "3. Llevamos la clase",
+    desc: "Foro Agora prepara la instancia y mantiene el enfoque educativo acordado.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Tiene costo para la institucion?",
+    a: "No. La propuesta institucional de Foro Agora es gratuita y sin fines de lucro.",
+  },
+  {
+    q: "Necesitan conocimientos previos?",
+    a: "No. La charla esta pensada para estudiantes que pueden estar viendo estos temas por primera vez.",
+  },
+  {
+    q: "Hablan de trading o recomiendan inversiones?",
+    a: "No. Trabajamos educacion financiera, pensamiento critico y conceptos de inversion responsable, sin recomendaciones personalizadas, senales ni promesas de retorno.",
+  },
+  {
+    q: "Para que edades funciona mejor?",
+    a: "El foco ideal es jovenes de 15 a 25 anos. Podemos ajustar ejemplos y profundidad segun el grupo.",
+  },
+  {
+    q: "Que necesita preparar la institucion?",
+    a: "Un referente para coordinar, un espacio adecuado y, si es posible, proyector o pantalla. El resto se conversa segun el formato.",
+  },
 ];
 
 const InstitutionsPage = () => (
@@ -116,6 +171,50 @@ const InstitutionsPage = () => (
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{format.desc}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <section className="border-y border-border bg-white py-16 dark:bg-black md:py-24">
+      <div className="container grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        <div>
+          <p className="font-hand text-3xl text-blue-pop">Como se coordina</p>
+          <h2 className="mt-2 text-3xl font-black leading-tight md:text-5xl">
+            Simple, gratuito y sin letra chica
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            La idea es que una institucion pueda evaluar rapido si tiene sentido, sin reuniones largas ni compromisos raros. Primero entendemos el grupo; despues adaptamos la instancia.
+          </p>
+          <div className="mt-7 grid gap-3">
+            {steps.map((step) => (
+              <div key={step.title} className="flex gap-4 rounded-lg border border-border bg-card p-5">
+                <step.icon className="mt-1 shrink-0 text-orange-pop" size={21} />
+                <div>
+                  <h3 className="font-heading font-black">{step.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-border bg-card p-6">
+          <div className="mb-2 flex items-center gap-2 font-heading text-xl font-black">
+            <HelpCircle size={21} className="text-blue-pop" />
+            Preguntas frecuentes
+          </div>
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={faq.q} value={`faq-${index}`}>
+                <AccordionTrigger className="text-left font-heading font-black">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="leading-relaxed text-muted-foreground">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </section>

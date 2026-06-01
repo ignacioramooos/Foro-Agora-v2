@@ -18,6 +18,7 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
 const PartnersPage = lazy(() => import("./pages/PartnersPage"));
 const InstitutionsPage = lazy(() => import("./pages/InstitutionsPage"));
+const InstitutionalProposalPage = lazy(() => import("./pages/InstitutionalProposalPage"));
 const AmbassadorsPage = lazy(() => import("./pages/AmbassadorsPage"));
 const BrokersPage = lazy(() => import("./pages/BrokersPage"));
 const GlossaryPage = lazy(() => import("./pages/GlossaryPage"));
@@ -44,7 +45,11 @@ const normalizeLegacyHashRoute = () => {
 normalizeLegacyHashRoute();
 
 const PublicPage = ({ children }: { children: React.ReactNode }) => (
-  <><Navbar /><main>{children}</main><Footer /></>
+  <>
+    <div className="print:hidden"><Navbar /></div>
+    <main>{children}</main>
+    <div className="print:hidden"><Footer /></div>
+  </>
 );
 
 const PageFallback = () => (
@@ -103,6 +108,7 @@ const AppRoutes = () => {
       <Route path="/glosario" element={<PublicPage><GlossaryPage /></PublicPage>} />
       <Route path="/partners" element={<PublicPage><PartnersPage /></PublicPage>} />
       <Route path="/instituciones" element={<PublicPage><InstitutionsPage /></PublicPage>} />
+      <Route path="/propuesta-instituciones" element={<PublicPage><InstitutionalProposalPage /></PublicPage>} />
       <Route path="/embajadores" element={<PublicPage><AmbassadorsPage /></PublicPage>} />
       <Route path="/brokers" element={<PublicPage><BrokersPage /></PublicPage>} />
       <Route path="/ranking" element={<PublicPage><RankingPage /></PublicPage>} />

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, CheckCircle2, Clock, Mail, MapPin, ShieldCheck, Users } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Clock, FileText, Mail, MapPin, ShieldCheck, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionFade from "@/components/SectionFade";
 
@@ -49,7 +49,10 @@ const InstitutionsPage = () => (
               </Link>
             </Button>
             <Button asChild variant="cta-outline" size="cta">
-              <a href="mailto:contacto@foroagora.org">Escribir por email</a>
+              <Link to="/propuesta-instituciones">
+                Ver propuesta
+                <FileText size={17} />
+              </Link>
             </Button>
           </div>
         </SectionFade>
@@ -131,6 +134,12 @@ const InstitutionsPage = () => (
           <div className="flex flex-col gap-3">
             <Button asChild variant="default" size="cta" className="bg-foreground text-background hover:bg-foreground/85">
               <Link to="/partners?source=instituciones">Completar formulario</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-foreground/20 bg-white/40 font-heading font-black">
+              <Link to="/propuesta-instituciones">
+                Ver propuesta imprimible
+                <FileText size={16} />
+              </Link>
             </Button>
             <a href="mailto:contacto@foroagora.org" className="inline-flex items-center justify-center gap-2 font-heading text-sm font-black text-foreground underline underline-offset-4">
               <Mail size={16} />

@@ -42,6 +42,7 @@ No se enviaron mensajes desde cuentas personales. Se publico previamente solo de
 - `docs/outreach-pipeline.md`: pipeline general, estado y mensaje recomendado.
 - `docs/outreach-institution-kit.md`: mensajes listos para email, LinkedIn y follow-ups.
 - `docs/outreach-tracker.csv`: 10 contactos priorizados, con canal y proxima accion.
+- `docs/content-calendar-2026-06.md`: calendario inicial de publicaciones y captions listos.
 - `docs/morning-growth-handoff-2026-06-01.md`: este documento.
 
 ## Primer bloque recomendado: 45 minutos
@@ -111,3 +112,4 @@ Las ultimas rondas pasaron:
 
 La mejor proxima accion no es crear mas paginas. Es ejecutar el primer lote de outreach desde una cuenta institucional verificada, registrar respuestas y cerrar 1 o 2 reuniones exploratorias.
 
+Si hay acceso confirmado a cuentas oficiales de redes, usar `docs/content-calendar-2026-06.md` para publicar la primera pieza de LinkedIn y programar la semana.

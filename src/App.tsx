@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import RouteSeo from "@/components/RouteSeo";
 
 const Index = lazy(() => import("./pages/Index"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
@@ -126,6 +127,7 @@ const AppRoutes = () => {
   if (isLoggedIn) {
     return (
       <>
+        <RouteSeo />
         <Suspense fallback={<PageFallback />}>
           <Routes>
             <Route
@@ -144,6 +146,7 @@ const AppRoutes = () => {
 
   return (
     <>
+      <RouteSeo />
       <Suspense fallback={<PageFallback />}>
         <Routes>
           {publicRoutes}

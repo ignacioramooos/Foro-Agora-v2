@@ -14,6 +14,9 @@ Foro Agora prioriza la educación sobre la especulación: enseñamos a entender 
 - [Glosario](/glosario): Definiciones de términos financieros clave.
 - [Brokers](/brokers): Comparativa de brokers accesibles desde Uruguay.
 - [Partners](/partners): Alianzas institucionales.
+- [Instituciones](/instituciones): Propuesta para coordinar charlas gratuitas de educacion financiera en instituciones educativas.
+- [Propuesta institucional](/propuesta-instituciones): Documento imprimible/PDF para evaluar formato, contenidos y requisitos de una instancia educativa.
+- [Embajadores](/embajadores): Programa para jovenes que quieren abrir puertas y llevar Foro Agora a nuevas comunidades.
 - [Impacto](/impacto): Resultados y métricas de la comunidad.
 - [Ranking](/ranking): Tabla de progreso de estudiantes.
 - [Contacto](/contacto): Cómo contactarnos.

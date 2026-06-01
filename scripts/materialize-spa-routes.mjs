@@ -19,6 +19,7 @@ const routeMeta = {
   instituciones: { title: "Charlas gratuitas para instituciones - Foro Agora", desc: "Propuesta gratuita de educacion financiera para liceos, colegios, universidades y organizaciones de Uruguay." },
   "propuesta-instituciones": { title: "Propuesta institucional imprimible - Foro Agora", desc: "Documento para coordinar charlas gratuitas de educacion financiera para jovenes: objetivo, formatos, contenidos y cuidado educativo." },
   embajadores: { title: "Embajadores - Foro Agora", desc: "Programa para jovenes que quieren abrir puertas, difundir educacion financiera y llevar Foro Agora a nuevas comunidades." },
+  difundir: { title: "Kit de difusion - Foro Agora", desc: "Textos y links listos para compartir Foro Agora con estudiantes, docentes, instituciones y comunidades." },
   brokers:    { title: "Brokers para Uruguay — Foro Agora",     desc: "Comparativa de brokers accesibles desde Uruguay para invertir en acciones y ETFs internacionales, con foco educativo." },
   ranking:    { title: "Ranking de estudiantes — Foro Agora",   desc: "Seguí el progreso de los estudiantes de Foro Agora en el simulador de portafolio y las actividades del programa." },
   impacto:    { title: "Impacto — Foro Agora",                  desc: "Resultados y métricas del impacto de Foro Agora en jóvenes uruguayos: estudiantes formados, cohortes y comunidad." },

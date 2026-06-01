@@ -34,6 +34,11 @@ const routeMeta: Record<string, RouteSeoMeta> = {
     description:
       "Programa para jovenes que quieren abrir puertas, difundir educacion financiera y llevar Foro Agora a nuevas comunidades.",
   },
+  "/difundir": {
+    title: "Kit de difusion - Foro Agora",
+    description:
+      "Textos y links listos para compartir Foro Agora con estudiantes, docentes, instituciones y comunidades.",
+  },
   "/partners": {
     title: "Aliados institucionales - Foro Agora",
     description:

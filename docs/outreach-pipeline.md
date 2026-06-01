@@ -16,11 +16,13 @@ Estado inicial para convertir difusión en conversaciones concretas.
 | 2026-06-01 | Sitio web | Agregado de FAQ y próximos pasos en páginas institucionales para responder costo, edad, formato y seguridad educativa antes del contacto. | Implementado |
 | 2026-06-01 | Sitio web | Creación de `/difundir`, kit público con textos copiables para WhatsApp, LinkedIn, historias y derivaciones institucionales. | Implementado |
 | 2026-06-01 | Sitio web | Creación de `/prensa`, media kit público con boilerplate, datos clave, pautas de uso y links oficiales. | Implementado |
+| 2026-06-01 | Operaciones | Creación de handoff de crecimiento para retomar con prioridades, links, bloqueos y primer lote de outreach. | Implementado |
 
 ## Herramientas operativas
 
 - Kit de mensajes: `docs/outreach-institution-kit.md`
 - Tracker de contactos: `docs/outreach-tracker.csv`
+- Handoff de crecimiento: `docs/morning-growth-handoff-2026-06-01.md`
 
 ## Prioridad alta
 

@@ -12,6 +12,12 @@ Estado inicial para convertir difusión en conversaciones concretas.
 | 2026-06-01 | Sitio web | Creación de página pública `/instituciones` para que colegios, liceos y organizaciones evalúen una charla gratuita sin aterrizar en una home genérica. | Implementado |
 | 2026-06-01 | Sitio web | Optimización del CTA institucional: `/instituciones` ahora lleva a `/partners?source=instituciones`, con tipo de organización, colaboración y mensaje base prellenados. | Implementado |
 | 2026-06-01 | Sitio web | Creación de propuesta institucional imprimible `/propuesta-instituciones` para enviar en outreach y guardar como PDF. | Implementado |
+| 2026-06-01 | Operaciones | Creación de kit de outreach institucional y tracker CSV para ejecutar contactos, follow-ups y registro de respuestas. | Implementado |
+
+## Herramientas operativas
+
+- Kit de mensajes: `docs/outreach-institution-kit.md`
+- Tracker de contactos: `docs/outreach-tracker.csv`
 
 ## Prioridad alta
 

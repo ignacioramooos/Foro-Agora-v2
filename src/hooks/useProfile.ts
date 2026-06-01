@@ -35,7 +35,11 @@ export function useProfile() {
   }, []);
 
   // Update a single profile field
-  const updateProfileField = useCallback(async (userId: string, field: keyof UserProfileData, value: any) => {
+  const updateProfileField = useCallback(async <K extends keyof UserProfileData>(
+    userId: string,
+    field: K,
+    value: UserProfileData[K]
+  ) => {
     try {
       const { error } = await supabase
         .from("profiles")

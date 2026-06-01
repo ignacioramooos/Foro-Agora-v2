@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Clases", path: "/programa" },
   { label: "Impacto", path: "/impacto" },
   { label: "Recursos", path: "/recursos" },
+  { label: "Embajadores", path: "/embajadores" },
   { label: "Partners", path: "/partners" },
 ];
 
@@ -55,7 +56,7 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-5 xl:gap-8">
             {navLinks.map((l) => (
               <Link
                 key={l.path}

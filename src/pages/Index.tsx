@@ -503,6 +503,50 @@ const HowItWorks = () => (
   </section>
 );
 
+const MovementCTA = () => (
+  <section className="relative overflow-hidden border-y border-border bg-card py-12 md:py-20">
+    <div className="container">
+      <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div>
+          <p className="font-hand text-3xl text-orange-pop">Hagámoslo crecer</p>
+          <h2 className="mt-2 max-w-3xl text-3xl sm:text-4xl md:text-5xl font-black leading-tight">
+            Foro Agora puede llegar más lejos si alguien abre la primera puerta.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base md:text-lg text-foreground/70">
+            Si podés presentar el proyecto en tu liceo, facultad, club o comunidad, sumate como embajador y ayudanos a acercar educación financiera gratuita a más jóvenes.
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button asChild variant="cta" size="cta">
+              <Link to="/embajadores">
+                Quiero difundir Foro Agora
+                <ArrowRight size={17} />
+              </Link>
+            </Button>
+            <Button asChild variant="cta-outline" size="cta">
+              <Link to="/partners">Conectar una institución</Link>
+            </Button>
+          </div>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+          {[
+            { title: "Liceos y facultades", desc: "Charlas introductorias, clases presenciales y grupos de estudiantes." },
+            { title: "Docentes y referentes", desc: "Puentes con personas que pueden validar, alojar o recomendar el programa." },
+            { title: "Redes con propósito", desc: "Difusión clara: educación antes que especulación, siempre gratis." },
+          ].map((item) => (
+            <div key={item.title} className="rounded-[1.25rem] border border-border bg-background p-6">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-blue-pop text-white">
+                <Users size={18} />
+              </div>
+              <h3 className="font-heading text-lg font-black">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/70">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 const Testimonials = () => (
   <section className="bg-background py-12 md:py-20">
     <div className="container">
@@ -660,6 +704,7 @@ const Index = () => (
     <ValueProp />
     <OurValues />
     <HowItWorks />
+    <MovementCTA />
     {/* ⚠️ TESTIMONIALS HIDDEN FOR NOW - DO NOT DELETE ⚠️ Re-enable when we have actual reviews */}
     <UpcomingClasses />
     <FinalCTA />

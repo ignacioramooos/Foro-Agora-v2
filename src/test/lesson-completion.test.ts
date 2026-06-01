@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, beforeEach, vi, type Mock } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import { useProfile } from "@/hooks/useProfile";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,6 +11,8 @@ vi.mock("@/integrations/supabase/client", () => ({
 }));
 
 describe("Lesson Completion Tracking", () => {
+  const mockSupabaseFrom = supabase.from as unknown as Mock;
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -38,7 +40,7 @@ describe("Lesson Completion Tracking", () => {
         }
       });
 
-      (supabase.from as any).mockImplementation(mockFrom);
+      mockSupabaseFrom.mockImplementation(mockFrom);
 
       const { result } = renderHook(() => useProfile());
 
@@ -74,7 +76,7 @@ describe("Lesson Completion Tracking", () => {
         }
       });
 
-      (supabase.from as any).mockImplementation(mockFrom);
+      mockSupabaseFrom.mockImplementation(mockFrom);
 
       const { result } = renderHook(() => useProfile());
 
@@ -119,7 +121,7 @@ describe("Lesson Completion Tracking", () => {
         }
       });
 
-      (supabase.from as any).mockImplementation(mockFrom);
+      mockSupabaseFrom.mockImplementation(mockFrom);
 
       const { result } = renderHook(() => useProfile());
 
@@ -164,7 +166,7 @@ describe("Lesson Completion Tracking", () => {
         }
       });
 
-      (supabase.from as any).mockImplementation(mockFrom);
+      mockSupabaseFrom.mockImplementation(mockFrom);
 
       const { result } = renderHook(() => useProfile());
 
@@ -179,7 +181,7 @@ describe("Lesson Completion Tracking", () => {
       const { result } = renderHook(() => useProfile());
 
       await act(async () => {
-        const response = await result.current.markLessonComplete("", "lesson-5");
+      await result.current.markLessonComplete("", "lesson-5");
         // Should attempt the call but may fail at database level
         // Implementation will determine exact behavior
       });
@@ -206,15 +208,15 @@ describe("Lesson Completion Tracking", () => {
           }),
         });
 
-      const mockLessonsQuery = vi.fn().mockReturnValue({
+      const mockLessonsQuery = {
         select: vi.fn().mockResolvedValue({
           data: null,
           count: 5,
           error: null,
         }),
-      });
+      };
 
-      const mockCertificatesQuery = vi.fn().mockReturnValue({
+      const mockCertificatesQuery = {
         select: vi.fn().mockReturnValue({
           eq: vi.fn().mockResolvedValue({
             data: null,
@@ -222,7 +224,7 @@ describe("Lesson Completion Tracking", () => {
             error: null,
           }),
         }),
-      });
+      };
 
       const mockFrom = vi.fn().mockImplementation((table) => {
         if (table === "lesson_progress") {
@@ -236,7 +238,7 @@ describe("Lesson Completion Tracking", () => {
         }
       });
 
-      (supabase.from as any).mockImplementation(mockFrom);
+      mockSupabaseFrom.mockImplementation(mockFrom);
 
       const { result } = renderHook(() => useProfile());
 
@@ -260,7 +262,7 @@ describe("Lesson Completion Tracking", () => {
         };
       });
 
-      (supabase.from as any).mockImplementation(mockFrom);
+      mockSupabaseFrom.mockImplementation(mockFrom);
 
       const { result } = renderHook(() => useProfile());
 
@@ -298,7 +300,7 @@ describe("Lesson Completion Tracking", () => {
         }
       });
 
-      (supabase.from as any).mockImplementation(mockFrom);
+      mockSupabaseFrom.mockImplementation(mockFrom);
 
       const { result } = renderHook(() => useProfile());
 
@@ -339,7 +341,7 @@ describe("Lesson Completion Tracking", () => {
         }
       });
 
-      (supabase.from as any).mockImplementation(mockFrom);
+      mockSupabaseFrom.mockImplementation(mockFrom);
 
       const { result } = renderHook(() => useProfile());
 

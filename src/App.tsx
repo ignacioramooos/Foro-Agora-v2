@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -9,23 +9,25 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import Index from "./pages/Index";
-import AboutPage from "./pages/AboutPage";
-import ProgramPage from "./pages/ProgramPage";
-import RegisterPage from "./pages/RegisterPage";
-import ContactPage from "./pages/ContactPage";
-import ResourcesPage from "./pages/ResourcesPage";
-import PartnersPage from "./pages/PartnersPage";
-import BrokersPage from "./pages/BrokersPage";
-import GlossaryPage from "./pages/GlossaryPage";
-import DashboardPage from "./pages/DashboardPage";
-import AdminPage from "./pages/AdminPage";
-import AuthPage from "./pages/AuthPage";
-import RankingPage from "./pages/RankingPage";
-import ImpactPage from "./pages/ImpactPage";
-import PrivacyPage from "./pages/PrivacyPage";
-import TermsPage from "./pages/TermsPage";
-import NotFound from "./pages/NotFound";
+
+const Index = lazy(() => import("./pages/Index"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ProgramPage = lazy(() => import("./pages/ProgramPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const ResourcesPage = lazy(() => import("./pages/ResourcesPage"));
+const PartnersPage = lazy(() => import("./pages/PartnersPage"));
+const AmbassadorsPage = lazy(() => import("./pages/AmbassadorsPage"));
+const BrokersPage = lazy(() => import("./pages/BrokersPage"));
+const GlossaryPage = lazy(() => import("./pages/GlossaryPage"));
+const DashboardPage = lazy(() => import("./pages/DashboardPage"));
+const AdminPage = lazy(() => import("./pages/AdminPage"));
+const AuthPage = lazy(() => import("./pages/AuthPage"));
+const RankingPage = lazy(() => import("./pages/RankingPage"));
+const ImpactPage = lazy(() => import("./pages/ImpactPage"));
+const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
+const TermsPage = lazy(() => import("./pages/TermsPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -42,6 +44,12 @@ normalizeLegacyHashRoute();
 
 const PublicPage = ({ children }: { children: React.ReactNode }) => (
   <><Navbar /><main>{children}</main><Footer /></>
+);
+
+const PageFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <span className="text-muted-foreground text-sm font-heading">Cargando...</span>
+  </div>
 );
 
 const getPendingAuthRedirectPath = () => {
@@ -93,6 +101,7 @@ const AppRoutes = () => {
       <Route path="/recursos" element={<PublicPage><ResourcesPage /></PublicPage>} />
       <Route path="/glosario" element={<PublicPage><GlossaryPage /></PublicPage>} />
       <Route path="/partners" element={<PublicPage><PartnersPage /></PublicPage>} />
+      <Route path="/embajadores" element={<PublicPage><AmbassadorsPage /></PublicPage>} />
       <Route path="/brokers" element={<PublicPage><BrokersPage /></PublicPage>} />
       <Route path="/ranking" element={<PublicPage><RankingPage /></PublicPage>} />
       <Route path="/impacto" element={<PublicPage><ImpactPage /></PublicPage>} />
@@ -109,15 +118,17 @@ const AppRoutes = () => {
   if (isLoggedIn) {
     return (
       <>
-        <Routes>
-          <Route
-            path="/dashboard"
-            element={user?.onboardingCompleted ? <DashboardPage /> : <Navigate to="/auth" replace />}
-          />
-          <Route path="/admin" element={<AdminPage />} />
-          {publicRoutes}
-          <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
-        </Routes>
+        <Suspense fallback={<PageFallback />}>
+          <Routes>
+            <Route
+              path="/dashboard"
+              element={user?.onboardingCompleted ? <DashboardPage /> : <Navigate to="/auth" replace />}
+            />
+            <Route path="/admin" element={<AdminPage />} />
+            {publicRoutes}
+            <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
+          </Routes>
+        </Suspense>
         <WhatsAppButton />
       </>
     );
@@ -125,11 +136,13 @@ const AppRoutes = () => {
 
   return (
     <>
-      <Routes>
-        {publicRoutes}
-        <Route path="/dashboard" element={<Navigate to="/auth" replace />} />
-        <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
-      </Routes>
+      <Suspense fallback={<PageFallback />}>
+        <Routes>
+          {publicRoutes}
+          <Route path="/dashboard" element={<Navigate to="/auth" replace />} />
+          <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
+        </Routes>
+      </Suspense>
       <WhatsAppButton />
     </>
   );

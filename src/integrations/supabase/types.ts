@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      ambassador_applications: {
+        Row: {
+          age: number | null
+          channels: string[]
+          created_at: string
+          department: string
+          email: string
+          experience: string | null
+          full_name: string
+          id: string
+          institution: string
+          motivation: string
+          phone: string | null
+          role: string
+          status: string
+        }
+        Insert: {
+          age?: number | null
+          channels?: string[]
+          created_at?: string
+          department: string
+          email: string
+          experience?: string | null
+          full_name: string
+          id?: string
+          institution: string
+          motivation: string
+          phone?: string | null
+          role?: string
+          status?: string
+        }
+        Update: {
+          age?: number | null
+          channels?: string[]
+          created_at?: string
+          department?: string
+          email?: string
+          experience?: string | null
+          full_name?: string
+          id?: string
+          institution?: string
+          motivation?: string
+          phone?: string | null
+          role?: string
+          status?: string
+        }
+        Relationships: []
+      }
       brokers: {
         Row: {
           commission: string

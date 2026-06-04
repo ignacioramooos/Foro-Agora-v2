@@ -299,29 +299,105 @@ export type Database = {
       community_posts: {
         Row: {
           author: string
+          body: string
           created_at: string
           id: string
           is_published: boolean
           title: string
           type: string
+          updated_at: string
+          user_id: string | null
         }
         Insert: {
           author: string
+          body?: string
           created_at?: string
           id?: string
           is_published?: boolean
           title: string
           type: string
+          updated_at?: string
+          user_id?: string | null
         }
         Update: {
           author?: string
+          body?: string
           created_at?: string
           id?: string
           is_published?: boolean
           title?: string
           type?: string
+          updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
+      }
+      community_post_comments: {
+        Row: {
+          author: string
+          body: string
+          created_at: string
+          id: string
+          post_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          author: string
+          body: string
+          created_at?: string
+          id?: string
+          post_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          author?: string
+          body?: string
+          created_at?: string
+          id?: string
+          post_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_post_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "community_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      community_post_reactions: {
+        Row: {
+          created_at: string
+          post_id: string
+          reaction_type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          post_id: string
+          reaction_type?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          post_id?: string
+          reaction_type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "community_post_reactions_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "community_posts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       contact_messages: {
         Row: {

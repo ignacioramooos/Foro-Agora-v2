@@ -27,6 +27,7 @@ type CommunityReactionRow = Tables<"community_post_reactions">;
 
 interface CommunityPost extends CommunityPostRow {
   type: CommunityPostType;
+  body: string;
   comments: CommunityCommentRow[];
   likeCount: number;
   likedByMe: boolean;
@@ -55,6 +56,25 @@ const formatDateTime = (iso: string) =>
 
 const emptyPostForm = { title: "", body: "", type: "analysis" as CommunityPostType };
 
+const isMissingSchemaError = (message?: string | null) =>
+  Boolean(
+    message?.includes("Could not find the 'body' column") ||
+      message?.includes("community_post_comments") ||
+      message?.includes("community_post_reactions") ||
+      message?.includes("schema cache"),
+  );
+
+const buildLegacyTitle = (title: string, body: string) => {
+  const cleanTitle = title.trim();
+  const cleanBody = body.trim();
+
+  if (!cleanBody || cleanBody === cleanTitle) {
+    return cleanTitle;
+  }
+
+  return `${cleanTitle} - ${cleanBody}`;
+};
+
 const CommunityFeed = () => {
   const { session, user } = useAuth();
   const { isAdmin } = useUserRole();
@@ -69,6 +89,7 @@ const CommunityFeed = () => {
   const [expandedPostId, setExpandedPostId] = useState<string | null>(null);
   const [postForm, setPostForm] = useState(emptyPostForm);
   const [commentDrafts, setCommentDrafts] = useState<Record<string, string>>({});
+  const [legacySchema, setLegacySchema] = useState(false);
 
   const loadCommunity = useCallback(async ({ silent = false }: { silent?: boolean } = {}) => {
     if (silent) {
@@ -79,22 +100,55 @@ const CommunityFeed = () => {
     setError(null);
 
     try {
-      const { data: postRows, error: postsError } = await supabase
+      const basePostQuery = supabase
         .from("community_posts")
-        .select("id, user_id, author, type, title, body, created_at, updated_at, is_published")
+        .select(
+          legacySchema
+            ? "id, author, type, title, created_at, is_published"
+            : "id, user_id, author, type, title, body, created_at, updated_at, is_published",
+        )
         .eq("is_published", true)
         .order("created_at", { ascending: false })
         .limit(30);
 
+      let { data: postRows, error: postsError } = await basePostQuery;
+
+      if (postsError && isMissingSchemaError(postsError.message)) {
+        setLegacySchema(true);
+        const legacyResult = await supabase
+          .from("community_posts")
+          .select("id, author, type, title, created_at, is_published")
+          .eq("is_published", true)
+          .order("created_at", { ascending: false })
+          .limit(30);
+
+        postRows = legacyResult.data;
+        postsError = legacyResult.error;
+      }
+
       if (postsError) throw postsError;
 
       const visiblePosts = (postRows ?? []).flatMap((post) =>
-        isCommunityPostType(post.type) ? [{ ...post, type: post.type }] : [],
+        isCommunityPostType(post.type) ? [{ ...post, body: "body" in post ? post.body : post.title, type: post.type }] : [],
       );
       const postIds = visiblePosts.map((post) => post.id);
 
       if (postIds.length === 0) {
         setPosts([]);
+        return;
+      }
+
+      if (legacySchema) {
+        setPosts(
+          visiblePosts.map((post) => ({
+            ...post,
+            user_id: "user_id" in post ? post.user_id : null,
+            updated_at: "updated_at" in post ? post.updated_at : post.created_at,
+            comments: [],
+            likeCount: 0,
+            likedByMe: false,
+          })),
+        );
         return;
       }
 
@@ -111,8 +165,28 @@ const CommunityFeed = () => {
           .eq("reaction_type", "like"),
       ]);
 
-      if (commentsResult.error) throw commentsResult.error;
-      if (reactionsResult.error) throw reactionsResult.error;
+      if (commentsResult.error || reactionsResult.error) {
+        if (
+          isMissingSchemaError(commentsResult.error?.message) ||
+          isMissingSchemaError(reactionsResult.error?.message)
+        ) {
+          setLegacySchema(true);
+          setPosts(
+            visiblePosts.map((post) => ({
+              ...post,
+              user_id: post.user_id,
+              updated_at: post.updated_at,
+              comments: [],
+              likeCount: 0,
+              likedByMe: false,
+            })),
+          );
+          return;
+        }
+
+        if (commentsResult.error) throw commentsResult.error;
+        if (reactionsResult.error) throw reactionsResult.error;
+      }
 
       const commentsByPost = new Map<string, CommunityCommentRow[]>();
       (commentsResult.data ?? []).forEach((comment) => {
@@ -143,7 +217,7 @@ const CommunityFeed = () => {
       setLoading(false);
       setRefreshing(false);
     }
-  }, [currentUserId]);
+  }, [currentUserId, legacySchema]);
 
   useEffect(() => {
     loadCommunity();
@@ -167,8 +241,9 @@ const CommunityFeed = () => {
 
     setSubmittingPost(true);
     const type = isAdmin ? postForm.type : "analysis";
+    let usedLegacyInsert = false;
 
-    const { error: insertError } = await supabase.from("community_posts").insert({
+    let { error: insertError } = await supabase.from("community_posts").insert({
       user_id: currentUserId,
       author: user?.name || session?.user?.email?.split("@")[0] || "Integrante",
       title: postForm.title.trim(),
@@ -176,6 +251,19 @@ const CommunityFeed = () => {
       type,
       is_published: true,
     });
+
+    if (insertError && isMissingSchemaError(insertError.message)) {
+      setLegacySchema(true);
+      usedLegacyInsert = true;
+      const legacyResult = await supabase.from("community_posts").insert({
+        author: user?.name || session?.user?.email?.split("@")[0] || "Integrante",
+        title: buildLegacyTitle(postForm.title, postForm.body),
+        type,
+        is_published: true,
+      });
+
+      insertError = legacyResult.error;
+    }
 
     setSubmittingPost(false);
 
@@ -185,11 +273,20 @@ const CommunityFeed = () => {
     }
 
     setPostForm(emptyPostForm);
-    toast.success("Publicado en la comunidad");
+    toast.success(
+      usedLegacyInsert
+        ? "Publicado en la comunidad. La base aun necesita la migracion para comentarios y likes."
+        : "Publicado en la comunidad",
+    );
     await loadCommunity({ silent: true });
   };
 
   const handleToggleLike = async (post: CommunityPost) => {
+    if (legacySchema) {
+      toast.error("Likes disponibles despues de aplicar la migracion de comunidad.");
+      return;
+    }
+
     if (!currentUserId) {
       toast.error("Inicia sesion para reaccionar.");
       return;
@@ -227,6 +324,11 @@ const CommunityFeed = () => {
   };
 
   const handleCreateComment = async (postId: string) => {
+    if (legacySchema) {
+      toast.error("Comentarios disponibles despues de aplicar la migracion de comunidad.");
+      return;
+    }
+
     if (!currentUserId) return;
 
     const body = (commentDrafts[postId] ?? "").trim();
@@ -408,7 +510,7 @@ const CommunityFeed = () => {
               <article key={post.id} className="rounded-lg border border-border bg-background p-4 md:p-5">
                 <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                   <div className="min-w-0 flex-1">
-                    <div className="mb-3 flex flex-wrap items-center gap-2">
+                  <div className="mb-3 flex flex-wrap items-center gap-2">
                       <Badge variant={post.type === "announcement" ? "secondary" : "outline"} className="gap-1.5">
                         <Icon size={12} />
                         {postTypeLabel[post.type]}
@@ -438,6 +540,7 @@ const CommunityFeed = () => {
                     variant={post.likedByMe ? "secondary" : "outline"}
                     size="sm"
                     onClick={() => handleToggleLike(post)}
+                    disabled={legacySchema}
                   >
                     <ThumbsUp size={15} />
                     {post.likeCount}
@@ -446,6 +549,7 @@ const CommunityFeed = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => setExpandedPostId(expanded ? null : post.id)}
+                    disabled={legacySchema}
                   >
                     <MessageCircle size={15} />
                     {post.comments.length} comentarios

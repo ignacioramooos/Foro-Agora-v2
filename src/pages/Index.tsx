@@ -4,14 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import SectionFade from "@/components/SectionFade";
 import LiveStudentCounter from "@/components/LiveStudentCounter";
-import CohortCountdown from "@/components/CohortCountdown";
-import CapacityBar from "@/components/CapacityBar";
 import CoreValues from "@/components/CoreValues";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { curriculumClassCount } from "@/lib/curriculum";
 import { fetchStockPrices, SUPPORTED_STOCKS, type StockQuote } from "@/lib/stockData";
-import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
+import { ArrowRight, Users } from "lucide-react";
 
 const testimonials = [
   "Las clases me abrieron la cabeza. Ahora entiendo temas que antes me parecían aburridos.",
@@ -596,9 +594,6 @@ const UpcomingClasses = () => {
 
   if (!classSession) return null;
 
-  const startDate = new Date(classSession.class_date);
-  const dateStr = startDate.toLocaleDateString("es-UY", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-  const timeStr = startDate.toLocaleTimeString("es-UY", { hour: "2-digit", minute: "2-digit" });
   const registerUrl = `/registro?class=${classSession.id}`;
   const requiresModuleWarning = classSession.module_number > 1;
 
@@ -608,30 +603,18 @@ const UpcomingClasses = () => {
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           <div>
             <p className="font-hand text-3xl text-blue-pop">Próximas clases</p>
-            <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-black">Próxima clase</h2>
+            <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-black">PROXIMAMENTE</h2>
             <p className="text-foreground/70 text-base md:text-lg leading-relaxed mt-4 mb-6">
-              Las clases son presenciales, con fecha, hora y cupos definidos.
+              La próxima clase se anunciará sin fecha ni lugar hasta que esté todo confirmado.
             </p>
-            <CohortCountdown />
           </div>
           <div className="rounded-[1.5rem] border-2 border-foreground bg-card p-6 md:p-8 shadow-[10px_10px_0_#ffc800]">
             <h3 className="mb-4 text-2xl font-black">{classSession.title}</h3>
             <div className="space-y-4 mb-6">
               <div className="flex items-center gap-3 text-foreground/70">
-                <MapPin size={16} className="shrink-0 text-blue-pop" />
-                <span>{classSession.location}</span>
-              </div>
-              <div className="flex items-center gap-3 text-foreground/70">
-                <Calendar size={16} className="shrink-0 text-orange-pop" />
-                <span className="capitalize">{dateStr}, {timeStr}</span>
-              </div>
-              <div className="flex items-center gap-3 text-foreground/70">
                 <Users size={16} className="shrink-0 text-blue-pop" />
-                <span>Clase {classSession.module_number} del plan · {classSession.max_capacity} lugares</span>
+                <span>Clase {classSession.module_number} del plan · PROXIMAMENTE</span>
               </div>
-            </div>
-            <div className="mb-6">
-              <CapacityBar />
             </div>
             {requiresModuleWarning ? (
               <Button variant="cta" size="cta" className="w-full" onClick={() => setWarningOpen(true)}>

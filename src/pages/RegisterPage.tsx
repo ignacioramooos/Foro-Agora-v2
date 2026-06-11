@@ -27,6 +27,8 @@ const hearOptions = [
   "Otro",
 ];
 
+const NEXT_CLASS_LABEL = "PROXIMAMENTE";
+
 interface ClassSession {
   id: string;
   title: string;
@@ -215,11 +217,6 @@ const RegisterPage = () => {
     }
   };
 
-  const formatClassDate = (value: string) => {
-    const date = new Date(value);
-    return `${date.toLocaleDateString("es-UY", { weekday: "long", day: "numeric", month: "long" })}, ${date.toLocaleTimeString("es-UY", { hour: "2-digit", minute: "2-digit" })}`;
-  };
-
   if (submitted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background pt-20">
@@ -235,8 +232,8 @@ const RegisterPage = () => {
             </p>
             <div className="border border-border rounded-lg p-6 text-left space-y-3 text-sm">
               <p className="font-heading font-semibold text-foreground">¿Qué sigue?</p>
-              <p className="text-muted-foreground">Email con detalles de la clase</p>
-              <p className="text-muted-foreground">Ubicación exacta 48h antes</p>
+              <p className="text-muted-foreground">Fecha y lugar: {NEXT_CLASS_LABEL}</p>
+              <p className="text-muted-foreground">Te enviaremos detalles cuando estén confirmados</p>
               <p className="text-muted-foreground">Invitación a la comunidad online</p>
             </div>
           </div>
@@ -279,7 +276,7 @@ const RegisterPage = () => {
                   <option value="">{classesLoading ? "Cargando clases..." : classes.length === 0 ? "No hay clases disponibles" : "Seleccionar clase..."}</option>
                   {classes.map((c) => (
                     <option key={c.id} value={c.id}>
-                      {c.title} - Clase {c.module_number} de {curriculumClassCount} - {formatClassDate(c.class_date)}
+                      {c.title} - Clase {c.module_number} de {curriculumClassCount} - {NEXT_CLASS_LABEL}
                     </option>
                   ))}
                 </select>
@@ -379,11 +376,11 @@ const RegisterPage = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin size={16} className="text-muted-foreground mt-0.5 shrink-0" />
-                  <div><strong className="text-foreground font-heading">Ubicación:</strong><br /><span className="text-muted-foreground">{selectedClass?.location || "A confirmar"}</span></div>
+                  <div><strong className="text-foreground font-heading">Ubicación:</strong><br /><span className="text-muted-foreground">{NEXT_CLASS_LABEL}</span></div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Calendar size={16} className="text-muted-foreground mt-0.5 shrink-0" />
-                  <div><strong className="text-foreground font-heading">Fecha y hora:</strong><br /><span className="text-muted-foreground">{selectedClass ? formatClassDate(selectedClass.class_date) : "A confirmar"}</span></div>
+                  <div><strong className="text-foreground font-heading">Fecha y hora:</strong><br /><span className="text-muted-foreground">{NEXT_CLASS_LABEL}</span></div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Gift size={16} className="text-muted-foreground mt-0.5 shrink-0" />

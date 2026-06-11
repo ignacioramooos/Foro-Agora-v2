@@ -236,10 +236,10 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
               Clases presenciales
             </p>
             <h2 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-3">
-              Reservá tu lugar en la próxima clase
+              Próxima clase: PROXIMAMENTE
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Usaremos los datos de tu cuenta para completar el formulario de inscripción y que solo tengas que revisar la clase elegida.
+              Usaremos los datos de tu cuenta para completar el formulario de inscripción. Fecha y lugar se confirmarán más adelante.
             </p>
           </div>
           <Button asChild variant="cta" size="cta" className="w-full md:w-auto">

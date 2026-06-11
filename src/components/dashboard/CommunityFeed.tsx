@@ -59,10 +59,25 @@ const emptyPostForm = { title: "", body: "", type: "analysis" as CommunityPostTy
 const isMissingSchemaError = (message?: string | null) =>
   Boolean(
     message?.includes("Could not find the 'body' column") ||
+      message?.includes("Could not find the table") ||
       message?.includes("community_post_comments") ||
       message?.includes("community_post_reactions") ||
+      message?.includes("does not exist") ||
+      message?.includes("PGRST204") ||
+      message?.includes("PGRST205") ||
       message?.includes("schema cache"),
   );
+
+const getCommunityErrorMessage = (message?: string | null) => {
+  if (!message) return "No se pudo cargar la comunidad.";
+  if (isMissingSchemaError(message)) {
+    return "La comunidad todavia necesita actualizar la base de datos. Las publicaciones existentes siguen disponibles cuando el esquema anterior responde.";
+  }
+  if (message.includes("permission denied") || message.includes("row-level security")) {
+    return "No hay permisos suficientes para cargar la comunidad. Revisá las políticas de Supabase.";
+  }
+  return "No se pudo cargar la comunidad. Intentá actualizar en unos segundos.";
+};
 
 const buildLegacyTitle = (title: string, body: string) => {
   const cleanTitle = title.trim();
@@ -111,9 +126,11 @@ const CommunityFeed = () => {
         .order("created_at", { ascending: false })
         .limit(30);
 
+      let shouldUseLegacySchema = legacySchema;
       let { data: postRows, error: postsError } = await basePostQuery;
 
       if (postsError && isMissingSchemaError(postsError.message)) {
+        shouldUseLegacySchema = true;
         setLegacySchema(true);
         const legacyResult = await supabase
           .from("community_posts")
@@ -138,7 +155,7 @@ const CommunityFeed = () => {
         return;
       }
 
-      if (legacySchema) {
+      if (shouldUseLegacySchema) {
         setPosts(
           visiblePosts.map((post) => ({
             ...post,
@@ -211,8 +228,8 @@ const CommunityFeed = () => {
         }),
       );
     } catch (err) {
-      const message = err instanceof Error ? err.message : "No se pudo cargar la comunidad.";
-      setError(message);
+      const message = err instanceof Error ? err.message : null;
+      setError(getCommunityErrorMessage(message));
     } finally {
       setLoading(false);
       setRefreshing(false);

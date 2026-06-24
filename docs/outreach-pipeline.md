@@ -16,6 +16,7 @@ Foro Agora debe quedar abierto a cualquier joven interesado. No ejecutar mensaje
 | 2026-06-01 | Sitio web | Paginas institucionales creadas durante la noche. | Corregidas para hablar de actividades abiertas y no promocionadas en sitemap/footer. |
 | 2026-06-01 | Sitio web | `/difundir` y `/prensa` creadas como superficies publicas. | Mantener: sirven para difusion abierta. |
 | 2026-06-01 | Operaciones | Docs de outreach y handoff creados. | Corregidos para reforzar apertura y gestion interna de sedes. |
+| 2026-06-04 | LinkedIn | Publicacion educativa desde la pagina de empresa: preguntas basicas antes de invertir, con CTA a recursos. | Publicado; no repite la pieza de registro abierto del 2026-06-03. |
 
 ## Herramientas operativas
 

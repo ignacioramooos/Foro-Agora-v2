@@ -9,6 +9,7 @@ import logoMark from "@/assets/stone-trail-logo.png";
 const navLinks = [
   { label: "Inicio", path: "/" },
   { label: "Sobre nosotros", path: "/nosotros" },
+  { label: "Eventos", path: "/eventos" },
   { label: "Clases", path: "/programa" },
   { label: "Impacto", path: "/impacto" },
   { label: "Recursos", path: "/recursos" },
@@ -56,7 +57,7 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-5 xl:gap-8">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-6">
             {navLinks.map((l) => (
               <Link
                 key={l.path}

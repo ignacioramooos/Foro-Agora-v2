@@ -1,6 +1,6 @@
 import { act, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { LandingEventPopup } from "@/components/FeaturedEvent";
+import { LandingEventFooter, LandingEventPopup } from "@/components/FeaturedEvent";
 import { useClassRegistrationStatus } from "@/hooks/useClassRegistrationStatus";
 import { useUpcomingClassSession } from "@/hooks/useUpcomingClassSession";
 
@@ -61,5 +61,13 @@ describe("LandingEventPopup", () => {
 
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     expect(screen.getByText("80 lugares")).toBeInTheDocument();
+  });
+
+  it("shows only the public capacity in the landing footer", () => {
+    mockedRegistrationStatus.mockReturnValue({ isRegistered: false, registrationChecked: true });
+    render(<LandingEventFooter />);
+
+    expect(screen.getByText("80 lugares")).toBeInTheDocument();
+    expect(screen.queryByText(/90 inscripciones/i)).not.toBeInTheDocument();
   });
 });

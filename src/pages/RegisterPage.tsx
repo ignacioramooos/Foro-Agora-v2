@@ -3,6 +3,7 @@ import { Link, Navigate, useLocation, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import SectionFade from "@/components/SectionFade";
+import InjuLocationMap from "@/components/InjuLocationMap";
 import { CheckCircle2, MapPin, Calendar, Gift, Users, Loader2, Save, Download, ExternalLink } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useProfile } from "@/hooks/useProfile";
@@ -10,15 +11,11 @@ import { supabase } from "@/integrations/supabase/client";
 import { curriculumClassCount } from "@/lib/curriculum";
 import { toast } from "sonner";
 import {
-  EVENT_ADDRESS,
-  EVENT_LOCATION_NAME,
   formatEventDate,
   formatEventTimeRange,
   getAppleCalendarDataUrl,
   getEventAuthPath,
   getGoogleCalendarUrl,
-  getGoogleMapsEmbedUrl,
-  getGoogleMapsUrl,
   isValidUruguayanCedula,
   normalizeCedula,
   type ClassSession,
@@ -212,7 +209,7 @@ const RegisterPage = () => {
       const message = error.code === "23505"
         ? "Ya estás inscripto a este encuentro."
         : error.message.includes("límite")
-          ? "Se alcanzó el límite de 90 inscripciones."
+          ? "Se agotaron los cupos disponibles."
           : "No pudimos confirmar la inscripción. Revisá los datos e intentá de nuevo.";
       setErrors((prev) => ({ ...prev, submit: message }));
       return;
@@ -277,7 +274,6 @@ const RegisterPage = () => {
     const confirmedClass = selectedClass || FALLBACK_EVENT;
     const googleCalendarUrl = getGoogleCalendarUrl(confirmedClass);
     const appleCalendarUrl = getAppleCalendarDataUrl(confirmedClass);
-    const googleMapsUrl = getGoogleMapsUrl();
 
     return (
       <div className="min-h-screen bg-background pb-16 pt-28 md:pt-36">
@@ -313,42 +309,7 @@ const RegisterPage = () => {
               </Button>
             </div>
 
-            <div className="mt-8 overflow-hidden rounded-xl border border-border bg-card text-left shadow-sm">
-              <div className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <p className="font-heading font-semibold text-foreground">{EVENT_LOCATION_NAME}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{EVENT_ADDRESS}</p>
-                </div>
-                <a
-                  href={googleMapsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-blue-pop hover:underline"
-                >
-                  Cómo llegar <ExternalLink size={15} />
-                </a>
-              </div>
-              <div className="relative h-72 border-t border-border">
-                <iframe
-                  src={getGoogleMapsEmbedUrl()}
-                  title={`Mapa de ${EVENT_LOCATION_NAME}`}
-                  className="h-full w-full border-0 pointer-events-none"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                  tabIndex={-1}
-                />
-                <a
-                  href={googleMapsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="absolute inset-0 z-10"
-                  aria-label={`Abrir ${EVENT_LOCATION_NAME} en Google Maps`}
-                >
-                  <span className="sr-only">Abrir ubicación en Google Maps</span>
-                </a>
-              </div>
-            </div>
+            <InjuLocationMap className="mt-8" />
           </div>
         </SectionFade>
       </div>

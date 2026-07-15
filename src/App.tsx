@@ -13,6 +13,7 @@ import RouteSeo from "@/components/RouteSeo";
 
 const Index = lazy(() => import("./pages/Index"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
+const EventsPage = lazy(() => import("./pages/EventsPage"));
 const ProgramPage = lazy(() => import("./pages/ProgramPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
@@ -103,6 +104,7 @@ const AppRoutes = () => {
     <>
       <Route path="/" element={<PublicPage><Index /></PublicPage>} />
       <Route path="/nosotros" element={<PublicPage><AboutPage /></PublicPage>} />
+      <Route path="/eventos" element={<PublicPage><EventsPage /></PublicPage>} />
       <Route path="/programa" element={<PublicPage><ProgramPage /></PublicPage>} />
       <Route path="/registro" element={<PublicPage><RegisterPage /></PublicPage>} />
       <Route path="/contacto" element={<PublicPage><ContactPage /></PublicPage>} />

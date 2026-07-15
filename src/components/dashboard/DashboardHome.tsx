@@ -326,7 +326,7 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
                   </div>
                 </div>
                 <span className="flex items-center gap-1.5 text-sm text-muted-foreground font-heading">
-                  <CheckCircle2 size={14} /> Anotado
+                  <CheckCircle2 size={14} /> Ya estás inscripto
                 </span>
               </div>
             ))}

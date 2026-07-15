@@ -3,13 +3,13 @@ import { CalendarDays, CheckCircle2, Clock, MapPin, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import EventSignupButton from "@/components/EventSignupButton";
+import InjuLocationMap from "@/components/InjuLocationMap";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   EVENT_FALLBACK_DESCRIPTION,
   formatEventDate,
   formatEventTimeRange,
-  getRegistrationLimit,
   type ClassSession,
 } from "@/lib/classEvent";
 
@@ -59,7 +59,7 @@ const EventsSection = () => {
 
   if (loading) {
     return (
-      <div className="max-w-5xl space-y-4 p-6 md:p-10">
+      <div className="mx-auto max-w-5xl space-y-4 p-6 md:p-10">
         <Skeleton className="h-8 w-40" />
         <Skeleton className="h-5 w-72" />
         <Skeleton className="h-72 rounded-xl" />
@@ -68,7 +68,7 @@ const EventsSection = () => {
   }
 
   return (
-    <div className="max-w-5xl p-6 md:p-10">
+    <div className="mx-auto max-w-5xl p-6 md:p-10">
       <h1 className="mb-2 text-2xl font-semibold text-foreground md:text-3xl">Eventos</h1>
       <p className="mb-8 text-muted-foreground">Encuentros presenciales, workshops y charlas de Foro Agora.</p>
 
@@ -81,39 +81,42 @@ const EventsSection = () => {
           {classes.map((classSession) => {
             const isRegistered = registeredClassIds.has(classSession.id);
             return (
-              <article key={classSession.id} className="overflow-hidden rounded-2xl border-2 border-foreground bg-card">
-                <div className="bg-sun px-5 py-3 text-xs font-black uppercase tracking-[0.15em] text-foreground">
-                  {classSession.is_featured ? "Evento destacado" : "Inscripciones abiertas"}
-                </div>
-                <div className="p-6 md:p-8">
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
-                      <h2 className="text-2xl font-black text-foreground md:text-3xl">{classSession.title}</h2>
-                      <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-                        {classSession.notes || EVENT_FALLBACK_DESCRIPTION}
-                      </p>
+              <div key={classSession.id} className="space-y-4">
+                <article className="overflow-hidden rounded-2xl border-2 border-foreground bg-card">
+                  <div className="bg-sun px-5 py-3 text-xs font-black uppercase tracking-[0.15em] text-foreground">
+                    {classSession.is_featured ? "Evento destacado" : "Inscripciones abiertas"}
+                  </div>
+                  <div className="p-6 md:p-8">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <h2 className="text-2xl font-black text-foreground md:text-3xl">{classSession.title}</h2>
+                        <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
+                          {classSession.notes || EVENT_FALLBACK_DESCRIPTION}
+                        </p>
+                      </div>
+                      {isRegistered ? (
+                        <Badge variant="secondary" className="self-start gap-1.5 px-3 py-2"><CheckCircle2 size={14} /> Ya estás inscripto</Badge>
+                      ) : null}
                     </div>
+
+                    <div className="my-7 grid gap-4 text-sm text-foreground/75 sm:grid-cols-2">
+                      <span className="flex items-center gap-2"><CalendarDays className="text-blue-pop" size={18} /> {formatEventDate(classSession.class_date)}</span>
+                      <span className="flex items-center gap-2"><Clock className="text-blue-pop" size={18} /> {formatEventTimeRange(classSession)}</span>
+                      <span className="flex items-center gap-2"><MapPin className="text-blue-pop" size={18} /> {classSession.location}</span>
+                      <span className="flex items-center gap-2"><Users className="text-blue-pop" size={18} /> {classSession.max_capacity} lugares</span>
+                    </div>
+
                     {isRegistered ? (
-                      <Badge variant="secondary" className="self-start gap-1.5 px-3 py-2"><CheckCircle2 size={14} /> Inscripción confirmada</Badge>
-                    ) : null}
+                      <div className="rounded-lg bg-secondary px-4 py-3 text-sm font-semibold text-foreground">
+                        Ya estás inscripto. Te esperamos en Casa INJU.
+                      </div>
+                    ) : (
+                      <EventSignupButton classId={classSession.id} className="w-full sm:w-auto" label="Inscribirme a este evento" />
+                    )}
                   </div>
-
-                  <div className="my-7 grid gap-4 text-sm text-foreground/75 sm:grid-cols-2">
-                    <span className="flex items-center gap-2"><CalendarDays className="text-blue-pop" size={18} /> {formatEventDate(classSession.class_date)}</span>
-                    <span className="flex items-center gap-2"><Clock className="text-blue-pop" size={18} /> {formatEventTimeRange(classSession)}</span>
-                    <span className="flex items-center gap-2"><MapPin className="text-blue-pop" size={18} /> {classSession.location}</span>
-                    <span className="flex items-center gap-2"><Users className="text-blue-pop" size={18} /> Capacidad presencial: {classSession.max_capacity} · límite de inscripción: {getRegistrationLimit(classSession)}</span>
-                  </div>
-
-                  {isRegistered ? (
-                    <div className="rounded-lg bg-secondary px-4 py-3 text-sm font-semibold text-foreground">
-                      Ya tenés tu lugar reservado. Te esperamos en Casa INJU.
-                    </div>
-                  ) : (
-                    <EventSignupButton classId={classSession.id} className="w-full sm:w-auto" label="Inscribirme a este evento" />
-                  )}
-                </div>
-              </article>
+                </article>
+                {classSession.location.toLocaleLowerCase("es-UY").includes("inju") ? <InjuLocationMap /> : null}
+              </div>
             );
           })}
         </div>

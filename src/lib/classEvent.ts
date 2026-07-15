@@ -43,9 +43,6 @@ export const getEventEndDate = (classSession: ClassSession) =>
 export const formatEventTimeRange = (classSession: ClassSession) =>
   `${formatEventTime(classSession.class_date)} a ${formatEventTime(getEventEndDate(classSession).toISOString())}`;
 
-export const getRegistrationLimit = (classSession: ClassSession) =>
-  classSession.registration_limit ?? classSession.max_capacity;
-
 const formatCalendarTimestamp = (value: Date | string) =>
   new Date(value).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
 

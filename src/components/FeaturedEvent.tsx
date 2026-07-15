@@ -7,18 +7,15 @@ import { useUpcomingClassSession } from "@/hooks/useUpcomingClassSession";
 import {
   formatEventDate,
   formatEventTimeRange,
-  getRegistrationLimit,
   type ClassSession,
 } from "@/lib/classEvent";
 
 const EventFacts = ({
   classSession,
   light = false,
-  showSignupLimit = true,
 }: {
   classSession: ClassSession;
   light?: boolean;
-  showSignupLimit?: boolean;
 }) => {
   const textClass = light ? "text-white/85" : "text-foreground/75";
   const iconClass = light ? "text-sun" : "text-blue-pop";
@@ -30,7 +27,7 @@ const EventFacts = ({
       <span className="flex items-center gap-2"><MapPin className={iconClass} size={18} /> {classSession.location}</span>
       <span className="flex items-center gap-2">
         <Users className={iconClass} size={18} />
-        {classSession.max_capacity} lugares{showSignupLimit ? ` · hasta ${getRegistrationLimit(classSession)} inscripciones` : ""}
+        {classSession.max_capacity} lugares
       </span>
     </div>
   );
@@ -67,7 +64,7 @@ export const LandingEventPopup = () => {
               Te esperamos de 18:00 a 20:00 en la sala audiovisual de Casa INJU. La actividad es gratuita y no requiere experiencia previa.
             </DialogDescription>
           </DialogHeader>
-          <div className="my-6"><EventFacts classSession={classSession} showSignupLimit={false} /></div>
+          <div className="my-6"><EventFacts classSession={classSession} /></div>
           <EventSignupButton classId={classSession.id} className="w-full" label="Sí, quiero inscribirme" />
           <p className="mt-3 text-center text-xs text-muted-foreground">Si todavía no tenés cuenta, te ayudamos a crearla antes de completar la inscripción.</p>
         </div>

@@ -49,6 +49,11 @@ const routeMeta: Record<string, RouteSeoMeta> = {
     description:
       "Plan de estudios gratuito sobre finanzas personales, inversion responsable, mercado uruguayo y analisis fundamental.",
   },
+  "/eventos": {
+    title: "Eventos - Foro Agora",
+    description:
+      "Eventos activos de Foro Agora: encuentros presenciales gratuitos sobre educacion financiera y analisis fundamental en Uruguay.",
+  },
   "/registro": {
     title: "Inscripciones - Foro Agora",
     description:

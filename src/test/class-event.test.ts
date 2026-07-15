@@ -1,8 +1,13 @@
 import { describe, expect, it } from "vitest";
 import {
+  EVENT_ADDRESS,
   formatEventDate,
   formatEventTimeRange,
+  getAppleCalendarDataUrl,
   getEventAuthPath,
+  getGoogleCalendarUrl,
+  getGoogleMapsEmbedUrl,
+  getGoogleMapsUrl,
   isValidUruguayanCedula,
   normalizeCedula,
   type ClassSession,
@@ -32,6 +37,24 @@ describe("class event helpers", () => {
     expect(getEventAuthPath(classSession.id)).toBe(
       "/auth?mode=event&returnTo=%2Fregistro%3Fclass%3Dclass-22-july"
     );
+  });
+
+  it("builds calendar links with the confirmed time and INJU address", () => {
+    const googleCalendar = new URL(getGoogleCalendarUrl(classSession));
+    expect(googleCalendar.hostname).toBe("calendar.google.com");
+    expect(googleCalendar.searchParams.get("dates")).toBe("20260722T210000Z/20260722T230000Z");
+    expect(googleCalendar.searchParams.get("location")).toContain(EVENT_ADDRESS);
+
+    const appleCalendar = decodeURIComponent(getAppleCalendarDataUrl(classSession).split(",")[1]);
+    expect(appleCalendar).toContain("DTSTART:20260722T210000Z");
+    expect(appleCalendar).toContain("DTEND:20260722T230000Z");
+    expect(appleCalendar).toContain("Av. 18 de Julio 1865");
+  });
+
+  it("builds clickable and embeddable Google Maps links for INJU", () => {
+    expect(new URL(getGoogleMapsUrl()).searchParams.get("query")).toContain(EVENT_ADDRESS);
+    expect(getGoogleMapsEmbedUrl()).toContain("output=embed");
+    expect(decodeURIComponent(getGoogleMapsEmbedUrl())).toContain("Instituto Nacional de la Juventud - INJU");
   });
 
   it("normalizes and validates a Uruguayan cédula", () => {

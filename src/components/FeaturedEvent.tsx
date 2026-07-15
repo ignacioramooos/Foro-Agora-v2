@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CalendarDays, Clock, MapPin, Users } from "lucide-react";
 import EventSignupButton from "@/components/EventSignupButton";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useClassRegistrationStatus } from "@/hooks/useClassRegistrationStatus";
 import { useUpcomingClassSession } from "@/hooks/useUpcomingClassSession";
 import {
   formatEventDate,
@@ -39,12 +40,17 @@ export const LandingEventPopup = () => {
   const { classSession, loading } = useUpcomingClassSession();
   const [popupOpen, setPopupOpen] = useState(false);
   const classSessionId = classSession?.id;
+  const { isRegistered, registrationChecked } = useClassRegistrationStatus(classSessionId);
 
   useEffect(() => {
-    if (!classSessionId) return;
+    if (!classSessionId || !registrationChecked || isRegistered) {
+      setPopupOpen(false);
+      return;
+    }
+
     const popupTimer = window.setTimeout(() => setPopupOpen(true), 550);
     return () => window.clearTimeout(popupTimer);
-  }, [classSessionId]);
+  }, [classSessionId, isRegistered, registrationChecked]);
 
   if (loading || !classSession) return null;
 

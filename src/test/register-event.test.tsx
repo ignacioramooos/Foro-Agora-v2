@@ -137,5 +137,21 @@ describe("registro autenticado al encuentro", () => {
     })));
     expect(await screen.findByRole("heading", { name: "Inscripción recibida" })).toBeInTheDocument();
     expect(screen.getByText("Sala audiovisual de Casa INJU")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Agregar a Google Calendar/i })).toHaveAttribute(
+      "href",
+      expect.stringContaining("calendar.google.com/calendar/render")
+    );
+    expect(screen.getByRole("link", { name: /Agregar a Apple Calendar/i })).toHaveAttribute(
+      "download",
+      "primer-encuentro-foro-agora.ics"
+    );
+    expect(screen.getByTitle("Mapa de Instituto Nacional de la Juventud - INJU")).toHaveAttribute(
+      "src",
+      expect.stringContaining("output=embed")
+    );
+    expect(screen.getByRole("link", { name: /Abrir Instituto Nacional de la Juventud - INJU en Google Maps/i })).toHaveAttribute(
+      "href",
+      expect.stringContaining("google.com/maps/search")
+    );
   });
 });

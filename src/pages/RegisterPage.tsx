@@ -3,21 +3,41 @@ import { Link, Navigate, useLocation, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import SectionFade from "@/components/SectionFade";
-import { CheckCircle2, MapPin, Calendar, Gift, Users, Loader2, Save } from "lucide-react";
+import { CheckCircle2, MapPin, Calendar, Gift, Users, Loader2, Save, Download, ExternalLink } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useProfile } from "@/hooks/useProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { curriculumClassCount } from "@/lib/curriculum";
 import { toast } from "sonner";
 import {
+  EVENT_ADDRESS,
+  EVENT_LOCATION_NAME,
   formatEventDate,
   formatEventTimeRange,
+  getAppleCalendarDataUrl,
   getEventAuthPath,
+  getGoogleCalendarUrl,
+  getGoogleMapsEmbedUrl,
+  getGoogleMapsUrl,
   getRegistrationLimit,
   isValidUruguayanCedula,
   normalizeCedula,
   type ClassSession,
 } from "@/lib/classEvent";
+
+const FALLBACK_EVENT: ClassSession = {
+  id: "primer-encuentro-foro-agora-2026",
+  title: "Primer encuentro de Foro Agora",
+  module_number: 1,
+  class_date: "2026-07-22T21:00:00.000Z",
+  end_date: "2026-07-22T23:00:00.000Z",
+  location: "Sala audiovisual de Casa INJU",
+  max_capacity: 80,
+  registration_limit: 90,
+  is_active: true,
+  is_featured: true,
+  notes: null,
+};
 
 const departments = [
   "Montevideo", "Canelones", "Maldonado", "Salto", "Colonia", "Paysandú",
@@ -255,22 +275,80 @@ const RegisterPage = () => {
   }
 
   if (submitted) {
+    const confirmedClass = selectedClass || FALLBACK_EVENT;
+    const googleCalendarUrl = getGoogleCalendarUrl(confirmedClass);
+    const appleCalendarUrl = getAppleCalendarDataUrl(confirmedClass);
+    const googleMapsUrl = getGoogleMapsUrl();
+
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background pt-20">
+      <div className="min-h-screen bg-background pb-16 pt-28 md:pt-36">
         <SectionFade>
-          <div className="text-center max-w-md mx-auto px-6">
+          <div className="mx-auto max-w-3xl px-6 text-center">
             <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mx-auto mb-6">
               <CheckCircle2 size={40} className="text-foreground" />
             </div>
             <h1 className="text-3xl font-heading font-semibold text-foreground mb-4">Inscripción recibida</h1>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Tu lugar quedó reservado para <strong className="text-foreground">{selectedClass?.title}</strong>.
+              Tu lugar quedó reservado para <strong className="text-foreground">{confirmedClass.title}</strong>.
             </p>
             <div className="border border-border rounded-lg p-6 text-left space-y-3 text-sm">
               <p className="font-heading font-semibold text-foreground">¿Qué sigue?</p>
-              <p className="text-muted-foreground">{selectedClass ? formatEventDate(selectedClass.class_date) : "Miércoles 22 de julio"}</p>
-              <p className="text-muted-foreground">{selectedClass ? formatEventTimeRange(selectedClass) : "18:00 a 20:00"}</p>
+              <p className="text-muted-foreground">{formatEventDate(confirmedClass.class_date)}</p>
+              <p className="text-muted-foreground">{formatEventTimeRange(confirmedClass)}</p>
               <p className="text-muted-foreground">Sala audiovisual de Casa INJU</p>
+            </div>
+
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <Button asChild variant="cta" className="w-full">
+                <a href={googleCalendarUrl} target="_blank" rel="noreferrer">
+                  <Calendar size={17} />
+                  Agregar a Google Calendar
+                  <ExternalLink size={15} />
+                </a>
+              </Button>
+              <Button asChild variant="outline" className="w-full">
+                <a href={appleCalendarUrl} download="primer-encuentro-foro-agora.ics">
+                  <Download size={17} />
+                  Agregar a Apple Calendar
+                </a>
+              </Button>
+            </div>
+
+            <div className="mt-8 overflow-hidden rounded-xl border border-border bg-card text-left shadow-sm">
+              <div className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="font-heading font-semibold text-foreground">{EVENT_LOCATION_NAME}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{EVENT_ADDRESS}</p>
+                </div>
+                <a
+                  href={googleMapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-blue-pop hover:underline"
+                >
+                  Cómo llegar <ExternalLink size={15} />
+                </a>
+              </div>
+              <div className="relative h-72 border-t border-border">
+                <iframe
+                  src={getGoogleMapsEmbedUrl()}
+                  title={`Mapa de ${EVENT_LOCATION_NAME}`}
+                  className="h-full w-full border-0 pointer-events-none"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                  tabIndex={-1}
+                />
+                <a
+                  href={googleMapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="absolute inset-0 z-10"
+                  aria-label={`Abrir ${EVENT_LOCATION_NAME} en Google Maps`}
+                >
+                  <span className="sr-only">Abrir ubicación en Google Maps</span>
+                </a>
+              </div>
             </div>
           </div>
         </SectionFade>

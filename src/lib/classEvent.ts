@@ -13,6 +13,8 @@ export interface ClassSession {
 }
 
 export const EVENT_TIME_ZONE = "America/Montevideo";
+export const EVENT_LOCATION_NAME = "Instituto Nacional de la Juventud - INJU";
+export const EVENT_ADDRESS = "Av. 18 de Julio 1865, 11200 Montevideo, Departamento de Montevideo";
 export const EVENT_FALLBACK_DESCRIPTION =
   "El primer encuentro presencial de Foro Agora: una introducción clara y participativa al análisis de empresas y la educación financiera.";
 
@@ -43,6 +45,61 @@ export const formatEventTimeRange = (classSession: ClassSession) =>
 
 export const getRegistrationLimit = (classSession: ClassSession) =>
   classSession.registration_limit ?? classSession.max_capacity;
+
+const formatCalendarTimestamp = (value: Date | string) =>
+  new Date(value).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+
+const escapeCalendarText = (value: string) =>
+  value.replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\\;");
+
+const getEventLocation = () => `${EVENT_LOCATION_NAME}, ${EVENT_ADDRESS}`;
+
+export const getGoogleCalendarUrl = (classSession: ClassSession) => {
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: classSession.title,
+    dates: `${formatCalendarTimestamp(classSession.class_date)}/${formatCalendarTimestamp(getEventEndDate(classSession))}`,
+    details: classSession.notes || EVENT_FALLBACK_DESCRIPTION,
+    location: getEventLocation(),
+    ctz: EVENT_TIME_ZONE,
+  });
+
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+};
+
+export const getAppleCalendarDataUrl = (classSession: ClassSession) => {
+  const calendar = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Foro Agora//Encuentros//ES",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "BEGIN:VEVENT",
+    `UID:${escapeCalendarText(classSession.id)}@foroagora.org`,
+    `DTSTAMP:${formatCalendarTimestamp(new Date())}`,
+    `DTSTART:${formatCalendarTimestamp(classSession.class_date)}`,
+    `DTEND:${formatCalendarTimestamp(getEventEndDate(classSession))}`,
+    `SUMMARY:${escapeCalendarText(classSession.title)}`,
+    `DESCRIPTION:${escapeCalendarText(classSession.notes || EVENT_FALLBACK_DESCRIPTION)}`,
+    `LOCATION:${escapeCalendarText(getEventLocation())}`,
+    "URL:https://foroagora.org",
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+
+  return `data:text/calendar;charset=utf-8,${encodeURIComponent(calendar)}`;
+};
+
+export const getGoogleMapsUrl = () => {
+  const params = new URLSearchParams({
+    api: "1",
+    query: getEventLocation(),
+  });
+  return `https://www.google.com/maps/search/?${params.toString()}`;
+};
+
+export const getGoogleMapsEmbedUrl = () =>
+  `https://www.google.com/maps?q=${encodeURIComponent(getEventLocation())}&output=embed`;
 
 export const getRegistrationPath = (classId: string) => `/registro?class=${encodeURIComponent(classId)}`;
 

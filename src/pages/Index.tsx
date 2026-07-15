@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import SectionFade from "@/components/SectionFade";
 import LiveStudentCounter from "@/components/LiveStudentCounter";
 import CoreValues from "@/components/CoreValues";
-import { LandingEventFooter, LandingEventHero } from "@/components/FeaturedEvent";
+import { LandingEventFooter, LandingEventPopup } from "@/components/FeaturedEvent";
 import { PreservedInjuSupportStrip } from "@/components/INJU_LOGO_DO_NOT_DELETE";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
@@ -597,7 +597,7 @@ const FinalCTA = () => (
 
 const Index = () => (
   <>
-    <LandingEventHero />
+    <LandingEventPopup />
     <Hero />
     <ProblemSection />
     <ValueProp />

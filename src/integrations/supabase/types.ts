@@ -134,6 +134,7 @@ export type Database = {
       class_registrations: {
         Row: {
           age: number
+          cedula: string | null
           class_id: string | null
           consent: boolean
           created_at: string
@@ -144,10 +145,12 @@ export type Database = {
           name: string
           phone: string | null
           school: string
+          user_id: string | null
           why: string | null
         }
         Insert: {
           age: number
+          cedula?: string | null
           class_id?: string | null
           consent: boolean
           created_at?: string
@@ -158,10 +161,12 @@ export type Database = {
           name: string
           phone?: string | null
           school: string
+          user_id?: string | null
           why?: string | null
         }
         Update: {
           age?: number
+          cedula?: string | null
           class_id?: string | null
           consent?: boolean
           created_at?: string
@@ -172,6 +177,7 @@ export type Database = {
           name?: string
           phone?: string | null
           school?: string
+          user_id?: string | null
           why?: string | null
         }
         Relationships: []
@@ -180,36 +186,45 @@ export type Database = {
         Row: {
           class_date: string
           created_at: string
+          end_date: string | null
           id: string
           is_active: boolean
+          is_featured: boolean
           location: string
           max_capacity: number
           module_number: number
           notes: string | null
+          registration_limit: number
           title: string
           updated_at: string
         }
         Insert: {
           class_date: string
           created_at?: string
+          end_date?: string | null
           id?: string
           is_active?: boolean
+          is_featured?: boolean
           location: string
           max_capacity?: number
           module_number?: number
           notes?: string | null
+          registration_limit?: number
           title: string
           updated_at?: string
         }
         Update: {
           class_date?: string
           created_at?: string
+          end_date?: string | null
           id?: string
           is_active?: boolean
+          is_featured?: boolean
           location?: string
           max_capacity?: number
           module_number?: number
           notes?: string | null
+          registration_limit?: number
           title?: string
           updated_at?: string
         }

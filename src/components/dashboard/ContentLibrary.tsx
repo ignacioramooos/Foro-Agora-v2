@@ -5,6 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Play, FileText, Download, Clock, BookOpen } from "lucide-react";
+import EventSignupButton from "@/components/EventSignupButton";
+import { useUpcomingClassSession } from "@/hooks/useUpcomingClassSession";
+import { formatEventDate, formatEventTimeRange } from "@/lib/classEvent";
 
 type ContentType = "video" | "article" | "material";
 
@@ -45,6 +48,7 @@ interface ContentLibraryProps {
 }
 
 const ContentLibrary = ({ mode = "dashboard", showHeader = true }: ContentLibraryProps) => {
+  const { classSession } = useUpcomingClassSession();
   const [items, setItems] = useState<ContentItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -82,6 +86,19 @@ const ContentLibrary = ({ mode = "dashboard", showHeader = true }: ContentLibrar
           <p className="text-muted-foreground text-sm mt-1">Accedé a todas las clases grabadas, artículos y materiales del programa.</p>
         </div>
       )}
+
+      {mode === "dashboard" && classSession ? (
+        <div className="flex flex-col gap-5 rounded-xl border-2 border-foreground bg-sun p-5 sm:flex-row sm:items-center sm:justify-between md:p-6">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-foreground/60">Próximo encuentro presencial</p>
+            <h2 className="mt-1 text-xl font-black text-foreground">{classSession.title}</h2>
+            <p className="mt-2 text-sm text-foreground/75">
+              {formatEventDate(classSession.class_date)} · {formatEventTimeRange(classSession)} · {classSession.location}
+            </p>
+          </div>
+          <EventSignupButton classId={classSession.id} className="w-full shrink-0 sm:w-auto" label="Inscribirme" variant="default" />
+        </div>
+      ) : null}
 
       {/* Filters */}
       <div className="flex gap-2 flex-wrap">

@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import SectionFade from "@/components/SectionFade";
 import LiveStudentCounter from "@/components/LiveStudentCounter";
 import CoreValues from "@/components/CoreValues";
+import { LandingEventFooter, LandingEventHero } from "@/components/FeaturedEvent";
+import { PreservedInjuSupportStrip } from "@/components/INJU_LOGO_DO_NOT_DELETE";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { curriculumClassCount } from "@/lib/curriculum";
@@ -310,9 +311,9 @@ const Hero = () => {
           <div className="relative z-10">
             <SectionFade>
               <p className="font-hand text-3xl md:text-4xl text-blue-pop mb-4">Educación financiera accesible</p>
-              <h1 className="max-w-3xl text-[2.25rem] sm:text-5xl md:text-6xl lg:text-[4.35rem] font-black leading-[0.95] sm:leading-[0.92] tracking-normal text-foreground mb-6 md:mb-7">
+              <h2 className="max-w-3xl text-[2.25rem] sm:text-5xl md:text-6xl lg:text-[4.35rem] font-black leading-[0.95] sm:leading-[0.92] tracking-normal text-foreground mb-6 md:mb-7">
                 Aprendé a analizar empresas e invertir con criterio propio, <strong className="font-black">gratis.</strong>
-              </h1>
+              </h2>
             </SectionFade>
             <SectionFade delay={0.1}>
               <p className="text-base md:text-lg text-foreground/70 max-w-xl mb-8">
@@ -567,92 +568,6 @@ const Testimonials = () => (
   </section>
 );
 
-const UpcomingClasses = () => {
-  const [classSession, setClassSession] = useState<{
-    id: string;
-    title: string;
-    module_number: number;
-    class_date: string;
-    location: string;
-    max_capacity: number;
-  } | null>(null);
-  const [warningOpen, setWarningOpen] = useState(false);
-
-  useEffect(() => {
-    const fetch = async () => {
-      const { data } = await supabase
-        .from("class_sessions")
-        .select("id, title, module_number, class_date, location, max_capacity")
-        .eq("is_active", true)
-        .gte("class_date", new Date().toISOString())
-        .order("class_date", { ascending: true })
-        .limit(1);
-      if (data && data.length > 0) setClassSession(data[0]);
-    };
-    fetch();
-  }, []);
-
-  if (!classSession) return null;
-
-  const registerUrl = `/registro?class=${classSession.id}`;
-  const requiresModuleWarning = classSession.module_number > 1;
-
-  return (
-    <section className="py-12 md:py-24 bg-blue-soft">
-      <div className="container">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          <div>
-            <p className="font-hand text-3xl text-blue-pop">Próximas clases</p>
-            <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-black">PROXIMAMENTE</h2>
-            <p className="text-foreground/70 text-base md:text-lg leading-relaxed mt-4 mb-6">
-              La próxima clase se anunciará sin fecha ni lugar hasta que esté todo confirmado.
-            </p>
-          </div>
-          <div className="rounded-[1.5rem] border-2 border-foreground bg-card p-6 md:p-8 shadow-[10px_10px_0_#ffc800]">
-            <h3 className="mb-4 text-2xl font-black">{classSession.title}</h3>
-            <div className="space-y-4 mb-6">
-              <div className="flex items-center gap-3 text-foreground/70">
-                <Users size={16} className="shrink-0 text-blue-pop" />
-                <span>Clase {classSession.module_number} del plan · PROXIMAMENTE</span>
-              </div>
-            </div>
-            {requiresModuleWarning ? (
-              <Button variant="cta" size="cta" className="w-full" onClick={() => setWarningOpen(true)}>
-                Inscribite
-              </Button>
-            ) : (
-              <Button asChild variant="cta" size="cta" className="w-full">
-                <Link to={registerUrl}>Inscribite</Link>
-              </Button>
-            )}
-          </div>
-        </div>
-      </div>
-      <Dialog open={warningOpen} onOpenChange={setWarningOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle>Esta clase empieza en la clase {classSession.module_number} del plan</DialogTitle>
-            <DialogDescription>
-              Si es tu primera vez, tené en cuenta que la clase anterior puede estar grabada y subida en la sección de clases. Podés verla antes de asistir.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-2">
-            <Button variant="outline" onClick={() => setWarningOpen(false)}>
-              No, no quiero registrarme
-            </Button>
-            <Button asChild variant="cta">
-              <Link to={registerUrl}>Sí, quiero registrarme</Link>
-            </Button>
-            <Button asChild variant="secondary">
-              <Link to="/auth">Ver clases grabadas →</Link>
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </section>
-  );
-};
-
 const FinalCTA = () => (
   <section className="relative overflow-hidden bg-sun py-12 md:py-20">
     <div className="absolute left-0 top-10 h-24 w-36 rounded-[50%] border-[14px] border-blue-pop border-r-transparent border-b-transparent rotate-[-10deg]" />
@@ -682,6 +597,7 @@ const FinalCTA = () => (
 
 const Index = () => (
   <>
+    <LandingEventHero />
     <Hero />
     <ProblemSection />
     <ValueProp />
@@ -689,7 +605,8 @@ const Index = () => (
     <HowItWorks />
     <MovementCTA />
     {/* ⚠️ TESTIMONIALS HIDDEN FOR NOW - DO NOT DELETE ⚠️ Re-enable when we have actual reviews */}
-    <UpcomingClasses />
+    <PreservedInjuSupportStrip />
+    <LandingEventFooter />
     <FinalCTA />
   </>
 );

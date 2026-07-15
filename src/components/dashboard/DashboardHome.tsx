@@ -7,11 +7,14 @@ import { Flame, BookOpen, FileText, Target, MapPin, Clock, CalendarDays, ArrowRi
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { DashboardTab } from "@/components/dashboard/DashboardLayout";
+import EventSignupButton from "@/components/EventSignupButton";
+import { useUpcomingClassSession } from "@/hooks/useUpcomingClassSession";
+import { formatEventDate, formatEventTimeRange } from "@/lib/classEvent";
 
 interface RegisteredEvent {
   id: string;
   title: string;
-  event_date: string;
+  class_date: string;
   location: string;
 }
 
@@ -75,6 +78,7 @@ const Sparkline = ({ points }: { points: number[] }) => {
 
 const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
   const { user, session } = useAuth();
+  const { classSession: upcomingClass } = useUpcomingClassSession();
   const [myEvents, setMyEvents] = useState<RegisteredEvent[]>([]);
   const [loadingEvents, setLoadingEvents] = useState(true);
   const [communityPosts, setCommunityPosts] = useState<CommunityPost[]>([]);
@@ -92,8 +96,8 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
       setLoadingEvents(true);
       try {
         const { data: regs } = await supabase
-          .from("event_registrations")
-          .select("event_id")
+          .from("class_registrations")
+          .select("class_id")
           .eq("user_id", session.user.id);
 
         if (!regs || regs.length === 0) {
@@ -101,13 +105,13 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
           return;
         }
 
-        const ids = regs.map((r: { event_id: string }) => r.event_id);
+        const ids = regs.flatMap((registration) => registration.class_id ? [registration.class_id] : []);
         const { data: evts } = await supabase
-          .from("events")
-          .select("id, title, event_date, location")
+          .from("class_sessions")
+          .select("id, title, class_date, location")
           .in("id", ids)
-          .gte("event_date", new Date().toISOString())
-          .order("event_date", { ascending: true })
+          .gte("class_date", new Date().toISOString())
+          .order("class_date", { ascending: true })
           .limit(3);
 
         setMyEvents((evts as RegisteredEvent[]) || []);
@@ -198,15 +202,6 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
     : 0;
   const currentClass = buildCurriculumProgress(completedProgramClasses).find((item) => item.status === "in_progress");
 
-  const formatDate = (iso: string) => {
-    const d = new Date(iso);
-    return d.toLocaleDateString("es-UY", { weekday: "long", day: "numeric", month: "long" });
-  };
-  const formatTime = (iso: string) => {
-    const d = new Date(iso);
-    return d.toLocaleTimeString("es-UY", { hour: "2-digit", minute: "2-digit" });
-  };
-
   return (
     <div className="p-6 md:p-10 max-w-5xl">
       {/* Go to landing */}
@@ -226,7 +221,7 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
         </p>
       </div>
 
-      <div className="mb-10 rounded-lg border-2 border-foreground bg-secondary p-6 md:p-8">
+      {upcomingClass ? <div className="mb-10 rounded-lg border-2 border-foreground bg-secondary p-6 md:p-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-xl">
             <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-sun text-foreground">
@@ -236,19 +231,15 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
               Clases presenciales
             </p>
             <h2 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-3">
-              Próxima clase: PROXIMAMENTE
+              {upcomingClass.title}
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Usaremos los datos de tu cuenta para completar el formulario de inscripción. Fecha y lugar se confirmarán más adelante.
+              {formatEventDate(upcomingClass.class_date)} · {formatEventTimeRange(upcomingClass)} · {upcomingClass.location}
             </p>
           </div>
-          <Button asChild variant="cta" size="cta" className="w-full md:w-auto">
-            <Link to="/registro">
-              Registrarme a clase <ArrowRight size={16} />
-            </Link>
-          </Button>
+          <EventSignupButton classId={upcomingClass.id} className="w-full md:w-auto" label="Registrarme al encuentro" />
         </div>
-      </div>
+      </div> : null}
 
       {/* Quick actions */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
@@ -327,8 +318,8 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
                 <div>
                   <h3 className="font-heading font-semibold text-foreground">{event.title}</h3>
                   <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mt-2">
-                    <span className="flex items-center gap-1.5"><CalendarDays size={14} /> {formatDate(event.event_date)}</span>
-                    <span className="flex items-center gap-1.5"><Clock size={14} /> {formatTime(event.event_date)}</span>
+                    <span className="flex items-center gap-1.5"><CalendarDays size={14} /> {formatEventDate(event.class_date)}</span>
+                    <span className="flex items-center gap-1.5"><Clock size={14} /> {new Intl.DateTimeFormat("es-UY", { hour: "2-digit", minute: "2-digit", timeZone: "America/Montevideo", hour12: false }).format(new Date(event.class_date))}</span>
                     <span className="flex items-center gap-1.5"><MapPin size={14} /> {event.location}</span>
                   </div>
                 </div>

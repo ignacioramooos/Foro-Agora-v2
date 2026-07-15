@@ -27,8 +27,15 @@ const interestOptions = [
 ];
 
 const PENDING_KEY = "pending_onboarding";
+const PENDING_RETURN_TO_KEY = "pending_auth_return_to";
+
+const sanitizeReturnTo = (value: string | null) => {
+  if (!value || !value.startsWith("/") || value.startsWith("//")) return "/dashboard";
+  return value;
+};
 
 type FlowStep =
+  | "event-choice"
   | "login"
   | "forgot-password"
   | "reset-password"
@@ -107,6 +114,7 @@ const AuthPage = () => {
   const { isLoggedIn, user, login, refreshProfile, loading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const returnTo = sanitizeReturnTo(getAuthUrlParams().get("returnTo") || sessionStorage.getItem(PENDING_RETURN_TO_KEY));
   const [step, setStep] = useState<FlowStep>(() => {
     const params = getAuthUrlParams();
     if (params.get("reset-password") === "true" || window.location.hash.includes("type=recovery")) {
@@ -115,6 +123,9 @@ const AuthPage = () => {
     if (params.get("mode") === "signup") {
       return "step-1";
     }
+    if (params.get("mode") === "event") {
+      return "event-choice";
+    }
     return "login";
   });
   const [email, setEmail] = useState(() => getAuthUrlParams().get("email") || "");
@@ -122,17 +133,24 @@ const AuthPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [loginChosen, setLoginChosen] = useState(false);
   const [completingProfile, setCompletingProfile] = useState(false);
   const [onboardingData, setOnboardingData] = useState<OnboardingData>(emptyOnboarding);
+  const isEventRegistrationFlow = returnTo.startsWith("/registro?class=");
+
+  useEffect(() => {
+    const requestedReturnTo = getAuthUrlParams().get("returnTo");
+    if (requestedReturnTo) sessionStorage.setItem(PENDING_RETURN_TO_KEY, sanitizeReturnTo(requestedReturnTo));
+  }, [location.search, location.hash]);
 
   useEffect(() => {
     const params = getAuthUrlParams();
-    if (params.get("mode") === "signup" && !isLoggedIn && step === "login") {
+    if (params.get("mode") === "signup" && !isLoggedIn && step === "login" && !loginChosen) {
       setError("");
       setOnboardingData(emptyOnboarding);
       setStep("step-1");
     }
-  }, [isLoggedIn, location.search, location.hash, step]);
+  }, [isLoggedIn, location.search, location.hash, loginChosen, step]);
 
   // After Google OAuth round-trip: apply pending onboarding to profile
   useEffect(() => {
@@ -171,6 +189,7 @@ const AuthPage = () => {
       !user ||
       user.onboardingCompleted ||
       completingProfile ||
+      isEventRegistrationFlow ||
       step === "reset-password" ||
       step === "password-updated" ||
       sessionStorage.getItem(PENDING_KEY)
@@ -181,13 +200,21 @@ const AuthPage = () => {
     setCompletingProfile(true);
     setOnboardingData((prev) => ({ ...prev, fullName: user.name || "" }));
     setStep("step-1");
-  }, [loading, isLoggedIn, user, completingProfile, step]);
+  }, [loading, isLoggedIn, user, completingProfile, isEventRegistrationFlow, step]);
+
+  const shouldRedirectAfterAuth = Boolean(
+    isLoggedIn && user && (user.onboardingCompleted || isEventRegistrationFlow) && !completingProfile && step !== "reset-password" && step !== "password-updated"
+  );
+
+  useEffect(() => {
+    if (shouldRedirectAfterAuth) sessionStorage.removeItem(PENDING_RETURN_TO_KEY);
+  }, [shouldRedirectAfterAuth]);
 
   if (loading) return null;
 
   // Logged-in + onboarding complete → dashboard
-  if (isLoggedIn && user?.onboardingCompleted && !completingProfile && step !== "reset-password" && step !== "password-updated") {
-    return <Navigate to="/dashboard" replace />;
+  if (shouldRedirectAfterAuth) {
+    return <Navigate to={returnTo} replace />;
   }
 
   const set = <K extends keyof OnboardingData>(key: K, value: OnboardingData[K]) =>
@@ -212,18 +239,22 @@ const AuthPage = () => {
     return false;
   };
 
-  const currentStepNumber = step === "step-1" ? 1 : step === "step-2" ? 2 : step === "step-3" ? 3 : step === "step-account" ? 4 : 0;
-  const totalSteps = completingProfile ? 3 : 4;
+  const currentStepNumber = isEventRegistrationFlow && step === "step-account" ? 1 : step === "step-1" ? 1 : step === "step-2" ? 2 : step === "step-3" ? 3 : step === "step-account" ? 4 : 0;
+  const totalSteps = isEventRegistrationFlow ? 1 : completingProfile ? 3 : 4;
 
   const handleGoogleSignup = async () => {
     setError("");
-    sessionStorage.setItem(PENDING_KEY, JSON.stringify(onboardingData));
+    if (isEventRegistrationFlow && !onboardingData.acceptedTerms) {
+      setError("Aceptá los términos y la política de privacidad para crear tu cuenta.");
+      return;
+    }
+    if (!isEventRegistrationFlow) sessionStorage.setItem(PENDING_KEY, JSON.stringify(onboardingData));
     const { error: oauthError } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: getAuthRedirectUrl("/auth") },
+      options: { redirectTo: getAuthRedirectUrl(`/auth?returnTo=${encodeURIComponent(returnTo)}`) },
     });
     if (oauthError) {
-      sessionStorage.removeItem(PENDING_KEY);
+      if (!isEventRegistrationFlow) sessionStorage.removeItem(PENDING_KEY);
       setError("Error al iniciar sesión con Google");
     }
   };
@@ -233,7 +264,7 @@ const AuthPage = () => {
     sessionStorage.removeItem(PENDING_KEY);
     const { error: oauthError } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: getAuthRedirectUrl("/auth") },
+      options: { redirectTo: getAuthRedirectUrl(`/auth?returnTo=${encodeURIComponent(returnTo)}`) },
     });
     if (oauthError) setError("Error al iniciar sesión con Google");
   };
@@ -277,21 +308,27 @@ const AuthPage = () => {
   const handleEmailSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    if (isEventRegistrationFlow && !onboardingData.acceptedTerms) { setError("Aceptá los términos y la política de privacidad para crear tu cuenta."); return; }
     if (!email.trim()) { setError("Ingresá tu email"); return; }
     if (password.length < 8) { setError("La contraseña debe tener al menos 8 caracteres"); return; }
     if (password !== confirmPassword) { setError("Las contraseñas no coinciden"); return; }
 
     setSubmitting(true);
+    if (!isEventRegistrationFlow) sessionStorage.setItem(PENDING_KEY, JSON.stringify(onboardingData));
     const { error: signupError } = await supabase.auth.signUp({
       email,
       password,
       options: {
         data: buildMetadata(onboardingData),
-        emailRedirectTo: getAuthRedirectUrl("/auth"),
+        emailRedirectTo: getAuthRedirectUrl(`/auth?returnTo=${encodeURIComponent(returnTo)}`),
       },
     });
     setSubmitting(false);
-    if (signupError) { setError(signupError.message); return; }
+    if (signupError) {
+      if (!isEventRegistrationFlow) sessionStorage.removeItem(PENDING_KEY);
+      setError(signupError.message);
+      return;
+    }
     setStep("email-confirmation");
   };
 
@@ -305,10 +342,37 @@ const AuthPage = () => {
     if (updateError) { setError("No se pudo guardar el perfil. Intentá de nuevo."); return; }
     sessionStorage.removeItem(PENDING_KEY);
     await refreshProfile();
-    navigate("/dashboard", { replace: true });
+    sessionStorage.removeItem(PENDING_RETURN_TO_KEY);
+    navigate(returnTo, { replace: true });
   };
 
   const inputClass = "w-full h-12 px-4 rounded-md border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring/50 transition-shadow font-heading";
+
+  if (step === "event-choice") {
+    return (
+      <div className="min-h-screen bg-background px-6 py-12 pt-28">
+        <div className="mx-auto max-w-md rounded-2xl border-2 border-foreground bg-card p-7 shadow-[10px_10px_0_#ffc800] md:p-9">
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-blue-pop">Inscripción al encuentro</p>
+          <h1 className="mt-3 text-3xl font-black leading-tight text-foreground">Reservá tu lugar para el 22 de julio</h1>
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            Para confirmar tu inscripción necesitás una cuenta. Elegí una opción y después vas directo al formulario del evento.
+          </p>
+          <div className="mt-7 grid gap-3">
+            <Button variant="cta" size="cta" onClick={() => { setError(""); setStep("step-account"); }}>
+              Crear una cuenta
+            </Button>
+            <Button variant="cta-outline" size="cta" onClick={() => { setLoginChosen(true); setError(""); setStep("login"); }}>
+              Ya tengo cuenta
+            </Button>
+          </div>
+          <p className="mt-5 text-center text-xs text-muted-foreground">Miércoles 22 de julio · 18:00 a 20:00 · Casa INJU</p>
+          <Link to="/" className="mt-6 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
+            <ArrowLeft size={14} /> Volver al inicio
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (step === "reset-sent") {
     return (
@@ -356,7 +420,7 @@ const AuthPage = () => {
           </h1>
           <p className="text-muted-foreground mb-2">Ya sos parte de la nueva generación financiera de Uruguay.</p>
           <p className="text-sm text-muted-foreground mb-8">
-            Te enviamos un link de confirmación a <strong className="text-foreground">{email}</strong>. Hacé click en el link para activar tu cuenta.
+            Te enviamos un link de confirmación a <strong className="text-foreground">{email}</strong>. Hacé click para activar tu cuenta{isEventRegistrationFlow ? " y continuar directamente con la inscripción al encuentro" : ""}.
           </p>
           <Button variant="cta-outline" size="cta" asChild>
             <Link to="/">Volver al inicio</Link>
@@ -497,8 +561,23 @@ const AuthPage = () => {
 
           {step === "step-account" && (
             <div>
-              <h2 className="text-xl font-heading font-semibold text-foreground mb-1">Creá tu cuenta</h2>
-              <p className="text-sm text-muted-foreground mb-6">Último paso. Elegí cómo querés acceder.</p>
+              <h2 className="text-xl font-heading font-semibold text-foreground mb-1">{isEventRegistrationFlow ? "Creá tu cuenta para inscribirte" : "Creá tu cuenta"}</h2>
+              <p className="text-sm text-muted-foreground mb-6">{isEventRegistrationFlow ? "Elegí cómo acceder. Después vas directo al formulario del evento." : "Último paso. Elegí cómo querés acceder."}</p>
+
+              {isEventRegistrationFlow ? (
+                <div className="mb-5 flex items-start gap-3 rounded-lg border border-border bg-secondary/40 p-4">
+                  <input
+                    id="event-auth-terms"
+                    type="checkbox"
+                    checked={onboardingData.acceptedTerms}
+                    onChange={(e) => { set("acceptedTerms", e.target.checked); setError(""); }}
+                    className="mt-1 h-4 w-4"
+                  />
+                  <label htmlFor="event-auth-terms" className="text-sm leading-relaxed text-muted-foreground">
+                    Acepto los <Link to="/terminos" className="text-foreground underline">términos</Link> y la <Link to="/privacidad" className="text-foreground underline">política de privacidad</Link>. *
+                  </label>
+                </div>
+              ) : null}
 
               <button
                 type="button"
@@ -562,6 +641,15 @@ const AuthPage = () => {
               </Button>
             </div>
           )}
+
+          {!completingProfile ? (
+            <p className="mt-7 text-center text-sm text-muted-foreground">
+              ¿Ya tenés una cuenta?{" "}
+              <button type="button" onClick={() => { setLoginChosen(true); setStep("login"); setError(""); }} className="font-semibold text-foreground underline-offset-4 hover:underline">
+                Iniciar sesión
+              </button>
+            </p>
+          ) : null}
         </div>
       </div>
     );
@@ -642,7 +730,7 @@ const AuthPage = () => {
             <>
               <button onClick={() => { setStep("forgot-password"); setError(""); }} className="text-foreground font-medium hover:underline">Olvidé mi contraseña</button>
               <span className="mx-2">·</span>
-              ¿No tenés cuenta? <button onClick={() => { setStep("step-1"); setError(""); setOnboardingData(emptyOnboarding); }} className="text-foreground font-medium hover:underline">Registrate</button>
+              ¿No tenés cuenta? <button onClick={() => { setLoginChosen(false); setStep("step-1"); setError(""); setOnboardingData(emptyOnboarding); }} className="text-foreground font-medium hover:underline">Registrate</button>
             </>
           ) : (
             <>¿Ya tenés cuenta? <button onClick={() => { setStep("login"); setError(""); }} className="text-foreground font-medium hover:underline">Iniciá sesión</button></>

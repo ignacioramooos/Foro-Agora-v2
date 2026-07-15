@@ -6,18 +6,21 @@
  * later if needed.
  */
 
+import injuCasaColorLogo from "@/assets/inju-casa-inju-color-2026.png";
+import injuCasaMonochromeLogo from "@/assets/inju-casa-inju-monochrome-2026.png";
+
 export const PreservedInjuLogo = () => (
-  <div className="flex w-full items-center gap-8 md:justify-end" aria-label="INJU, Instituto Nacional de la Juventud">
-    <div className="flex h-28 w-28 shrink-0 items-center justify-center bg-[#5f18ea] p-3">
-      <span className="font-hand text-5xl font-bold leading-none text-white">Inju!</span>
-    </div>
-    <div className="font-heading text-foreground">
-      <p className="text-4xl font-black leading-none tracking-normal md:text-5xl">INJU</p>
-      <p className="mt-2 max-w-[24rem] text-base font-black uppercase leading-tight tracking-wide text-foreground/70 md:text-xl">
-        Instituto Nacional de la Juventud
-      </p>
-      <p className="mt-1 text-base font-bold text-blue-pop md:text-xl">Uruguay</p>
-    </div>
+  <div className="w-full overflow-hidden rounded-xl border border-border bg-white px-3 py-5 dark:bg-black md:px-6" aria-label="Ministerio de Desarrollo Social, INJU y Casa INJU">
+    <img
+      src={injuCasaColorLogo}
+      alt="Ministerio de Desarrollo Social, INJU y Casa INJU"
+      className="h-auto w-full object-contain dark:hidden"
+    />
+    <img
+      src={injuCasaMonochromeLogo}
+      alt="Ministerio de Desarrollo Social, INJU y Casa INJU"
+      className="hidden h-auto w-full object-contain dark:block"
+    />
   </div>
 );
 

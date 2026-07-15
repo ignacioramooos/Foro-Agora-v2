@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useLocation, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import SectionFade from "@/components/SectionFade";
@@ -9,6 +9,15 @@ import { useProfile } from "@/hooks/useProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { curriculumClassCount } from "@/lib/curriculum";
 import { toast } from "sonner";
+import {
+  formatEventDate,
+  formatEventTimeRange,
+  getEventAuthPath,
+  getRegistrationLimit,
+  isValidUruguayanCedula,
+  normalizeCedula,
+  type ClassSession,
+} from "@/lib/classEvent";
 
 const departments = [
   "Montevideo", "Canelones", "Maldonado", "Salto", "Colonia", "Paysandú",
@@ -27,34 +36,23 @@ const hearOptions = [
   "Otro",
 ];
 
-const NEXT_CLASS_LABEL = "PROXIMAMENTE";
-
-interface ClassSession {
-  id: string;
-  title: string;
-  module_number: number;
-  class_date: string;
-  location: string;
-  max_capacity: number;
-}
-
 const RegisterPage = () => {
-  const { user } = useAuth();
+  const { user, session, isLoggedIn, loading: authLoading } = useAuth();
   const { updateProfile } = useProfile();
-  const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [savingProfile, setSavingProfile] = useState(false);
   const [classesLoading, setClassesLoading] = useState(true);
+  const [checkingRegistration, setCheckingRegistration] = useState(false);
   const [classes, setClasses] = useState<ClassSession[]>([]);
   const [selectedClassId, setSelectedClassId] = useState(searchParams.get("class") || "");
   const [moduleWarningOpen, setModuleWarningOpen] = useState(false);
   const [moduleWarningAccepted, setModuleWarningAccepted] = useState(false);
-  const [accountPromptOpen, setAccountPromptOpen] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState({
-    name: "", age: "", school: "", department: "", email: "", phone: "", hearAbout: "", why: "", consent: false,
+    name: "", age: "", school: "", department: "", email: "", phone: "", cedula: "", hearAbout: "", why: "", consent: false,
   });
 
   const selectedClass = classes.find((c) => c.id === selectedClassId) || null;
@@ -93,7 +91,7 @@ const RegisterPage = () => {
     const fetchClasses = async () => {
       const { data, error } = await supabase
         .from("class_sessions")
-        .select("id, title, module_number, class_date, location, max_capacity")
+        .select("*")
         .eq("is_active", true)
         .gte("class_date", new Date().toISOString())
         .order("class_date", { ascending: true });
@@ -120,6 +118,31 @@ const RegisterPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (!session?.user?.id || !selectedClassId) return;
+    let cancelled = false;
+    setCheckingRegistration(true);
+
+    const checkExistingRegistration = async () => {
+      const { data } = await supabase
+        .from("class_registrations")
+        .select("id")
+        .eq("class_id", selectedClassId)
+        .eq("user_id", session.user.id)
+        .maybeSingle();
+
+      if (!cancelled) {
+        setSubmitted(Boolean(data));
+        setCheckingRegistration(false);
+      }
+    };
+
+    checkExistingRegistration();
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedClassId, session?.user?.id]);
+
   const set = (field: string, value: string | boolean) => {
     setForm((p) => ({ ...p, [field]: value }));
     setErrors((p) => ({ ...p, [field]: "" }));
@@ -132,6 +155,7 @@ const RegisterPage = () => {
     if (!form.school.trim()) e.school = "Campo requerido";
     if (!form.department) e.department = "Seleccioná un departamento";
     if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) e.email = "Email inválido";
+    if (!isValidUruguayanCedula(form.cedula)) e.cedula = "Ingresá una cédula uruguaya válida";
     if (!selectedClassId) e.class = "Seleccioná una clase";
     if (!form.consent) e.consent = "Debés aceptar para continuar";
     setErrors(e);
@@ -142,8 +166,16 @@ const RegisterPage = () => {
     setLoading(true);
     setErrors((prev) => ({ ...prev, submit: "" }));
 
+    if (!session?.user) {
+      setLoading(false);
+      setErrors((prev) => ({ ...prev, submit: "Iniciá sesión para completar la inscripción." }));
+      return;
+    }
+
     const { error } = await supabase.from("class_registrations").insert({
       class_id: selectedClassId,
+      user_id: session.user.id,
+      cedula: normalizeCedula(form.cedula),
       name: form.name,
       age: Number(form.age),
       school: form.school,
@@ -158,19 +190,16 @@ const RegisterPage = () => {
     setLoading(false);
 
     if (error) {
-      setErrors((prev) => ({ ...prev, submit: "Hubo un error. Intentá de nuevo." }));
+      const message = error.code === "23505"
+        ? "Ya estás inscripto a este encuentro."
+        : error.message.includes("límite")
+          ? "Se alcanzó el límite de 90 inscripciones."
+          : "No pudimos confirmar la inscripción. Revisá los datos e intentá de nuevo.";
+      setErrors((prev) => ({ ...prev, submit: message }));
       return;
     }
 
-    setAccountPromptOpen(true);
-  };
-
-  const goToSignup = () => {
-    const params = new URLSearchParams({
-      mode: "signup",
-      email: form.email.trim(),
-    });
-    navigate(`/auth?${params.toString()}`);
+    setSubmitted(true);
   };
 
   const handleSubmit = async (ev: React.FormEvent) => {
@@ -193,7 +222,7 @@ const RegisterPage = () => {
 
   const saveProfileChanges = async () => {
     if (!user?.id) {
-      toast.error("No user session");
+      toast.error("No hay una sesión activa");
       return;
     }
 
@@ -217,6 +246,14 @@ const RegisterPage = () => {
     }
   };
 
+  if (authLoading) return null;
+
+  if (!isLoggedIn || !session?.user) {
+    const selectedId = searchParams.get("class");
+    const returnTo = `${location.pathname}${location.search}`;
+    return <Navigate to={selectedId ? getEventAuthPath(selectedId) : `/auth?mode=signup&returnTo=${encodeURIComponent(returnTo)}`} replace />;
+  }
+
   if (submitted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background pt-20">
@@ -227,14 +264,13 @@ const RegisterPage = () => {
             </div>
             <h1 className="text-3xl font-heading font-semibold text-foreground mb-4">Inscripción recibida</h1>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Te enviamos un email de confirmación a <strong className="text-foreground">{form.email}</strong>.
-              Revisá tu bandeja de entrada para los próximos pasos.
+              Tu lugar quedó reservado para <strong className="text-foreground">{selectedClass?.title}</strong>.
             </p>
             <div className="border border-border rounded-lg p-6 text-left space-y-3 text-sm">
               <p className="font-heading font-semibold text-foreground">¿Qué sigue?</p>
-              <p className="text-muted-foreground">Fecha y lugar: {NEXT_CLASS_LABEL}</p>
-              <p className="text-muted-foreground">Te enviaremos detalles cuando estén confirmados</p>
-              <p className="text-muted-foreground">Invitación a la comunidad online</p>
+              <p className="text-muted-foreground">{selectedClass ? formatEventDate(selectedClass.class_date) : "Miércoles 22 de julio"}</p>
+              <p className="text-muted-foreground">{selectedClass ? formatEventTimeRange(selectedClass) : "18:00 a 20:00"}</p>
+              <p className="text-muted-foreground">Sala audiovisual de Casa INJU</p>
             </div>
           </div>
         </SectionFade>
@@ -258,7 +294,7 @@ const RegisterPage = () => {
             <h1 className="text-3xl md:text-4xl text-foreground mb-2">
               Inscribite a una clase
             </h1>
-            <p className="text-muted-foreground mb-8">Completá el formulario. Toma 2 minutos.</p>
+            <p className="text-muted-foreground mb-8">Tus datos básicos ya están completos. Agregá tu cédula y confirmá tu lugar.</p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
@@ -276,7 +312,7 @@ const RegisterPage = () => {
                   <option value="">{classesLoading ? "Cargando clases..." : classes.length === 0 ? "No hay clases disponibles" : "Seleccionar clase..."}</option>
                   {classes.map((c) => (
                     <option key={c.id} value={c.id}>
-                      {c.title} - Clase {c.module_number} de {curriculumClassCount} - {NEXT_CLASS_LABEL}
+                      {c.title} · {formatEventDate(c.class_date)} · {formatEventTimeRange(c)}
                     </option>
                   ))}
                 </select>
@@ -309,8 +345,24 @@ const RegisterPage = () => {
               </div>
               <div>
                 <label className="block text-sm font-heading font-medium text-foreground mb-1.5">Email *</label>
-                <input type="email" className={inputClass("email")} value={form.email} onChange={(e) => set("email", e.target.value)} />
+                <input type="email" className={inputClass("email")} value={form.email} readOnly aria-readonly="true" />
                 {errors.email && <p className="text-destructive text-xs mt-1">{errors.email}</p>}
+              </div>
+              <div>
+                <label htmlFor="event-cedula" className="block text-sm font-heading font-medium text-foreground mb-1.5">Cédula de identidad *</label>
+                <input
+                  id="event-cedula"
+                  inputMode="numeric"
+                  autoComplete="off"
+                  maxLength={10}
+                  className={inputClass("cedula")}
+                  value={form.cedula}
+                  onChange={(e) => set("cedula", e.target.value)}
+                  placeholder="Ej: 4.567.890-1"
+                  aria-describedby="cedula-help"
+                />
+                <p id="cedula-help" className="mt-1 text-xs text-muted-foreground">Se solicita para confirmar tu identidad y evitar inscripciones duplicadas.</p>
+                {errors.cedula && <p className="text-destructive text-xs mt-1">{errors.cedula}</p>}
               </div>
               <div>
                 <label className="block text-sm font-heading font-medium text-foreground mb-1.5">Teléfono / WhatsApp <span className="text-muted-foreground text-xs">(opcional)</span></label>
@@ -340,14 +392,14 @@ const RegisterPage = () => {
                   className="mt-1 w-4 h-4"
                 />
                 <label className="text-sm text-muted-foreground">
-                  Acepto recibir información sobre el programa por email. *
+                  Acepto los <Link to="/terminos" className="text-foreground underline underline-offset-2">términos</Link>, la <Link to="/privacidad" className="text-foreground underline underline-offset-2">política de privacidad</Link> y el uso de estos datos para gestionar mi inscripción. *
                 </label>
               </div>
               {errors.consent && <p className="text-destructive text-xs">{errors.consent}</p>}
               {errors.submit && <p className="text-destructive text-xs">{errors.submit}</p>}
               <div className="flex gap-3">
-                <Button type="submit" variant="cta" size="cta" className="flex-1" disabled={loading}>
-                  {loading ? <Loader2 size={16} className="animate-spin" /> : "Inscribirme"}
+                <Button type="submit" variant="cta" size="cta" className="flex-1" disabled={loading || checkingRegistration}>
+                  {loading || checkingRegistration ? <Loader2 size={16} className="animate-spin" /> : "Inscribirme"}
                 </Button>
                 {user && (
                   <Button 
@@ -376,11 +428,11 @@ const RegisterPage = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin size={16} className="text-muted-foreground mt-0.5 shrink-0" />
-                  <div><strong className="text-foreground font-heading">Ubicación:</strong><br /><span className="text-muted-foreground">{NEXT_CLASS_LABEL}</span></div>
+                  <div><strong className="text-foreground font-heading">Ubicación:</strong><br /><span className="text-muted-foreground">{selectedClass?.location || "Sala audiovisual de Casa INJU"}</span></div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Calendar size={16} className="text-muted-foreground mt-0.5 shrink-0" />
-                  <div><strong className="text-foreground font-heading">Fecha y hora:</strong><br /><span className="text-muted-foreground">{NEXT_CLASS_LABEL}</span></div>
+                  <div><strong className="text-foreground font-heading">Fecha y hora:</strong><br /><span className="text-muted-foreground">{selectedClass ? `${formatEventDate(selectedClass.class_date)} · ${formatEventTimeRange(selectedClass)}` : "Miércoles 22 de julio · 18:00 a 20:00"}</span></div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Gift size={16} className="text-muted-foreground mt-0.5 shrink-0" />
@@ -388,7 +440,7 @@ const RegisterPage = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <Users size={16} className="text-muted-foreground mt-0.5 shrink-0" />
-                  <div><strong className="text-foreground font-heading">Comunidad:</strong><br /><span className="text-muted-foreground">Acceso a grupo y recursos online</span></div>
+                  <div><strong className="text-foreground font-heading">Cupos:</strong><br /><span className="text-muted-foreground">{selectedClass ? `${selectedClass.max_capacity} lugares presenciales · hasta ${getRegistrationLimit(selectedClass)} inscripciones` : "80 lugares · hasta 90 inscripciones"}</span></div>
                 </div>
               </div>
               <div className="border-t border-border pt-4">
@@ -418,24 +470,6 @@ const RegisterPage = () => {
             </Button>
             <Button asChild variant="secondary">
               <Link to="/auth">Ver clases grabadas →</Link>
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-      <Dialog open={accountPromptOpen} onOpenChange={setAccountPromptOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle>¿Querés crear una cuenta?</DialogTitle>
-            <DialogDescription>
-              Tu inscripción a la clase quedó registrada. Si creás una cuenta en Foro Agora, vas a poder acceder a clases grabadas y más materiales del programa.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-2">
-            <Button variant="cta" onClick={goToSignup}>
-              Sí, crear cuenta
-            </Button>
-            <Button variant="outline" onClick={() => { setAccountPromptOpen(false); setSubmitted(true); }}>
-              No, continuar sin cuenta
             </Button>
           </div>
         </DialogContent>

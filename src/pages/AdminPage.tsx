@@ -41,6 +41,9 @@ interface ClassSession {
   class_date: string;
   location: string;
   max_capacity: number;
+  registration_limit: number;
+  end_date: string | null;
+  is_featured: boolean;
   is_active: boolean;
   notes: string | null;
 }
@@ -54,6 +57,8 @@ interface ClassRegistration {
   department: string;
   email: string;
   phone: string | null;
+  cedula: string | null;
+  user_id: string | null;
   hear_about: string | null;
   why: string | null;
   created_at: string;
@@ -76,8 +81,10 @@ const emptyClassForm = {
   title: "",
   module_number: "1",
   class_date: "",
+  end_date: "",
   location: "",
   max_capacity: "30",
+  registration_limit: "30",
   is_active: true,
   notes: "",
 };
@@ -88,6 +95,44 @@ const toDateTimeLocal = (value: string) => {
   const offset = date.getTimezoneOffset();
   const local = new Date(date.getTime() - offset * 60 * 1000);
   return local.toISOString().slice(0, 16);
+};
+
+const formatAdminDate = (value: string) => new Date(value).toLocaleString("es-UY", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+const csvCell = (value: string | number | null | undefined) => {
+  const raw = String(value ?? "");
+  const safe = /^[=+\-@]/.test(raw) ? `'${raw}` : raw;
+  return `"${safe.replace(/"/g, '""')}"`;
+};
+
+const downloadClassRegistrationsCsv = (classSession: ClassSession, rows: ClassRegistration[]) => {
+  const headers = ["Nombre", "Cédula", "Edad", "Email", "Teléfono", "Institución", "Departamento", "Cómo nos conoció", "Motivo", "Fecha de inscripción"];
+  const dataRows = rows.map((registration) => [
+    registration.name,
+    registration.cedula,
+    registration.age,
+    registration.email,
+    registration.phone,
+    registration.school,
+    registration.department,
+    registration.hear_about,
+    registration.why,
+    formatAdminDate(registration.created_at),
+  ]);
+  const csv = `\uFEFF${[headers, ...dataRows].map((row) => row.map(csvCell).join(",")).join("\r\n")}`;
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = `${classSession.title.toLowerCase().replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "")}-inscriptos.csv`;
+  anchor.click();
+  window.setTimeout(() => URL.revokeObjectURL(url), 0);
 };
 
 const AdminPage = () => {
@@ -155,7 +200,7 @@ const AdminPage = () => {
           <h1 className="text-xl font-heading font-semibold text-foreground">Acceso denegado</h1>
           <p className="text-muted-foreground text-sm">No tenés permisos de administrador.</p>
           <Button asChild variant="outline">
-            <Link to="/dashboard">Volver al Dashboard</Link>
+            <Link to="/dashboard">Volver a mi panel</Link>
           </Button>
         </div>
       </div>
@@ -180,8 +225,10 @@ const AdminPage = () => {
       title: classSession.title,
       module_number: String(classSession.module_number),
       class_date: toDateTimeLocal(classSession.class_date),
+      end_date: toDateTimeLocal(classSession.end_date || ""),
       location: classSession.location,
       max_capacity: String(classSession.max_capacity),
+      registration_limit: String(classSession.registration_limit || classSession.max_capacity),
       is_active: classSession.is_active,
       notes: classSession.notes || "",
     });
@@ -267,8 +314,10 @@ const AdminPage = () => {
       title: classForm.title.trim(),
       module_number: parseInt(classForm.module_number) || 1,
       class_date: new Date(classForm.class_date).toISOString(),
+      end_date: classForm.end_date ? new Date(classForm.end_date).toISOString() : null,
       location: classForm.location.trim(),
       max_capacity: parseInt(classForm.max_capacity) || 30,
+      registration_limit: Math.max(parseInt(classForm.registration_limit) || 30, parseInt(classForm.max_capacity) || 30),
       is_active: classForm.is_active,
       notes: classForm.notes.trim() || null,
     };
@@ -298,13 +347,6 @@ const AdminPage = () => {
     acc[registration.class_id] = [...(acc[registration.class_id] || []), registration];
     return acc;
   }, {});
-  const formatDate = (value: string) => new Date(value).toLocaleString("es-UY", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
 
   return (
     <div className="min-h-screen bg-background">
@@ -350,22 +392,28 @@ const AdminPage = () => {
                           <Badge variant={classSession.is_active ? "default" : "outline"}>{classSession.is_active ? "Activa" : "Inactiva"}</Badge>
                         </div>
                         <p className="text-sm text-muted-foreground mt-1">
-                          Módulo {classSession.module_number} · {formatDate(classSession.class_date)} · {classSession.location}
+                          Módulo {classSession.module_number} · {formatAdminDate(classSession.class_date)} · {classSession.location}
                         </p>
                         {classSession.notes && <p className="text-sm text-muted-foreground mt-1">{classSession.notes}</p>}
                       </div>
-                      <Button variant="outline" size="sm" onClick={() => openEditClass(classSession)}>
-                        <Pencil size={14} className="mr-1" /> Editar
-                      </Button>
+                      <div className="flex flex-wrap gap-2">
+                        <Button variant="outline" size="sm" onClick={() => openEditClass(classSession)}>
+                          <Pencil size={14} className="mr-1" /> Editar
+                        </Button>
+                        <Button variant="outline" size="sm" disabled={classRegistrations.length === 0} onClick={() => downloadClassRegistrationsCsv(classSession, classRegistrations)}>
+                          <Download size={14} className="mr-1" /> Descargar CSV
+                        </Button>
+                      </div>
                     </div>
                     <div className="grid gap-3 md:grid-cols-3">
                       <div className="rounded-md bg-secondary p-3 text-sm">
                         <CalendarDays size={16} className="mb-2 text-muted-foreground" />
-                        <p className="font-heading font-semibold">{formatDate(classSession.class_date)}</p>
+                        <p className="font-heading font-semibold">{formatAdminDate(classSession.class_date)}</p>
                       </div>
                       <div className="rounded-md bg-secondary p-3 text-sm">
                         <Users size={16} className="mb-2 text-muted-foreground" />
-                        <p className="font-heading font-semibold">{classRegistrations.length} / {classSession.max_capacity} inscriptos</p>
+                        <p className="font-heading font-semibold">{classRegistrations.length} / {classSession.registration_limit || classSession.max_capacity} inscriptos</p>
+                        <p className="mt-1 text-xs text-muted-foreground">Capacidad presencial: {classSession.max_capacity}</p>
                       </div>
                       <div className="rounded-md bg-secondary p-3 text-sm">
                         <Video size={16} className="mb-2 text-muted-foreground" />
@@ -378,6 +426,8 @@ const AdminPage = () => {
                           <TableHeader>
                             <TableRow>
                               <TableHead>Nombre</TableHead>
+                              <TableHead>Cédula</TableHead>
+                              <TableHead className="hidden lg:table-cell">Edad</TableHead>
                               <TableHead>Email</TableHead>
                               <TableHead className="hidden md:table-cell">Institución</TableHead>
                               <TableHead className="hidden md:table-cell">Teléfono</TableHead>
@@ -387,6 +437,8 @@ const AdminPage = () => {
                             {classRegistrations.map((registration) => (
                               <TableRow key={registration.id}>
                                 <TableCell>{registration.name}</TableCell>
+                                <TableCell>{registration.cedula || "—"}</TableCell>
+                                <TableCell className="hidden lg:table-cell">{registration.age}</TableCell>
                                 <TableCell>{registration.email}</TableCell>
                                 <TableCell className="hidden md:table-cell">{registration.school}</TableCell>
                                 <TableCell className="hidden md:table-cell">{registration.phone || "—"}</TableCell>
@@ -594,21 +646,31 @@ const AdminPage = () => {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label>Título *</Label>
-              <Input value={classForm.title} onChange={(e) => setClassForm({ ...classForm, title: e.target.value })} placeholder="Ej: Clase 2 - Income Statement" />
+              <Input value={classForm.title} onChange={(e) => setClassForm({ ...classForm, title: e.target.value })} placeholder="Ej: Clase 2 — Estado de resultados" />
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               <div className="space-y-2">
                 <Label>Módulo</Label>
                 <Input type="number" min={1} value={classForm.module_number} onChange={(e) => setClassForm({ ...classForm, module_number: e.target.value })} />
               </div>
               <div className="space-y-2">
-                <Label>Cupos</Label>
+                <Label>Capacidad física</Label>
                 <Input type="number" min={1} value={classForm.max_capacity} onChange={(e) => setClassForm({ ...classForm, max_capacity: e.target.value })} />
               </div>
+              <div className="space-y-2">
+                <Label>Límite de inscripciones</Label>
+                <Input type="number" min={1} value={classForm.registration_limit} onChange={(e) => setClassForm({ ...classForm, registration_limit: e.target.value })} />
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label>Fecha y hora *</Label>
-              <Input type="datetime-local" value={classForm.class_date} onChange={(e) => setClassForm({ ...classForm, class_date: e.target.value })} />
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-2">
+                <Label>Inicio *</Label>
+                <Input type="datetime-local" value={classForm.class_date} onChange={(e) => setClassForm({ ...classForm, class_date: e.target.value })} />
+              </div>
+              <div className="space-y-2">
+                <Label>Fin</Label>
+                <Input type="datetime-local" value={classForm.end_date} onChange={(e) => setClassForm({ ...classForm, end_date: e.target.value })} />
+              </div>
             </div>
             <div className="space-y-2">
               <Label>Ubicación *</Label>

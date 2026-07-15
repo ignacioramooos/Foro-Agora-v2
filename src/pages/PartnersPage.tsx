@@ -5,6 +5,8 @@ import SectionFade from "@/components/SectionFade";
 import { CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
+import injuCasaColorLogo from "@/assets/inju-casa-inju-color-2026.png";
+import injuCasaMonochromeLogo from "@/assets/inju-casa-inju-monochrome-2026.png";
 
 const collaborationOptions = [
   "Difusión general",
@@ -145,7 +147,19 @@ const PartnersPage = () => {
             Nuestros aliados
           </p>
           <div className="grid gap-4 md:grid-cols-2">
-            {partners.map((p) => (
+            <div className="flex min-h-40 items-center justify-center overflow-hidden rounded-xl border-2 border-foreground bg-white px-3 py-6 dark:bg-black md:col-span-2 md:min-h-48 md:px-10">
+              <img
+                src={injuCasaColorLogo}
+                alt="INJU y Casa INJU — Instituto Nacional de la Juventud"
+                className="h-auto w-full max-w-5xl object-contain dark:hidden"
+              />
+              <img
+                src={injuCasaMonochromeLogo}
+                alt="INJU y Casa INJU — Instituto Nacional de la Juventud"
+                className="hidden h-auto w-full max-w-5xl object-contain dark:block"
+              />
+            </div>
+            {partners.filter((partner) => !partner.name.toLocaleLowerCase("es").includes("inju")).map((p) => (
               <div key={p.id} className="flex min-h-28 items-center justify-center rounded-lg border border-border bg-card px-8 py-5">
                 {p.logo_url ? (
                   <img src={p.logo_url} alt={p.name} className="h-12 object-contain" />

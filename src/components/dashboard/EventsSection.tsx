@@ -1,331 +1,121 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { CalendarDays, CheckCircle2, Clock, MapPin, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
-import { sendRegistrationToSheet } from "@/lib/eventUtils";
-import { CalendarDays, Clock, MapPin, Users, Loader2, CheckCircle2, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import EventSignupButton from "@/components/EventSignupButton";
 import { Badge } from "@/components/ui/badge";
-import { toast } from "sonner";
 import { Skeleton } from "@/components/ui/skeleton";
-
-interface Event {
-  id: string;
-  title: string;
-  description: string | null;
-  speaker_name: string | null;
-  speaker_role: string | null;
-  event_date: string;
-  location: string;
-  spots_total: number;
-  spots_taken: number;
-  is_active: boolean;
-}
-
-interface EventRegistration {
-  event_id: string;
-  user_id: string;
-}
-
-const formatDate = (iso: string) => {
-  const d = new Date(iso);
-  return d.toLocaleDateString("es-UY", { weekday: "long", day: "numeric", month: "long" });
-};
-
-const formatTime = (iso: string) => {
-  const d = new Date(iso);
-  return d.toLocaleTimeString("es-UY", { hour: "2-digit", minute: "2-digit" });
-};
-
-const getCountdown = (iso: string) => {
-  const diff = new Date(iso).getTime() - Date.now();
-  if (diff <= 0) return null;
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  if (days > 0) return `${days}d ${hours}h`;
-  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  return `${hours}h ${mins}m`;
-};
+import {
+  EVENT_FALLBACK_DESCRIPTION,
+  formatEventDate,
+  formatEventTimeRange,
+  getRegistrationLimit,
+  type ClassSession,
+} from "@/lib/classEvent";
 
 const EventsSection = () => {
-  const { user, session } = useAuth();
+  const { session } = useAuth();
   const userId = session?.user?.id;
-  const [events, setEvents] = useState<Event[]>([]);
-  const [registeredIds, setRegisteredIds] = useState<Set<string>>(new Set());
+  const [classes, setClasses] = useState<ClassSession[]>([]);
+  const [registeredClassIds, setRegisteredClassIds] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
-  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [registering, setRegistering] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
+
     const fetchData = async () => {
-      const { data: evts, error: eventsError } = await supabase
-        .from("events")
-        .select("*")
-        .eq("is_active", true)
-        .order("event_date", { ascending: true });
+      const [classesResult, registrationsResult] = await Promise.all([
+        supabase
+          .from("class_sessions")
+          .select("*")
+          .eq("is_active", true)
+          .gte("class_date", new Date().toISOString())
+          .order("class_date", { ascending: true }),
+        userId
+          ? supabase.from("class_registrations").select("class_id").eq("user_id", userId)
+          : Promise.resolve({ data: [] }),
+      ]);
 
-      if (eventsError) {
-        setEvents([]);
-        setRegisteredIds(new Set());
-        setLoading(false);
-        return;
-      }
-
-      const safeEvents = (evts as Event[]) || [];
-
-      if (safeEvents.length > 0) {
-        const eventIds = safeEvents.map((event) => event.id);
-        const { data: regs } = await supabase
-          .from("event_registrations")
-          .select("event_id, user_id")
-          .in("event_id", eventIds);
-
-        const registrations = (regs as EventRegistration[]) || [];
-        const registrationsByEvent = registrations.reduce<Record<string, number>>((acc, row) => {
-          acc[row.event_id] = (acc[row.event_id] || 0) + 1;
-          return acc;
-        }, {});
-
-        setEvents(
-          safeEvents.map((event) => ({
-            ...event,
-            spots_taken: registrationsByEvent[event.id] ?? 0,
-          }))
-        );
-
-        if (userId) {
-          setRegisteredIds(
-            new Set(
-              registrations.filter((registration) => registration.user_id === userId).map((registration) => registration.event_id)
-            )
-          );
-        } else {
-          setRegisteredIds(new Set());
-        }
-      } else {
-        setEvents([]);
-        setRegisteredIds(new Set());
-      }
-
+      if (cancelled) return;
+      setClasses((classesResult.data ?? []) as ClassSession[]);
+      setRegisteredClassIds(
+        new Set((registrationsResult.data ?? []).flatMap((registration) => registration.class_id ? [registration.class_id] : []))
+      );
       setLoading(false);
     };
 
     fetchData();
-
     const channel = supabase
-      .channel("events-section-live")
-      .on("postgres_changes", { event: "*", schema: "public", table: "events" }, fetchData)
-      .on("postgres_changes", { event: "*", schema: "public", table: "event_registrations" }, fetchData)
+      .channel("dashboard-class-events")
+      .on("postgres_changes", { event: "*", schema: "public", table: "class_sessions" }, fetchData)
+      .on("postgres_changes", { event: "*", schema: "public", table: "class_registrations" }, fetchData)
       .subscribe();
 
     return () => {
+      cancelled = true;
       supabase.removeChannel(channel);
     };
   }, [userId]);
 
-  const handleRegister = async (event: Event) => {
-    if (!session?.user || !user) return;
-
-    const spotsLeftBeforeInsert = event.spots_total - event.spots_taken;
-    if (spotsLeftBeforeInsert <= 0) {
-      toast.error("Este evento ya no tiene cupos disponibles.");
-      return;
-    }
-
-    setRegistering(true);
-
-    // Insert registration
-    const { error } = await supabase
-      .from("event_registrations")
-      .insert({ event_id: event.id, user_id: session.user.id });
-
-    if (error) {
-      if (error.code === "23505") {
-        toast.error("Ya estabas anotado en este evento.");
-      } else {
-        toast.error("Error al registrarte. Intentá de nuevo.");
-      }
-      setRegistering(false);
-      return;
-    }
-
-    // Send to Google Sheet (non-blocking)
-    sendRegistrationToSheet({
-      userName: user.name,
-      userEmail: user.email,
-      userAge: null,
-      userInstitution: null,
-      userDepartment: null,
-      eventTitle: event.title,
-      eventDate: event.event_date,
-    });
-
-    setRegisteredIds((prev) => new Set([...prev, event.id]));
-    toast.success(`¡Listo, ${user.name.split(" ")[0]}! Ya estás anotado.`);
-    setRegistering(false);
-    setSelectedEvent(null);
-  };
-
   if (loading) {
     return (
-      <div className="p-6 md:p-10 max-w-5xl space-y-4">
+      <div className="max-w-5xl space-y-4 p-6 md:p-10">
         <Skeleton className="h-8 w-40" />
         <Skeleton className="h-5 w-72" />
-        <Skeleton className="h-28 rounded-lg" />
-        <Skeleton className="h-28 rounded-lg" />
-        <Skeleton className="h-28 rounded-lg" />
+        <Skeleton className="h-72 rounded-xl" />
       </div>
     );
   }
 
-  const myEvents = events.filter((e) => registeredIds.has(e.id));
-  const availableEvents = events.filter((e) => !registeredIds.has(e.id));
-
   return (
-    <div className="p-6 md:p-10 max-w-5xl">
-      <h1 className="text-2xl md:text-3xl font-heading font-semibold text-foreground mb-2">
-        Eventos
-      </h1>
-      <p className="text-muted-foreground mb-8">Anotate a clases presenciales, workshops y charlas.</p>
+    <div className="max-w-5xl p-6 md:p-10">
+      <h1 className="mb-2 text-2xl font-semibold text-foreground md:text-3xl">Eventos</h1>
+      <p className="mb-8 text-muted-foreground">Encuentros presenciales, workshops y charlas de Foro Agora.</p>
 
-      {/* My upcoming events */}
-      {myEvents.length > 0 && (
-        <div className="mb-10">
-          <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-4">
-            Mis próximos eventos
-          </p>
-          <div className="grid gap-4">
-            {myEvents.map((event) => (
-              <div key={event.id} className="border border-border rounded-lg p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <h3 className="font-heading font-semibold text-foreground">{event.title}</h3>
-                  <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mt-2">
-                    <span className="flex items-center gap-1.5"><CalendarDays size={14} /> {formatDate(event.event_date)}</span>
-                    <span className="flex items-center gap-1.5"><Clock size={14} /> {formatTime(event.event_date)}</span>
-                    <span className="flex items-center gap-1.5"><MapPin size={14} /> {event.location}</span>
-                  </div>
-                </div>
-                <Badge variant="secondary" className="flex items-center gap-1.5 self-start">
-                  <CheckCircle2 size={12} /> Anotado
-                </Badge>
-              </div>
-            ))}
-          </div>
+      {classes.length === 0 ? (
+        <div className="rounded-xl border border-border p-8 text-sm text-muted-foreground">
+          No hay eventos con inscripciones abiertas en este momento.
         </div>
-      )}
-
-      {/* Available events */}
-      <p className="text-xs font-heading font-medium uppercase tracking-widest text-muted-foreground mb-4">
-        Eventos disponibles
-      </p>
-      {availableEvents.length === 0 ? (
-        <p className="text-muted-foreground text-sm">No hay eventos disponibles en este momento.</p>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
-          {availableEvents.map((event) => {
-            const spotsLeft = event.spots_total - event.spots_taken;
-            const isLow = spotsLeft <= 5;
-            const isEventFull = spotsLeft <= 0;
+        <div className="space-y-5">
+          {classes.map((classSession) => {
+            const isRegistered = registeredClassIds.has(classSession.id);
             return (
-              <button
-                key={event.id}
-                onClick={() => setSelectedEvent(event)}
-                disabled={isEventFull}
-                className="border border-border rounded-lg p-5 text-left hover:bg-secondary/50 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                <div className="flex items-start justify-between gap-2 mb-3">
-                  <h3 className="font-heading font-semibold text-foreground">{event.title}</h3>
-                  <Badge variant={isEventFull || isLow ? "default" : "outline"} className="shrink-0 text-xs">
-                    {isEventFull ? "Sin cupos" : isLow ? "Últimos lugares" : "Cupos disponibles"}
-                  </Badge>
+              <article key={classSession.id} className="overflow-hidden rounded-2xl border-2 border-foreground bg-card">
+                <div className="bg-sun px-5 py-3 text-xs font-black uppercase tracking-[0.15em] text-foreground">
+                  {classSession.is_featured ? "Evento destacado" : "Inscripciones abiertas"}
                 </div>
-                <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-3">
-                  <span className="flex items-center gap-1.5"><CalendarDays size={14} /> {formatDate(event.event_date)}</span>
-                  <span className="flex items-center gap-1.5"><Clock size={14} /> {formatTime(event.event_date)}</span>
+                <div className="p-6 md:p-8">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <h2 className="text-2xl font-black text-foreground md:text-3xl">{classSession.title}</h2>
+                      <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
+                        {classSession.notes || EVENT_FALLBACK_DESCRIPTION}
+                      </p>
+                    </div>
+                    {isRegistered ? (
+                      <Badge variant="secondary" className="self-start gap-1.5 px-3 py-2"><CheckCircle2 size={14} /> Inscripción confirmada</Badge>
+                    ) : null}
+                  </div>
+
+                  <div className="my-7 grid gap-4 text-sm text-foreground/75 sm:grid-cols-2">
+                    <span className="flex items-center gap-2"><CalendarDays className="text-blue-pop" size={18} /> {formatEventDate(classSession.class_date)}</span>
+                    <span className="flex items-center gap-2"><Clock className="text-blue-pop" size={18} /> {formatEventTimeRange(classSession)}</span>
+                    <span className="flex items-center gap-2"><MapPin className="text-blue-pop" size={18} /> {classSession.location}</span>
+                    <span className="flex items-center gap-2"><Users className="text-blue-pop" size={18} /> Capacidad presencial: {classSession.max_capacity} · límite de inscripción: {getRegistrationLimit(classSession)}</span>
+                  </div>
+
+                  {isRegistered ? (
+                    <div className="rounded-lg bg-secondary px-4 py-3 text-sm font-semibold text-foreground">
+                      Ya tenés tu lugar reservado. Te esperamos en Casa INJU.
+                    </div>
+                  ) : (
+                    <EventSignupButton classId={classSession.id} className="w-full sm:w-auto" label="Inscribirme a este evento" />
+                  )}
                 </div>
-                <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                  <MapPin size={14} /> {event.location}
-                </div>
-                <div className="flex items-center gap-1.5 text-sm text-muted-foreground mt-2">
-                  <Users size={14} /> {event.spots_taken}/{event.spots_total} anotados
-                </div>
-              </button>
+              </article>
             );
           })}
-        </div>
-      )}
-
-      {/* Event Detail Modal */}
-      {selectedEvent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4" onClick={() => setSelectedEvent(null)}>
-          <div
-            className="bg-background border border-border rounded-lg w-full max-w-lg max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-6">
-              <div className="flex items-start justify-between mb-6">
-                <div>
-                  <h2 className="text-xl font-heading font-semibold text-foreground mb-1">
-                    {selectedEvent.title}
-                  </h2>
-                  {(() => {
-                    const countdown = getCountdown(selectedEvent.event_date);
-                    return countdown ? (
-                      <p className="text-sm text-muted-foreground">Comienza en {countdown}</p>
-                    ) : null;
-                  })()}
-                </div>
-                <button onClick={() => setSelectedEvent(null)} className="text-muted-foreground hover:text-foreground p-1">
-                  <X size={20} />
-                </button>
-              </div>
-
-              {selectedEvent.description && (
-                <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                  {selectedEvent.description}
-                </p>
-              )}
-
-              {selectedEvent.speaker_name && (
-                <div className="border border-border rounded-md p-4 mb-6 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground font-heading font-semibold text-sm">
-                    {selectedEvent.speaker_name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-heading font-medium text-foreground text-sm">{selectedEvent.speaker_name}</p>
-                    <p className="text-xs text-muted-foreground">{selectedEvent.speaker_role}</p>
-                  </div>
-                </div>
-              )}
-
-              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-6">
-                <span className="flex items-center gap-1.5"><CalendarDays size={14} /> {formatDate(selectedEvent.event_date)}</span>
-                <span className="flex items-center gap-1.5"><Clock size={14} /> {formatTime(selectedEvent.event_date)}</span>
-                <span className="flex items-center gap-1.5"><MapPin size={14} /> {selectedEvent.location}</span>
-                <span className="flex items-center gap-1.5"><Users size={14} /> {selectedEvent.spots_taken}/{selectedEvent.spots_total} anotados</span>
-              </div>
-
-              {registeredIds.has(selectedEvent.id) ? (
-                <Button variant="secondary" size="cta" className="w-full" disabled>
-                  <CheckCircle2 size={16} /> Ya estás anotado
-                </Button>
-              ) : selectedEvent.spots_taken >= selectedEvent.spots_total ? (
-                <Button variant="secondary" size="cta" className="w-full" disabled>
-                  Sin cupos disponibles
-                </Button>
-              ) : (
-                <Button
-                  variant="cta"
-                  size="cta"
-                  className="w-full"
-                  disabled={registering}
-                  onClick={() => handleRegister(selectedEvent)}
-                >
-                  {registering ? <Loader2 size={16} className="animate-spin" /> : null}
-                  {registering ? "Procesando registro..." : "Anotarme a este evento"}
-                </Button>
-              )}
-            </div>
-          </div>
         </div>
       )}
     </div>

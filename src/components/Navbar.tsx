@@ -13,7 +13,7 @@ const navLinks = [
   { label: "Impacto", path: "/impacto" },
   { label: "Recursos", path: "/recursos" },
   { label: "Difundir", path: "/difundir" },
-  { label: "Partners", path: "/partners" },
+  { label: "Aliados", path: "/partners" },
 ];
 
 const Navbar = () => {
@@ -85,7 +85,7 @@ const Navbar = () => {
                   Hola, {user?.name?.split(" ")[0] ?? ""}
                 </span>
                 <Button asChild variant="cta" size="sm">
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link to="/dashboard">Mi panel</Link>
                 </Button>
                 <Button variant="ghost" size="sm" onClick={logout} className="text-foreground/60">
                   Salir
@@ -94,7 +94,7 @@ const Navbar = () => {
             ) : (
               <>
                 <Button asChild variant="ghost" size="sm" className="text-foreground/60 gap-1.5">
-                  <Link to="/auth"><LogIn size={14} /> Log In</Link>
+                  <Link to="/auth"><LogIn size={14} /> Iniciar sesión</Link>
                 </Button>
                 <Button asChild variant="cta" size="sm">
                   <Link to="/auth?mode=signup">Quiero participar</Link>
@@ -136,7 +136,7 @@ const Navbar = () => {
             {isLoggedIn ? (
               <>
                 <Button asChild variant="cta" size="cta" className="w-full">
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link to="/dashboard">Mi panel</Link>
                 </Button>
                 <Button variant="cta-outline" size="cta" className="w-full" onClick={logout}>
                   Cerrar sesión
@@ -145,7 +145,7 @@ const Navbar = () => {
             ) : (
               <>
                 <Button asChild variant="cta-outline" size="cta" className="w-full">
-                  <Link to="/auth">Log In</Link>
+                  <Link to="/auth">Iniciar sesión</Link>
                 </Button>
                 <Button asChild variant="cta" size="cta" className="w-full">
                   <Link to="/auth?mode=signup">Inscribite</Link>

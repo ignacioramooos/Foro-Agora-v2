@@ -19,7 +19,6 @@ import {
   getGoogleCalendarUrl,
   getGoogleMapsEmbedUrl,
   getGoogleMapsUrl,
-  getRegistrationLimit,
   isValidUruguayanCedula,
   normalizeCedula,
   type ClassSession,
@@ -518,7 +517,7 @@ const RegisterPage = () => {
                 </div>
                 <div className="flex items-start gap-3">
                   <Users size={16} className="text-muted-foreground mt-0.5 shrink-0" />
-                  <div><strong className="text-foreground font-heading">Cupos:</strong><br /><span className="text-muted-foreground">{selectedClass ? `${selectedClass.max_capacity} lugares presenciales · hasta ${getRegistrationLimit(selectedClass)} inscripciones` : "80 lugares · hasta 90 inscripciones"}</span></div>
+                  <div><strong className="text-foreground font-heading">Cupos:</strong><br /><span className="text-muted-foreground">{selectedClass ? `${selectedClass.max_capacity} lugares presenciales` : "80 lugares presenciales"}</span></div>
                 </div>
               </div>
               <div className="border-t border-border pt-4">

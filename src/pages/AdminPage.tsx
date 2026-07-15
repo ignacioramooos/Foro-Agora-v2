@@ -148,6 +148,8 @@ const AdminPage = () => {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [classes, setClasses] = useState<ClassSession[]>([]);
   const [registrations, setRegistrations] = useState<ClassRegistration[]>([]);
+  const [registrationToDelete, setRegistrationToDelete] = useState<ClassRegistration | null>(null);
+  const [deletingRegistration, setDeletingRegistration] = useState(false);
   const [classDialogOpen, setClassDialogOpen] = useState(false);
   const [editingClassId, setEditingClassId] = useState<string | null>(null);
   const [classForm, setClassForm] = useState(emptyClassForm);
@@ -303,6 +305,34 @@ const AdminPage = () => {
     setDeleteId(null);
   };
 
+  const handleDeleteRegistration = async () => {
+    if (!registrationToDelete || deletingRegistration) return;
+
+    const registration = registrationToDelete;
+    setDeletingRegistration(true);
+    const { error } = await supabase
+      .from("class_registrations")
+      .delete()
+      .eq("id", registration.id);
+    setDeletingRegistration(false);
+
+    if (error) {
+      toast({
+        title: "No se pudo eliminar la inscripción",
+        description: error.message,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setRegistrations((current) => current.filter((item) => item.id !== registration.id));
+    setRegistrationToDelete(null);
+    toast({
+      title: "Inscripción eliminada",
+      description: `${registration.name} fue quitado/a de la lista de asistentes.`,
+    });
+  };
+
   const handleSaveClass = async () => {
     if (!classForm.title.trim() || !classForm.class_date || !classForm.location.trim()) {
       toast({ title: "Completá título, fecha y ubicación", variant: "destructive" });
@@ -431,6 +461,7 @@ const AdminPage = () => {
                               <TableHead>Email</TableHead>
                               <TableHead className="hidden md:table-cell">Institución</TableHead>
                               <TableHead className="hidden md:table-cell">Teléfono</TableHead>
+                              <TableHead className="text-right">Acciones</TableHead>
                             </TableRow>
                           </TableHeader>
                           <TableBody>
@@ -442,6 +473,18 @@ const AdminPage = () => {
                                 <TableCell>{registration.email}</TableCell>
                                 <TableCell className="hidden md:table-cell">{registration.school}</TableCell>
                                 <TableCell className="hidden md:table-cell">{registration.phone || "—"}</TableCell>
+                                <TableCell className="text-right">
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="text-destructive hover:bg-destructive/10 hover:text-destructive"
+                                    onClick={() => setRegistrationToDelete(registration)}
+                                    aria-label={`Eliminar la inscripción de ${registration.name}`}
+                                    title={`Eliminar la inscripción de ${registration.name}`}
+                                  >
+                                    <Trash2 size={14} />
+                                  </Button>
+                                </TableCell>
                               </TableRow>
                             ))}
                           </TableBody>
@@ -702,6 +745,39 @@ const AdminPage = () => {
           <DialogFooter>
             <Button variant="outline" onClick={() => setDeleteId(null)}>Cancelar</Button>
             <Button variant="destructive" onClick={handleDelete}>Eliminar</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Attendee Registration Delete Confirmation */}
+      <Dialog
+        open={!!registrationToDelete}
+        onOpenChange={(open) => {
+          if (!open && !deletingRegistration) setRegistrationToDelete(null);
+        }}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="font-heading">¿Eliminar esta inscripción?</DialogTitle>
+            <DialogDescription>
+              {registrationToDelete?.name} será quitado/a de la lista de asistentes. Su cuenta no se eliminará y podrá volver a inscribirse.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setRegistrationToDelete(null)}
+              disabled={deletingRegistration}
+            >
+              Cancelar
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleDeleteRegistration}
+              disabled={deletingRegistration}
+            >
+              {deletingRegistration ? "Eliminando..." : "Eliminar inscripción"}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

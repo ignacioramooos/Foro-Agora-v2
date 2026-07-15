@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Play, FileText, Download, Clock, BookOpen } from "lucide-react";
 import EventSignupButton from "@/components/EventSignupButton";
+import { useClassRegistrationStatus } from "@/hooks/useClassRegistrationStatus";
 import { useUpcomingClassSession } from "@/hooks/useUpcomingClassSession";
 import { formatEventDate, formatEventTimeRange } from "@/lib/classEvent";
 
@@ -49,6 +50,7 @@ interface ContentLibraryProps {
 
 const ContentLibrary = ({ mode = "dashboard", showHeader = true }: ContentLibraryProps) => {
   const { classSession } = useUpcomingClassSession();
+  const { isRegistered, registrationChecked } = useClassRegistrationStatus(classSession?.id);
   const [items, setItems] = useState<ContentItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -87,7 +89,7 @@ const ContentLibrary = ({ mode = "dashboard", showHeader = true }: ContentLibrar
         </div>
       )}
 
-      {mode === "dashboard" && classSession ? (
+      {mode === "dashboard" && classSession && registrationChecked && !isRegistered ? (
         <div className="flex flex-col gap-5 rounded-xl border-2 border-foreground bg-sun p-5 sm:flex-row sm:items-center sm:justify-between md:p-6">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.14em] text-foreground/60">Próximo encuentro presencial</p>

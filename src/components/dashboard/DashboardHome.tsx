@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { DashboardTab } from "@/components/dashboard/DashboardLayout";
 import EventSignupButton from "@/components/EventSignupButton";
+import { useClassRegistrationStatus } from "@/hooks/useClassRegistrationStatus";
 import { useUpcomingClassSession } from "@/hooks/useUpcomingClassSession";
 import { formatEventDate, formatEventTimeRange } from "@/lib/classEvent";
 
@@ -79,6 +80,7 @@ const Sparkline = ({ points }: { points: number[] }) => {
 const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
   const { user, session } = useAuth();
   const { classSession: upcomingClass } = useUpcomingClassSession();
+  const { isRegistered: isRegisteredForUpcomingClass, registrationChecked } = useClassRegistrationStatus(upcomingClass?.id);
   const [myEvents, setMyEvents] = useState<RegisteredEvent[]>([]);
   const [loadingEvents, setLoadingEvents] = useState(true);
   const [communityPosts, setCommunityPosts] = useState<CommunityPost[]>([]);
@@ -221,7 +223,7 @@ const DashboardHome = ({ onTabChange }: DashboardHomeProps) => {
         </p>
       </div>
 
-      {upcomingClass ? <div className="mb-10 rounded-lg border-2 border-foreground bg-secondary p-6 md:p-8">
+      {upcomingClass && registrationChecked && !isRegisteredForUpcomingClass ? <div className="mb-10 rounded-lg border-2 border-foreground bg-secondary p-6 md:p-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="max-w-xl">
             <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-sun text-foreground">

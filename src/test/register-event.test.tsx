@@ -116,6 +116,8 @@ describe("registro autenticado al encuentro", () => {
 
     await screen.findByDisplayValue("Liceo 1");
     await waitFor(() => expect(screen.getByRole("button", { name: "Inscribirme" })).toBeEnabled());
+    expect(screen.getByText("80 lugares presenciales")).toBeInTheDocument();
+    expect(screen.queryByText(/hasta 90 inscripciones/i)).not.toBeInTheDocument();
 
     const cedula = screen.getByPlaceholderText("Ej: 4.567.890-1");
     fireEvent.change(cedula, { target: { value: "1.234.567-3" } });

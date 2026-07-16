@@ -133,6 +133,7 @@ Flujo general:
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_PUBLISHABLE_KEY`
 - `VITE_SUPABASE_PROJECT_ID`
+- `VITE_REQUIRE_EMAIL_CONFIRMATION` (opcional; usar `true` al reactivar la confirmación de email en Supabase)
 
 ### Seguridad y control de acceso
 
@@ -211,7 +212,12 @@ Crear `.env` con:
 VITE_SUPABASE_URL=...
 VITE_SUPABASE_PUBLISHABLE_KEY=...
 VITE_SUPABASE_PROJECT_ID=...
+VITE_REQUIRE_EMAIL_CONFIRMATION=false
 ```
+
+Cuando se vuelva a habilitar la confirmación de email en Supabase, cambiar
+`VITE_REQUIRE_EMAIL_CONFIRMATION` a `true`. El link de confirmación conserva el
+destino pendiente (por ejemplo, el formulario de inscripción a una clase).
 
 Ejecutar en desarrollo:
 

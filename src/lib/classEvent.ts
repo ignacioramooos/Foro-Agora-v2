@@ -105,6 +105,9 @@ export const getEventAuthPath = (classId: string) => {
   return `/auth?mode=event&returnTo=${encodeURIComponent(returnTo)}`;
 };
 
+export const isEventRegistrationPath = (pathname: string, search: string) =>
+  pathname === "/registro" && Boolean(new URLSearchParams(search).get("class"));
+
 export const normalizeCedula = (value: string) => value.replace(/\D/g, "").padStart(8, "0");
 
 export const isValidUruguayanCedula = (value: string) => {

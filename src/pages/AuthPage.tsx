@@ -4,8 +4,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
-import { getAuthRedirectUrl } from "@/lib/authRedirect";
-import { signupWithoutEmailConfirmation } from "@/lib/passwordSignup";
+import { getAuthRedirectUrl, sanitizeAuthReturnTo } from "@/lib/authRedirect";
+import { signupWithPassword } from "@/lib/passwordSignup";
 
 const departments = [
   "Montevideo", "Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores",
@@ -30,9 +30,14 @@ const interestOptions = [
 const PENDING_KEY = "pending_onboarding";
 const PENDING_RETURN_TO_KEY = "pending_auth_return_to";
 
-const sanitizeReturnTo = (value: string | null) => {
-  if (!value || !value.startsWith("/") || value.startsWith("//")) return "/dashboard";
-  return value;
+const getStoredReturnTo = () => sessionStorage.getItem(PENDING_RETURN_TO_KEY);
+
+const rememberReturnTo = (value: string) => {
+  sessionStorage.setItem(PENDING_RETURN_TO_KEY, value);
+};
+
+const clearReturnTo = () => {
+  sessionStorage.removeItem(PENDING_RETURN_TO_KEY);
 };
 
 type FlowStep =
@@ -41,6 +46,7 @@ type FlowStep =
   | "forgot-password"
   | "reset-password"
   | "reset-sent"
+  | "confirmation-sent"
   | "password-updated"
   | "step-1"
   | "step-2"
@@ -114,7 +120,7 @@ const AuthPage = () => {
   const { isLoggedIn, user, login, refreshProfile, loading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const returnTo = sanitizeReturnTo(getAuthUrlParams().get("returnTo") || sessionStorage.getItem(PENDING_RETURN_TO_KEY));
+  const returnTo = sanitizeAuthReturnTo(getAuthUrlParams().get("returnTo") || getStoredReturnTo());
   const [step, setStep] = useState<FlowStep>(() => {
     const params = getAuthUrlParams();
     if (params.get("reset-password") === "true" || window.location.hash.includes("type=recovery")) {
@@ -140,7 +146,7 @@ const AuthPage = () => {
 
   useEffect(() => {
     const requestedReturnTo = getAuthUrlParams().get("returnTo");
-    if (requestedReturnTo) sessionStorage.setItem(PENDING_RETURN_TO_KEY, sanitizeReturnTo(requestedReturnTo));
+    if (requestedReturnTo) rememberReturnTo(sanitizeAuthReturnTo(requestedReturnTo));
   }, [location.search, location.hash]);
 
   useEffect(() => {
@@ -207,7 +213,7 @@ const AuthPage = () => {
   );
 
   useEffect(() => {
-    if (shouldRedirectAfterAuth) sessionStorage.removeItem(PENDING_RETURN_TO_KEY);
+    if (shouldRedirectAfterAuth) clearReturnTo();
   }, [shouldRedirectAfterAuth]);
 
   if (loading) return null;
@@ -315,10 +321,11 @@ const AuthPage = () => {
 
     setSubmitting(true);
     if (!isEventRegistrationFlow) sessionStorage.setItem(PENDING_KEY, JSON.stringify(onboardingData));
-    const { error: signupError } = await signupWithoutEmailConfirmation({
+    const { error: signupError, confirmationRequired } = await signupWithPassword({
       email,
       password,
       metadata: buildMetadata(onboardingData),
+      emailRedirectTo: getAuthRedirectUrl(`/auth?returnTo=${encodeURIComponent(returnTo)}`),
     });
     setSubmitting(false);
     if (signupError) {
@@ -326,6 +333,7 @@ const AuthPage = () => {
       setError(signupError);
       return;
     }
+    if (confirmationRequired) setStep("confirmation-sent");
   };
 
   const handleCompleteProfileForExistingUser = async () => {
@@ -338,7 +346,7 @@ const AuthPage = () => {
     if (updateError) { setError("No se pudo guardar el perfil. Intentá de nuevo."); return; }
     sessionStorage.removeItem(PENDING_KEY);
     await refreshProfile();
-    sessionStorage.removeItem(PENDING_RETURN_TO_KEY);
+    clearReturnTo();
     navigate(returnTo, { replace: true });
   };
 
@@ -384,6 +392,22 @@ const AuthPage = () => {
           <Button variant="cta-outline" size="cta" onClick={() => { setStep("login"); setError(""); }}>
             Volver a iniciar sesión
           </Button>
+        </div>
+      </div>
+    );
+  }
+
+  if (step === "confirmation-sent") {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background px-6">
+        <div className="max-w-sm w-full text-center">
+          <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 size={40} className="text-foreground" />
+          </div>
+          <h1 className="text-2xl font-heading font-semibold text-foreground mb-3">Confirmá tu email</h1>
+          <p className="text-sm text-muted-foreground mb-8">
+            Te enviamos un link a <strong className="text-foreground">{email}</strong>. Al confirmarlo vas a continuar directamente {isEventRegistrationFlow ? "con la inscripción al encuentro" : "en Foro Agora"}.
+          </p>
         </div>
       </div>
     );

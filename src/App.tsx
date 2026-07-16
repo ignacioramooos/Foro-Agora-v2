@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import RouteSeo from "@/components/RouteSeo";
+import { isEventRegistrationPath } from "@/lib/classEvent";
 
 const Index = lazy(() => import("./pages/Index"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
@@ -81,6 +82,7 @@ const AppRoutes = () => {
   const { isLoggedIn, loading, user } = useAuth();
   const location = useLocation();
   const pendingAuthRedirectPath = getPendingAuthRedirectPath();
+  const isEventRegistration = isEventRegistrationPath(location.pathname, location.search);
 
   useEffect(() => {
     if (pendingAuthRedirectPath && `${location.pathname}${location.search}` === pendingAuthRedirectPath) {
@@ -125,7 +127,7 @@ const AppRoutes = () => {
     </>
   );
 
-  if (isLoggedIn && user && !user.onboardingCompleted && location.pathname !== "/auth") {
+  if (isLoggedIn && user && !user.onboardingCompleted && location.pathname !== "/auth" && !isEventRegistration) {
     return <Navigate to="/auth" replace />;
   }
 

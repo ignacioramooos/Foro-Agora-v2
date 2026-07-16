@@ -8,6 +8,7 @@ import {
   getGoogleCalendarUrl,
   getGoogleMapsEmbedUrl,
   getGoogleMapsUrl,
+  isEventRegistrationPath,
   isValidUruguayanCedula,
   normalizeCedula,
   type ClassSession,
@@ -37,6 +38,12 @@ describe("class event helpers", () => {
     expect(getEventAuthPath(classSession.id)).toBe(
       "/auth?mode=event&returnTo=%2Fregistro%3Fclass%3Dclass-22-july"
     );
+  });
+
+  it("identifies the event form so new event users can bypass general onboarding", () => {
+    expect(isEventRegistrationPath("/registro", "?class=class-22-july")).toBe(true);
+    expect(isEventRegistrationPath("/registro", "")).toBe(false);
+    expect(isEventRegistrationPath("/dashboard", "?class=class-22-july")).toBe(false);
   });
 
   it("builds calendar links with the confirmed time and INJU address", () => {

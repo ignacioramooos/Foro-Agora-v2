@@ -17,4 +17,5 @@ No ai slop
 
 Historia:
 Personaje 1 pidiendo dinero en la plaza independencia, montevideo, uruguay. 
-Pasan unas personas, sus cabezas siendo recortadas por el encuadre por pasar cerca de la camara y le tiran unas monedas al personaje 1. El personaje 1 pasa ? la siguiente esc
+Pasan unas personas, sus cabezas siendo recortadas por el encuadre por pasar cerca de la camara y le tiran unas monedas al personaje 1. 
+Siguiente escena:El personaje 1 pasa ? la siguiente escenografia: yaguaron 1414 (ver imagen). Alli, se encuentra en la puerta del lugar con el personaje 2

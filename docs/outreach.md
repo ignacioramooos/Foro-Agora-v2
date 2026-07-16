@@ -22,4 +22,4 @@ Siguiente escena:El personaje 1 pasa ? la siguiente escenografia: yaguaron 1414
 
 Siguiente escena:
 RETOMANDO LA ESCENA ANTERIOR:
-El personaje 2 se saca la ropa sucia y aparece en el fondo con un traje elegante y prolijo. Se acerca ? la camara y todo se convierte en la escena de un informercial. El hombre mira ? la camara como un hombre de negocios vendedor y publicita foro agora
+El personaje 2 se saca la ropa sucia y aparece en el fondo con un traje elegante y prolijo. Se acerca ? la c?mara y todo se convierte en la escena de un informercial. El hombre mira ? la c?mara como un hombre de negocios vendedor y publicita foro agora

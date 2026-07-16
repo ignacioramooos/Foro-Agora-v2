@@ -32,7 +32,7 @@ describe("password signup", () => {
       email: " PERSON@Example.com ",
       password: "password123",
       metadata: { accepted_terms: true },
-      emailRedirectTo: "https://foroagora.org/?authRedirect=%2Fauth%3FreturnTo%3D%252Fregistro%253Fclass%253Djuly-22",
+      emailRedirectTo: "https://foroagora.org/?authRedirect=%2Fregistro%3Fclass%3Djuly-22",
     });
 
     expect(signUp).toHaveBeenCalledWith({
@@ -40,7 +40,7 @@ describe("password signup", () => {
       password: "password123",
       options: {
         data: { accepted_terms: true },
-        emailRedirectTo: "https://foroagora.org/?authRedirect=%2Fauth%3FreturnTo%3D%252Fregistro%253Fclass%253Djuly-22",
+        emailRedirectTo: "https://foroagora.org/?authRedirect=%2Fregistro%3Fclass%3Djuly-22",
       },
     });
     expect(invoke).not.toHaveBeenCalled();

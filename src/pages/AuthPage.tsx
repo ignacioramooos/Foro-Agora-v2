@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
-import { getAuthRedirectUrl, sanitizeAuthReturnTo } from "@/lib/authRedirect";
+import { getAuthRedirectUrl, getSignupConfirmationRedirectUrl, sanitizeAuthReturnTo } from "@/lib/authRedirect";
 import { resendSignupConfirmation, signupWithPassword } from "@/lib/passwordSignup";
 
 const departments = [
@@ -326,7 +326,7 @@ const AuthPage = () => {
       email,
       password,
       metadata: buildMetadata(onboardingData),
-      emailRedirectTo: getAuthRedirectUrl(`/auth?returnTo=${encodeURIComponent(returnTo)}`),
+      emailRedirectTo: getSignupConfirmationRedirectUrl(returnTo),
     });
     setSubmitting(false);
     if (signupError) {
@@ -342,7 +342,7 @@ const AuthPage = () => {
     setResendingConfirmation(true);
     const { error: resendError } = await resendSignupConfirmation(
       email,
-      getAuthRedirectUrl(`/auth?returnTo=${encodeURIComponent(returnTo)}`),
+      getSignupConfirmationRedirectUrl(returnTo),
     );
     setResendingConfirmation(false);
     if (resendError) {

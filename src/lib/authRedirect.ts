@@ -1,3 +1,5 @@
+import { isEventRegistrationPath } from "@/lib/classEvent";
+
 /**
  * Returns the production-correct origin to use in Supabase Auth email redirects.
  * Falls back to window.location.origin in the browser. Never returns localhost
@@ -19,6 +21,20 @@ export const getAuthRedirectUrl = (path: string = "/auth"): string => {
 export const sanitizeAuthReturnTo = (value: string | null | undefined): string => {
   if (!value || !value.startsWith("/") || value.startsWith("//") || value.includes("\\")) return "/dashboard";
   return value;
+};
+
+/**
+ * Event signups return directly to the registration form after confirmation.
+ * Other signups still pass through AuthPage so onboarding can be completed.
+ */
+export const getSignupConfirmationRedirectUrl = (returnTo: string): string => {
+  const safeReturnTo = sanitizeAuthReturnTo(returnTo);
+  const destination = new URL(safeReturnTo, getAuthRedirectOrigin());
+  const callbackPath = isEventRegistrationPath(destination.pathname, destination.search)
+    ? `${destination.pathname}${destination.search}`
+    : `/auth?returnTo=${encodeURIComponent(safeReturnTo)}`;
+
+  return getAuthRedirectUrl(callbackPath);
 };
 
 /**

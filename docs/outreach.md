@@ -15,4 +15,6 @@ Fotorealimso
 No ai slop
 
 
-Primer
+Historia:
+Personaje 1 pidiendo dinero en la plaza independencia, montevideo, uruguay. 
+

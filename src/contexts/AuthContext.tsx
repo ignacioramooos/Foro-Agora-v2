@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useProfile } from "@/hooks/useProfile";
+import { signupWithPassword } from "@/lib/passwordSignup";
 import type { User as SupabaseUser, Session } from "@supabase/supabase-js";
 
 export interface UserProfile {
@@ -143,8 +144,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signup = async (email: string, password: string, displayName: string) => {
-    const { signupWithoutEmailConfirmation } = await import("@/lib/passwordSignup");
-    return signupWithoutEmailConfirmation({
+    return signupWithPassword({
       email,
       password,
       metadata: { display_name: displayName },

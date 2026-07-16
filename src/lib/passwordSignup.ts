@@ -44,10 +44,9 @@ export const signupWithoutEmailConfirmation = async ({
 };
 
 /**
- * Uses the current no-confirmation signup until email verification is switched
- * back on. Setting VITE_REQUIRE_EMAIL_CONFIRMATION=true activates Supabase's
- * normal confirmation email and keeps the requested post-auth destination in
- * that email's callback URL.
+ * Creates the account through Supabase Auth. Email confirmation is configured
+ * in Supabase, so the returned session tells the UI whether the user must
+ * confirm their email before continuing.
  */
 export const signupWithPassword = async ({
   email,
@@ -55,10 +54,6 @@ export const signupWithPassword = async ({
   metadata,
   emailRedirectTo,
 }: PasswordSignupInput): Promise<PasswordSignupResult> => {
-  if (import.meta.env.VITE_REQUIRE_EMAIL_CONFIRMATION !== "true") {
-    return signupWithoutEmailConfirmation({ email, password, metadata });
-  }
-
   const normalizedEmail = email.trim().toLowerCase();
   const { data, error } = await supabase.auth.signUp({
     email: normalizedEmail,
@@ -71,4 +66,14 @@ export const signupWithPassword = async ({
 
   if (error) return { error: error.message };
   return { error: null, confirmationRequired: !data.session };
+};
+
+export const resendSignupConfirmation = async (email: string, emailRedirectTo?: string) => {
+  const { error } = await supabase.auth.resend({
+    type: "signup",
+    email: email.trim().toLowerCase(),
+    ...(emailRedirectTo ? { options: { emailRedirectTo } } : {}),
+  });
+
+  return { error: error?.message || null };
 };

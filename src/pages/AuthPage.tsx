@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
 import { getAuthRedirectUrl, sanitizeAuthReturnTo } from "@/lib/authRedirect";
-import { signupWithPassword } from "@/lib/passwordSignup";
+import { resendSignupConfirmation, signupWithPassword } from "@/lib/passwordSignup";
 
 const departments = [
   "Montevideo", "Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores",
@@ -139,6 +139,7 @@ const AuthPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [resendingConfirmation, setResendingConfirmation] = useState(false);
   const [loginChosen, setLoginChosen] = useState(false);
   const [completingProfile, setCompletingProfile] = useState(false);
   const [onboardingData, setOnboardingData] = useState<OnboardingData>(emptyOnboarding);
@@ -336,6 +337,21 @@ const AuthPage = () => {
     if (confirmationRequired) setStep("confirmation-sent");
   };
 
+  const handleResendConfirmation = async () => {
+    setError("");
+    setResendingConfirmation(true);
+    const { error: resendError } = await resendSignupConfirmation(
+      email,
+      getAuthRedirectUrl(`/auth?returnTo=${encodeURIComponent(returnTo)}`),
+    );
+    setResendingConfirmation(false);
+    if (resendError) {
+      setError(resendError);
+      return;
+    }
+    setError("Te enviamos un nuevo link de confirmación.");
+  };
+
   const handleCompleteProfileForExistingUser = async () => {
     if (!user) return;
     setSubmitting(true);
@@ -405,9 +421,20 @@ const AuthPage = () => {
             <CheckCircle2 size={40} className="text-foreground" />
           </div>
           <h1 className="text-2xl font-heading font-semibold text-foreground mb-3">Confirmá tu email</h1>
-          <p className="text-sm text-muted-foreground mb-8">
-            Te enviamos un link a <strong className="text-foreground">{email}</strong>. Al confirmarlo vas a continuar directamente {isEventRegistrationFlow ? "con la inscripción al encuentro" : "en Foro Agora"}.
+          <p className="text-sm text-muted-foreground mb-3">
+            Te enviamos un link a <strong className="text-foreground">{email}</strong>. Abrilo para activar tu cuenta y continuar directamente {isEventRegistrationFlow ? "con la inscripción al encuentro" : "en Foro Agora"}.
           </p>
+          <p className="text-xs text-muted-foreground mb-8">Si no lo ves en unos minutos, revisá la carpeta de spam.</p>
+          {error && <p className={error.startsWith("Te enviamos") ? "mb-4 text-sm text-foreground" : "mb-4 text-sm text-destructive"}>{error}</p>}
+          <div className="grid gap-3">
+            <Button variant="cta" size="cta" onClick={handleResendConfirmation} disabled={resendingConfirmation}>
+              {resendingConfirmation && <Loader2 size={16} className="animate-spin" />}
+              Reenviar email
+            </Button>
+            <Button variant="cta-outline" size="cta" onClick={() => { setStep("login"); setError(""); }}>
+              Volver a iniciar sesión
+            </Button>
+          </div>
         </div>
       </div>
     );

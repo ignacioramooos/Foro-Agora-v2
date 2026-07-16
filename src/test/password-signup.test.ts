@@ -1,7 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { invoke, signInWithPassword, signUp } = vi.hoisted(() => ({
+const { invoke, resend, signInWithPassword, signUp } = vi.hoisted(() => ({
   invoke: vi.fn(),
+  resend: vi.fn(),
   signInWithPassword: vi.fn(),
   signUp: vi.fn(),
 }));
@@ -9,22 +10,22 @@ const { invoke, signInWithPassword, signUp } = vi.hoisted(() => ({
 vi.mock("@/integrations/supabase/client", () => ({
   supabase: {
     functions: { invoke },
-    auth: { signInWithPassword, signUp },
+    auth: { resend, signInWithPassword, signUp },
   },
 }));
 
-import { signupWithPassword, signupWithoutEmailConfirmation } from "@/lib/passwordSignup";
+import { resendSignupConfirmation, signupWithPassword, signupWithoutEmailConfirmation } from "@/lib/passwordSignup";
 
-describe("signupWithoutEmailConfirmation", () => {
+describe("password signup", () => {
   beforeEach(() => {
     invoke.mockReset();
+    resend.mockReset();
     signInWithPassword.mockReset();
     signUp.mockReset();
     vi.unstubAllEnvs();
   });
 
-  it("preserves the event destination in the future confirmation email", async () => {
-    vi.stubEnv("VITE_REQUIRE_EMAIL_CONFIRMATION", "true");
+  it("uses Supabase confirmation and preserves the event destination", async () => {
     signUp.mockResolvedValue({ data: { session: null }, error: null });
 
     const result = await signupWithPassword({
@@ -44,6 +45,22 @@ describe("signupWithoutEmailConfirmation", () => {
     });
     expect(invoke).not.toHaveBeenCalled();
     expect(result).toEqual({ error: null, confirmationRequired: true });
+  });
+
+  it("resends a confirmation link with the same callback destination", async () => {
+    resend.mockResolvedValue({ error: null });
+
+    const result = await resendSignupConfirmation(
+      " PERSON@Example.com ",
+      "https://foroagora.org/?authRedirect=%2Fauth",
+    );
+
+    expect(resend).toHaveBeenCalledWith({
+      type: "signup",
+      email: "person@example.com",
+      options: { emailRedirectTo: "https://foroagora.org/?authRedirect=%2Fauth" },
+    });
+    expect(result).toEqual({ error: null });
   });
 
   it("creates an already-confirmed account and signs it in", async () => {

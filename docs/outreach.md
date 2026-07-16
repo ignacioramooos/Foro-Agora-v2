@@ -17,4 +17,4 @@ No ai slop
 
 Historia:
 Personaje 1 pidiendo dinero en la plaza independencia, montevideo, uruguay. 
-
+Pasan unas personas que no 

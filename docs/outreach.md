@@ -3,8 +3,8 @@
 Script video:
 
 personajes:
-Hombre joven mal vestido pidiendo plata en la plaza independencia
-Otro hombre mal vestido que despues pasara ? arrancarse la ropa y salir con traje elegante
+1: Hombre joven mal vestido pidiendo plata en la plaza independencia
+2: Otro hombre mal vestido que despues pasara ? arrancarse la ropa y salir con traje elegante
 
 
 Restricciones:
@@ -15,4 +15,4 @@ Fotorealimso
 No ai slop
 
 
-
+Primer

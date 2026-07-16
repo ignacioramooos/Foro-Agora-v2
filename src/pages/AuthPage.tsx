@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2, CheckCircle2 } from "lucide-react";
 import { getAuthRedirectUrl } from "@/lib/authRedirect";
+import { signupWithoutEmailConfirmation } from "@/lib/passwordSignup";
 
 const departments = [
   "Montevideo", "Artigas", "Canelones", "Cerro Largo", "Colonia", "Durazno", "Flores",
@@ -44,8 +45,7 @@ type FlowStep =
   | "step-1"
   | "step-2"
   | "step-3"
-  | "step-account"
-  | "email-confirmation";
+  | "step-account";
 
 interface OnboardingData {
   fullName: string;
@@ -315,21 +315,17 @@ const AuthPage = () => {
 
     setSubmitting(true);
     if (!isEventRegistrationFlow) sessionStorage.setItem(PENDING_KEY, JSON.stringify(onboardingData));
-    const { error: signupError } = await supabase.auth.signUp({
+    const { error: signupError } = await signupWithoutEmailConfirmation({
       email,
       password,
-      options: {
-        data: buildMetadata(onboardingData),
-        emailRedirectTo: getAuthRedirectUrl(`/auth?returnTo=${encodeURIComponent(returnTo)}`),
-      },
+      metadata: buildMetadata(onboardingData),
     });
     setSubmitting(false);
     if (signupError) {
       if (!isEventRegistrationFlow) sessionStorage.removeItem(PENDING_KEY);
-      setError(signupError.message);
+      setError(signupError);
       return;
     }
-    setStep("email-confirmation");
   };
 
   const handleCompleteProfileForExistingUser = async () => {
@@ -403,28 +399,6 @@ const AuthPage = () => {
           <h1 className="text-2xl font-heading font-semibold text-foreground mb-3">Contraseña actualizada</h1>
           <p className="text-sm text-muted-foreground mb-8">Ya podés iniciar sesión con tu nueva contraseña.</p>
           <Button variant="cta" size="cta" onClick={() => { setStep("login"); setError(""); }}>Iniciar sesión</Button>
-        </div>
-      </div>
-    );
-  }
-
-  if (step === "email-confirmation") {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background px-6">
-        <div className="max-w-sm w-full text-center">
-          <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 size={40} className="text-foreground" />
-          </div>
-          <h1 className="text-2xl font-heading font-semibold text-foreground mb-3">
-            ¡Bienvenido, {onboardingData.fullName.split(" ")[0]}!
-          </h1>
-          <p className="text-muted-foreground mb-2">Ya sos parte de la nueva generación financiera de Uruguay.</p>
-          <p className="text-sm text-muted-foreground mb-8">
-            Te enviamos un link de confirmación a <strong className="text-foreground">{email}</strong>. Hacé click para activar tu cuenta{isEventRegistrationFlow ? " y continuar directamente con la inscripción al encuentro" : ""}.
-          </p>
-          <Button variant="cta-outline" size="cta" asChild>
-            <Link to="/">Volver al inicio</Link>
-          </Button>
         </div>
       </div>
     );

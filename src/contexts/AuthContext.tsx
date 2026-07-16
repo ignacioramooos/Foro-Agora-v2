@@ -143,16 +143,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signup = async (email: string, password: string, displayName: string) => {
-    const { getAuthRedirectUrl } = await import("@/lib/authRedirect");
-    const { error } = await supabase.auth.signUp({
+    const { signupWithoutEmailConfirmation } = await import("@/lib/passwordSignup");
+    return signupWithoutEmailConfirmation({
       email,
       password,
-      options: {
-        data: { display_name: displayName },
-        emailRedirectTo: getAuthRedirectUrl("/auth"),
-      },
+      metadata: { display_name: displayName },
     });
-    return { error: error?.message || null };
   };
 
   const logout = async () => {

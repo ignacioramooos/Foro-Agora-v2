@@ -908,6 +908,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_valid_uruguayan_cedula: { Args: { value: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"

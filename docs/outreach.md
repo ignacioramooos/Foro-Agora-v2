@@ -13,3 +13,6 @@ Continuidad de los personajes
 Precision de ubicaciones fiel ? la realidad
 Fotorealimso
 No ai slop
+
+
+

@@ -17,4 +17,4 @@ No ai slop
 
 Historia:
 Personaje 1 pidiendo dinero en la plaza independencia, montevideo, uruguay. 
-Pasan unas personas que no 
+Pasan unas personas, sus cabezas siendo recortadas por el encuadre por pasar cerca de la camara y le tiran unas monedas al personaje 1. El personaje 1 pasa ? la siguiente esc

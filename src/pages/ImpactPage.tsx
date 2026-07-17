@@ -1,42 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SectionFade from "@/components/SectionFade";
 import CoreValues from "@/components/CoreValues";
 import { supabase } from "@/integrations/supabase/client";
-import { Activity, BookOpen, GraduationCap, Layers, Sparkles } from "lucide-react";
+import { BookOpen, GraduationCap, Layers, Sparkles } from "lucide-react";
 
 interface ImpactStats {
   students: number;
   activeClasses: number;
   publishedContent: number;
 }
-
-interface DepartmentPoint {
-  name: string;
-  x: number;
-  y: number;
-}
-
-const departmentPoints: DepartmentPoint[] = [
-  { name: "Artigas", x: 34, y: 10 },
-  { name: "Salto", x: 24, y: 22 },
-  { name: "Paysandú", x: 30, y: 30 },
-  { name: "Río Negro", x: 37, y: 36 },
-  { name: "Soriano", x: 44, y: 41 },
-  { name: "Colonia", x: 50, y: 47 },
-  { name: "San José", x: 56, y: 54 },
-  { name: "Montevideo", x: 63, y: 61 },
-  { name: "Canelones", x: 69, y: 58 },
-  { name: "Maldonado", x: 79, y: 64 },
-  { name: "Rocha", x: 88, y: 56 },
-  { name: "Lavalleja", x: 72, y: 49 },
-  { name: "Treinta y Tres", x: 82, y: 44 },
-  { name: "Florida", x: 60, y: 45 },
-  { name: "Flores", x: 51, y: 40 },
-  { name: "Durazno", x: 57, y: 35 },
-  { name: "Tacuarembó", x: 55, y: 24 },
-  { name: "Rivera", x: 49, y: 12 },
-  { name: "Cerro Largo", x: 72, y: 26 },
-];
 
 const LiveCounter = ({ value }: { value: number }) => {
   const [display, setDisplay] = useState(0);
@@ -67,16 +39,13 @@ const LiveCounter = ({ value }: { value: number }) => {
 };
 
 const ImpactPage = () => {
-  const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<ImpactStats>({ students: 0, activeClasses: 0, publishedContent: 0 });
-  const [departmentCounts, setDepartmentCounts] = useState<Record<string, number>>({});
 
   const fetchImpactData = async () => {
-    const [studentsCountRes, classesRes, contentRes, publicProfilesRes] = await Promise.all([
+    const [studentsCountRes, classesRes, contentRes] = await Promise.all([
       supabase.rpc("get_public_profiles_count"),
       supabase.from("class_sessions").select("id", { count: "exact", head: true }).eq("is_active", true),
       supabase.from("content_items").select("id", { count: "exact", head: true }).eq("is_published", true),
-      supabase.rpc("get_public_profiles"),
     ]);
 
     setStats({
@@ -84,18 +53,6 @@ const ImpactPage = () => {
       activeClasses: classesRes.count ?? 0,
       publishedContent: contentRes.count ?? 0,
     });
-
-    const grouped = ((publicProfilesRes.data as Array<{ department: string | null }> | null) ?? []).reduce<Record<string, number>>((acc, row) => {
-      const department = (row.department || "").trim();
-      if (!department) {
-        return acc;
-      }
-      acc[department] = (acc[department] ?? 0) + 1;
-      return acc;
-    }, {});
-
-    setDepartmentCounts(grouped);
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -112,13 +69,6 @@ const ImpactPage = () => {
       supabase.removeChannel(channel);
     };
   }, []);
-
-  const rankedDepartments = useMemo(
-    () => Object.entries(departmentCounts).sort((a, b) => b[1] - a[1]),
-    [departmentCounts],
-  );
-
-  const maxDepartment = Math.max(...Object.values(departmentCounts), 1);
 
   return (
     <div className="min-h-screen bg-background pt-24 md:pt-32 pb-20 overflow-hidden">
@@ -177,76 +127,6 @@ const ImpactPage = () => {
               </div>
             </div>
           </SectionFade>
-        </div>
-      </section>
-
-      <section className="pt-16 md:pt-24">
-        <div className="container max-w-6xl">
-          <SectionFade>
-            <div className="flex items-center gap-2 text-muted-foreground mb-4">
-              <Activity size={16} />
-              <p className="text-xs font-heading uppercase tracking-widest">Mapa por departamento</p>
-            </div>
-            <h2 className="text-3xl md:text-4xl text-foreground mb-3">Distribución de estudiantes en Uruguay</h2>
-            <p className="text-muted-foreground max-w-2xl mb-10">
-              Agrupación en vivo por el campo department de perfiles.
-            </p>
-          </SectionFade>
-
-          <div className="grid lg:grid-cols-3 gap-6">
-            <SectionFade className="lg:col-span-2" delay={0.06}>
-              <div className="relative rounded-2xl border border-border bg-card p-6 md:p-8 min-h-[26rem]">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,hsl(var(--border))_1px,transparent_0)] [background-size:20px_20px] opacity-10 rounded-2xl" />
-
-                <div className="relative h-full">
-                  {departmentPoints.map((point) => {
-                    const count = departmentCounts[point.name] ?? 0;
-                    const size = Math.max(8, Math.min(34, 8 + (count / maxDepartment) * 26));
-                    return (
-                      <div
-                        key={point.name}
-                        className="absolute -translate-x-1/2 -translate-y-1/2"
-                        style={{ left: `${point.x}%`, top: `${point.y}%` }}
-                        title={`${point.name}: ${count}`}
-                      >
-                        <div
-                          className={`rounded-full border border-background shadow-sm transition-all ${
-                            count > 0 ? "bg-gradient-to-br from-primary-blue to-secondary-cyan" : "bg-muted"
-                          }`}
-                          style={{ width: `${size}px`, height: `${size}px`, opacity: count > 0 ? 0.95 : 0.55 }}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </SectionFade>
-
-            <SectionFade delay={0.12}>
-              <div className="rounded-2xl border border-border bg-card p-6">
-                <h3 className="font-heading text-lg text-foreground mb-5">Top departamentos</h3>
-                <div className="space-y-4">
-                  {rankedDepartments.slice(0, 8).map(([department, count]) => {
-                    const pct = Math.round((count / maxDepartment) * 100);
-                    return (
-                      <div key={department}>
-                        <div className="flex items-center justify-between text-sm mb-1.5">
-                          <span className="font-heading text-foreground">{department}</span>
-                          <span className="text-muted-foreground">{count}</span>
-                        </div>
-                        <div className="h-1.5 rounded-full bg-secondary overflow-hidden">
-                          <div className="h-full rounded-full bg-gradient-to-r from-primary-blue to-secondary-cyan" style={{ width: `${pct}%` }} />
-                        </div>
-                      </div>
-                    );
-                  })}
-                  {!loading && rankedDepartments.length === 0 && (
-                    <p className="text-sm text-muted-foreground">Todavía no hay datos de departamentos para mostrar.</p>
-                  )}
-                </div>
-              </div>
-            </SectionFade>
-          </div>
         </div>
       </section>
 

@@ -25,6 +25,6 @@ RETOMANDO EXACTAMENTE DESDE LA ESCENA ANTERIOR:
 El personaje 2 se saca la ropa sucia y aparece en el fondo con un traje elegante y prolijo. Se acerca ? la c?mara y todo se convierte en la escena de un informercial. El hombre mira ? la c?mara como un hombre de negocios vendedor y publicita Foro Agora. Tiene un cartel con el logo (lo voy ? proporcionar) en la mano y grita exactamente "?Sos el negocio de los dem?s porque no entend?s c?mo funciona el mercado! ?Despertate! ?Foro Agora te da gratis la educaci?n financiera que el liceo te ocult?!". La camara se acerca rapidamente ? su cara, expresion facial exagerada. La camara esta por debajo de el para mostrar como se impone. Fin abrupto.
 
 Escena 4:
-Animacion profesional minimalista con el logo de Foro Agora, texto ?Foro Agora?
+Animacion profesional minimalista con el logo de Foro Agora, texto ?Foro Agora?, abajo: loguito de instagram @foro.agora y sitio web foroagora.org
 
 

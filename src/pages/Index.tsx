@@ -339,6 +339,12 @@ const Hero = () => {
                   <ArrowRight size={17} />
                 </Link>
               </div>
+              <div className="mt-6 flex flex-col items-start gap-2">
+                <p className="text-sm font-heading font-medium text-foreground/70">
+                  La primera clase empieza en
+                </p>
+                <CohortCountdown />
+              </div>
               <p className="mt-4 max-w-xl text-xs leading-relaxed text-foreground/55">
                 Al continuar aceptás nuestros {" "}
                 <Link to="/terminos" className="underline underline-offset-4 hover:text-foreground transition-colors">

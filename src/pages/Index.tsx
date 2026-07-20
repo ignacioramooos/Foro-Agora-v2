@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import SectionFade from "@/components/SectionFade";
 import LiveStudentCounter from "@/components/LiveStudentCounter";
 import CoreValues from "@/components/CoreValues";
+import CohortCountdown from "@/components/CohortCountdown";
 import { LandingEventFooter, LandingEventPopup } from "@/components/FeaturedEvent";
 import { PreservedInjuSupportStrip } from "@/components/INJU_LOGO_DO_NOT_DELETE";
 import { supabase } from "@/integrations/supabase/client";

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import SectionFade from "@/components/SectionFade";
 import LiveStudentCounter from "@/components/LiveStudentCounter";
 import CoreValues from "@/components/CoreValues";
+import CohortCountdown from "@/components/CohortCountdown";
 import { LandingEventFooter, LandingEventPopup } from "@/components/FeaturedEvent";
 import { PreservedInjuSupportStrip } from "@/components/INJU_LOGO_DO_NOT_DELETE";
 import { supabase } from "@/integrations/supabase/client";
@@ -337,6 +338,12 @@ const Hero = () => {
                   Ver programa
                   <ArrowRight size={17} />
                 </Link>
+              </div>
+              <div className="mt-6 flex flex-col items-start gap-2">
+                <p className="text-sm font-heading font-medium text-foreground/70">
+                  La primera clase empieza en
+                </p>
+                <CohortCountdown />
               </div>
               <p className="mt-4 max-w-xl text-xs leading-relaxed text-foreground/55">
                 Al continuar aceptás nuestros {" "}

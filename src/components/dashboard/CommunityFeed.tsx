@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { MessageCircle, Send, ThumbsUp, Trash2, Users, RefreshCw, Megaphone, FileText, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import type { PostgrestError } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserRole } from "@/hooks/useUserRole";
@@ -115,39 +116,68 @@ const CommunityFeed = () => {
     setError(null);
 
     try {
-      const basePostQuery = supabase
-        .from("community_posts")
-        .select(
-          legacySchema
-            ? "id, author, type, title, created_at, is_published"
-            : "id, user_id, author, type, title, body, created_at, updated_at, is_published",
-        )
-        .eq("is_published", true)
-        .order("created_at", { ascending: false })
-        .limit(30);
+      type LegacyPostRow = Pick<
+        CommunityPostRow,
+        "id" | "author" | "type" | "title" | "created_at" | "is_published"
+      >;
 
       let shouldUseLegacySchema = legacySchema;
-      let { data: postRows, error: postsError } = await basePostQuery;
+      let postRows: CommunityPostRow[] | LegacyPostRow[] | null = null;
+      let postsError: PostgrestError | null = null;
 
-      if (postsError && isMissingSchemaError(postsError.message)) {
-        shouldUseLegacySchema = true;
-        setLegacySchema(true);
-        const legacyResult = await supabase
+      if (legacySchema) {
+        const result = await supabase
           .from("community_posts")
           .select("id, author, type, title, created_at, is_published")
           .eq("is_published", true)
           .order("created_at", { ascending: false })
           .limit(30);
+        postRows = result.data;
+        postsError = result.error;
+      } else {
+        const result = await supabase
+          .from("community_posts")
+          .select("id, user_id, author, type, title, body, created_at, updated_at, is_published")
+          .eq("is_published", true)
+          .order("created_at", { ascending: false })
+          .limit(30);
+        postRows = result.data;
+        postsError = result.error;
 
-        postRows = legacyResult.data;
-        postsError = legacyResult.error;
+        if (postsError && isMissingSchemaError(postsError.message)) {
+          shouldUseLegacySchema = true;
+          setLegacySchema(true);
+          const legacyResult = await supabase
+            .from("community_posts")
+            .select("id, author, type, title, created_at, is_published")
+            .eq("is_published", true)
+            .order("created_at", { ascending: false })
+            .limit(30);
+          postRows = legacyResult.data;
+          postsError = legacyResult.error;
+        }
       }
 
       if (postsError) throw postsError;
 
-      const visiblePosts = (postRows ?? []).flatMap((post) =>
-        isCommunityPostType(post.type) ? [{ ...post, body: "body" in post ? post.body : post.title, type: post.type }] : [],
-      );
+      const visiblePosts: CommunityPost[] = (postRows ?? []).flatMap((post) => {
+        if (!isCommunityPostType(post.type)) return [];
+        const body = "body" in post ? (post as CommunityPostRow).body : post.title;
+        const user_id = "user_id" in post ? (post as CommunityPostRow).user_id : null;
+        const updated_at = "updated_at" in post ? (post as CommunityPostRow).updated_at : post.created_at;
+        return [
+          {
+            ...(post as CommunityPostRow),
+            body,
+            type: post.type,
+            user_id,
+            updated_at,
+            comments: [],
+            likeCount: 0,
+            likedByMe: false,
+          } as CommunityPost,
+        ];
+      });
       const postIds = visiblePosts.map((post) => post.id);
 
       if (postIds.length === 0) {
@@ -156,16 +186,7 @@ const CommunityFeed = () => {
       }
 
       if (shouldUseLegacySchema) {
-        setPosts(
-          visiblePosts.map((post) => ({
-            ...post,
-            user_id: "user_id" in post ? post.user_id : null,
-            updated_at: "updated_at" in post ? post.updated_at : post.created_at,
-            comments: [],
-            likeCount: 0,
-            likedByMe: false,
-          })),
-        );
+        setPosts(visiblePosts);
         return;
       }
 
@@ -177,7 +198,7 @@ const CommunityFeed = () => {
           .order("created_at", { ascending: true }),
         supabase
           .from("community_post_reactions")
-          .select("post_id, user_id, reaction_type, created_at")
+          .select("id, post_id, user_id, reaction_type, created_at")
           .in("post_id", postIds)
           .eq("reaction_type", "like"),
       ]);
@@ -188,16 +209,7 @@ const CommunityFeed = () => {
           isMissingSchemaError(reactionsResult.error?.message)
         ) {
           setLegacySchema(true);
-          setPosts(
-            visiblePosts.map((post) => ({
-              ...post,
-              user_id: post.user_id,
-              updated_at: post.updated_at,
-              comments: [],
-              likeCount: 0,
-              likedByMe: false,
-            })),
-          );
+          setPosts(visiblePosts);
           return;
         }
 

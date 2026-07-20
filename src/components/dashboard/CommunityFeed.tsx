@@ -160,11 +160,24 @@ const CommunityFeed = () => {
 
       if (postsError) throw postsError;
 
-      const visiblePosts = (postRows ?? []).flatMap((post) =>
-        isCommunityPostType(post.type)
-          ? [{ ...post, body: "body" in post ? post.body : post.title, type: post.type }]
-          : [],
-      );
+      const visiblePosts: CommunityPost[] = (postRows ?? []).flatMap((post) => {
+        if (!isCommunityPostType(post.type)) return [];
+        const body = "body" in post ? (post as CommunityPostRow).body : post.title;
+        const user_id = "user_id" in post ? (post as CommunityPostRow).user_id : null;
+        const updated_at = "updated_at" in post ? (post as CommunityPostRow).updated_at : post.created_at;
+        return [
+          {
+            ...(post as CommunityPostRow),
+            body,
+            type: post.type,
+            user_id,
+            updated_at,
+            comments: [],
+            likeCount: 0,
+            likedByMe: false,
+          } as CommunityPost,
+        ];
+      });
       const postIds = visiblePosts.map((post) => post.id);
 
       if (postIds.length === 0) {
@@ -173,16 +186,7 @@ const CommunityFeed = () => {
       }
 
       if (shouldUseLegacySchema) {
-        setPosts(
-          visiblePosts.map((post) => ({
-            ...post,
-            user_id: "user_id" in post ? post.user_id : null,
-            updated_at: "updated_at" in post ? post.updated_at : post.created_at,
-            comments: [],
-            likeCount: 0,
-            likedByMe: false,
-          })),
-        );
+        setPosts(visiblePosts);
         return;
       }
 
@@ -205,16 +209,7 @@ const CommunityFeed = () => {
           isMissingSchemaError(reactionsResult.error?.message)
         ) {
           setLegacySchema(true);
-          setPosts(
-            visiblePosts.map((post) => ({
-              ...post,
-              user_id: post.user_id,
-              updated_at: post.updated_at,
-              comments: [],
-              likeCount: 0,
-              likedByMe: false,
-            })),
-          );
+          setPosts(visiblePosts);
           return;
         }
 

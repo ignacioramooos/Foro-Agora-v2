@@ -115,31 +115,33 @@ const CommunityFeed = () => {
     setError(null);
 
     try {
+      const modernSelect = "id, user_id, author, type, title, body, created_at, updated_at, is_published" as const;
+      const legacySelect = "id, author, type, title, created_at, is_published" as const;
+
       const basePostQuery = supabase
         .from("community_posts")
-        .select(
-          legacySchema
-            ? "id, author, type, title, created_at, is_published"
-            : "id, user_id, author, type, title, body, created_at, updated_at, is_published",
-        )
+        .select(legacySchema ? legacySelect : modernSelect)
         .eq("is_published", true)
         .order("created_at", { ascending: false })
         .limit(30);
 
       let shouldUseLegacySchema = legacySchema;
-      let { data: postRows, error: postsError } = await basePostQuery;
+      let { data: postRows, error: postsError } = (await basePostQuery) as {
+        data: CommunityPostRow[] | null;
+        error: any;
+      };
 
       if (postsError && isMissingSchemaError(postsError.message)) {
         shouldUseLegacySchema = true;
         setLegacySchema(true);
         const legacyResult = await supabase
           .from("community_posts")
-          .select("id, author, type, title, created_at, is_published")
+          .select(legacySelect)
           .eq("is_published", true)
           .order("created_at", { ascending: false })
           .limit(30);
 
-        postRows = legacyResult.data;
+        postRows = legacyResult.data as CommunityPostRow[] | null;
         postsError = legacyResult.error;
       }
 

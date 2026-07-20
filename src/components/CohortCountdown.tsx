@@ -105,7 +105,7 @@ const CohortCountdown = () => {
       if (data && data.length > 0) {
         setTargetDate(new Date(data[0].class_date));
       } else {
-        setTargetDate(getNextWednesdayAt18());
+        setTargetDate(getNextWednesdayAt18UY());
       }
       setLoading(false);
     };

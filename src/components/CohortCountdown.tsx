@@ -46,7 +46,7 @@ const getMontevideoParts = (date: Date) => {
 };
 
 const setMontevideoTime = (date: Date, hour: number, minute: number, second: number) => {
-  let adjusted = new Date(date.getTime());
+  const adjusted = new Date(date.getTime());
   for (let i = 0; i < 3; i++) {
     const parts = getMontevideoParts(adjusted);
     const hDiff = hour - parts.hour;
@@ -63,7 +63,7 @@ const setMontevideoTime = (date: Date, hour: number, minute: number, second: num
 
 const getNextWednesdayAt18UY = () => {
   const now = new Date();
-  let candidate = new Date(now.getTime());
+  const candidate = new Date(now.getTime());
 
   for (let i = 0; i < 14; i++) {
     const parts = getMontevideoParts(candidate);

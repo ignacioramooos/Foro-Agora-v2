@@ -8,6 +8,21 @@ interface TimeLeft {
   seconds: number;
 }
 
+const getNextWednesdayAt18 = () => {
+  const now = new Date();
+  const next = new Date(now);
+  next.setHours(18, 0, 0, 0);
+  const day = next.getDay(); // 0 = domingo, 3 = miércoles
+  const isWednesday = day === 3;
+  const daysUntilWednesday = isWednesday
+    ? now.getHours() >= 18
+      ? 7
+      : 0
+    : (3 - day + 7) % 7;
+  next.setDate(next.getDate() + daysUntilWednesday);
+  return next;
+};
+
 const CohortCountdown = () => {
   const [targetDate, setTargetDate] = useState<Date | null>(null);
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
@@ -26,6 +41,8 @@ const CohortCountdown = () => {
 
       if (data && data.length > 0) {
         setTargetDate(new Date(data[0].class_date));
+      } else {
+        setTargetDate(getNextWednesdayAt18());
       }
       setLoading(false);
     };

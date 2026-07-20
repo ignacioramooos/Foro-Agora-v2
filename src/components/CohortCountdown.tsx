@@ -8,19 +8,82 @@ interface TimeLeft {
   seconds: number;
 }
 
-const getNextWednesdayAt18 = () => {
+const TIME_ZONE = "America/Montevideo";
+
+const weekdayMap: Record<string, number> = {
+  Mon: 1,
+  Tue: 2,
+  Wed: 3,
+  Thu: 4,
+  Fri: 5,
+  Sat: 6,
+  Sun: 7,
+};
+
+const getMontevideoParts = (date: Date) => {
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone: TIME_ZONE,
+    weekday: "short",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: false,
+  });
+  const parts = formatter.formatToParts(date);
+  const get = (type: string) => parseInt(parts.find((p) => p.type === type)?.value || "0", 10);
+  return {
+    weekday: parts.find((p) => p.type === "weekday")?.value || "",
+    year: get("year"),
+    month: get("month"),
+    day: get("day"),
+    hour: get("hour"),
+    minute: get("minute"),
+    second: get("second"),
+  };
+};
+
+const setMontevideoTime = (date: Date, hour: number, minute: number, second: number) => {
+  let adjusted = new Date(date.getTime());
+  for (let i = 0; i < 3; i++) {
+    const parts = getMontevideoParts(adjusted);
+    const hDiff = hour - parts.hour;
+    const mDiff = minute - parts.minute;
+    const sDiff = second - parts.second;
+    if (hDiff === 0 && mDiff === 0 && sDiff === 0) break;
+    adjusted.setHours(adjusted.getHours() + hDiff);
+    adjusted.setMinutes(adjusted.getMinutes() + mDiff);
+    adjusted.setSeconds(adjusted.getSeconds() + sDiff);
+  }
+  adjusted.setMilliseconds(0);
+  return adjusted;
+};
+
+const getNextWednesdayAt18UY = () => {
   const now = new Date();
-  const next = new Date(now);
-  next.setHours(18, 0, 0, 0);
-  const day = next.getDay(); // 0 = domingo, 3 = miércoles
-  const isWednesday = day === 3;
-  const daysUntilWednesday = isWednesday
-    ? now.getHours() >= 18
-      ? 7
-      : 0
-    : (3 - day + 7) % 7;
-  next.setDate(next.getDate() + daysUntilWednesday);
-  return next;
+  let candidate = new Date(now.getTime());
+
+  for (let i = 0; i < 14; i++) {
+    const parts = getMontevideoParts(candidate);
+    const weekday = weekdayMap[parts.weekday];
+
+    if (weekday === 3 && parts.hour < 18) {
+      return setMontevideoTime(candidate, 18, 0, 0);
+    }
+
+    if (weekday !== 3) {
+      const daysUntilWednesday = (3 - weekday + 7) % 7 || 7;
+      candidate.setDate(candidate.getDate() + daysUntilWednesday);
+      return setMontevideoTime(candidate, 18, 0, 0);
+    }
+
+    // Miércoles después de las 18:00 → avanzar al día siguiente y reintentar
+    candidate.setDate(candidate.getDate() + 1);
+  }
+
+  return candidate;
 };
 
 const CohortCountdown = () => {

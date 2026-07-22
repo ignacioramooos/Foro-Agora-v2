@@ -937,9 +937,8 @@ export type Database = {
     Views: {
       thank_you_wall: {
         Row: {
+          avatar_url: string | null
           display_name: string | null
-          first_referral_at: string | null
-          latest_referral_at: string | null
           referral_count: number | null
           user_id: string | null
         }

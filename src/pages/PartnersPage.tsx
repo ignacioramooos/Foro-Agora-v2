@@ -43,6 +43,7 @@ const PartnersPage = () => {
     message: fromInstitutions ? institutionMessage : "",
   });
   const [partners, setPartners] = useState<Tables<"partners">[]>([]);
+  const [wall, setWall] = useState<Array<{ user_id: string; display_name: string; referral_count: number }>>([]);
 
   useEffect(() => {
     const fetchPartners = async () => {
@@ -53,7 +54,16 @@ const PartnersPage = () => {
         .order("created_at");
       if (data) setPartners(data);
     };
+    const fetchWall = async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data } = await (supabase as any)
+        .from("thank_you_wall")
+        .select("user_id, display_name, referral_count, first_referral_at")
+        .order("first_referral_at", { ascending: true });
+      if (data) setWall(data);
+    };
     fetchPartners();
+    fetchWall();
   }, []);
 
   useEffect(() => {
@@ -169,6 +179,41 @@ const PartnersPage = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Thank-you wall */}
+      <section className="py-16 md:py-24 border-b border-border bg-background">
+        <div className="container">
+          <p className="font-hand text-3xl text-orange-pop mb-2">Muro de agradecimiento</p>
+          <h2 className="text-3xl md:text-5xl font-black leading-tight text-foreground mb-4">
+            Quienes ayudaron a que crezcamos
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mb-10">
+            Cada nombre acá invitó al menos a 5 personas a sumarse a Foro Agora. Gracias por hacer que la educación financiera llegue a más jóvenes.
+          </p>
+          {wall.length === 0 ? (
+            <div className="max-w-xl rounded-lg border border-border bg-card p-8">
+              <p className="font-heading text-xl font-black text-foreground">
+                El muro todavía está en silencio.
+              </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Sé la primera persona en invitar a 5 amigos desde el <Link to="/difundir" className="underline underline-offset-4">kit de difusión</Link>.
+              </p>
+            </div>
+          ) : (
+            <ul className="flex flex-wrap gap-2">
+              {wall.map((e) => (
+                <li
+                  key={e.user_id}
+                  className="rounded-full border-2 border-foreground bg-card px-4 py-2 font-heading text-sm font-black text-foreground"
+                  title={`${e.referral_count} personas invitadas`}
+                >
+                  {e.display_name}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
 

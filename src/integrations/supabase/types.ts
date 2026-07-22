@@ -834,6 +834,54 @@ export type Database = {
         }
         Relationships: []
       }
+      referral_codes: {
+        Row: {
+          code: string
+          created_at: string
+          display_name: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          display_name?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          display_name?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      referrals: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          referred_user_id: string
+          referrer_user_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          referred_user_id: string
+          referrer_user_id: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          referred_user_id?: string
+          referrer_user_id?: string
+        }
+        Relationships: []
+      }
       user_preferences: {
         Row: {
           created_at: string
@@ -887,9 +935,19 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      thank_you_wall: {
+        Row: {
+          display_name: string | null
+          first_referral_at: string | null
+          latest_referral_at: string | null
+          referral_count: number | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
+      claim_referral: { Args: { _code: string }; Returns: boolean }
       get_public_profiles: {
         Args: never
         Returns: {
@@ -909,6 +967,7 @@ export type Database = {
         Returns: boolean
       }
       is_valid_uruguayan_cedula: { Args: { value: string }; Returns: boolean }
+      resolve_referral_code: { Args: { _code: string }; Returns: string }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"

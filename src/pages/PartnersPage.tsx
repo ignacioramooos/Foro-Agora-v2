@@ -43,6 +43,7 @@ const PartnersPage = () => {
     message: fromInstitutions ? institutionMessage : "",
   });
   const [partners, setPartners] = useState<Tables<"partners">[]>([]);
+  const [wall, setWall] = useState<Array<{ user_id: string; display_name: string; referral_count: number }>>([]);
 
   useEffect(() => {
     const fetchPartners = async () => {
@@ -53,7 +54,16 @@ const PartnersPage = () => {
         .order("created_at");
       if (data) setPartners(data);
     };
+    const fetchWall = async () => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { data } = await (supabase as any)
+        .from("thank_you_wall")
+        .select("user_id, display_name, referral_count, first_referral_at")
+        .order("first_referral_at", { ascending: true });
+      if (data) setWall(data);
+    };
     fetchPartners();
+    fetchWall();
   }, []);
 
   useEffect(() => {

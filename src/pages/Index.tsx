@@ -12,6 +12,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { curriculumClassCount } from "@/lib/curriculum";
 import { fetchStockPrices, SUPPORTED_STOCKS, type StockQuote } from "@/lib/stockData";
 import { ArrowRight, Users } from "lucide-react";
+import { captureRefFromUrl } from "@/lib/referral";
 
 const testimonials = [
   "Las clases me abrieron la cabeza. Ahora entiendo temas que antes me parecían aburridos.",
@@ -159,6 +160,10 @@ const DynamicStockTickerAnimation = () => {
   const [demoTickers] = useState(() => shuffleTickers(DEFAULT_CAROUSEL_TICKERS));
   const [quotes, setQuotes] = useState<StockQuote[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    captureRefFromUrl();
+  }, []);
 
   useEffect(() => {
     let cancelled = false;

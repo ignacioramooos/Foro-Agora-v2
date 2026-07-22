@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback, ReactNode 
 import { supabase } from "@/integrations/supabase/client";
 import { useProfile } from "@/hooks/useProfile";
 import { signupWithPassword } from "@/lib/passwordSignup";
+import { claimReferralIfPending } from "@/lib/referral";
 import type { User as SupabaseUser, Session } from "@supabase/supabase-js";
 
 export interface UserProfile {
@@ -120,6 +121,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setSession(newSession);
         if (newSession?.user) {
           setTimeout(() => fetchProfile(newSession.user), 0);
+          setTimeout(() => { claimReferralIfPending(); }, 0);
         } else {
           setUser(null);
         }

@@ -69,22 +69,10 @@ const ProgramPage = () => (
         </h2>
         <div className="grid md:grid-cols-2 gap-px bg-border rounded-lg overflow-hidden">
           <div className="bg-background p-8">
-            <h3 className="font-heading font-semibold text-foreground text-lg mb-4">Clases presenciales</h3>
-            <ul className="space-y-3 text-muted-foreground text-sm">
-              <li>Montevideo, Centro</li>
-              <li>Sábados, 10:00 – 12:00</li>
-              <li>{curriculumClassCount} clases de 1h 20m</li>
-              <li>Sin costo</li>
-            </ul>
+            <h3 className="font-heading font-semibold text-foreground text-lg">Clases presenciales</h3>
           </div>
           <div className="bg-background p-8">
-            <h3 className="font-heading font-semibold text-foreground text-lg mb-4">Recursos online</h3>
-            <ul className="space-y-3 text-muted-foreground text-sm">
-              <li>Contenido grabado de cada clase</li>
-              <li>Material de lectura complementario</li>
-              <li>Comunidad de estudiantes</li>
-              <li>Plantillas de análisis</li>
-            </ul>
+            <h3 className="font-heading font-semibold text-foreground text-lg">Recursos online</h3>
           </div>
         </div>
       </div>

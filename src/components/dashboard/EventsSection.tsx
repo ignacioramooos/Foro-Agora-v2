@@ -28,16 +28,20 @@ const EventsSection = () => {
         supabase
           .from("class_sessions")
           .select("*")
-          .eq("is_active", true)
-          .gte("class_date", new Date().toISOString())
-          .order("class_date", { ascending: true }),
+          .order("class_date", { ascending: false }),
         userId
           ? supabase.from("class_registrations").select("class_id").eq("user_id", userId)
           : Promise.resolve({ data: [] }),
       ]);
 
       if (cancelled) return;
-      setClasses((classesResult.data ?? []) as ClassSession[]);
+      const classSessions = [...((classesResult.data ?? []) as ClassSession[])].sort((a, b) => {
+        if (a.is_active !== b.is_active) return Number(b.is_active) - Number(a.is_active);
+
+        const dateDifference = new Date(a.class_date).getTime() - new Date(b.class_date).getTime();
+        return a.is_active ? dateDifference : -dateDifference;
+      });
+      setClasses(classSessions);
       setRegisteredClassIds(
         new Set((registrationsResult.data ?? []).flatMap((registration) => registration.class_id ? [registration.class_id] : []))
       );
@@ -74,39 +78,55 @@ const EventsSection = () => {
 
       {classes.length === 0 ? (
         <div className="rounded-xl border border-border p-8 text-sm text-muted-foreground">
-          No hay eventos con inscripciones abiertas en este momento.
+          No hay eventos publicados en este momento.
         </div>
       ) : (
         <div className="space-y-5">
           {classes.map((classSession) => {
             const isRegistered = registeredClassIds.has(classSession.id);
+            const isPast = !classSession.is_active;
             return (
               <div key={classSession.id} className="space-y-4">
-                <article className="overflow-hidden rounded-2xl border-2 border-foreground bg-card">
-                  <div className="bg-sun px-5 py-3 text-xs font-black uppercase tracking-[0.15em] text-foreground">
-                    {classSession.is_featured ? "Evento destacado" : "Inscripciones abiertas"}
+                <article
+                  aria-label={isPast ? `${classSession.title}, evento pasado` : classSession.title}
+                  className={`overflow-hidden rounded-2xl border-2 ${
+                    isPast
+                      ? "border-border bg-muted/40 text-muted-foreground grayscale"
+                      : "border-foreground bg-card"
+                  }`}
+                >
+                  <div className={`px-5 py-3 text-xs font-black uppercase tracking-[0.15em] ${
+                    isPast ? "bg-muted text-muted-foreground" : "bg-sun text-foreground"
+                  }`}>
+                    {isPast ? "Evento pasado" : classSession.is_featured ? "Evento destacado" : "Inscripciones abiertas"}
                   </div>
                   <div className="p-6 md:p-8">
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div>
-                        <h2 className="text-2xl font-black text-foreground md:text-3xl">{classSession.title}</h2>
+                        <h2 className={`text-2xl font-black md:text-3xl ${isPast ? "text-muted-foreground" : "text-foreground"}`}>
+                          {classSession.title}
+                        </h2>
                         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
                           {classSession.notes || EVENT_FALLBACK_DESCRIPTION}
                         </p>
                       </div>
-                      {isRegistered ? (
+                      {isRegistered && !isPast ? (
                         <Badge variant="secondary" className="self-start gap-1.5 px-3 py-2"><CheckCircle2 size={14} /> Ya estás inscripto</Badge>
                       ) : null}
                     </div>
 
-                    <div className="my-7 grid gap-4 text-sm text-foreground/75 sm:grid-cols-2">
-                      <span className="flex items-center gap-2"><CalendarDays className="text-blue-pop" size={18} /> {formatEventDate(classSession.class_date)}</span>
-                      <span className="flex items-center gap-2"><Clock className="text-blue-pop" size={18} /> {formatEventTimeRange(classSession)}</span>
-                      <span className="flex items-center gap-2"><MapPin className="text-blue-pop" size={18} /> {classSession.location}</span>
-                      <span className="flex items-center gap-2"><Users className="text-blue-pop" size={18} /> {classSession.max_capacity} lugares</span>
+                    <div className={`my-7 grid gap-4 text-sm sm:grid-cols-2 ${isPast ? "text-muted-foreground" : "text-foreground/75"}`}>
+                      <span className="flex items-center gap-2"><CalendarDays className={isPast ? "text-muted-foreground" : "text-blue-pop"} size={18} /> {formatEventDate(classSession.class_date)}</span>
+                      <span className="flex items-center gap-2"><Clock className={isPast ? "text-muted-foreground" : "text-blue-pop"} size={18} /> {formatEventTimeRange(classSession)}</span>
+                      <span className="flex items-center gap-2"><MapPin className={isPast ? "text-muted-foreground" : "text-blue-pop"} size={18} /> {classSession.location}</span>
+                      <span className="flex items-center gap-2"><Users className={isPast ? "text-muted-foreground" : "text-blue-pop"} size={18} /> {classSession.max_capacity} lugares</span>
                     </div>
 
-                    {isRegistered ? (
+                    {isPast ? (
+                      <div className="rounded-lg border border-border bg-muted px-4 py-3 text-sm font-semibold text-muted-foreground">
+                        Este evento ya pasó — {formatEventDate(classSession.class_date)}.
+                      </div>
+                    ) : isRegistered ? (
                       <div className="rounded-lg bg-secondary px-4 py-3 text-sm font-semibold text-foreground">
                         Ya estás inscripto. Te esperamos en Casa INJU.
                       </div>
@@ -115,7 +135,7 @@ const EventsSection = () => {
                     )}
                   </div>
                 </article>
-                {classSession.location.toLocaleLowerCase("es-UY").includes("inju") ? <InjuLocationMap /> : null}
+                {!isPast && classSession.location.toLocaleLowerCase("es-UY").includes("inju") ? <InjuLocationMap /> : null}
               </div>
             );
           })}

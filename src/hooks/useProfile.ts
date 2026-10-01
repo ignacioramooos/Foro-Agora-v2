@@ -10,6 +10,7 @@ export interface UserProfileData {
   institution?: string | null;
   how_found_us?: string | null;
   onboarding_completed?: boolean | null;
+  avatar_url?: string | null;
 }
 
 export function useProfile() {
@@ -18,7 +19,7 @@ export function useProfile() {
     try {
       const { data, error } = await supabase
         .from("profiles")
-        .select("display_name, full_name, age, department, institution, how_found_us, onboarding_completed")
+        .select("display_name, full_name, age, department, institution, how_found_us, onboarding_completed, avatar_url")
         .eq("user_id", userId)
         .single();
 

@@ -88,6 +88,7 @@ describe("registro autenticado al encuentro", () => {
         totalClasses: 5,
         publishedTheses: 0,
         onboardingCompleted: true,
+        avatarUrl: null,
       },
       session: { user: { id: "user-1" } },
     } as ReturnType<typeof useAuth>);

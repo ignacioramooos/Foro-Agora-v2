@@ -11,6 +11,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import DesmosPanel from "@/components/math/DesmosPanel";
 import { useIsMobile } from "@/hooks/use-mobile";
+import MathsAdBanner from "@/components/math/MathsAdBanner";
 
 const phrases = [
   "La régularité bat le talent.",
@@ -105,6 +106,7 @@ const PracticePage = () => {
 
   return (
     <MathShell top={stats}>
+      <div className="px-4 pt-4 sm:px-8 lg:px-10"><MathsAdBanner /></div>
       <div className="min-h-[620px] lg:h-full lg:min-h-0">
         {isMobile ? (
           <>

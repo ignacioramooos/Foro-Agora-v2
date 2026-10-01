@@ -28,6 +28,7 @@ const routeMeta = {
   "maths/dm": { title: "DM — Maths — Foro Agora", desc: "Devoirs maison de mathématiques." },
   "maths/dm/dm-1": { title: "DM n°1 — Maths — Foro Agora", desc: "Devoir maison n°1." },
   "maths/ressources": { title: "Ressources — Maths — Foro Agora", desc: "Formulaires et méthodologie." },
+  "maths/forum": { title: "Forum — Maths — Foro Agora", desc: "Forum de mathématiques pour échanger des questions, méthodes et documents." },
   // app routes: keep simple, low priority
   auth:       { title: "Acceso — Foro Agora",                   desc: "Ingresá a tu cuenta de Foro Agora para acceder al dashboard, simulador y comunidad de estudiantes." },
   dashboard:  { title: "Dashboard — Foro Agora",                desc: "Panel personal de estudiantes de Foro Agora: progreso, portafolio simulado, comunidad y recursos." },

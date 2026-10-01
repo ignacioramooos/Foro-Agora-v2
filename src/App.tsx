@@ -40,6 +40,7 @@ const PracticeChapterPage = lazy(() => import("./pages/PracticeChapterPage"));
 const MathKhollesPage = lazy(() => import("./pages/MathKhollesPage"));
 const MathDmPage = lazy(() => import("./pages/MathDmPage"));
 const MathResourcesPage = lazy(() => import("./pages/MathResourcesPage"));
+const MathForumPage = lazy(() => import("./pages/MathForumPage"));
 
 const queryClient = new QueryClient();
 
@@ -144,6 +145,7 @@ const AppRoutes = () => {
       <Route path="/maths/dm" element={<StudyPage><MathDmPage /></StudyPage>} />
       <Route path="/maths/dm/:id" element={<StudyPage><MathDmPage /></StudyPage>} />
       <Route path="/maths/ressources" element={<StudyPage><MathResourcesPage /></StudyPage>} />
+      <Route path="/maths/forum" element={<StudyPage><MathForumPage /></StudyPage>} />
       <Route path="/practica/*" element={<LegacyPracticeRedirect />} />
       <Route path="/auth" element={<AuthPage />} />
     </>

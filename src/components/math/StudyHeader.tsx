@@ -5,6 +5,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import logoMark from "@/assets/stone-trail-logo.png";
 import MathSettings from "./MathSettings";
 import StudyAuth from "./StudyAuth";
+import MathSearchDialog from "./MathSearchDialog";
 
 const StudyHeader = () => {
   const { theme, toggleTheme } = useTheme();
@@ -17,6 +18,7 @@ const StudyHeader = () => {
           <span>Foro Agora</span>
         </Link>
         <div className="flex items-center gap-1">
+          <MathSearchDialog />
           <MathSettings />
           <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label={theme === "dark" ? "Passer au mode clair" : "Passer au mode sombre"}>
             {theme === "dark" ? <Sun /> : <Moon />}

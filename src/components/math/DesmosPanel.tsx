@@ -1,7 +1,9 @@
 import { Calculator, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const DESMOS_URL = "https://www.desmos.com/calculator?embed";
+// The `?embed` variant only exposes the graph and keypad at narrow widths.
+// The full calculator keeps the expressions drawer visible and editable.
+const DESMOS_URL = "https://www.desmos.com/calculator";
 
 const DesmosPanel = ({ onClose }: { onClose?: () => void }) => (
   <section className="flex h-full min-h-0 flex-col bg-card" aria-label="Calculatrice graphique Desmos">

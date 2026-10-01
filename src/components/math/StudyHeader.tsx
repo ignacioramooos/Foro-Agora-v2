@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
 import logoMark from "@/assets/stone-trail-logo.png";
 import MathSettings from "./MathSettings";
+import StudyAuth from "./StudyAuth";
 
 const StudyHeader = () => {
   const { theme, toggleTheme } = useTheme();
@@ -20,6 +21,7 @@ const StudyHeader = () => {
           <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label={theme === "dark" ? "Passer au mode clair" : "Passer au mode sombre"}>
             {theme === "dark" ? <Sun /> : <Moon />}
           </Button>
+          <StudyAuth />
         </div>
       </div>
     </header>

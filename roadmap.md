@@ -11,3 +11,7 @@
 - [x] Move the daily goal into settings
 - [x] Split chapter pages into Cours PDF and TD exercises
 - [x] Verify desktop, mobile, dark mode, redirects, PDFs, and Desmos
+- [ ] Add the supplied banner unchanged to Maths and Forum with per-load dismissal
+- [ ] Add the public French Maths Forum with authenticated posting and document uploads
+- [ ] Add shared profile editing and a compact “Salut, [nom]” greeting to Maths
+- [ ] Verify banner, Forum, profile, mobile, desktop, dark mode, and direct routes

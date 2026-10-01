@@ -78,7 +78,7 @@ const PracticePage = () => {
 
   return (
     <div className="min-h-[calc(100dvh-4rem)] sm:min-h-[calc(100dvh-5rem)] lg:h-[calc(100dvh-5rem)] lg:min-h-0">
-      <div className="grid min-h-full lg:h-full lg:min-h-0 lg:grid-cols-[240px_minmax(0,1fr)]">
+      <div className="grid min-h-full w-full min-w-0 grid-cols-[minmax(0,1fr)] lg:h-full lg:min-h-0 lg:grid-cols-[240px_minmax(0,1fr)]">
         <aside className="border-b border-border bg-card p-4 lg:min-h-0 lg:overflow-y-auto lg:border-b-0 lg:border-r lg:p-5">
           <div className="flex items-start justify-between gap-3 lg:block">
             <div><h1 className="font-heading text-xl font-bold text-foreground">Maths</h1><p className="mt-1 text-sm text-muted-foreground">{phrase}</p></div>

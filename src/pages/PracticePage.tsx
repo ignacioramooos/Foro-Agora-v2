@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
-import { Calculator, ChevronLeft, ChevronRight, Flame, ListOrdered, Shuffle } from "lucide-react";
+import MathShell from "@/components/math/MathShell";
+import { Calculator, ChevronLeft, ChevronRight, Flame, Shuffle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { chapters, dailyPool, parisDay, computeStreak } from "@/content/math";
+import { dailyPool, parisDay, computeStreak } from "@/content/math";
 import { useMathProgress } from "@/hooks/useMathProgress";
 import { useMathGoal } from "@/hooks/useMathGoal";
 import ExerciseCard from "@/components/math/ExerciseCard";
@@ -24,13 +24,13 @@ const phrases = [
 
 const PracticePage = () => {
   const today = parisDay();
-  const [chapterId, setChapterId] = useState<string>("all");
+  const chapterId = "all";
   const [extra, setExtra] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [calculatorOpen, setCalculatorOpen] = useState(() => localStorage.getItem("fa_math_calculator_open") !== "false");
   const isMobile = useIsMobile();
   const { progress, toggle, isLoggedIn } = useMathProgress();
-  const { goal, setGoal } = useMathGoal();
+  const { goal } = useMathGoal();
 
   const completedIds = useMemo(() => new Set(Object.keys(progress)), [progress]);
   const pool = useMemo(() => dailyPool(chapterId, today, completedIds), [chapterId, completedIds, today]);
@@ -45,7 +45,7 @@ const PracticePage = () => {
   const phrase = phrases[parseInt(today.replace(/-/g, ""), 10) % phrases.length];
   const allDone = daily.length > 0 && dailyDone === daily.length;
 
-  useEffect(() => setActiveIndex(0), [chapterId, goal]);
+  useEffect(() => setActiveIndex(0), [goal]);
 
   const setCalculator = (open: boolean) => {
     setCalculatorOpen(open);
@@ -85,55 +85,41 @@ const PracticePage = () => {
     </div>
   );
 
-  return (
-    <div className="min-h-[calc(100dvh-4rem)] sm:min-h-[calc(100dvh-5rem)] lg:h-[calc(100dvh-5rem)] lg:min-h-0">
-      <div className="grid min-h-full w-full min-w-0 grid-cols-[minmax(0,1fr)] lg:h-full lg:min-h-0 lg:grid-cols-[240px_minmax(0,1fr)]">
-        <aside className="border-b border-border bg-card p-4 lg:min-h-0 lg:overflow-y-auto lg:border-b-0 lg:border-r lg:p-5">
-          <div className="flex items-start justify-between gap-3 lg:block">
-            <div><h1 className="font-heading text-xl font-bold text-foreground">Maths</h1><p className="mt-1 text-sm text-muted-foreground">{phrase}</p></div>
-            <div className="flex shrink-0 items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm font-semibold text-foreground lg:mt-5 lg:w-fit">
-              <Flame className={cn("h-4 w-4", streak > 0 ? "text-accent" : "text-muted-foreground")} /> {streak} {streak === 1 ? "jour" : "jours"}
-            </div>
-          </div>
-          <div className="mt-4 lg:mt-7">
-            <div className="mb-2 flex justify-between text-sm"><span className="text-muted-foreground">Aujourd'hui</span><span className="font-semibold text-foreground">{dailyDone}/{daily.length}</span></div>
-            <div className="h-2 overflow-hidden rounded-full bg-muted"><div className="h-full bg-secondary transition-all duration-500" style={{ width: `${daily.length ? (dailyDone / daily.length) * 100 : 0}%` }} /></div>
-          </div>
-          {!isLoggedIn && <p className="mt-4 hidden text-xs text-muted-foreground lg:block"><Link to="/auth" className="font-medium text-foreground underline">Connecte-toi</Link> pour synchroniser ta série.</p>}
-          <nav className="mt-4 flex gap-2 overflow-x-auto lg:mt-8 lg:flex-col" aria-label="Chapitres">
-            {[{ id: "all", label: "Tous" }, ...chapters.map((c) => ({ id: c.id, label: `Chapitre ${c.number}` }))].map((opt) => (
-            <Button
-              variant={chapterId === opt.id ? "default" : "ghost"}
-              size="sm"
-              key={opt.id}
-              onClick={() => { setChapterId(opt.id); setExtra(0); setActiveIndex(0); }}
-              className="shrink-0 justify-start"
-            >
-              {opt.label}
-            </Button>
-          ))}
-          </nav>
-          <p className="mt-3 hidden items-center gap-1.5 text-xs text-muted-foreground lg:flex">
-          {chapterId === "all" ? <><Shuffle className="h-3.5 w-3.5" /> Mélange quotidien</> : <><ListOrdered className="h-3.5 w-3.5" /> Ordre du chapitre · premier exercice non terminé</>}
-          </p>
-          {allDone && <p className="mt-5 rounded-md bg-muted p-3 text-sm font-medium text-foreground">C'est fait pour aujourd'hui.</p>}
-        </aside>
-        <main className="min-h-[620px] min-w-0 lg:min-h-0">
-          {isMobile ? (
-            <>
-              {workspace}
-              <Sheet><SheetTrigger asChild><Button className="fixed bottom-4 right-4 shadow-lg"><Calculator /> Desmos</Button></SheetTrigger><SheetContent side="bottom" className="h-[92dvh] p-0"><DesmosPanel /></SheetContent></Sheet>
-            </>
-          ) : calculatorOpen ? (
-            <ResizablePanelGroup direction="horizontal" className="h-full">
-              <ResizablePanel defaultSize={62} minSize={42}>{workspace}</ResizablePanel>
-              <ResizableHandle withHandle />
-              <ResizablePanel defaultSize={38} minSize={25}><DesmosPanel onClose={() => setCalculator(false)} /></ResizablePanel>
-            </ResizablePanelGroup>
-          ) : workspace}
-        </main>
+  const stats = (
+    <div>
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0"><h1 className="font-heading text-xl font-bold text-foreground">Aléatoire</h1><p className="mt-1 text-sm text-muted-foreground">{phrase}</p></div>
+        <div className="flex shrink-0 items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm font-semibold text-foreground">
+          <Flame className={cn("h-4 w-4", streak > 0 ? "text-accent" : "text-muted-foreground")} /> {streak}
+        </div>
       </div>
+      <div className="mt-3">
+        <div className="mb-1.5 flex justify-between text-sm"><span className="text-muted-foreground">Aujourd'hui</span><span className="font-semibold text-foreground">{dailyDone}/{daily.length}</span></div>
+        <div className="h-2 overflow-hidden rounded-full bg-muted"><div className="h-full bg-secondary transition-all duration-500" style={{ width: `${daily.length ? (dailyDone / daily.length) * 100 : 0}%` }} /></div>
+      </div>
+      <p className="mt-2 hidden items-center gap-1.5 text-xs text-muted-foreground lg:flex"><Shuffle className="h-3.5 w-3.5" /> Mélange quotidien de tous les chapitres</p>
+      {allDone && <p className="mt-3 rounded-md bg-muted p-3 text-sm font-medium text-foreground">C'est fait pour aujourd'hui.</p>}
+      {!isLoggedIn && <p className="mt-3 hidden text-xs text-muted-foreground lg:block">Connecte-toi (en haut à droite) pour synchroniser ta série.</p>}
     </div>
+  );
+
+  return (
+    <MathShell top={stats}>
+      <div className="min-h-[620px] lg:h-full lg:min-h-0">
+        {isMobile ? (
+          <>
+            {workspace}
+            <Sheet><SheetTrigger asChild><Button className="fixed bottom-4 right-4 z-40 shadow-lg"><Calculator /> Desmos</Button></SheetTrigger><SheetContent side="bottom" className="h-[92dvh] p-0"><DesmosPanel /></SheetContent></Sheet>
+          </>
+        ) : calculatorOpen ? (
+          <ResizablePanelGroup direction="horizontal" className="h-full">
+            <ResizablePanel defaultSize={62} minSize={42}>{workspace}</ResizablePanel>
+            <ResizableHandle withHandle />
+            <ResizablePanel defaultSize={38} minSize={25}><DesmosPanel onClose={() => setCalculator(false)} /></ResizablePanel>
+          </ResizablePanelGroup>
+        ) : workspace}
+      </div>
+    </MathShell>
   );
 };
 

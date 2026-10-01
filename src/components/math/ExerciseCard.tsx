@@ -30,15 +30,15 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
     >
       <div className="mb-4 flex items-center gap-2 text-xs font-heading font-semibold uppercase text-muted-foreground">
         <span className={cn("rounded-full px-2.5 py-1", exercise.source === "cours" ? "bg-muted text-foreground" : "bg-secondary text-secondary-foreground")}>
-          {exercise.source === "cours" ? "Cours" : "TD"}
+          {exercise.source === "cours" ? "Cours" : exercise.source === "dm" ? "DM" : "TD"}
         </span>
-        <span>Chap. {exercise.chapter.number} · Exercice {exercise.number}</span>
+        <span>Chap. {exercise.chapter.number} · {exercise.source === "dm" ? "Question" : "Exercice"} {exercise.number}</span>
       </div>
       <MathText text={exercise.statement} className="min-w-0 break-words text-base text-foreground sm:text-lg" />
 
       <div className="mt-5 flex flex-wrap items-center gap-2">
         <Link
-          to={`/maths/chapitre/${exercise.chapter.id}`}
+          to={`/maths/chapitre/${exercise.chapter.id}/${exercise.source === "cours" ? "cours" : "td"}`}
           className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
         >
           <BookOpen className="h-3.5 w-3.5" /> Revoir le chap. {exercise.chapter.number}

@@ -6,3 +6,8 @@
 - [x] Make Tous random and chapters sequential
 - [x] Add all COURS exercises with stable new IDs and visible TD/COURS labels
 - [x] Verify desktop, mobile, dark mode, formulas, and signed-in persistence
+- [ ] Rename the study area to /maths with legacy redirects
+- [ ] Build the horizontal daily workspace with resizable Desmos
+- [ ] Move the daily goal into settings
+- [ ] Split chapter pages into Cours PDF and TD exercises
+- [ ] Verify desktop, mobile, dark mode, redirects, PDFs, and Desmos

@@ -23,7 +23,7 @@ const routeMeta = {
   impacto:    { title: "Impacto — Foro Agora",                  desc: "Resultados y métricas del impacto de Foro Agora en jóvenes uruguayos: estudiantes formados, cohortes y comunidad." },
   privacidad: { title: "Política de privacidad — Foro Agora",   desc: "Cómo tratamos tus datos personales en Foro Agora: información que recolectamos, uso y tus derechos como usuario." },
   terminos:   { title: "Términos y condiciones — Foro Agora",   desc: "Términos y condiciones de uso de la plataforma educativa de Foro Agora." },
-  practica:   { title: "Entraînement quotidien — Foro Agora", desc: "Exercices de mathématiques pour s'entraîner chaque jour." },
+  maths:      { title: "Maths — Foro Agora", desc: "Exercices de mathématiques pour s'entraîner chaque jour." },
   // app routes: keep simple, low priority
   auth:       { title: "Acceso — Foro Agora",                   desc: "Ingresá a tu cuenta de Foro Agora para acceder al dashboard, simulador y comunidad de estudiantes." },
   dashboard:  { title: "Dashboard — Foro Agora",                desc: "Panel personal de estudiantes de Foro Agora: progreso, portafolio simulado, comunidad y recursos." },
@@ -54,6 +54,16 @@ for (const [route, meta] of Object.entries(routeMeta)) {
   mkdirSync(dirname(targetFile), { recursive: true });
   const url = `${SITE}/${route}`;
   writeFileSync(targetFile, rewriteHead(baseHtml, { title: meta.title, desc: meta.desc, url }));
+}
+
+for (let chapter = 1; chapter <= 6; chapter += 1) {
+  const targetFile = join(distDir, "maths", "chapitre", `chapitre-${chapter}`, "index.html");
+  mkdirSync(dirname(targetFile), { recursive: true });
+  writeFileSync(targetFile, rewriteHead(baseHtml, {
+    title: `Chapitre ${chapter} — Maths — Foro Agora`,
+    desc: "Cours et exercices de mathématiques pour s'entraîner.",
+    url: `${SITE}/maths/chapitre/chapitre-${chapter}`,
+  }));
 }
 
 copyFileSync(indexFile, fallbackFile);

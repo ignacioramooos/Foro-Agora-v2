@@ -64,6 +64,10 @@ const routeMeta: Record<string, RouteSeoMeta> = {
     description:
       "Materiales educativos para aprender finanzas personales, inversion responsable y analisis fundamental.",
   },
+  "/maths": {
+    title: "Maths - Foro Agora",
+    description: "Exercices de mathématiques pour s'entraîner chaque jour.",
+  },
 };
 
 const createMeta = (attr: "name" | "property", key: string) => {
@@ -105,10 +109,10 @@ const RouteSeo = () => {
     const canonicalUrl = `${SITE_URL}${pathname === "/" ? "/" : pathname}`;
     const image = meta.image ?? DEFAULT_IMAGE;
 
-    document.title = pathname.startsWith("/practica") ? "Entraînement quotidien - Foro Agora" : meta.title;
+    document.title = pathname.startsWith("/maths") ? "Maths - Foro Agora" : meta.title;
 
     const robots = getHeadElement('meta[name="robots"]', () => createMeta("name", "robots"));
-    if (pathname.startsWith("/practica")) robots.setAttribute("content", "noindex, nofollow");
+    if (pathname.startsWith("/maths")) robots.setAttribute("content", "noindex, nofollow");
     else robots.setAttribute("content", "index, follow");
 
     setHeadValue('meta[name="description"]', "content", meta.description, () => createMeta("name", "description"));

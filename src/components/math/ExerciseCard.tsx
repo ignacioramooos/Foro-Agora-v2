@@ -38,7 +38,7 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
 
       <div className="mt-5 flex flex-wrap items-center gap-2">
         <Link
-          to={`/practica/capitulo/${exercise.chapter.id}`}
+          to={`/maths/chapitre/${exercise.chapter.id}`}
           className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
         >
           <BookOpen className="h-3.5 w-3.5" /> Revoir le chap. {exercise.chapter.number}

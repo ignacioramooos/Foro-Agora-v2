@@ -12,7 +12,7 @@ const escapeHtml = (s: string) =>
 /** Renders text containing $inline$ and $$display$$ LaTeX. */
 const MathText = ({ text, className }: { text: string; className?: string }) => {
   const html = useMemo(() => {
-    const parts = text.split(/(\$\$[\s\S]+?\$\$|\$[^$]+?\$)/g);
+    const parts = text.replace(/\n?(\$\$[\s\S]+?\$\$)\n?/g, "$1").split(/(\$\$[\s\S]+?\$\$|\$[^$]+?\$)/g);
     return parts
       .map((part) => {
         if (part.startsWith("$$") && part.endsWith("$$") && part.length > 4)

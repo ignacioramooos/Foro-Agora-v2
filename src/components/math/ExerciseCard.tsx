@@ -6,14 +6,14 @@ import MathText from "./MathText";
 import type { ExerciseWithChapter } from "@/content/math";
 
 const buildPrompt = (e: ExerciseWithChapter) =>
-  `Soy estudiante y estoy practicando matemática. Explicame paso a paso cómo resolver este ejercicio, justificando cada paso, sin saltearte cálculos. Al final, dame un consejo para ejercicios similares.\n\nTema: ${e.chapter.title}\nEjercicio: ${e.statement}`;
+  `Je suis étudiant en MPSI et je m'entraîne en mathématiques. Explique-moi pas à pas comment résoudre cet exercice, en justifiant chaque étape et sans sauter de calculs. À la fin, donne-moi un conseil pour les exercices similaires.\n\nChapitre : ${e.chapter.title}\nExercice : ${e.statement}`;
 
 const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChapter; done: boolean; onToggle: () => void }) => {
   const openGemini = async () => {
     const prompt = buildPrompt(exercise);
     try {
       await navigator.clipboard.writeText(prompt);
-      toast.success("Prompt copiado. Si no aparece en Gemini, pegalo.");
+      toast.success("Prompt copié. S'il n'apparaît pas dans Gemini, colle-le.");
     } catch {
       /* ignore */
     }
@@ -28,7 +28,7 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
       )}
     >
       <p className="text-xs font-heading uppercase tracking-wider text-muted-foreground mb-3">
-        Cap. {exercise.chapter.number} · Ejercicio {exercise.number}
+        Chap. {exercise.chapter.number} · Exercice {exercise.number}
       </p>
       <MathText text={exercise.statement} className="text-base sm:text-lg text-foreground" />
 
@@ -37,13 +37,13 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
           to={`/practica/capitulo/${exercise.chapter.id}`}
           className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
         >
-          <BookOpen className="h-3.5 w-3.5" /> Aprender cap. {exercise.chapter.number}
+          <BookOpen className="h-3.5 w-3.5" /> Revoir le chap. {exercise.chapter.number}
         </Link>
         <button
           onClick={openGemini}
           className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
         >
-          <Sparkles className="h-3.5 w-3.5" /> Ayuda con Gemini
+          <Sparkles className="h-3.5 w-3.5" /> Aide avec Gemini
         </button>
         <button
           onClick={onToggle}
@@ -53,7 +53,7 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
             done ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/80",
           )}
         >
-          <Check className="h-4 w-4" /> {done ? "Hecho" : "Marcar hecho"}
+          <Check className="h-4 w-4" /> {done ? "Fait" : "Marquer comme fait"}
         </button>
       </div>
     </article>

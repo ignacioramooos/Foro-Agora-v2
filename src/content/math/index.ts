@@ -17,9 +17,9 @@ export const allExercises: ExerciseWithChapter[] = chapters.flatMap((chapter) =>
 
 export const getChapter = (id: string) => chapters.find((c) => c.id === id);
 
-/** Today's date in Montevideo as YYYY-MM-DD. */
+/** Today's date in Paris as YYYY-MM-DD. */
 export const montevideoDay = (date = new Date()) =>
-  new Intl.DateTimeFormat("en-CA", { timeZone: "America/Montevideo" }).format(date);
+  new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Paris" }).format(date);
 
 const seededRandom = (seed: string) => {
   let h = 2166136261;

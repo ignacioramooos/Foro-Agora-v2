@@ -3,3 +3,4 @@
 - The standalone math study experience lives under /maths; keep /practica as a compatibility redirect and preserve existing progress/local-storage keys.
 - /maths documents are shown via the Google Drive preview viewer (ids in src/content/math/documents.ts); khôlles and DM content live in src/content/math/kholles.ts and dm.ts — local PDF iframes only show page 1 on mobile.
 - Maths Forum data uses isolated maths_forum_* tables and private Storage buckets with public-read RLS; it shares the existing auth, profiles, and admin roles so the parallel Maths experience never forks user identity.
+- Public exercise numbers (#NNN) come from the frozen registry in src/content/math/numbering.ts; never renumber or reuse entries, only append — users reference them.

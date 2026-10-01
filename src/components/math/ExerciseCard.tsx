@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
-import { BookOpen, Check, Sparkles } from "lucide-react";
+import { BookOpen, Check, Flag, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import MathText from "./MathText";
 import type { ExerciseWithChapter } from "@/content/math";
+import { exerciseUid, formatUid } from "@/content/math/numbering";
+import { useMathFlags } from "@/hooks/useMathFlags";
 
 const buildPrompt = (e: ExerciseWithChapter) =>
   `Je suis étudiant en MPSI et je m'entraîne en mathématiques. Explique-moi pas à pas comment résoudre cet exercice, en justifiant chaque étape et sans sauter de calculs. À la fin, donne-moi un conseil pour les exercices similaires.\n\nChapitre : ${e.chapter.title}\nExercice : ${e.statement}`;
 
 const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChapter; done: boolean; onToggle: () => void }) => {
+  const { flags, toggleFlag } = useMathFlags();
+  const flagged = !!flags[exercise.id];
   const openGemini = async () => {
     const prompt = buildPrompt(exercise);
     try {
@@ -32,7 +36,21 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
         <span className={cn("rounded-full px-2.5 py-1", exercise.source === "cours" ? "bg-muted text-foreground" : "bg-secondary text-secondary-foreground")}>
           {exercise.source === "cours" ? "Cours" : exercise.source === "dm" ? "DM" : "TD"}
         </span>
-        <span>Chap. {exercise.chapter.number} · {exercise.source === "dm" ? "Question" : "Exercice"} {exercise.number}</span>
+        <span className="min-w-0 truncate">Chap. {exercise.chapter.number} · {exercise.source === "dm" ? "Question" : "Exercice"} {exercise.number}</span>
+        <Link to={`/maths/exo/${exerciseUid(exercise.id)}`} className="ml-auto shrink-0 font-mono normal-case tracking-normal hover:text-foreground" title="Numéro unique de l'exercice">
+          {formatUid(exercise.id)}
+        </Link>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => toggleFlag(exercise.id)}
+          aria-pressed={flagged}
+          aria-label={flagged ? "Retirer le drapeau" : "Marquer pour y revenir"}
+          title={flagged ? "Retirer le drapeau" : "Marquer pour y revenir"}
+          className={cn("-my-2 h-8 w-8 shrink-0", flagged ? "text-accent" : "text-muted-foreground")}
+        >
+          <Flag className={cn("h-4 w-4", flagged && "fill-current")} />
+        </Button>
       </div>
       <MathText text={exercise.statement} className="min-w-0 break-words text-base text-foreground sm:text-lg" />
 

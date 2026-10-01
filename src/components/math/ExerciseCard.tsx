@@ -24,7 +24,7 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
   return (
     <article
       className={cn(
-        "rounded-2xl border bg-card p-5 sm:p-6 transition-colors",
+        "min-w-0 overflow-hidden rounded-2xl border bg-card p-5 sm:p-6 transition-colors",
         done ? "border-primary/40 bg-primary/5" : "border-border",
       )}
     >
@@ -34,11 +34,11 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
         </span>
         <span>Chap. {exercise.chapter.number} · Exercice {exercise.number}</span>
       </div>
-      <MathText text={exercise.statement} className="text-base sm:text-lg text-foreground" />
+      <MathText text={exercise.statement} className="min-w-0 break-words text-base text-foreground sm:text-lg" />
 
       <div className="mt-5 flex flex-wrap items-center gap-2">
         <Link
-          to={`/practica/capitulo/${exercise.chapter.id}`}
+          to={`/maths/chapitre/${exercise.chapter.id}`}
           className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
         >
           <BookOpen className="h-3.5 w-3.5" /> Revoir le chap. {exercise.chapter.number}
@@ -55,7 +55,7 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
           variant={done ? "default" : "secondary"}
           onClick={onToggle}
           aria-pressed={done}
-          className="ml-auto"
+          className="w-full sm:ml-auto sm:w-auto"
         >
           <Check className="h-4 w-4" /> {done ? "Fait" : "Marquer comme fait"}
         </Button>

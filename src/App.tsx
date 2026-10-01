@@ -61,6 +61,12 @@ const PublicPage = ({ children }: { children: React.ReactNode }) => (
 
 const StudyPage = ({ children }: { children: React.ReactNode }) => <StudyLayout>{children}</StudyLayout>;
 
+const LegacyPracticeRedirect = () => {
+  const location = useLocation();
+  const chapterMatch = location.pathname.match(/^\/practica\/capitulo\/(.+)$/);
+  return <Navigate to={chapterMatch ? `/maths/chapitre/${chapterMatch[1]}` : "/maths"} replace />;
+};
+
 const PageFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
     <span className="text-muted-foreground text-sm font-heading">Cargando...</span>
@@ -128,8 +134,9 @@ const AppRoutes = () => {
       <Route path="/impacto" element={<PublicPage><ImpactPage /></PublicPage>} />
       <Route path="/privacidad" element={<PublicPage><PrivacyPage /></PublicPage>} />
       <Route path="/terminos" element={<PublicPage><TermsPage /></PublicPage>} />
-      <Route path="/practica" element={<StudyPage><PracticePage /></StudyPage>} />
-      <Route path="/practica/capitulo/:id" element={<StudyPage><PracticeChapterPage /></StudyPage>} />
+      <Route path="/maths" element={<StudyPage><PracticePage /></StudyPage>} />
+      <Route path="/maths/chapitre/:id" element={<StudyPage><PracticeChapterPage /></StudyPage>} />
+      <Route path="/practica/*" element={<LegacyPracticeRedirect />} />
       <Route path="/auth" element={<AuthPage />} />
     </>
   );
@@ -153,7 +160,7 @@ const AppRoutes = () => {
             <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
           </Routes>
         </Suspense>
-        {!location.pathname.startsWith("/practica") && <WhatsAppButton />}
+        {!location.pathname.startsWith("/maths") && !location.pathname.startsWith("/practica") && <WhatsAppButton />}
       </>
     );
   }
@@ -168,7 +175,7 @@ const AppRoutes = () => {
           <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
         </Routes>
       </Suspense>
-      {!location.pathname.startsWith("/practica") && <WhatsAppButton />}
+      {!location.pathname.startsWith("/maths") && !location.pathname.startsWith("/practica") && <WhatsAppButton />}
     </>
   );
 };

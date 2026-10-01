@@ -4,6 +4,7 @@ import { useUserPreferences } from "@/hooks/useUserPreferences";
 
 const LOCAL_KEY = "fa_math_daily_goal";
 const DEFAULT_GOAL = 5;
+const GOAL_EVENT = "fa-math-goal-change";
 
 const normalizeGoal = (value: number) => Math.min(30, Math.max(1, Math.round(value)));
 const readLocalGoal = () => {
@@ -29,10 +30,20 @@ export function useMathGoal() {
     if (next !== account) void updateDailyMathGoal(next);
   }, [preferences, updateDailyMathGoal, userId]);
 
+  useEffect(() => {
+    const syncGoal = (event: Event) => {
+      const next = (event as CustomEvent<number>).detail;
+      if (Number.isFinite(next)) setGoalState(normalizeGoal(next));
+    };
+    window.addEventListener(GOAL_EVENT, syncGoal);
+    return () => window.removeEventListener(GOAL_EVENT, syncGoal);
+  }, []);
+
   const setGoal = useCallback((value: number) => {
     const next = normalizeGoal(value);
     setGoalState(next);
     localStorage.setItem(LOCAL_KEY, String(next));
+    window.dispatchEvent(new CustomEvent(GOAL_EVENT, { detail: next }));
     if (userId) void updateDailyMathGoal(next);
   }, [updateDailyMathGoal, userId]);
 

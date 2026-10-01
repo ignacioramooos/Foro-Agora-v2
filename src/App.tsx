@@ -37,6 +37,9 @@ const TermsPage = lazy(() => import("./pages/TermsPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const PracticePage = lazy(() => import("./pages/PracticePage"));
 const PracticeChapterPage = lazy(() => import("./pages/PracticeChapterPage"));
+const MathKhollesPage = lazy(() => import("./pages/MathKhollesPage"));
+const MathDmPage = lazy(() => import("./pages/MathDmPage"));
+const MathResourcesPage = lazy(() => import("./pages/MathResourcesPage"));
 
 const queryClient = new QueryClient();
 
@@ -64,7 +67,7 @@ const StudyPage = ({ children }: { children: React.ReactNode }) => <StudyLayout>
 const LegacyPracticeRedirect = () => {
   const location = useLocation();
   const chapterMatch = location.pathname.match(/^\/practica\/capitulo\/(.+)$/);
-  return <Navigate to={chapterMatch ? `/maths/chapitre/${chapterMatch[1]}` : "/maths"} replace />;
+  return <Navigate to={chapterMatch ? `/maths/chapitre/${chapterMatch[1]}/cours` : "/maths"} replace />;
 };
 
 const PageFallback = () => (
@@ -136,6 +139,11 @@ const AppRoutes = () => {
       <Route path="/terminos" element={<PublicPage><TermsPage /></PublicPage>} />
       <Route path="/maths" element={<StudyPage><PracticePage /></StudyPage>} />
       <Route path="/maths/chapitre/:id" element={<StudyPage><PracticeChapterPage /></StudyPage>} />
+      <Route path="/maths/chapitre/:id/:tab" element={<StudyPage><PracticeChapterPage /></StudyPage>} />
+      <Route path="/maths/kholles" element={<StudyPage><MathKhollesPage /></StudyPage>} />
+      <Route path="/maths/dm" element={<StudyPage><MathDmPage /></StudyPage>} />
+      <Route path="/maths/dm/:id" element={<StudyPage><MathDmPage /></StudyPage>} />
+      <Route path="/maths/ressources" element={<StudyPage><MathResourcesPage /></StudyPage>} />
       <Route path="/practica/*" element={<LegacyPracticeRedirect />} />
       <Route path="/auth" element={<AuthPage />} />
     </>

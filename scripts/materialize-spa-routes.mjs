@@ -24,6 +24,10 @@ const routeMeta = {
   privacidad: { title: "Política de privacidad — Foro Agora",   desc: "Cómo tratamos tus datos personales en Foro Agora: información que recolectamos, uso y tus derechos como usuario." },
   terminos:   { title: "Términos y condiciones — Foro Agora",   desc: "Términos y condiciones de uso de la plataforma educativa de Foro Agora." },
   maths:      { title: "Maths — Foro Agora", desc: "Exercices de mathématiques pour s'entraîner chaque jour." },
+  "maths/kholles": { title: "Khôlles — Maths — Foro Agora", desc: "Programme de khôlles et incontournables de chaque semaine." },
+  "maths/dm": { title: "DM — Maths — Foro Agora", desc: "Devoirs maison de mathématiques." },
+  "maths/dm/dm-1": { title: "DM n°1 — Maths — Foro Agora", desc: "Devoir maison n°1." },
+  "maths/ressources": { title: "Ressources — Maths — Foro Agora", desc: "Formulaires et méthodologie." },
   // app routes: keep simple, low priority
   auth:       { title: "Acceso — Foro Agora",                   desc: "Ingresá a tu cuenta de Foro Agora para acceder al dashboard, simulador y comunidad de estudiantes." },
   dashboard:  { title: "Dashboard — Foro Agora",                desc: "Panel personal de estudiantes de Foro Agora: progreso, portafolio simulado, comunidad y recursos." },
@@ -57,6 +61,11 @@ for (const [route, meta] of Object.entries(routeMeta)) {
 }
 
 for (let chapter = 1; chapter <= 6; chapter += 1) {
+  for (const tab of ["cours", "td"]) {
+    const f = join(distDir, "maths", "chapitre", `chapitre-${chapter}`, tab, "index.html");
+    mkdirSync(dirname(f), { recursive: true });
+    writeFileSync(f, rewriteHead(baseHtml, { title: `Chapitre ${chapter} — Maths — Foro Agora`, desc: "Cours et exercices de mathématiques.", url: `${SITE}/maths/chapitre/chapitre-${chapter}/${tab}` }));
+  }
   const targetFile = join(distDir, "maths", "chapitre", `chapitre-${chapter}`, "index.html");
   mkdirSync(dirname(targetFile), { recursive: true });
   writeFileSync(targetFile, rewriteHead(baseHtml, {

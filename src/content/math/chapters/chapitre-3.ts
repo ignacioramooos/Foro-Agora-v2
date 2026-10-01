@@ -1,4 +1,5 @@
 import type { MathChapter } from "../types";
+import { chapitre3CoursExercises } from "../course-exercises/chapitres-3-4";
 
 const r = String.raw;
 
@@ -9,6 +10,7 @@ const chapter: MathChapter = {
   summary: "Méthode du pivot de Gauss, systèmes à paramètre, déterminant d'un système 2×2.",
   pdfUrl: "/practica/c3.pdf",
   exercises: [
+    ...chapitre3CoursExercises,
     { id: "ch3-ex1", number: "1", statement: r`Soit $m \in \mathbb{R}$. Soit $(S_m)$ le système d'inconnue $(x,y)$ :
 $$\begin{cases} x + my = 1 \\ mx + y = 1 \end{cases}$$
 Calculer le déterminant de $(S_m)$ puis résoudre $(S_m)$.` },

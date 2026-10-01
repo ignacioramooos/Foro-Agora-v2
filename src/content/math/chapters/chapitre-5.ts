@@ -1,4 +1,5 @@
 import type { MathChapter } from "../types";
+import { chapitre5CoursExercises } from "../course-exercises/chapitres-5-6";
 
 const r = String.raw;
 
@@ -9,6 +10,7 @@ const chapter: MathChapter = {
   summary: "Partie entière, bornes supérieure et inférieure, irrationalité, densité, valeur absolue.",
   pdfUrl: "/practica/c5.pdf",
   exercises: [
+    ...chapitre5CoursExercises,
     { id: "ch5-ex1", number: "1", statement: r`Partie entière. On appelle partie entière d'un réel $x$, notée $E(x)$ ou $\lfloor x \rfloor$, l'entier :
 $$\lfloor x \rfloor = \max(\{z \in \mathbb{Z} \mid z \leq x\})$$
 On a alors, pour tout $p \in \mathbb{Z}$ : $p = \lfloor x \rfloor \iff p \leq x < p+1$.

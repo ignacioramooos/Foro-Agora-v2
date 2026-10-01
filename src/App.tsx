@@ -34,6 +34,8 @@ const ImpactPage = lazy(() => import("./pages/ImpactPage"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const PracticePage = lazy(() => import("./pages/PracticePage"));
+const PracticeChapterPage = lazy(() => import("./pages/PracticeChapterPage"));
 
 const queryClient = new QueryClient();
 
@@ -123,6 +125,8 @@ const AppRoutes = () => {
       <Route path="/impacto" element={<PublicPage><ImpactPage /></PublicPage>} />
       <Route path="/privacidad" element={<PublicPage><PrivacyPage /></PublicPage>} />
       <Route path="/terminos" element={<PublicPage><TermsPage /></PublicPage>} />
+      <Route path="/practica" element={<PublicPage><PracticePage /></PublicPage>} />
+      <Route path="/practica/capitulo/:id" element={<PublicPage><PracticeChapterPage /></PublicPage>} />
       <Route path="/auth" element={<AuthPage />} />
     </>
   );

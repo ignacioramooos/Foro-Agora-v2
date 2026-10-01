@@ -322,3 +322,7 @@
     opacity: 0.95;
   }
 }
+
+/* Math practice: long equations scroll instead of overflowing */
+.math-text .math-display { overflow-x: auto; overflow-y: hidden; padding: 0.25rem 0; }
+.math-text .katex { font-size: 1.1em; }

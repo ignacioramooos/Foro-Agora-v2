@@ -23,6 +23,7 @@ const routeMeta = {
   impacto:    { title: "Impacto — Foro Agora",                  desc: "Resultados y métricas del impacto de Foro Agora en jóvenes uruguayos: estudiantes formados, cohortes y comunidad." },
   privacidad: { title: "Política de privacidad — Foro Agora",   desc: "Cómo tratamos tus datos personales en Foro Agora: información que recolectamos, uso y tus derechos como usuario." },
   terminos:   { title: "Términos y condiciones — Foro Agora",   desc: "Términos y condiciones de uso de la plataforma educativa de Foro Agora." },
+  practica:   { title: "Práctica diaria — Foro Agora",          desc: "Ejercicios de matemática para practicar todos los días." },
   // app routes: keep simple, low priority
   auth:       { title: "Acceso — Foro Agora",                   desc: "Ingresá a tu cuenta de Foro Agora para acceder al dashboard, simulador y comunidad de estudiantes." },
   dashboard:  { title: "Dashboard — Foro Agora",                desc: "Panel personal de estudiantes de Foro Agora: progreso, portafolio simulado, comunidad y recursos." },

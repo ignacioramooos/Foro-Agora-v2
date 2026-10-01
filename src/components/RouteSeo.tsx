@@ -105,7 +105,11 @@ const RouteSeo = () => {
     const canonicalUrl = `${SITE_URL}${pathname === "/" ? "/" : pathname}`;
     const image = meta.image ?? DEFAULT_IMAGE;
 
-    document.title = meta.title;
+    document.title = pathname.startsWith("/practica") ? "Práctica diaria - Foro Agora" : meta.title;
+
+    const robots = getHeadElement('meta[name="robots"]', () => createMeta("name", "robots"));
+    if (pathname.startsWith("/practica")) robots.setAttribute("content", "noindex, nofollow");
+    else robots.setAttribute("content", "index, follow");
 
     setHeadValue('meta[name="description"]', "content", meta.description, () => createMeta("name", "description"));
     setHeadValue('link[rel="canonical"]', "href", canonicalUrl, createCanonical);

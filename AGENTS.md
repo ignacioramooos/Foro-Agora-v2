@@ -1,3 +1,4 @@
 - Math practice exercises live as typed files in src/content/math/chapters/ (auto-loaded); exercise ids must never change because saved progress references them.
 - Embedded course exercises live in typed source modules and are merged into their chapters; keep COURS IDs disjoint from TD IDs so saved progress remains stable.
 - The standalone math study experience lives under /maths; keep /practica as a compatibility redirect and preserve existing progress/local-storage keys.
+- /maths documents are shown via the Google Drive preview viewer (ids in src/content/math/documents.ts); khôlles and DM content live in src/content/math/kholles.ts and dm.ts — local PDF iframes only show page 1 on mobile.

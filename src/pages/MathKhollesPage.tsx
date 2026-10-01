@@ -38,7 +38,7 @@ const MathKhollesPage = () => {
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
                     <h2 className="font-heading text-lg font-bold text-foreground">{w.label}</h2>
-                    {current && <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-primary-foreground">Cette semaine</span>}
+                    {current && <span className="shrink-0 whitespace-nowrap rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-primary-foreground">Cette semaine</span>}
                   </div>
                   <Button variant="outline" size="sm" onClick={() => setOpenDoc(openDoc === w.id ? null : w.id)}>
                     <FileText /> {openDoc === w.id ? "Masquer le programme" : "Voir le programme"}

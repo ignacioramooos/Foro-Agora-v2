@@ -594,6 +594,27 @@ export type Database = {
         }
         Relationships: []
       }
+      math_exercise_flags: {
+        Row: {
+          created_at: string
+          exercise_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          exercise_id: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          exercise_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       math_exercise_progress: {
         Row: {
           completed_at: string

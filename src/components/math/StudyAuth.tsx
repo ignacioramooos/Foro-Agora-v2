@@ -32,6 +32,12 @@ const StudyAuth = () => {
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
+    const openAuth = () => { setOpen(true); setError(""); setInfo(""); };
+    window.addEventListener("maths-open-auth", openAuth);
+    return () => window.removeEventListener("maths-open-auth", openAuth);
+  }, []);
+
+  useEffect(() => {
     if (!user?.avatarUrl) { setAvatarUrl(null); return; }
     supabase.storage.from("profile-avatars").createSignedUrl(user.avatarUrl, 3600).then(({ data }) => setAvatarUrl(data?.signedUrl ?? null));
   }, [user?.avatarUrl]);

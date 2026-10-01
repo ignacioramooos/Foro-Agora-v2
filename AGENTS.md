@@ -1,0 +1,1 @@
+- Math practice exercises live as typed files in src/content/math/chapters/ (auto-loaded); exercise ids must never change because saved progress references them.

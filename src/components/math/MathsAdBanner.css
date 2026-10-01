@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Merriweather:wght@400;700;900&display=swap');
+
+.maths-ad{--blue:#003883;--pink:#d20073;--cyan:#23bbea;position:relative;display:flex;width:100%;min-height:250px;overflow:hidden;border:6px solid var(--blue);background:#fff;color:#1a1a1a;box-shadow:15px 15px 0 rgba(0,56,131,.1)}
+.maths-ad:before{content:"";position:absolute;inset:0;background-image:var(--maths-ad-bg);background-size:cover;background-position:center;z-index:0}
+.maths-ad:after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.65);z-index:0}
+.maths-ad__close{position:absolute;right:7px;top:7px;z-index:5;display:grid;height:28px;width:28px;place-items:center;border:2px solid var(--blue);background:#fff;color:var(--blue);cursor:pointer}
+.maths-ad__close svg{height:16px;width:16px}
+.maths-ad__left{flex:1.2;padding:25px 30px;display:flex;flex-direction:column;justify-content:center;z-index:2}
+.maths-ad__center{flex:1.5;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:2}
+.maths-ad__right{flex:.9;position:relative;display:flex;align-items:center;justify-content:center;z-index:1;overflow:hidden}
+.maths-ad__right img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:contrast(1.05)}
+.maths-ad__alert{width:max-content;margin-bottom:15px;padding:4px 15px;background:var(--pink);color:#fff;font:700 clamp(.9rem,2vw,1.1rem) Oswald,sans-serif;text-transform:uppercase;letter-spacing:2px}
+.maths-ad__headline{color:var(--blue);font:900 clamp(1.6rem,4vw,2.2rem)/1.1 Merriweather,serif;text-transform:uppercase;letter-spacing:0}
+.maths-ad__headline span{display:block;margin-top:5px;color:var(--pink);font-size:clamp(2.8rem,8vw,3.8rem)}
+.maths-ad__headline strong{display:inline-block;animation:maths-ad-bounce 1.2s infinite ease-in-out}
+@keyframes maths-ad-bounce{0%,100%{transform:scale(1);text-shadow:0 0 5px var(--pink)}50%{transform:scale(1.1);text-shadow:0 0 20px var(--pink)}}
+.maths-ad__timer{width:100%;max-width:380px;margin-bottom:15px;padding:12px 15px;border:3px solid var(--cyan);border-radius:4px;background:var(--blue);box-shadow:4px 4px 0 rgba(210,0,115,.2)}
+.maths-ad__timer-title{margin-bottom:8px;color:var(--cyan);font:700 clamp(.8rem,2vw,1rem) Oswald,sans-serif;text-align:center;text-transform:uppercase;letter-spacing:1px}
+.maths-ad__countdown{display:flex;justify-content:center;gap:clamp(10px,3vw,20px)}
+.maths-ad__time{display:flex;flex-direction:column;align-items:center}.maths-ad__time b{color:#fff;font:700 clamp(1.6rem,5vw,2.2rem)/1 Oswald,sans-serif}.maths-ad__time span{margin-top:3px;color:#d1d5db;font:400 .75rem Oswald,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.maths-ad__code{margin-bottom:12px;color:var(--blue);font:700 clamp(1.1rem,3vw,1.3rem) Oswald,sans-serif;text-align:center}.maths-ad__code span{padding:2px 10px;background:var(--pink);color:#fff;letter-spacing:1px}
+.maths-ad__cta{display:block;width:100%;max-width:380px;padding:12px 20px;border:2px solid var(--pink);background:var(--pink);color:#fff;font:700 clamp(1.1rem,3vw,1.4rem) Oswald,sans-serif;text-align:center;text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:.2s}.maths-ad__cta:hover{background:#fff;color:var(--pink)}
+@media(max-width:900px){.maths-ad{flex-direction:column}.maths-ad__left,.maths-ad__center{padding:20px 15px;align-items:center;text-align:center}.maths-ad__alert{margin:0 auto 15px}.maths-ad__right{min-height:200px;order:-1}.maths-ad__right img{object-position:center 10%}}
+@media(max-width:400px){.maths-ad{border-width:4px}.maths-ad__timer{padding:10px}.maths-ad__countdown{gap:10px}}
+@media(prefers-reduced-motion:reduce){.maths-ad__headline strong{animation:none}}

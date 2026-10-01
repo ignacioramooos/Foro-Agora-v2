@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { BookOpen, Check, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import MathText from "./MathText";
 import type { ExerciseWithChapter } from "@/content/math";
 
@@ -27,9 +28,12 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
         done ? "border-primary/40 bg-primary/5" : "border-border",
       )}
     >
-      <p className="text-xs font-heading uppercase tracking-wider text-muted-foreground mb-3">
-        Chap. {exercise.chapter.number} · Exercice {exercise.number}
-      </p>
+      <div className="mb-4 flex items-center gap-2 text-xs font-heading font-semibold uppercase text-muted-foreground">
+        <span className={cn("rounded-full px-2.5 py-1", exercise.source === "cours" ? "bg-muted text-foreground" : "bg-secondary text-secondary-foreground")}>
+          {exercise.source === "cours" ? "Cours" : "TD"}
+        </span>
+        <span>Chap. {exercise.chapter.number} · Exercice {exercise.number}</span>
+      </div>
       <MathText text={exercise.statement} className="text-base sm:text-lg text-foreground" />
 
       <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -39,22 +43,22 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
         >
           <BookOpen className="h-3.5 w-3.5" /> Revoir le chap. {exercise.chapter.number}
         </Link>
-        <button
+        <Button
+          variant="outline"
+          size="sm"
           onClick={openGemini}
-          className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+          className="h-8 px-3 text-xs font-medium text-muted-foreground"
         >
           <Sparkles className="h-3.5 w-3.5" /> Aide avec Gemini
-        </button>
-        <button
+        </Button>
+        <Button
+          variant={done ? "default" : "secondary"}
           onClick={onToggle}
           aria-pressed={done}
-          className={cn(
-            "ml-auto inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-heading font-semibold transition-colors",
-            done ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-          )}
+          className="ml-auto"
         >
           <Check className="h-4 w-4" /> {done ? "Fait" : "Marquer comme fait"}
-        </button>
+        </Button>
       </div>
     </article>
   );

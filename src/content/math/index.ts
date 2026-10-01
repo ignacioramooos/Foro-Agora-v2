@@ -18,8 +18,10 @@ export const allExercises: ExerciseWithChapter[] = chapters.flatMap((chapter) =>
 export const getChapter = (id: string) => chapters.find((c) => c.id === id);
 
 /** Today's date in Paris as YYYY-MM-DD. */
-export const montevideoDay = (date = new Date()) =>
+export const parisDay = (date = new Date()) =>
   new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Paris" }).format(date);
+
+export const montevideoDay = parisDay;
 
 const seededRandom = (seed: string) => {
   let h = 2166136261;
@@ -44,14 +46,16 @@ export const seededShuffle = <T,>(items: T[], seed: string): T[] => {
 };
 
 /** Ordered pool for the day: daily set first, then the rest. Same for everyone on a given day. */
-export const dailyPool = (chapterId: string | "all", day: string) => {
+export const dailyPool = (chapterId: string | "all", day: string, completedIds: Set<string> = new Set()) => {
   const pool = chapterId === "all" ? allExercises : allExercises.filter((e) => e.chapter.id === chapterId);
-  return seededShuffle(pool, `${day}:${chapterId}`);
+  if (chapterId === "all") return seededShuffle(pool, `${day}:${chapterId}`);
+  const firstIncomplete = pool.findIndex((exercise) => !completedIds.has(exercise.id));
+  return firstIncomplete > 0 ? [...pool.slice(firstIncomplete), ...pool.slice(0, firstIncomplete)] : pool;
 };
 
 /** Consecutive days (ending today or yesterday) with at least one completion. */
 export const computeStreak = (completionDates: string[], today: string) => {
-  const days = new Set(completionDates.map((d) => montevideoDay(new Date(d))));
+  const days = new Set(completionDates.map((d) => parisDay(new Date(d))));
   const cursor = new Date(`${today}T12:00:00Z`);
   if (!days.has(today)) cursor.setUTCDate(cursor.getUTCDate() - 1);
   let streak = 0;

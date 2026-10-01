@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 const PracticeChapterPage = () => {
   const { id = "" } = useParams();
   const chapter = getChapter(id);
-  const { progress } = useMathProgress();
+  const { progress, toggle } = useMathProgress();
   const completed = chapter?.exercises.filter((exercise) => progress[exercise.id]).length ?? 0;
   const tdExercises = chapter?.exercises.filter((exercise) => exercise.source !== "cours") ?? [];
 
@@ -41,14 +41,14 @@ const PracticeChapterPage = () => {
             <Tabs defaultValue="cours" className="mt-6 lg:hidden">
               <TabsList className="grid w-full grid-cols-2"><TabsTrigger value="cours">Cours</TabsTrigger><TabsTrigger value="td">TD</TabsTrigger></TabsList>
               <TabsContent value="cours" className="mt-4"><div className="flex justify-end"><Button asChild variant="outline"><a href={chapter.pdfUrl} target="_blank" rel="noopener"><FileText /> Ouvrir le cours</a></Button></div><iframe src={chapter.pdfUrl} title={chapter.title} className="mt-3 h-[70dvh] w-full border border-border bg-card" /></TabsContent>
-              <TabsContent value="td" className="mt-4"><TdColumn chapter={chapter} exercises={tdExercises} progress={progress} /></TabsContent>
+              <TabsContent value="td" className="mt-4"><TdColumn chapter={chapter} exercises={tdExercises} progress={progress} onToggle={toggle} /></TabsContent>
             </Tabs>
             <div className="mt-6 hidden min-h-[720px] grid-cols-[minmax(0,1.1fr)_minmax(420px,0.9fr)] gap-6 lg:grid">
               <section className="flex min-h-0 flex-col border border-border bg-card">
                 <div className="flex h-14 items-center justify-between border-b border-border px-4"><h2 className="font-heading font-semibold text-foreground">Cours</h2><Button asChild variant="outline" size="sm"><a href={chapter.pdfUrl} target="_blank" rel="noopener"><FileText /> Ouvrir</a></Button></div>
                 <iframe src={chapter.pdfUrl} title={chapter.title} className="min-h-[660px] flex-1 border-0" />
               </section>
-              <TdColumn chapter={chapter} exercises={tdExercises} progress={progress} />
+              <TdColumn chapter={chapter} exercises={tdExercises} progress={progress} onToggle={toggle} />
             </div>
           </>
         )}
@@ -57,7 +57,7 @@ const PracticeChapterPage = () => {
   );
 };
 
-const TdColumn = ({ chapter, exercises, progress }: { chapter: NonNullable<ReturnType<typeof getChapter>>; exercises: NonNullable<ReturnType<typeof getChapter>>["exercises"]; progress: Record<string, string> }) => (
+const TdColumn = ({ chapter, exercises, progress, onToggle }: { chapter: NonNullable<ReturnType<typeof getChapter>>; exercises: NonNullable<ReturnType<typeof getChapter>>["exercises"]; progress: Record<string, string>; onToggle: (exerciseId: string) => void }) => (
   <section className="min-h-0 border border-border bg-background lg:max-h-[calc(100dvh-15rem)] lg:overflow-y-auto">
     <div className="sticky top-0 z-10 flex h-14 items-center justify-between border-b border-border bg-background px-4">
       <div><h2 className="font-heading font-semibold text-foreground">TD</h2><p className="text-xs text-muted-foreground">{exercises.length} exercices</p></div>
@@ -66,7 +66,7 @@ const TdColumn = ({ chapter, exercises, progress }: { chapter: NonNullable<Retur
     <div className="space-y-4 p-4">
       {exercises.map((exercise) => {
         const enriched = { ...exercise, chapter };
-        return <ExerciseCard key={exercise.id} exercise={enriched} done={!!progress[exercise.id]} onToggle={() => undefined} />;
+        return <ExerciseCard key={exercise.id} exercise={enriched} done={!!progress[exercise.id]} onToggle={() => onToggle(exercise.id)} />;
       })}
     </div>
   </section>

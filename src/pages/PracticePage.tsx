@@ -56,7 +56,7 @@ const PracticePage = () => {
     <div className="flex h-full min-h-0 flex-col">
       <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-4 py-6 sm:px-8 lg:px-10">
         {activeExercise ? (
-          <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col justify-center">
+          <div className="mx-auto flex w-full max-w-4xl flex-col lg:pt-8">
             <div className="mb-4 flex items-center justify-between gap-3">
               <p className="text-sm text-muted-foreground">Exercice {activeIndex + 1} sur {visible.length}</p>
               {!calculatorOpen && !isMobile && <Button variant="outline" size="sm" onClick={() => setCalculator(true)}><Calculator /> Calculatrice</Button>}
@@ -77,8 +77,8 @@ const PracticePage = () => {
   );
 
   return (
-    <div className="h-[calc(100dvh-4rem)] sm:h-[calc(100dvh-5rem)]">
-      <div className="grid h-full min-h-0 lg:grid-cols-[240px_minmax(0,1fr)]">
+    <div className="min-h-[calc(100dvh-4rem)] sm:min-h-[calc(100dvh-5rem)] lg:h-[calc(100dvh-5rem)] lg:min-h-0">
+      <div className="grid min-h-full lg:h-full lg:min-h-0 lg:grid-cols-[240px_minmax(0,1fr)]">
         <aside className="border-b border-border bg-card p-4 lg:min-h-0 lg:overflow-y-auto lg:border-b-0 lg:border-r lg:p-5">
           <div className="flex items-start justify-between gap-3 lg:block">
             <div><h1 className="font-heading text-xl font-bold text-foreground">Maths</h1><p className="mt-1 text-sm text-muted-foreground">{phrase}</p></div>
@@ -109,7 +109,7 @@ const PracticePage = () => {
           </p>
           {allDone && <p className="mt-5 rounded-md bg-muted p-3 text-sm font-medium text-foreground">C'est fait pour aujourd'hui.</p>}
         </aside>
-        <main className="min-h-0 min-w-0">
+        <main className="min-h-[620px] min-w-0 lg:min-h-0">
           {isMobile ? (
             <>
               {workspace}

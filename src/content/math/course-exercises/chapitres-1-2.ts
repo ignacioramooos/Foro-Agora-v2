@@ -109,7 +109,7 @@ $$\bigcup_{i=1}^{4} A_i = A_1 \cup A_2 \cup A_3 \cup A_4.$$` },
 • Du sous-ensemble $B \subset E$ formé des fonctions paires.` },
 
   { id: "ch2-cours-ex16", number: "16", source: "cours", statement: r`Soit $V$ l'ensemble de toutes les villes du monde. On considère les trois sous-ensembles de $V$ suivants : $F$ l'ensemble des villes françaises, $C$ l'ensemble des capitales de pays et $B$ l'ensemble des villes dont le nom commence par B. Donner plusieurs éléments des ensembles suivants :
-$$F \cap B,\quad C \cap B,\quad F \cap C,\quad C \cap \overline{B},\quad F \cap C \cap B,\quad \overline{F} \cap \overline{C} \cap B$$` },
+$$F \cap B,\quad C \cap B,\quad F \cap C,\quad C \cap B^c,\quad F \cap C \cap B,\quad F^c \cap C^c \cap B$$` },
 
   { id: "ch2-cours-ex17", number: "17", source: "cours", statement: r`Soit $f$ une application de $A$ dans $B$. Que vaut $f \circ \mathrm{Id}_A$ ? et $\mathrm{Id}_B \circ f$ ?` },
 

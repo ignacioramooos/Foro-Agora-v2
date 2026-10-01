@@ -59,7 +59,16 @@ const PracticePage = () => {
           <div className="mx-auto flex w-full max-w-4xl flex-col lg:pt-8">
             <div className="mb-4 flex items-center justify-between gap-3">
               <p className="text-sm text-muted-foreground">Exercice {activeIndex + 1} sur {visible.length}</p>
-              {!calculatorOpen && !isMobile && <Button variant="outline" size="sm" onClick={() => setCalculator(true)}><Calculator /> Calculatrice</Button>}
+              {!isMobile && (
+                <Button
+                  variant={calculatorOpen ? "secondary" : "outline"}
+                  size="sm"
+                  onClick={() => setCalculator(!calculatorOpen)}
+                  aria-pressed={calculatorOpen}
+                >
+                  <Calculator /> Calculatrice
+                </Button>
+              )}
             </div>
             <ExerciseCard exercise={activeExercise} done={!!progress[activeExercise.id]} onToggle={() => toggle(activeExercise.id)} />
             <div className="mt-5 flex items-center justify-between border-t border-border pt-5">

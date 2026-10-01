@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { BookMarked, ChevronDown, ClipboardList, Library, Menu, MessagesSquare, Shuffle } from "lucide-react";
+import { BookMarked, ChevronDown, ClipboardList, Library, Menu, MessageSquareText, MessagesSquare, Shuffle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { chapters } from "@/content/math";
 import { Button } from "@/components/ui/button";
@@ -60,6 +60,7 @@ const SidebarNav = ({ onNavigate }: { onNavigate?: () => void }) => {
       <NavLink to="/maths/kholles" className={itemClass} onClick={onNavigate}><MessagesSquare className="h-4 w-4" /> Khôlles</NavLink>
       <NavLink to="/maths/dm" className={itemClass} onClick={onNavigate}><ClipboardList className="h-4 w-4" /> DM</NavLink>
       <NavLink to="/maths/ressources" className={itemClass} onClick={onNavigate}><Library className="h-4 w-4" /> Ressources</NavLink>
+      <NavLink to="/maths/forum" className={itemClass} onClick={onNavigate}><MessageSquareText className="h-4 w-4" /> Forum</NavLink>
     </nav>
   );
 };

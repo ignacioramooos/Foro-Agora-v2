@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { LogIn, LogOut, User } from "lucide-react";
+import { useEffect, useState } from "react";
+import { LogIn, LogOut, Settings, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,6 +8,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { getAuthRedirectUrl } from "@/lib/authRedirect";
+import MathsProfileDialog from "./MathsProfileDialog";
 
 const translate = (msg: string) => {
   if (/invalid login/i.test(msg)) return "E-mail ou mot de passe incorrect.";
@@ -27,6 +28,13 @@ const StudyAuth = () => {
   const [error, setError] = useState("");
   const [info, setInfo] = useState("");
   const [busy, setBusy] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!user?.avatarUrl) { setAvatarUrl(null); return; }
+    supabase.storage.from("profile-avatars").createSignedUrl(user.avatarUrl, 3600).then(({ data }) => setAvatarUrl(data?.signedUrl ?? null));
+  }, [user?.avatarUrl]);
 
   const google = async () => {
     setError("");
@@ -53,16 +61,17 @@ const StudyAuth = () => {
 
   if (isLoggedIn) {
     return (
-      <DropdownMenu>
+      <><div className="hidden max-w-44 truncate text-xs text-muted-foreground md:block">Salut, <span className="font-semibold text-foreground">{user?.name}</span></div><DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" aria-label="Mon compte"><User /></Button>
+          <Button variant="ghost" size="icon" aria-label="Mon compte">{avatarUrl ? <img src={avatarUrl} alt="" className="h-8 w-8 rounded-full object-cover" /> : <User />}</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel className="max-w-[220px] truncate">{user?.name || user?.email || "Mon compte"}</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={() => setProfileOpen(true)}><Settings className="mr-2 h-4 w-4" />Modifier mon profil</DropdownMenuItem>
           <DropdownMenuItem onClick={() => logout()}><LogOut className="mr-2 h-4 w-4" />Se déconnecter</DropdownMenuItem>
         </DropdownMenuContent>
-      </DropdownMenu>
+      </DropdownMenu><MathsProfileDialog open={profileOpen} onOpenChange={setProfileOpen} /></>
     );
   }
 
@@ -92,10 +101,10 @@ const StudyAuth = () => {
             {info && <p className="text-sm text-primary">{info}</p>}
             <Button type="submit" className="w-full" disabled={busy}>{mode === "login" ? "Se connecter" : "Créer mon compte"}</Button>
           </form>
-          <button type="button" className="text-sm text-muted-foreground underline-offset-4 hover:underline"
+          <Button type="button" variant="link" className="h-auto p-0 text-sm text-muted-foreground"
             onClick={() => { setMode(mode === "login" ? "signup" : "login"); setError(""); setInfo(""); }}>
             {mode === "login" ? "Pas encore de compte ? Créer un compte" : "Déjà un compte ? Se connecter"}
-          </button>
+          </Button>
         </DialogContent>
       </Dialog>
     </>

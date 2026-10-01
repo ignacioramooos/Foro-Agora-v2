@@ -14,6 +14,7 @@ export interface UserProfile {
   totalClasses: number;
   publishedTheses: number;
   onboardingCompleted: boolean;
+  avatarUrl: string | null;
 }
 
 interface AuthContextType {
@@ -102,6 +103,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         totalClasses: lessonStats.totalClasses,
         publishedTheses: lessonStats.publishedTheses,
         onboardingCompleted: profileData?.onboarding_completed ?? false,
+        avatarUrl: profileData?.avatar_url ?? null,
       });
     } catch (err) {
       console.error("[AuthContext] Error fetching profile:", err);

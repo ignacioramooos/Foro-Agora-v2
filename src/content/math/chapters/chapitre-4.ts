@@ -1,4 +1,5 @@
 import type { MathChapter } from "../types";
+import { chapitre4CoursExercises } from "../course-exercises/chapitres-3-4";
 
 const r = String.raw;
 
@@ -9,6 +10,7 @@ const chapter: MathChapter = {
   summary: "Sommes classiques, télescopage, produits, factorielles, coefficients binomiaux et sommes doubles.",
   pdfUrl: "/practica/c4.pdf",
   exercises: [
+    ...chapitre4CoursExercises,
     { id: "ch4-ex1", number: "1", statement: r`Calculer les sommes suivantes ($n$ est un entier naturel) :
 1. $\displaystyle A = \sum_{k=0}^{5} (2k^2 + k + 1)$.
 2. $\displaystyle B = \sum_{k=2}^{6} (k^3 + k)$.

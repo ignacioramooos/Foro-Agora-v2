@@ -1,4 +1,5 @@
 import type { MathChapter } from "../types";
+import { chapitre6CoursExercises } from "../course-exercises/chapitres-5-6";
 
 const r = String.raw;
 
@@ -9,6 +10,7 @@ const chapter: MathChapter = {
   summary: "Forme algébrique et trigonométrique, trigonométrie, racines de l'unité, équations dans ℂ.",
   pdfUrl: "/practica/c6.pdf",
   exercises: [
+    ...chapitre6CoursExercises,
     { id: "ch6-ex1", number: "1", statement: r`Déterminer la forme algébrique des nombres complexes suivants :
 $$z_1 = \frac{1-3i}{1+3i} \qquad z_2 = \left(\frac{1+i\sqrt{3}}{1-i}\right)^{20} \qquad z_3 = (i - \sqrt{2})^3 \qquad z_4 = (j+1)^{2023}$$` },
     { id: "ch6-ex2", number: "2", statement: r`Établir que, pour tout $x \in \left[0, \frac{\pi}{2}\right]$ : $\sin(x) \geqslant \dfrac{2x}{\pi}$, et interpréter géométriquement.` },

@@ -7,6 +7,7 @@ export interface UserPreferences {
   theme: "light" | "dark";
   dashboard_active_tab: string;
   locale: string;
+  daily_math_goal: number;
 }
 
 export function useUserPreferences(userId: string | undefined) {
@@ -55,6 +56,7 @@ export function useUserPreferences(userId: string | undefined) {
         theme: "light",
         dashboard_active_tab: "home",
         locale: "es-UY",
+        daily_math_goal: 5,
       };
 
       const { data, error } = await supabase
@@ -145,6 +147,15 @@ export function useUserPreferences(userId: string | undefined) {
     }
   }, [userId]);
 
+  const updateDailyMathGoal = useCallback(async (dailyMathGoal: number) => {
+    if (!userId) return { success: false, error: "No user ID" };
+    const daily_math_goal = Math.min(30, Math.max(1, Math.round(dailyMathGoal)));
+    const { error } = await supabase.from("user_preferences").update({ daily_math_goal }).eq("user_id", userId);
+    if (error) return { success: false, error: error.message };
+    setPreferences((previous) => previous ? { ...previous, daily_math_goal } : null);
+    return { success: true };
+  }, [userId]);
+
   // Fetch preferences on user ID change
   useEffect(() => {
     if (userId) {
@@ -160,5 +171,6 @@ export function useUserPreferences(userId: string | undefined) {
     updateTheme,
     updateDashboardTab,
     updateLocale,
+    updateDailyMathGoal,
   };
 }

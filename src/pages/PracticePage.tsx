@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Flame } from "lucide-react";
+import { Flame, Minus, Plus, Shuffle, ListOrdered } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { chapters, dailyPool, montevideoDay, computeStreak, DAILY_COUNT } from "@/content/math";
+import { chapters, dailyPool, parisDay, computeStreak } from "@/content/math";
 import { useMathProgress } from "@/hooks/useMathProgress";
+import { useMathGoal } from "@/hooks/useMathGoal";
 import ExerciseCard from "@/components/math/ExerciseCard";
+import { Button } from "@/components/ui/button";
 
 const phrases = [
   "La régularité bat le talent.",
@@ -17,16 +19,17 @@ const phrases = [
 ];
 
 const PracticePage = () => {
-  const today = montevideoDay();
+  const today = parisDay();
   const [chapterId, setChapterId] = useState<string>("all");
   const [extra, setExtra] = useState(0);
   const { progress, toggle, isLoggedIn } = useMathProgress();
+  const { goal, setGoal } = useMathGoal();
 
-  const pool = useMemo(() => dailyPool(chapterId, today), [chapterId, today]);
-  const daily = pool.slice(0, DAILY_COUNT);
-  // "More" pulls further exercises, prioritizing not-yet-done ones.
-  const rest = pool.slice(DAILY_COUNT);
-  const more = [...rest.filter((e) => !progress[e.id]), ...rest.filter((e) => progress[e.id])].slice(0, extra);
+  const completedIds = useMemo(() => new Set(Object.keys(progress)), [progress]);
+  const pool = useMemo(() => dailyPool(chapterId, today, completedIds), [chapterId, completedIds, today]);
+  const daily = pool.slice(0, goal);
+  const rest = pool.slice(goal);
+  const more = rest.slice(0, extra);
   const visible = [...daily, ...more];
 
   const dailyDone = daily.filter((e) => progress[e.id]).length;
@@ -35,8 +38,8 @@ const PracticePage = () => {
   const allDone = daily.length > 0 && dailyDone === daily.length;
 
   return (
-    <div className="min-h-screen bg-background pt-28 pb-20">
-      <div className="mx-auto max-w-2xl px-4 sm:px-6">
+    <div className="pb-20 pt-10 sm:pt-14">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <header className="mb-8">
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -49,7 +52,18 @@ const PracticePage = () => {
             </div>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-7 border-y border-border py-5">
+            <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-heading font-semibold text-foreground">Objectif quotidien</p>
+                <p className="text-xs text-muted-foreground">Choisis ton rythme, de 1 à 30 exercices.</p>
+              </div>
+              <div className="flex items-center gap-2" aria-label="Objectif quotidien">
+                <Button variant="outline" size="icon" className="h-9 w-9" onClick={() => setGoal(goal - 1)} disabled={goal <= 1} aria-label="Réduire l'objectif"><Minus /></Button>
+                <span className="w-16 text-center font-heading text-lg font-bold text-foreground">{goal}</span>
+                <Button variant="outline" size="icon" className="h-9 w-9" onClick={() => setGoal(goal + 1)} disabled={goal >= 30} aria-label="Augmenter l'objectif"><Plus /></Button>
+              </div>
+            </div>
             <div className="flex justify-between text-sm mb-2">
               <span className="text-muted-foreground">Progression du jour</span>
               <span className="font-heading font-semibold text-foreground">{dailyDone}/{daily.length}</span>
@@ -66,20 +80,22 @@ const PracticePage = () => {
           )}
         </header>
 
-        <div className="mb-6 flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="mb-2 flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0">
           {[{ id: "all", label: "Tous" }, ...chapters.map((c) => ({ id: c.id, label: `Chap. ${c.number}` }))].map((opt) => (
-            <button
+            <Button
+              variant={chapterId === opt.id ? "default" : "secondary"}
+              size="sm"
               key={opt.id}
               onClick={() => { setChapterId(opt.id); setExtra(0); }}
-              className={cn(
-                "shrink-0 rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-                chapterId === opt.id ? "bg-foreground text-background" : "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-              )}
+              className="shrink-0"
             >
               {opt.label}
-            </button>
+            </Button>
           ))}
         </div>
+        <p className="mb-6 flex items-center gap-1.5 text-xs text-muted-foreground">
+          {chapterId === "all" ? <><Shuffle className="h-3.5 w-3.5" /> Mélange quotidien</> : <><ListOrdered className="h-3.5 w-3.5" /> Ordre du chapitre · premier exercice non terminé</>}
+        </p>
 
         {allDone && (
           <div className="mb-6 rounded-2xl border border-primary/30 bg-primary/5 p-5 text-center">
@@ -97,12 +113,9 @@ const PracticePage = () => {
 
         {visible.length < pool.length && (
           <div className="mt-8 text-center">
-            <button
-              onClick={() => setExtra((n) => n + DAILY_COUNT)}
-              className="rounded-full border border-border px-6 py-2.5 text-sm font-heading font-semibold text-foreground hover:bg-secondary transition-colors"
-            >
+            <Button variant="outline" onClick={() => setExtra((n) => n + goal)}>
               Plus d'exercices
-            </button>
+            </Button>
           </div>
         )}
       </div>

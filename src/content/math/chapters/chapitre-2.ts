@@ -1,4 +1,5 @@
 import type { MathChapter } from "../types";
+import { ch2CoursExercises } from "../course-exercises/chapitres-1-2";
 
 const r = String.raw;
 
@@ -9,6 +10,7 @@ const chapter: MathChapter = {
   summary: "Opérations sur les ensembles, injectivité, surjectivité, bijectivité, fonctions indicatrices, relations d'ordre et d'équivalence.",
   pdfUrl: "/practica/c2.pdf",
   exercises: [
+    ...ch2CoursExercises,
     { id: "ch2-ex1", number: "1", statement: r`Soit $x$ un objet quelconque. Expliciter les ensembles $\mathcal{P}(\{x\})$ et $\mathcal{P}\big(\mathcal{P}(\{x\})\big)$.` },
     { id: "ch2-ex2", number: "2", statement: r`Montrer que :
 $$\left\{ x \in \mathbb{R},\ \exists n \in \mathbb{N}^*,\ x \geq \frac{1}{n} \right\} = \,]0, +\infty[.$$` },

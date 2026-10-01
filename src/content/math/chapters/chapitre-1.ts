@@ -1,4 +1,5 @@
 import type { MathChapter } from "../types";
+import { ch1CoursExercises } from "../course-exercises/chapitres-1-2";
 
 const r = String.raw;
 
@@ -9,6 +10,7 @@ const chapter: MathChapter = {
   summary: "Quantificateurs, négation, implication, contraposée, raisonnement par l'absurde, analyse-synthèse et récurrence.",
   pdfUrl: "/practica/c1.pdf",
   exercises: [
+    ...ch1CoursExercises,
     { id: "ch1-ex1", number: "1", statement: r`Déterminer si les énoncés mathématiques qui suivent ont un sens, et les traduire en français le cas échéant. On ne demande pas de déterminer s'ils sont vrais ou faux.
 1. $\forall x \in \mathbb{R},\ \exists y \in \mathbb{N},\ y \geq x$.
 2. $\forall (x,y) \in \mathbb{R}^2,\ \exists z \in \mathbb{R},\ x < z < y$.

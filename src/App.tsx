@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import RouteSeo from "@/components/RouteSeo";
+import StudyLayout from "@/components/math/StudyLayout";
 import { isEventRegistrationPath } from "@/lib/classEvent";
 
 const Index = lazy(() => import("./pages/Index"));
@@ -57,6 +58,8 @@ const PublicPage = ({ children }: { children: React.ReactNode }) => (
     <div className="print:hidden"><Footer /></div>
   </>
 );
+
+const StudyPage = ({ children }: { children: React.ReactNode }) => <StudyLayout>{children}</StudyLayout>;
 
 const PageFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -125,8 +128,8 @@ const AppRoutes = () => {
       <Route path="/impacto" element={<PublicPage><ImpactPage /></PublicPage>} />
       <Route path="/privacidad" element={<PublicPage><PrivacyPage /></PublicPage>} />
       <Route path="/terminos" element={<PublicPage><TermsPage /></PublicPage>} />
-      <Route path="/practica" element={<PublicPage><PracticePage /></PublicPage>} />
-      <Route path="/practica/capitulo/:id" element={<PublicPage><PracticeChapterPage /></PublicPage>} />
+      <Route path="/practica" element={<StudyPage><PracticePage /></StudyPage>} />
+      <Route path="/practica/capitulo/:id" element={<StudyPage><PracticeChapterPage /></StudyPage>} />
       <Route path="/auth" element={<AuthPage />} />
     </>
   );
@@ -150,7 +153,7 @@ const AppRoutes = () => {
             <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
           </Routes>
         </Suspense>
-        <WhatsAppButton />
+        {!location.pathname.startsWith("/practica") && <WhatsAppButton />}
       </>
     );
   }
@@ -165,7 +168,7 @@ const AppRoutes = () => {
           <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
         </Routes>
       </Suspense>
-      <WhatsAppButton />
+      {!location.pathname.startsWith("/practica") && <WhatsAppButton />}
     </>
   );
 };

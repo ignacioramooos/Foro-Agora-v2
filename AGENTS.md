@@ -1,1 +1,2 @@
 - Math practice exercises live as typed files in src/content/math/chapters/ (auto-loaded); exercise ids must never change because saved progress references them.
+- Embedded course exercises live in typed source modules and are merged into their chapters; keep COURS IDs disjoint from TD IDs so saved progress remains stable.

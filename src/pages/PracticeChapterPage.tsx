@@ -11,14 +11,14 @@ const PracticeChapterPage = () => {
     <div className="min-h-screen bg-background pt-28 pb-20">
       <div className="mx-auto max-w-2xl px-4 sm:px-6">
         <Link to="/practica" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6">
-          <ArrowLeft className="h-4 w-4" /> Volver a la práctica
+          <ArrowLeft className="h-4 w-4" /> Retour à l'entraînement
         </Link>
 
         {!chapter ? (
-          <p className="text-muted-foreground">Capítulo no encontrado.</p>
+          <p className="text-muted-foreground">Chapitre introuvable.</p>
         ) : (
           <>
-            <p className="text-xs font-heading uppercase tracking-wider text-muted-foreground">Capítulo {chapter.number}</p>
+            <p className="text-xs font-heading uppercase tracking-wider text-muted-foreground">Chapitre {chapter.number}</p>
             <h1 className="font-heading text-3xl sm:text-4xl font-bold text-foreground mt-1">{chapter.title}</h1>
             <p className="mt-3 text-muted-foreground">{chapter.summary}</p>
 
@@ -35,13 +35,14 @@ const PracticeChapterPage = () => {
             {chapter.pdfUrl && (
               <div className="mt-8">
                 <a href={chapter.pdfUrl} target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-heading font-semibold text-primary-foreground">
-                  <FileText className="h-4 w-4" /> Abrir documento de la clase
+                  <FileText className="h-4 w-4" /> Ouvrir le cours (PDF)
                 </a>
                 <iframe src={chapter.pdfUrl} title={chapter.title} className="mt-4 w-full h-[75vh] rounded-2xl border border-border hidden sm:block" />
               </div>
             )}
 
-            <p className="mt-10 text-sm text-muted-foreground">{chapter.exercises.length} ejercicios en este capítulo.</p>
+            {chapter.exercises.length > 0 && <a href={`/practica/td${chapter.number}.pdf`} target="_blank" rel="noopener" className="mt-3 inline-block text-sm text-primary hover:underline">Ouvrir la feuille de TD (PDF)</a>}
+            <p className="mt-10 text-sm text-muted-foreground">{chapter.exercises.length} exercices dans ce chapitre.</p>
           </>
         )}
       </div>

@@ -7,13 +7,13 @@ import { useMathProgress } from "@/hooks/useMathProgress";
 import ExerciseCard from "@/components/math/ExerciseCard";
 
 const phrases = [
-  "Constancia > talento.",
-  "Un ejercicio por vez.",
-  "Equivocarse también es practicar.",
-  "Lo difícil hoy es lo fácil de mañana.",
-  "Cinco ejercicios. Todos los días.",
-  "No hace falta ser rápido, hace falta ser constante.",
-  "Entender vale más que memorizar.",
+  "La régularité bat le talent.",
+  "Un exercice à la fois.",
+  "Se tromper, c'est aussi s'entraîner.",
+  "Ce qui est dur aujourd'hui sera facile demain.",
+  "Cinq exercices. Tous les jours.",
+  "Pas besoin d'aller vite, il faut être régulier.",
+  "Comprendre vaut mieux que mémoriser.",
 ];
 
 const PracticePage = () => {
@@ -40,18 +40,18 @@ const PracticePage = () => {
         <header className="mb-8">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h1 className="font-heading text-3xl sm:text-4xl font-bold text-foreground">Práctica diaria</h1>
+              <h1 className="font-heading text-3xl sm:text-4xl font-bold text-foreground">Entraînement quotidien</h1>
               <p className="mt-2 text-muted-foreground">{phrase}</p>
             </div>
             <div className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm font-heading font-semibold text-foreground shrink-0">
               <Flame className={cn("h-4 w-4", streak > 0 ? "text-accent" : "text-muted-foreground")} />
-              {streak} {streak === 1 ? "día" : "días"}
+              {streak} {streak === 1 ? "jour" : "jours"}
             </div>
           </div>
 
           <div className="mt-6">
             <div className="flex justify-between text-sm mb-2">
-              <span className="text-muted-foreground">Progreso de hoy</span>
+              <span className="text-muted-foreground">Progression du jour</span>
               <span className="font-heading font-semibold text-foreground">{dailyDone}/{daily.length}</span>
             </div>
             <div className="h-2 rounded-full bg-secondary overflow-hidden">
@@ -61,13 +61,13 @@ const PracticePage = () => {
 
           {!isLoggedIn && (
             <p className="mt-4 text-sm text-muted-foreground">
-              <Link to="/auth" className="text-primary font-medium hover:underline">Iniciá sesión</Link> para guardar tu racha en tu cuenta.
+              <Link to="/auth" className="text-primary font-medium hover:underline">Connecte-toi</Link> pour sauvegarder ta série sur ton compte.
             </p>
           )}
         </header>
 
         <div className="mb-6 flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0">
-          {[{ id: "all", label: "Todos" }, ...chapters.map((c) => ({ id: c.id, label: `Cap. ${c.number}` }))].map((opt) => (
+          {[{ id: "all", label: "Tous" }, ...chapters.map((c) => ({ id: c.id, label: `Chap. ${c.number}` }))].map((opt) => (
             <button
               key={opt.id}
               onClick={() => { setChapterId(opt.id); setExtra(0); }}
@@ -83,8 +83,8 @@ const PracticePage = () => {
 
         {allDone && (
           <div className="mb-6 rounded-2xl border border-primary/30 bg-primary/5 p-5 text-center">
-            <p className="font-heading text-lg font-semibold text-foreground">¡Listo por hoy! 🎉</p>
-            <p className="text-sm text-muted-foreground mt-1">Volvé mañana para mantener la racha, o seguí practicando.</p>
+            <p className="font-heading text-lg font-semibold text-foreground">C'est fait pour aujourd'hui ! 🎉</p>
+            <p className="text-sm text-muted-foreground mt-1">Reviens demain pour garder ta série, ou continue à t'entraîner.</p>
           </div>
         )}
 
@@ -92,7 +92,7 @@ const PracticePage = () => {
           {visible.map((e) => (
             <ExerciseCard key={e.id} exercise={e} done={!!progress[e.id]} onToggle={() => toggle(e.id)} />
           ))}
-          {visible.length === 0 && <p className="text-center text-muted-foreground py-10">Todavía no hay ejercicios cargados.</p>}
+          {visible.length === 0 && <p className="text-center text-muted-foreground py-10">Aucun exercice pour l'instant.</p>}
         </div>
 
         {visible.length < pool.length && (
@@ -101,7 +101,7 @@ const PracticePage = () => {
               onClick={() => setExtra((n) => n + DAILY_COUNT)}
               className="rounded-full border border-border px-6 py-2.5 text-sm font-heading font-semibold text-foreground hover:bg-secondary transition-colors"
             >
-              Quiero más ejercicios
+              Plus d'exercices
             </button>
           </div>
         )}

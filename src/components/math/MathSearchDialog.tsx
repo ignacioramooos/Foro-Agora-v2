@@ -4,13 +4,15 @@ import { Flag, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import MathText from "./MathText";
 import { formatUid, searchExercises } from "@/content/math/numbering";
 import { useMathFlags } from "@/hooks/useMathFlags";
 
-export const plainPreview = (s: string, max = 140) => {
-  const t = s.replace(/\$\$?/g, "").replace(/\\[a-zA-Z]+/g, " ").replace(/[{}]/g, "").replace(/\s+/g, " ").trim();
-  return t.length > max ? t.slice(0, max) + "…" : t;
-};
+/** Inline-only LaTeX preview (display math flattened) for list rows. */
+export const plainPreview = (s: string) => s.replace(/\$\$([\s\S]*?)\$\$/g, (_, m) => `$${m}$`).replace(/\s*\n+\s*/g, " ");
+export const PreviewText = ({ text, className }: { text: string; className?: string }) => (
+  <div className={"line-clamp-2 overflow-hidden " + (className ?? "")}><MathText text={plainPreview(text)} /></div>
+);
 
 const MathSearchDialog = () => {
   const [open, setOpen] = useState(false);
@@ -56,7 +58,7 @@ const MathSearchDialog = () => {
                       <span>Chap. {e.chapter.number} · {e.source === "cours" ? "Cours" : e.source === "dm" ? "DM" : "TD"} {e.number}</span>
                       {flags[e.id] && <Flag className="h-3.5 w-3.5 fill-current text-accent" />}
                     </div>
-                    <p className="mt-0.5 line-clamp-2 text-sm text-foreground">{plainPreview(e.statement)}</p>
+                    <PreviewText text={e.statement} className="mt-0.5 text-sm text-foreground" />
                   </button>
                 </li>
               ))}

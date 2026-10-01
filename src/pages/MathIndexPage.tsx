@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, Flag } from "lucide-react";
 import MathShell from "@/components/math/MathShell";
-import { plainPreview } from "@/components/math/MathSearchDialog";
+import { PreviewText } from "@/components/math/MathSearchDialog";
 import { chapters } from "@/content/math";
 import { formatUid, indexedExercises, searchExercises, type IndexedExercise } from "@/content/math/numbering";
 import { useMathProgress } from "@/hooks/useMathProgress";
@@ -28,7 +28,7 @@ const Row = ({ e, done, flagged }: { e: IndexedExercise; done: boolean; flagged:
       <span className="w-12 shrink-0 pt-0.5 font-mono text-xs font-semibold text-muted-foreground">{formatUid(e.id)}</span>
       <div className="min-w-0 flex-1">
         <p className="text-xs font-semibold text-muted-foreground">Chap. {e.chapter.number} · {srcOf(e).toUpperCase().replace("COURS", "Cours")} {e.number}</p>
-        <p className="mt-0.5 line-clamp-2 text-sm text-foreground">{plainPreview(e.statement, 180)}</p>
+        <PreviewText text={e.statement} className="mt-0.5 text-sm text-foreground" />
       </div>
       <div className="flex shrink-0 items-center gap-1.5 pt-0.5">
         {flagged && <Flag className="h-4 w-4 fill-current text-accent" aria-label="Marqué" />}

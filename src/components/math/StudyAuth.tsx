@@ -9,6 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { getAuthRedirectUrl } from "@/lib/authRedirect";
 import MathsProfileDialog from "./MathsProfileDialog";
+import { signupWithPassword } from "@/lib/passwordSignup";
 
 const translate = (msg: string) => {
   if (/invalid login/i.test(msg)) return "E-mail ou mot de passe incorrect.";
@@ -19,7 +20,7 @@ const translate = (msg: string) => {
 };
 
 const StudyAuth = () => {
-  const { isLoggedIn, user, login, signup, logout } = useAuth();
+  const { isLoggedIn, user, login, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [name, setName] = useState("");
@@ -58,9 +59,14 @@ const StudyAuth = () => {
       const { error } = await login(email.trim(), password);
       if (error) setError(translate(error)); else setOpen(false);
     } else {
-      const { error } = await signup(email.trim(), password, name.trim() || email.split("@")[0]);
+      const { error, confirmationRequired } = await signupWithPassword({
+        email, password,
+        metadata: { display_name: name.trim() || email.split("@")[0], signup_source: "maths" },
+        emailRedirectTo: getAuthRedirectUrl("/maths"),
+      });
       if (error) setError(translate(error));
-      else setInfo("Compte créé ! Vérifie ta boîte mail pour confirmer ton adresse.");
+      else if (confirmationRequired) setInfo("Compte créé ! Vérifie ta boîte mail pour confirmer ton adresse, puis reviens ici.");
+      else setOpen(false);
     }
     setBusy(false);
   };

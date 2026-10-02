@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import MathShell from "@/components/math/MathShell";
 import { Calculator, ChevronLeft, ChevronRight, Flame, Shuffle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { dailyPool, parisDay, computeStreak } from "@/content/math";
+import { dailyPool, parisDay, computeStreak, seededShuffle } from "@/content/math";
 import { useMathProgress } from "@/hooks/useMathProgress";
 import { useMathGoal } from "@/hooks/useMathGoal";
 import ExerciseCard from "@/components/math/ExerciseCard";
@@ -38,7 +38,9 @@ const PracticePage = () => {
   const daily = pool.slice(0, goal);
   const rest = pool.slice(goal);
   const more = rest.slice(0, extra);
-  const visible = [...daily, ...more];
+  const [shuffleSeed, setShuffleSeed] = useState<string | null>(null);
+  const ordered = [...daily, ...more];
+  const visible = useMemo(() => (shuffleSeed ? seededShuffle(ordered, shuffleSeed) : ordered), [shuffleSeed, ordered.map((e) => e.id).join()]);
   const activeExercise = visible[Math.min(activeIndex, Math.max(visible.length - 1, 0))];
 
   const dailyDone = daily.filter((e) => progress[e.id]).length;
@@ -59,7 +61,11 @@ const PracticePage = () => {
         {activeExercise ? (
           <div className="mx-auto flex w-full max-w-4xl flex-col lg:pt-8">
             <div className="mb-4 flex items-center justify-between gap-3">
-              <p className="text-sm text-muted-foreground">Exercice {activeIndex + 1} sur {visible.length}</p>
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="text-sm text-muted-foreground">Exercice {activeIndex + 1} sur {visible.length}</p>
+                <Button variant="outline" size="sm" onClick={() => { setShuffleSeed(String(Math.random())); setActiveIndex(0); }}><Shuffle /> Mélanger</Button>
+                {shuffleSeed && <button className="text-xs text-muted-foreground underline hover:text-foreground" onClick={() => { setShuffleSeed(null); setActiveIndex(0); }}>Revenir à la sélection du jour</button>}
+              </div>
               {!isMobile && (
                 <Button
                   variant={calculatorOpen ? "secondary" : "outline"}

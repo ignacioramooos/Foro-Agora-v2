@@ -35,7 +35,7 @@ const MathsProfileDialog = ({ open, onOpenChange }: { open: boolean; onOpenChang
     }
     const { error: updateError } = await supabase.from("profiles").update({ display_name: cleanName, avatar_url: avatarUrl }).eq("user_id", session.user.id);
     if (updateError) setError("Le profil n'a pas pu être enregistré.");
-    else { await refreshProfile(); onOpenChange(false); }
+    else { await refreshProfile(); window.dispatchEvent(new Event("maths-profile-updated")); onOpenChange(false); }
     setBusy(false);
   };
 

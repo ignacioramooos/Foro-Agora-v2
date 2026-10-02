@@ -155,7 +155,7 @@ const AppRoutes = () => {
     </>
   );
 
-  if (isLoggedIn && user && !user.onboardingCompleted && location.pathname !== "/auth" && !isEventRegistration) {
+  if (isLoggedIn && user && !user.onboardingCompleted && location.pathname !== "/auth" && !location.pathname.startsWith("/maths") && !isEventRegistration) {
     return <Navigate to="/auth" replace />;
   }
 

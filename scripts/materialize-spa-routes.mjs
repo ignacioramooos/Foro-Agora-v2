@@ -27,6 +27,7 @@ const routeMeta = {
   "maths/kholles": { title: "Khôlles — Maths — Foro Agora", desc: "Programme de khôlles et incontournables de chaque semaine." },
   "maths/dm": { title: "DM — Maths — Foro Agora", desc: "Devoirs maison de mathématiques." },
   "maths/dm/dm-1": { title: "DM n°1 — Maths — Foro Agora", desc: "Devoir maison n°1." },
+  "maths/dm/dm-2": { title: "DM n°2 — Maths — Foro Agora", desc: "Devoir maison n°2." },
   "maths/ressources": { title: "Ressources — Maths — Foro Agora", desc: "Formulaires et méthodologie." },
   "maths/forum": { title: "Forum — Maths — Foro Agora", desc: "Forum de mathématiques pour échanger des questions, méthodes et documents." },
   "maths/index": { title: "Index des exercices — Maths — Foro Agora", desc: "Tous les exercices de mathématiques, avec recherche et filtres." },

@@ -11,6 +11,23 @@ export interface KholleWeek {
 // Add a new week at the top of this list.
 export const kholleWeeks: KholleWeek[] = [
   {
+    id: "2026-10-05",
+    start: "2026-10-05",
+    label: "Semaine du 05/10/2026",
+    docId: "1xSOaBTzFSbyU3i1KuAdX0o0eizWQrUq7",
+    scope: [
+      { chapter: 5, text: "Le chapitre 5 : Les nombres réels, en entier" },
+      { chapter: 6, text: "Le chapitre 6 : Les nombres complexes, jusqu'au paragraphe II.D inclus" },
+    ],
+    incontournables: [
+      { chapter: 5, text: "Toute partie non vide de $\\mathbb{N}$ admet un plus petit élément (avec démonstration)." },
+      { chapter: 5, text: "Caractérisation des parties bornées (avec la démonstration)" },
+      { chapter: 5, text: "Caractérisation de la borne supérieure, de la borne inférieure" },
+      { chapter: 6, text: "Inégalité triangulaire dans $\\mathbb{C}$ (avec la démonstration)" },
+      { chapter: 6, text: "Fonctions trigonométriques : propriétés, étude et courbe représentative" },
+    ],
+  },
+  {
     id: "2026-09-28",
     start: "2026-09-28",
     label: "Semaine du 28/09/2026",

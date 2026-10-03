@@ -34,10 +34,9 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
       navigator.clipboard.writeText(prompt).then(() => { copied = true; }).catch(() => {});
       copied = true;
     }
-    window.open(`https://gemini.google.com/guided-learning?query=${encodeURIComponent(prompt)}`, "_blank", "noopener");
     if (copied) {
       toast.success("Exercice copié ✓", {
-        description: "Il est déjà dans Gemini. Sinon, colle-le (Ctrl+V / Cmd+V).",
+        description: "Colle-le dans Gemini (Ctrl+V / Cmd+V).",
         duration: 10000,
       });
     } else {
@@ -87,7 +86,7 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
           onClick={openGemini}
           className="h-8 px-3 text-xs font-medium text-muted-foreground"
         >
-          <Sparkles className="h-3.5 w-3.5" /> Aide avec Gemini
+          <Sparkles className="h-3.5 w-3.5" /> Copier pour Gemini
         </Button>
         <Button
           variant={done ? "default" : "secondary"}

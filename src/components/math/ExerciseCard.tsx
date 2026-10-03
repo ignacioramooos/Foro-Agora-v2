@@ -34,10 +34,10 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
       navigator.clipboard.writeText(prompt).then(() => { copied = true; }).catch(() => {});
       copied = true;
     }
-    window.open("https://gemini.google.com/app", "_blank", "noopener");
+    window.open(`https://gemini.google.com/guided-learning?query=${encodeURIComponent(prompt)}`, "_blank", "noopener");
     if (copied) {
       toast.success("Exercice copié ✓", {
-        description: "Dans Gemini, clique dans la zone de texte et colle (Ctrl+V / Cmd+V, ou appui long sur mobile).",
+        description: "Il est déjà dans Gemini. Sinon, colle-le (Ctrl+V / Cmd+V).",
         duration: 10000,
       });
     } else {

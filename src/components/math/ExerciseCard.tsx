@@ -14,15 +14,35 @@ const buildPrompt = (e: ExerciseWithChapter) =>
 const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChapter; done: boolean; onToggle: () => void }) => {
   const { flags, toggleFlag } = useMathFlags();
   const flagged = !!flags[exercise.id];
-  const openGemini = async () => {
+  const copyFallback = (text: string) => {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand("copy"); } catch { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  };
+  const openGemini = () => {
     const prompt = buildPrompt(exercise);
-    try {
-      await navigator.clipboard.writeText(prompt);
-      toast.success("Prompt copié. S'il n'apparaît pas dans Gemini, colle-le.");
-    } catch {
-      /* ignore */
+    // Copy synchronously within the click so it works everywhere, then open Gemini.
+    let copied = copyFallback(prompt);
+    if (!copied && navigator.clipboard) {
+      navigator.clipboard.writeText(prompt).then(() => { copied = true; }).catch(() => {});
+      copied = true;
     }
-    window.open(`https://gemini.google.com/app?q=${encodeURIComponent(prompt)}`, "_blank", "noopener");
+    window.open("https://gemini.google.com/app", "_blank", "noopener");
+    if (copied) {
+      toast.success("Exercice copié ✓", {
+        description: "Dans Gemini, clique dans la zone de texte et colle (Ctrl+V / Cmd+V, ou appui long sur mobile).",
+        duration: 10000,
+      });
+    } else {
+      toast.error("Copie impossible", { description: "Copie l'énoncé manuellement puis colle-le dans Gemini." });
+    }
   };
 
   return (

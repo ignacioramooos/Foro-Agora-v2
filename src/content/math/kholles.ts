@@ -11,6 +11,21 @@ export interface KholleWeek {
 // Add a new week at the top of this list.
 export const kholleWeeks: KholleWeek[] = [
   {
+    id: "2026-10-12",
+    start: "2026-10-12",
+    label: "Semaine du 12/10/2026",
+    docId: "15awPLuHn_RnfdQH5Yms-ZTHfhVNuQrq1",
+    scope: [
+      { chapter: 6, text: "Le chapitre 6 : Les nombres complexes, jusqu'au paragraphe V.B inclus" },
+    ],
+    incontournables: [
+      { chapter: 6, text: "Inégalité triangulaire dans $\\mathbb{C}$ (avec la démonstration)" },
+      { chapter: 6, text: "Fonctions trigonométriques : propriétés, étude et courbe représentative" },
+      { chapter: 6, text: "Formules d'Euler (avec démonstration), formule de Moivre" },
+      { chapter: 6, text: "Racines n-ième de l'unité : définition, propriétés, exemples" },
+    ],
+  },
+  {
     id: "2026-10-05",
     start: "2026-10-05",
     label: "Semaine du 05/10/2026",

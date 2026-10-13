@@ -64,7 +64,7 @@ for (const [route, meta] of Object.entries(routeMeta)) {
   writeFileSync(targetFile, rewriteHead(baseHtml, { title: meta.title, desc: meta.desc, url }));
 }
 
-for (let chapter = 1; chapter <= 6; chapter += 1) {
+for (let chapter = 1; chapter <= 12; chapter += 1) {
   for (const tab of ["cours", "td"]) {
     const f = join(distDir, "maths", "chapitre", `chapitre-${chapter}`, tab, "index.html");
     mkdirSync(dirname(f), { recursive: true });

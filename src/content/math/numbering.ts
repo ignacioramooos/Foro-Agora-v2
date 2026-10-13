@@ -190,6 +190,22 @@ const REGISTRY: Record<string, number> = {
   "dm2-e1q3": 184,
   "dm2-e2q1": 185,
   "dm2-e2q2": 186,
+  "ch7-cours-ex1": 187,
+  "ch7-cours-ex2": 188,
+  "ch7-cours-ex3": 189,
+  "ch7-ex1": 190,
+  "ch7-ex2": 191,
+  "ch7-ex3": 192,
+  "ch7-ex4": 193,
+  "ch7-ex5": 194,
+  "ch7-ex6": 195,
+  "ch7-ex7": 196,
+  "ch7-ex8": 197,
+  "ch7-ex9": 198,
+  "ch7-ex10": 199,
+  "ch7-ex11": 200,
+  "ch7-ex12": 201,
+  "ch7-ex13": 202,
 };
 
 export interface IndexedExercise extends ExerciseWithChapter { uid: number }

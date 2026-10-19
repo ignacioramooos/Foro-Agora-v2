@@ -6,6 +6,7 @@ import logoMark from "@/assets/stone-trail-logo.png";
 import MathSettings from "./MathSettings";
 import StudyAuth from "./StudyAuth";
 import MathSearchDialog from "./MathSearchDialog";
+import McpConnectDialog from "./McpConnectDialog";
 
 const StudyHeader = () => {
   const { theme, toggleTheme } = useTheme();
@@ -19,6 +20,7 @@ const StudyHeader = () => {
         </Link>
         <div className="flex items-center gap-1">
           <MathSearchDialog />
+          <McpConnectDialog />
           <MathSettings />
           <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label={theme === "dark" ? "Passer au mode clair" : "Passer au mode sombre"}>
             {theme === "dark" ? <Sun /> : <Moon />}

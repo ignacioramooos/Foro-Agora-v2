@@ -45,6 +45,12 @@ const MathKhollesPage = () => {
                   </Button>
                 </div>
 
+                {w.preamble && (
+                  <p className="mt-4 rounded-md bg-muted p-3 text-sm font-semibold text-foreground">
+                    <MathText text={w.preamble} className="min-w-0 break-words" />
+                  </p>
+                )}
+
                 <h3 className="mt-5 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">Au programme</h3>
                 <ul className="mt-2 space-y-1.5">
                   {w.scope.map((s) => {

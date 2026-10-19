@@ -6,10 +6,28 @@ export interface KholleWeek {
   docId: string;
   scope: { chapter: number; text: string }[];
   incontournables: { text: string; chapter?: number }[];
+  /** Optional extra instruction specific to this week (shown above the incontournables). */
+  preamble?: string;
 }
 
 // Add a new week at the top of this list.
 export const kholleWeeks: KholleWeek[] = [
+  {
+    id: "2026-11-02",
+    start: "2026-11-02",
+    label: "Semaine du 02/11/2026",
+    docId: "1mSJzm0vlUd60_jPPfAcCUhFOD7Ad634U",
+    preamble: "En préambule de la question de cours, les étudiants seront interrogés sur une formule de trigonométrie (cf. formulaire).",
+    scope: [
+      { chapter: 6, text: "Le chapitre 6 : Les nombres complexes, en entier" },
+      { chapter: 7, text: "Le chapitre 7 : Structures algébriques, jusqu'au paragraphe II.D inclus" },
+    ],
+    incontournables: [
+      { chapter: 6, text: "Complexes et géométrie : translation de vecteur $\\vec{u}$, rotation de centre $A$ et d'angle $\\theta$, homothétie de centre $A$ et de rapport $\\lambda$." },
+      { chapter: 7, text: "Définition d'un groupe, d'un sous-groupe, exemples." },
+      { chapter: 7, text: "Soient $E$ un ensemble et $x \\in E$. $\\mathrm{Stab}(x) = \\{\\sigma \\in S_E,\\ \\sigma(x) = x\\}$ est un sous-groupe de $S_E$ (démonstration)." },
+    ],
+  },
   {
     id: "2026-10-12",
     start: "2026-10-12",

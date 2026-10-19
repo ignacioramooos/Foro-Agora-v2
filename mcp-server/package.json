@@ -1,0 +1,22 @@
+{
+  "name": "foroagora-math-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol (MCP) server for Foro Ágora Math curriculum, exercises, and documents",
+  "type": "module",
+  "bin": {
+    "foroagora-math": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.16.5",
+    "esbuild": "^0.21.5",
+    "typescript": "^5.8.3"
+  }
+}

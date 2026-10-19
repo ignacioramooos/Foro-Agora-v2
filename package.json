@@ -10,7 +10,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "mcp": "node mcp-server/dist/index.js",
+    "mcp:sse": "node mcp-server/dist/index.js --port 3333",
+    "build:mcp": "node mcp-server/build.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

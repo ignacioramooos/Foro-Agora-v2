@@ -18,6 +18,7 @@ export const coursDocs: Record<number, DriveDoc> = {
   5: { id: "1dDis1Em5s3ih-ipeBxOfl7Ow1ItzGlCw", title: "Cours — Chapitre 5" },
   6: { id: "17cYVX4t_dA3vqv7ygKAdeOoWvuIf853p", title: "Cours — Chapitre 6" },
   7: { id: "11xZuYc5LBfo7I-vSlWcofNJ46y_2kn7o", title: "Cours — Chapitre 7" },
+  8: { id: "1EHRO5T7o0T42SB_jSQ9ehxt9ItiLZLfQ", title: "Cours — Chapitre 8" },
 };
 
 export const tdDocs: Record<number, DriveDoc> = {
@@ -28,6 +29,7 @@ export const tdDocs: Record<number, DriveDoc> = {
   5: { id: "1C5ejYs6Xt01uh_R9cBO06_GCfzGK0gbi", title: "TD — Chapitre 5" },
   6: { id: "1075iMd66V-tRwIqRJLqro6USEl7S3cuP", title: "TD — Chapitre 6" },
   7: { id: "1LGLiPlipyTF0O9FsT8JayICEeZGVLdUj", title: "TD — Chapitre 7" },
+  8: { id: "1X9oqO7tB-j4y-AplMi1AjdhmlXzSFhPo", title: "TD — Chapitre 8" },
 };
 
 export const resourceDocs: (DriveDoc & { description: string })[] = [

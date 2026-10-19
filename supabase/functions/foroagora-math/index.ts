@@ -14,12 +14,14 @@ interface MathDB {
 let cachedDb: MathDB | null = null;
 let lastFetch = 0;
 
-async function getDb(): Promise<MathDB> {
+async function getDb(force = false): Promise<MathDB> {
   const now = Date.now();
-  if (cachedDb && now - lastFetch < 3600000) {
+  if (!force && cachedDb && now - lastFetch < 300000) {
     return cachedDb;
   }
-  const res = await fetch(DATA_URL, { headers: { "User-Agent": "foroagora-mcp-edge" } });
+  const res = await fetch(`${DATA_URL}?t=${now}`, {
+    headers: { "User-Agent": "foroagora-mcp-edge", "Cache-Control": "no-cache" },
+  });
   if (!res.ok) {
     if (cachedDb) return cachedDb;
     throw new Error(`Failed to load math database: HTTP ${res.status}`);
@@ -564,7 +566,12 @@ Deno.serve(async (req: Request) => {
 
   const PUBLIC_HOST = "pxabjrkyzmtcwbbbvmvo.supabase.co";
   const canonicalUrl = `https://${PUBLIC_HOST}/functions/v1/foroagora-math`;
+  const url = new URL(req.url);
   const acceptHeader = req.headers.get("accept") || "";
+
+  if (url.searchParams.get("refresh") === "1" || req.headers.get("x-refresh") === "1") {
+    await getDb(true);
+  }
 
   // SSE Stream Transport (GET with accept: text/event-stream or /sse)
   if (req.method === "GET" && (acceptHeader.includes("text/event-stream") || url.pathname.endsWith("/sse"))) {

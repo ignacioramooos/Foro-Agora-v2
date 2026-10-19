@@ -1,0 +1,48 @@
+name: Sync Math Database Snapshot
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/content/math/**"
+      - "mcp-server/scripts/**"
+      - "mcp-server/src/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-math-db:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Export math database snapshot
+        run: npx tsx mcp-server/scripts/export.ts
+
+      - name: Commit and push changes if updated
+        run: |
+          if [ -n "$(git status --porcelain public/math-db.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add public/math-db.json
+            git commit -m "chore(math): auto-sync public math database snapshot [skip ci]"
+            git push
+            echo "Pushed updated math database snapshot."
+            echo "Triggering MCP server cache refresh..."
+            curl -s "https://pxabjrkyzmtcwbbbvmvo.supabase.co/functions/v1/foroagora-math?refresh=1" || true
+          else
+            echo "No changes in public/math-db.json detected."
+          fi

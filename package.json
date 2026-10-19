@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/materialize-spa-routes.mjs",
-    "build:dev": "vite build --mode development && node scripts/materialize-spa-routes.mjs",
+    "export:math-db": "npx tsx mcp-server/scripts/export.ts",
+    "build": "npm run export:math-db && vite build && node scripts/materialize-spa-routes.mjs",
+    "build:dev": "npm run export:math-db && vite build --mode development && node scripts/materialize-spa-routes.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",

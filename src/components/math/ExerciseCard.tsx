@@ -52,10 +52,10 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
       )}
     >
       <div className="mb-4 flex items-center gap-2 text-xs font-heading font-semibold uppercase text-muted-foreground">
-        <span className={cn("rounded-full px-2.5 py-1", exercise.source === "cours" ? "bg-muted text-foreground" : "bg-secondary text-secondary-foreground")}>
-          {exercise.source === "cours" ? "Cours" : exercise.source === "dm" ? "DM" : "TD"}
+        <span className={cn("rounded-full px-2.5 py-1", exercise.source === "cours" ? "bg-muted text-foreground" : exercise.source === "exemple" ? "bg-accent/15 text-foreground" : "bg-secondary text-secondary-foreground")}>
+          {exercise.source === "cours" ? "Cours" : exercise.source === "exemple" ? "Exemple" : exercise.source === "dm" ? "DM" : "TD"}
         </span>
-        <span className="min-w-0 truncate">Chap. {exercise.chapter.number} · {exercise.source === "dm" ? "Question" : "Exercice"} {exercise.number}</span>
+        <span className="min-w-0 truncate">Chap. {exercise.chapter.number} · {exercise.source === "dm" ? "Question" : exercise.source === "exemple" ? "Exemple" : "Exercice"} {exercise.number}</span>
         <Link to={`/maths/exo/${exerciseUid(exercise.id)}`} className="ml-auto shrink-0 font-mono normal-case tracking-normal hover:text-foreground" title="Numéro unique de l'exercice">
           {formatUid(exercise.id)}
         </Link>
@@ -75,7 +75,7 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
 
       <div className="mt-5 flex flex-wrap items-center gap-2">
         <Link
-          to={`/maths/chapitre/${exercise.chapter.id}/${exercise.source === "cours" ? "cours" : "td"}`}
+          to={`/maths/chapitre/${exercise.chapter.id}/${exercise.source === "cours" || exercise.source === "exemple" ? "cours" : "td"}`}
           className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
         >
           <BookOpen className="h-3.5 w-3.5" /> Revoir le chap. {exercise.chapter.number}

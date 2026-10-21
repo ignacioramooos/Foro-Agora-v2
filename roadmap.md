@@ -15,3 +15,4 @@
 - [x] Add the public French Maths Forum with authenticated posting and document uploads
 - [x] Add shared profile editing and a compact “Salut, [nom]” greeting to Maths
 - [x] Verify banner, Forum, profile, mobile, desktop, dark mode, and direct routes
+- [x] Ordenar exemples y exercices del cours en el orden exacto de cada ficha

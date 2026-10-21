@@ -48,6 +48,16 @@ const PracticePage = () => {
   const allDone = daily.length > 0 && dailyDone === daily.length;
 
   useEffect(() => setActiveIndex(0), [goal]);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (t.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(t.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === "ArrowRight") setActiveIndex((i) => Math.min(i + 1, visible.length - 1));
+      if (e.key === "ArrowLeft") setActiveIndex((i) => Math.max(0, i - 1));
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [visible.length]);
 
   const setCalculator = (open: boolean) => {
     setCalculatorOpen(open);
@@ -77,7 +87,7 @@ const PracticePage = () => {
               )}
             </div>
             <ExerciseCard exercise={activeExercise} done={!!progress[activeExercise.id]} onToggle={() => toggle(activeExercise.id)} />
-            <div className="mt-5 flex items-center justify-between border-t border-border pt-5">
+            <div className="sticky bottom-0 z-10 mt-5 flex items-center justify-between border-t border-border bg-background/95 py-4 backdrop-blur">
               <Button variant="outline" onClick={() => setActiveIndex((index) => Math.max(0, index - 1))} disabled={activeIndex === 0}><ChevronLeft /> Précédent</Button>
               {activeIndex < visible.length - 1 ? (
                 <Button onClick={() => setActiveIndex((index) => index + 1)}>Suivant <ChevronRight /></Button>

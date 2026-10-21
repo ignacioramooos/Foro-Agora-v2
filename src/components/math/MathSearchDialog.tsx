@@ -55,7 +55,7 @@ const MathSearchDialog = () => {
                   <button onClick={() => go(e.uid)} className="w-full rounded-md p-2.5 text-left hover:bg-muted">
                     <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
                       <span className="font-mono">{formatUid(e.id)}</span>
-                      <span>Chap. {e.chapter.number} · {e.source === "cours" ? "Cours" : e.source === "dm" ? "DM" : "TD"} {e.number}</span>
+                      <span>Chap. {e.chapter.number} · {e.source === "cours" ? "Cours" : e.source === "exemple" ? "Exemple" : e.source === "dm" ? "DM" : "TD"} {e.number}</span>
                       {flags[e.id] && <Flag className="h-3.5 w-3.5 fill-current text-accent" />}
                     </div>
                     <PreviewText text={e.statement} className="mt-0.5 text-sm text-foreground" />

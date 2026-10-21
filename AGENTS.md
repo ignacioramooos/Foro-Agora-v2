@@ -4,3 +4,4 @@
 - /maths documents are shown via the Google Drive preview viewer (ids in src/content/math/documents.ts); khôlles and DM content live in src/content/math/kholles.ts and dm.ts — local PDF iframes only show page 1 on mobile.
 - Maths Forum data uses isolated maths_forum_* tables and private Storage buckets with public-read RLS; it shares the existing auth, profiles, and admin roles so the parallel Maths experience never forks user identity.
 - Public exercise numbers (#NNN) come from the frozen registry in src/content/math/numbering.ts; never renumber or reuse entries, only append — users reference them.
+- Course examples live in src/content/math/course-examples/chapitre-N.ts (source "exemple", ids chN-exemple-K) and are merged by src/content/math/index.ts; cours items are sorted by src/content/math/course-order.ts (document order) — why: pages must mirror the cours PDF sequence; the daily pool excludes examples.

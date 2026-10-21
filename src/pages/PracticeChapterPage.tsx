@@ -10,7 +10,6 @@ import ExerciseCard from "@/components/math/ExerciseCard";
 import DocumentViewer from "@/components/math/DocumentViewer";
 import MathShell from "@/components/math/MathShell";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 
 const PracticeChapterPage = () => {
   const { id = "", tab } = useParams();
@@ -103,13 +102,12 @@ const PracticeChapterPage = () => {
           </Tabs>
         </div>
       ) : (
-        <div className="flex h-full min-h-0 flex-col">
+        <div ref={listRef} className="h-full overflow-y-auto scroll-smooth motion-reduce:scroll-auto">
           {header}
-          <ResizablePanelGroup direction="horizontal" className="min-h-0 flex-1">
-            <ResizablePanel defaultSize={45} minSize={30}><div ref={listRef} className="h-full overflow-y-auto scroll-smooth motion-reduce:scroll-auto">{list}</div></ResizablePanel>
-            <ResizableHandle withHandle />
-            <ResizablePanel defaultSize={55} minSize={30}>{viewer}</ResizablePanel>
-          </ResizablePanelGroup>
+          <div className="grid grid-cols-[minmax(0,45fr)_minmax(0,55fr)] items-start">
+            <div className="min-w-0">{list}</div>
+            <div className="sticky top-0 h-[calc(100dvh-5rem)] min-w-0 border-l border-border">{viewer}</div>
+          </div>
         </div>
       )}
     </MathShell>

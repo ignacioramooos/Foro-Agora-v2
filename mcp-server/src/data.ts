@@ -32,14 +32,26 @@ export {
 };
 export type { MathChapter, MathExercise, Devoir, KholleWeek, DriveDoc };
 
-export const chapters: MathChapter[] = [c1, c2, c3, c4, c5, c6, c7, c8].sort(
+import { courseExamplesByChapter } from "./examples.js";
+import { courseOrder } from "../../src/content/math/course-order.js";
+
+export const chapters: MathChapter[] = [c1, c2, c3, c4, c5, c6, c7, c8].map((c) => ({
+  ...c,
+  exercises: (() => {
+    const list = [...(courseExamplesByChapter[c.number] ?? []), ...c.exercises];
+    const order = courseOrder[c.number] ?? [];
+    const rank = (e: MathExercise) => { const i = order.indexOf(e.id); return i === -1 ? order.length : i; };
+    const isCourse = (e: MathExercise) => e.source === "cours" || e.source === "exemple";
+    return [...list.filter(isCourse).sort((a, b) => rank(a) - rank(b)), ...list.filter((e) => !isCourse(e))];
+  })(),
+})).sort(
   (a, b) => a.number - b.number,
 );
 
 export interface IndexedExercise extends MathExercise {
   uid: number;
   formattedUid: string;
-  source: "cours" | "td" | "dm";
+  source: "cours" | "td" | "dm" | "exemple";
   url: string;
   chapter: {
     id: string;
@@ -298,12 +310,122 @@ export const FROZEN_REGISTRY: Record<string, number> = {
   "dm3-q2": 245,
   "dm3-q3": 246,
   "dm3-q4": 247,
+  "ch1-exemple-1": 248,
+  "ch1-exemple-2": 249,
+  "ch1-exemple-3": 250,
+  "ch1-exemple-4": 251,
+  "ch1-exemple-5": 252,
+  "ch1-exemple-6": 253,
+  "ch1-exemple-7": 254,
+  "ch1-exemple-8": 255,
+  "ch1-exemple-9": 256,
+  "ch1-exemple-10": 257,
+  "ch1-exemple-11": 258,
+  "ch2-exemple-1": 259,
+  "ch2-exemple-2": 260,
+  "ch2-exemple-3": 261,
+  "ch2-exemple-4": 262,
+  "ch2-exemple-5": 263,
+  "ch2-exemple-6": 264,
+  "ch2-exemple-7": 265,
+  "ch2-exemple-8": 266,
+  "ch2-exemple-9": 267,
+  "ch2-exemple-10": 268,
+  "ch2-exemple-11": 269,
+  "ch2-exemple-12": 270,
+  "ch2-exemple-13": 271,
+  "ch2-exemple-14": 272,
+  "ch2-exemple-15": 273,
+  "ch2-exemple-16": 274,
+  "ch2-exemple-17": 275,
+  "ch2-exemple-18": 276,
+  "ch2-exemple-19": 277,
+  "ch2-exemple-20": 278,
+  "ch2-exemple-21": 279,
+  "ch2-exemple-22": 280,
+  "ch2-exemple-23": 281,
+  "ch2-exemple-24": 282,
+  "ch2-exemple-25": 283,
+  "ch2-exemple-26": 284,
+  "ch2-exemple-27": 285,
+  "ch3-exemple-1": 286,
+  "ch3-exemple-2": 287,
+  "ch3-exemple-3": 288,
+  "ch3-exemple-4": 289,
+  "ch3-exemple-5": 290,
+  "ch3-exemple-6": 291,
+  "ch4-exemple-1": 292,
+  "ch4-exemple-2": 293,
+  "ch4-exemple-3": 294,
+  "ch4-exemple-4": 295,
+  "ch5-exemple-1": 296,
+  "ch5-exemple-2": 297,
+  "ch5-exemple-3": 298,
+  "ch5-exemple-4": 299,
+  "ch5-exemple-5": 300,
+  "ch5-exemple-6": 301,
+  "ch5-exemple-7": 302,
+  "ch5-exemple-8": 303,
+  "ch5-exemple-9": 304,
+  "ch5-exemple-10": 305,
+  "ch5-exemple-11": 306,
+  "ch5-exemple-12": 307,
+  "ch5-exemple-13": 308,
+  "ch6-exemple-1": 309,
+  "ch6-exemple-2": 310,
+  "ch6-exemple-3": 311,
+  "ch6-exemple-4": 312,
+  "ch6-exemple-5": 313,
+  "ch6-exemple-6": 314,
+  "ch6-exemple-7": 315,
+  "ch6-exemple-8": 316,
+  "ch6-exemple-9": 317,
+  "ch6-exemple-10": 318,
+  "ch6-exemple-11": 319,
+  "ch6-exemple-12": 320,
+  "ch7-exemple-1": 321,
+  "ch7-exemple-2": 322,
+  "ch7-exemple-3": 323,
+  "ch7-exemple-4": 324,
+  "ch7-exemple-5": 325,
+  "ch7-exemple-6": 326,
+  "ch7-exemple-7": 327,
+  "ch7-exemple-8": 328,
+  "ch7-exemple-9": 329,
+  "ch7-exemple-10": 330,
+  "ch7-exemple-11": 331,
+  "ch7-exemple-12": 332,
+  "ch7-exemple-13": 333,
+  "ch7-exemple-14": 334,
+  "ch7-exemple-15": 335,
+  "ch7-exemple-16": 336,
+  "ch7-exemple-17": 337,
+  "ch7-exemple-18": 338,
+  "ch7-exemple-19": 339,
+  "ch7-exemple-20": 340,
+  "ch8-exemple-1": 341,
+  "ch8-exemple-2": 342,
+  "ch8-exemple-3": 343,
+  "ch8-exemple-4": 344,
+  "ch8-exemple-5": 345,
+  "ch8-exemple-6": 346,
+  "ch8-exemple-7": 347,
+  "ch8-exemple-8": 348,
+  "ch8-exemple-9": 349,
+  "ch8-exemple-10": 350,
+  "ch8-exemple-11": 351,
+  "ch8-exemple-12": 352,
+  "ch8-exemple-13": 353,
+  "ch8-exemple-14": 354,
+  "ch8-exemple-15": 355,
+  "ch8-exemple-16": 356,
+  "ch8-exemple-17": 357,
 };
 
 // Build all exercises
 const chapterExercises: IndexedExercise[] = chapters.flatMap((chapter) =>
   chapter.exercises.map((e) => {
-    const src: "cours" | "td" = e.source === "cours" ? "cours" : "td";
+    const src: "cours" | "td" | "exemple" = e.source === "cours" ? "cours" : e.source === "exemple" ? "exemple" : "td";
     const uid = FROZEN_REGISTRY[e.id] ?? 999;
     return {
       ...e,
@@ -371,7 +493,7 @@ const stripAccents = (s: string) =>
 
 export interface SearchOptions {
   chapter?: number;
-  source?: "cours" | "td" | "dm";
+  source?: "cours" | "td" | "dm" | "exemple";
   limit?: number;
 }
 
@@ -408,7 +530,7 @@ export const searchExercises = (
 
   const scored = list
     .map((e) => {
-      const srcText = e.source === "cours" ? "cours" : e.source === "dm" ? "dm" : "td";
+      const srcText = e.source === "cours" ? "cours" : e.source === "dm" ? "dm" : e.source === "exemple" ? "exemple" : "td";
       const haystack = stripAccents(
         `${e.statement} ${e.chapter.title} chapitre ${e.chapter.number} chap ${e.chapter.number} ${srcText} exercice ${e.number} ${e.formattedUid} ${e.id}`,
       );

@@ -31,7 +31,7 @@ const routeMeta = {
   "maths/ressources": { title: "Ressources — Maths — Foro Agora", desc: "Formulaires et méthodologie." },
   "maths/forum": { title: "Forum — Maths — Foro Agora", desc: "Forum de mathématiques pour échanger des questions, méthodes et documents." },
   "maths/index": { title: "Index des exercices — Maths — Foro Agora", desc: "Tous les exercices de mathématiques, avec recherche et filtres." },
-  ...Object.fromEntries(Array.from({ length: 400 }, (_, i) => [`maths/exo/${i + 1}`, { title: `Exercice #${String(i + 1).padStart(3, "0")} — Maths — Foro Agora`, desc: "Exercice de mathématiques." }])),
+  ...Object.fromEntries(Array.from({ length: 800 }, (_, i) => [`maths/exo/${i + 1}`, { title: `Exercice #${String(i + 1).padStart(3, "0")} — Maths — Foro Agora`, desc: "Exercice de mathématiques." }])),
   // app routes: keep simple, low priority
   auth:       { title: "Acceso — Foro Agora",                   desc: "Ingresá a tu cuenta de Foro Agora para acceder al dashboard, simulador y comunidad de estudiantes." },
   dashboard:  { title: "Dashboard — Foro Agora",                desc: "Panel personal de estudiantes de Foro Agora: progreso, portafolio simulado, comunidad y recursos." },

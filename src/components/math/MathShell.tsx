@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { BookMarked, ChevronDown, ClipboardList, Library, ListOrdered, Menu, MessageSquareText, MessagesSquare, Shuffle } from "lucide-react";
+import { BookMarked, PanelLeftClose, PanelLeftOpen, ChevronDown, ClipboardList, Library, ListOrdered, Menu, MessageSquareText, MessagesSquare, Shuffle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { chapters } from "@/content/math";
 import { Button } from "@/components/ui/button";
@@ -69,12 +69,33 @@ const SidebarNav = ({ onNavigate }: { onNavigate?: () => void }) => {
 /** Shared layout for every /maths page: sidebar on desktop, menu sheet on mobile. */
 const MathShell = ({ children, top }: { children: React.ReactNode; top?: React.ReactNode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(() => typeof window !== "undefined" && localStorage.getItem("fa_math_sidebar_collapsed") === "true");
+  const toggleCollapsed = () => setCollapsed((c) => { localStorage.setItem("fa_math_sidebar_collapsed", String(!c)); return !c; });
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (t.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(t.tagName)) return;
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "b") { e.preventDefault(); toggleCollapsed(); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
   return (
     <div className="lg:h-[calc(100dvh-5rem)]">
-      <div className="grid w-full min-w-0 grid-cols-[minmax(0,1fr)] lg:h-full lg:grid-cols-[272px_minmax(0,1fr)]">
-        <aside className="hidden border-r border-border bg-card p-4 lg:block lg:min-h-0 lg:overflow-y-auto">
-          {top && <div className="mb-5">{top}</div>}
-          <SidebarNav />
+      <div className={cn("grid w-full min-w-0 grid-cols-[minmax(0,1fr)] transition-[grid-template-columns] duration-200 ease-out motion-reduce:transition-none lg:h-full", collapsed ? "lg:grid-cols-[52px_minmax(0,1fr)]" : "lg:grid-cols-[272px_minmax(0,1fr)]")}>
+        <aside className={cn("hidden border-r border-border bg-card lg:block lg:min-h-0 lg:overflow-y-auto lg:overflow-x-hidden", collapsed ? "p-2" : "p-4")}>
+          <div className={cn("mb-2 flex", collapsed ? "justify-center" : "justify-end")}>
+            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={toggleCollapsed} aria-expanded={!collapsed}
+              aria-label={collapsed ? "Afficher le menu" : "Masquer le menu"} title={(collapsed ? "Afficher le menu" : "Masquer le menu") + " (Ctrl+B)"}>
+              {collapsed ? <PanelLeftOpen /> : <PanelLeftClose />}
+            </Button>
+          </div>
+          {!collapsed && (
+            <>
+              {top && <div className="mb-5">{top}</div>}
+              <SidebarNav />
+            </>
+          )}
         </aside>
         <div className="border-b border-border bg-card px-4 py-3 lg:hidden">
           <div className="flex items-center justify-between gap-3">

@@ -1,10 +1,27 @@
 import type { MathChapter, MathExercise } from "./types";
+import { courseOrder } from "./course-order";
 
 // Every file in ./chapters is picked up automatically.
 const modules = import.meta.glob<{ default: MathChapter }>("./chapters/*.ts", { eager: true });
 
+// Course examples (./course-examples/chapitre-N.ts) are merged into their chapter.
+const exampleModules = import.meta.glob<Record<string, MathExercise[]>>("./course-examples/*.ts", { eager: true });
+const examplesByChapter: Record<number, MathExercise[]> = {};
+for (const [path, mod] of Object.entries(exampleModules)) {
+  const n = Number(path.match(/chapitre-(\d+)/)?.[1]);
+  examplesByChapter[n] = Object.values(mod).flat();
+}
+
+/** Examples and course exercises follow the cours document order; TD exercises keep their order after. */
+const orderCourse = (n: number, list: MathExercise[]) => {
+  const order = courseOrder[n] ?? [];
+  const rank = (e: MathExercise) => { const i = order.indexOf(e.id); return i === -1 ? order.length : i; };
+  const course = list.filter((e) => e.source === "cours" || e.source === "exemple").sort((a, b) => rank(a) - rank(b));
+  return [...course, ...list.filter((e) => e.source !== "cours" && e.source !== "exemple")];
+};
+
 export const chapters: MathChapter[] = Object.values(modules)
-  .map((m) => m.default)
+  .map((m) => ({ ...m.default, exercises: orderCourse(m.default.number, [...(examplesByChapter[m.default.number] ?? []), ...m.default.exercises]) }))
   .sort((a, b) => a.number - b.number);
 
 export interface ExerciseWithChapter extends MathExercise {
@@ -47,7 +64,8 @@ export const seededShuffle = <T,>(items: T[], seed: string): T[] => {
 
 /** Ordered pool for the day: daily set first, then the rest. Same for everyone on a given day. */
 export const dailyPool = (chapterId: string | "all", day: string, completedIds: Set<string> = new Set()) => {
-  const pool = chapterId === "all" ? allExercises : allExercises.filter((e) => e.chapter.id === chapterId);
+  const practice = allExercises.filter((e) => e.source !== "exemple");
+  const pool = chapterId === "all" ? practice : practice.filter((e) => e.chapter.id === chapterId);
   if (chapterId === "all") return seededShuffle(pool, `${day}:${chapterId}`);
   const firstIncomplete = pool.findIndex((exercise) => !completedIds.has(exercise.id));
   return firstIncomplete > 0 ? [...pool.slice(firstIncomplete), ...pool.slice(0, firstIncomplete)] : pool;

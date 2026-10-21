@@ -3,7 +3,7 @@ export interface MathExercise {
   id: string;
   number: string;
   /** Source document. Existing exercises without this field are TD exercises. */
-  source?: "td" | "cours" | "dm";
+  source?: "td" | "cours" | "dm" | "exemple";
   /** Text with inline $...$ and display $$...$$ LaTeX. */
   statement: string;
 }

@@ -10,10 +10,10 @@ import { useMathFlags } from "@/hooks/useMathFlags";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-type Src = "all" | "cours" | "td" | "dm";
+type Src = "all" | "exemple" | "cours" | "td" | "dm";
 type State = "all" | "done" | "todo" | "flagged";
 
-const srcOf = (e: IndexedExercise) => (e.source === "cours" ? "cours" : e.source === "dm" ? "dm" : "td");
+const srcOf = (e: IndexedExercise) => (e.source === "cours" ? "cours" : e.source === "exemple" ? "exemple" : e.source === "dm" ? "dm" : "td");
 
 const Chip = ({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) => (
   <button onClick={onClick} aria-pressed={active}
@@ -67,7 +67,7 @@ const MathIndexPage = () => {
           {chapters.map((c) => <Chip key={c.id} active={chapter === c.number} onClick={() => setChapter(c.number)}>Chap. {c.number}</Chip>)}
         </div>
         <div className="mt-2 flex flex-wrap gap-2">
-          {(["all", "cours", "td", "dm"] as Src[]).map((s) => <Chip key={s} active={src === s} onClick={() => setSrc(s)}>{s === "all" ? "Toutes sources" : s === "cours" ? "Cours" : s.toUpperCase()}</Chip>)}
+          {(["all", "exemple", "cours", "td", "dm"] as Src[]).map((s) => <Chip key={s} active={src === s} onClick={() => setSrc(s)}>{s === "all" ? "Toutes sources" : s === "cours" ? "Cours" : s === "exemple" ? "Exemples" : s.toUpperCase()}</Chip>)}
           <span className="mx-1 hidden w-px bg-border sm:block" />
           {(["all", "todo", "done", "flagged"] as State[]).map((s) => <Chip key={s} active={state === s} onClick={() => setState(s)}>{{ all: "Tous états", todo: "Non faits", done: "Faits", flagged: "Marqués" }[s]}</Chip>)}
         </div>

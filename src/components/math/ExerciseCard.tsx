@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import MathText from "./MathText";
+import { ExerciseHints, ExerciseTimer } from "./ExerciseExtras";
 import type { ExerciseWithChapter } from "@/content/math";
 import { exerciseUid, formatUid } from "@/content/math/numbering";
 import { useMathFlags } from "@/hooks/useMathFlags";
@@ -73,7 +74,10 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
       </div>
       <MathText text={exercise.statement} className="min-w-0 break-words text-base text-foreground sm:text-lg" />
 
+      <ExerciseHints id={exercise.id} />
+
       <div className="mt-5 flex flex-wrap items-center gap-2">
+        <ExerciseTimer id={exercise.id} />
         <Link
           to={`/maths/chapitre/${exercise.chapter.id}/${exercise.source === "cours" || exercise.source === "exemple" ? "cours" : "td"}`}
           className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"

@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, PanelRightClose, PanelRightOpen } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { getChapter } from "@/content/math";
 import { coursDocs, tdDocs } from "@/content/math/documents";
 import { useMathProgress } from "@/hooks/useMathProgress";
@@ -18,6 +19,15 @@ const PracticeChapterPage = () => {
   const isMobile = useIsMobile();
   const [kind, setKind] = useState<"all" | "exemple" | "exercice">("all");
   const listRef = useRef<HTMLDivElement>(null);
+  const [docOpen, setDocOpen] = useState(() => typeof window === "undefined" || localStorage.getItem("fa_math_doc_open") !== "false");
+  const toggleDoc = () => setDocOpen((o) => { localStorage.setItem("fa_math_doc_open", String(!o)); return !o; });
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "d") { e.preventDefault(); toggleDoc(); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   if (!chapter) return <MathShell><p className="p-6 text-muted-foreground">Chapitre introuvable.</p></MathShell>;
   if (tab !== "cours" && tab !== "td") return <Navigate to={`/maths/chapitre/${chapter.id}/cours`} replace />;
@@ -104,9 +114,21 @@ const PracticeChapterPage = () => {
       ) : (
         <div ref={listRef} className="h-full overflow-y-auto scroll-smooth motion-reduce:scroll-auto">
           {header}
-          <div className="grid grid-cols-[minmax(0,45fr)_minmax(0,55fr)] items-start">
-            <div className="min-w-0">{list}</div>
-            <div className="sticky top-0 h-[calc(100dvh-5rem)] min-w-0 border-l border-border">{viewer}</div>
+          <div className={cn("grid items-start transition-[grid-template-columns] duration-200 ease-out motion-reduce:transition-none", docOpen ? "grid-cols-[minmax(0,45fr)_minmax(0,55fr)]" : "grid-cols-[minmax(0,1fr)_44px]")}>
+            <div className={cn("min-w-0", !docOpen && "mx-auto w-full max-w-4xl")}>{list}</div>
+            <div className="sticky top-0 flex h-[calc(100dvh-5rem)] min-w-0 flex-col border-l border-border bg-card">
+              <div className={cn("flex border-b border-border p-1.5", docOpen ? "justify-start" : "justify-center")}>
+                <Button variant="ghost" size="icon" className="h-8 w-8" onClick={toggleDoc} aria-expanded={docOpen}
+                  aria-label={docOpen ? "Masquer le document" : "Afficher le document"} title={(docOpen ? "Masquer le document" : "Afficher le document") + " (Ctrl+Shift+D)"}>
+                  {docOpen ? <PanelRightClose /> : <PanelRightOpen />}
+                </Button>
+              </div>
+              {docOpen ? <div className="min-h-0 flex-1">{viewer}</div> : (
+                <button type="button" onClick={toggleDoc} className="flex flex-1 items-start justify-center pt-4 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground [writing-mode:vertical-rl]">
+                  Document {isCours ? "du cours" : "du TD"}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}

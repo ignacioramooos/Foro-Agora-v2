@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { BookMarked, PanelLeftClose, PanelLeftOpen, ChevronDown, ClipboardList, Library, ListOrdered, Menu, MessageSquareText, MessagesSquare, Shuffle } from "lucide-react";
+import { BookMarked, PanelLeftClose, PanelLeftOpen, ChevronDown, ClipboardList, Library, ListOrdered, Menu, MessageSquareText, MessagesSquare, Shuffle, Timer, Sigma, BarChart3, Printer } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { chapters } from "@/content/math";
 import { Button } from "@/components/ui/button";
@@ -59,6 +59,10 @@ const SidebarNav = ({ onNavigate }: { onNavigate?: () => void }) => {
       <p className="px-3 pb-1 pt-4 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">Préparation</p>
       <NavLink to="/maths/index" className={itemClass} onClick={onNavigate}><ListOrdered className="h-4 w-4" /> Index des exercices</NavLink>
       <NavLink to="/maths/kholles" className={itemClass} onClick={onNavigate}><MessagesSquare className="h-4 w-4" /> Khôlles</NavLink>
+      <NavLink to="/maths/simulateur" className={itemClass} onClick={onNavigate}><Timer className="h-4 w-4" /> Khôlle blanche</NavLink>
+      <NavLink to="/maths/formulaire" className={itemClass} onClick={onNavigate}><Sigma className="h-4 w-4" /> Formulaire</NavLink>
+      <NavLink to="/maths/progression" className={itemClass} onClick={onNavigate}><BarChart3 className="h-4 w-4" /> Progression</NavLink>
+      <NavLink to="/maths/planche" className={itemClass} onClick={onNavigate}><Printer className="h-4 w-4" /> Planche papier</NavLink>
       <NavLink to="/maths/dm" className={itemClass} onClick={onNavigate}><ClipboardList className="h-4 w-4" /> DM</NavLink>
       <NavLink to="/maths/ressources" className={itemClass} onClick={onNavigate}><Library className="h-4 w-4" /> Ressources</NavLink>
       <NavLink to="/maths/forum" className={itemClass} onClick={onNavigate}><MessageSquareText className="h-4 w-4" /> Forum</NavLink>

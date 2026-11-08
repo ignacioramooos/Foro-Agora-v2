@@ -13,6 +13,23 @@ export interface KholleWeek {
 // Add a new week at the top of this list.
 export const kholleWeeks: KholleWeek[] = [
   {
+    id: "2026-11-09",
+    start: "2026-11-09",
+    label: "Semaine du 09/11/2026",
+    docId: "1PM7WtcX-_5kMAuwuUpO6TwmAgy0KY-af",
+    preamble: "En préambule de la question de cours, les étudiants seront interrogés sur une formule de trigonométrie (cf. formulaire ou ch. 6).",
+    scope: [
+      { chapter: 7, text: "Le chapitre 7 : Les structures algébriques usuelles, en entier." },
+      { chapter: 8, text: "Le chapitre 8 : Fonctions d'une variable réelle, jusqu'au paragraphe III.B inclus" },
+    ],
+    incontournables: [
+      { chapter: 7, text: "Définition d'un corps, exemples, caractérisation des sous-corps" },
+      { chapter: 8, text: "Savoir déduire le graphe d'une fonction du type $x \\mapsto f(x+a)$, $x \\mapsto f(x)+a$ et $x \\mapsto f(ax)$ en fonction du graphe de $f$ ($a \\in \\mathbb{R}^*$)" },
+      { chapter: 8, text: "Fonctions paires, impaires, périodiques" },
+      { chapter: 8, text: "Fonctions majorées, minorées, bornées, maximum, minimum, borne sup, borne inf" },
+    ],
+  },
+  {
     id: "2026-11-02",
     start: "2026-11-02",
     label: "Semaine du 02/11/2026",

@@ -30,6 +30,10 @@ const routeMeta = {
   "maths/dm/dm-2": { title: "DM n°2 — Maths — Foro Agora", desc: "Devoir maison n°2." },
   "maths/ressources": { title: "Ressources — Maths — Foro Agora", desc: "Formulaires et méthodologie." },
   "maths/forum": { title: "Forum — Maths — Foro Agora", desc: "Forum de mathématiques pour échanger des questions, méthodes et documents." },
+  "maths/simulateur": { title: "Khôlle blanche — Maths — Foro Agora", desc: "Simulateur de khôlle en conditions réelles." },
+  "maths/formulaire": { title: "Formulaire — Maths — Foro Agora", desc: "Formules à connaître et flashcards de révision." },
+  "maths/progression": { title: "Progression — Maths — Foro Agora", desc: "Bilan de progression par chapitre." },
+  "maths/planche": { title: "Planche papier — Maths — Foro Agora", desc: "Planche d'exercices imprimable." },
   "maths/index": { title: "Index des exercices — Maths — Foro Agora", desc: "Tous les exercices de mathématiques, avec recherche et filtres." },
   ...Object.fromEntries(Array.from({ length: 800 }, (_, i) => [`maths/exo/${i + 1}`, { title: `Exercice #${String(i + 1).padStart(3, "0")} — Maths — Foro Agora`, desc: "Exercice de mathématiques." }])),
   // app routes: keep simple, low priority

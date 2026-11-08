@@ -1130,6 +1130,17 @@ export type Database = {
     }
     Functions: {
       claim_referral: { Args: { _code: string }; Returns: boolean }
+      get_maths_leaderboard: {
+        Args: never
+        Returns: {
+          avatar_url: string
+          display_name: string
+          last_done: string
+          total: number
+          user_id: string
+          week: number
+        }[]
+      }
       get_public_profiles: {
         Args: never
         Returns: {

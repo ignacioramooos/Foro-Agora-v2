@@ -79,7 +79,7 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
         <span className={cn("rounded-full px-2.5 py-1", exercise.source === "cours" ? "bg-muted text-foreground" : exercise.source === "exemple" ? "bg-accent/15 text-foreground" : exercise.source === "bonus" ? "bg-primary/10 text-primary" : "bg-secondary text-secondary-foreground")}>
           {exercise.source === "cours" ? "Cours" : exercise.source === "exemple" ? "Exemple" : exercise.source === "dm" ? "DM" : exercise.source === "bonus" ? "Bonus" : "TD"}
         </span>
-        <span className="min-w-0 truncate">Chap. {exercise.chapter.number} · {exercise.source === "dm" ? "Question" : exercise.source === "exemple" ? "Exemple" : exercise.source === "bonus" ? "Fonction" : "Exercice"} {exercise.number}</span>
+        <span className="min-w-0 truncate">Chap. {exercise.chapter.number} · {exercise.source === "dm" ? "Question" : exercise.source === "exemple" ? "Exemple" : exercise.source === "bonus" ? "Fonction" : "Exercice"} <span className={cn(exercise.source === "bonus" && "normal-case")}>{exercise.number}</span></span>
         <Link to={`/maths/exo/${exerciseUid(exercise.id)}`} className="ml-auto shrink-0 font-mono normal-case tracking-normal hover:text-foreground" title="Numéro unique de l'exercice">
           {formatUid(exercise.id)}
         </Link>

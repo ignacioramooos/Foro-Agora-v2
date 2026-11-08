@@ -40,6 +40,7 @@ const PracticeChapterPage = lazy(() => import("./pages/PracticeChapterPage"));
 const MathKhollesPage = lazy(() => import("./pages/MathKhollesPage"));
 const MathDmPage = lazy(() => import("./pages/MathDmPage"));
 const MathResourcesPage = lazy(() => import("./pages/MathResourcesPage"));
+const MathBonusPage = lazy(() => import("./pages/MathBonusPage"));
 const MathForumPage = lazy(() => import("./pages/MathForumPage"));
 const MathIndexPage = lazy(() => import("./pages/MathIndexPage"));
 const MathKholleSimPage = lazy(() => import("./pages/MathKholleSimPage"));
@@ -152,6 +153,8 @@ const AppRoutes = () => {
       <Route path="/maths/dm" element={<StudyPage><MathDmPage /></StudyPage>} />
       <Route path="/maths/dm/:id" element={<StudyPage><MathDmPage /></StudyPage>} />
       <Route path="/maths/ressources" element={<StudyPage><MathResourcesPage /></StudyPage>} />
+      <Route path="/maths/ressources/bonus" element={<StudyPage><MathBonusPage /></StudyPage>} />
+      <Route path="/maths/ressources/bonus/:id" element={<StudyPage><MathBonusPage /></StudyPage>} />
       <Route path="/maths/forum" element={<StudyPage><MathForumPage /></StudyPage>} />
       <Route path="/maths/index" element={<StudyPage><MathIndexPage /></StudyPage>} />
       <Route path="/maths/simulateur" element={<StudyPage><MathKholleSimPage /></StudyPage>} />

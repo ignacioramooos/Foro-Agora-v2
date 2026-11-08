@@ -1,5 +1,6 @@
 import { allExercises, type ExerciseWithChapter } from "./index";
 import { devoirs } from "./dm";
+import { bonusSheets } from "./bonus";
 import { chapters } from "./index";
 
 /** Frozen registry: internal id -> public number. NEVER change or reuse existing entries; append new ones. */
@@ -361,6 +362,31 @@ const REGISTRY: Record<string, number> = {
   "ch8-exemple-15": 355,
   "ch8-exemple-16": 356,
   "ch8-exemple-17": 357,
+  "bonus-derivees-a": 358,
+  "bonus-derivees-b": 359,
+  "bonus-derivees-c": 360,
+  "bonus-derivees-d": 361,
+  "bonus-derivees-e": 362,
+  "bonus-derivees-f": 363,
+  "bonus-derivees-g": 364,
+  "bonus-derivees-h": 365,
+  "bonus-derivees-i": 366,
+  "bonus-derivees-j": 367,
+  "bonus-derivees-k": 368,
+  "bonus-derivees-l": 369,
+  "bonus-derivees-m": 370,
+  "bonus-derivees-n": 371,
+  "bonus-derivees-o": 372,
+  "bonus-derivees-p": 373,
+  "bonus-derivees-q": 374,
+  "bonus-derivees-r": 375,
+  "bonus-derivees-s": 376,
+  "bonus-derivees-t": 377,
+  "bonus-derivees-u": 378,
+  "bonus-derivees-v": 379,
+  "bonus-derivees-w": 380,
+  "bonus-derivees-y": 381,
+  "bonus-derivees-z": 382,
 };
 
 export interface IndexedExercise extends ExerciseWithChapter { uid: number }
@@ -370,7 +396,12 @@ const dmExercises: ExerciseWithChapter[] = devoirs.flatMap((d) => {
   return d.questions.map((q) => ({ ...q, chapter }));
 });
 
-const all = [...allExercises, ...dmExercises];
+const bonusExercises: ExerciseWithChapter[] = bonusSheets.flatMap((b) => {
+  const chapter = chapters.find((c) => c.number === b.chapter) ?? chapters[0];
+  return b.questions.map((q) => ({ ...q, chapter }));
+});
+
+const all = [...allExercises, ...dmExercises, ...bonusExercises];
 let next = Math.max(0, ...Object.values(REGISTRY)) + 1;
 const numbers: Record<string, number> = { ...REGISTRY };
 all.forEach((e) => { if (!numbers[e.id]) numbers[e.id] = next++; });
@@ -392,7 +423,7 @@ export const searchExercises = (query: string, list: IndexedExercise[] = indexed
   }
   const terms = q.split(/\s+/);
   return list.filter((e) => {
-    const src = e.source === "cours" ? "cours" : e.source === "exemple" ? "exemple" : e.source === "dm" ? "dm" : "td";
+    const src = e.source === "cours" ? "cours" : e.source === "exemple" ? "exemple" : e.source === "dm" ? "dm" : e.source === "bonus" ? "bonus" : "td";
     const hay = strip(`${e.statement} ${e.chapter.title} chapitre ${e.chapter.number} chap ${e.chapter.number} ${src} exercice ${e.number}`);
     return terms.every((t) => hay.includes(t));
   });

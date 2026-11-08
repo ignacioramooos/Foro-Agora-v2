@@ -8,6 +8,7 @@ import c6 from "../../src/content/math/chapters/chapitre-6.js";
 import c7 from "../../src/content/math/chapters/chapitre-7.js";
 import c8 from "../../src/content/math/chapters/chapitre-8.js";
 import { devoirs, type Devoir } from "../../src/content/math/dm.js";
+import { bonusSheets, bonusAnswers, type BonusSheet } from "../../src/content/math/bonus.js";
 import { kholleWeeks, KHOLLE_NOTE, type KholleWeek } from "../../src/content/math/kholles.js";
 import {
   DRIVE_FOLDER_URL,
@@ -29,8 +30,9 @@ export {
   kholleWeeks,
   KHOLLE_NOTE,
   devoirs,
+  bonusSheets,
 };
-export type { MathChapter, MathExercise, Devoir, KholleWeek, DriveDoc };
+export type { MathChapter, MathExercise, Devoir, KholleWeek, DriveDoc, BonusSheet };
 
 import { courseExamplesByChapter } from "./examples.js";
 import { courseOrder } from "../../src/content/math/course-order.js";
@@ -51,7 +53,7 @@ export const chapters: MathChapter[] = [c1, c2, c3, c4, c5, c6, c7, c8].map((c) 
 export interface IndexedExercise extends MathExercise {
   uid: number;
   formattedUid: string;
-  source: "cours" | "td" | "dm" | "exemple";
+  source: "cours" | "td" | "dm" | "exemple" | "bonus";
   url: string;
   chapter: {
     id: string;
@@ -59,6 +61,8 @@ export interface IndexedExercise extends MathExercise {
     title: string;
   };
   dmId?: string;
+  bonusSheetId?: string;
+  answer?: string;
 }
 
 /** Frozen registry mapping stable exercise ID to public #NNN UID. NEVER reorder or reuse. */
@@ -420,6 +424,31 @@ export const FROZEN_REGISTRY: Record<string, number> = {
   "ch8-exemple-15": 355,
   "ch8-exemple-16": 356,
   "ch8-exemple-17": 357,
+  "bonus-derivees-a": 358,
+  "bonus-derivees-b": 359,
+  "bonus-derivees-c": 360,
+  "bonus-derivees-d": 361,
+  "bonus-derivees-e": 362,
+  "bonus-derivees-f": 363,
+  "bonus-derivees-g": 364,
+  "bonus-derivees-h": 365,
+  "bonus-derivees-i": 366,
+  "bonus-derivees-j": 367,
+  "bonus-derivees-k": 368,
+  "bonus-derivees-l": 369,
+  "bonus-derivees-m": 370,
+  "bonus-derivees-n": 371,
+  "bonus-derivees-o": 372,
+  "bonus-derivees-p": 373,
+  "bonus-derivees-q": 374,
+  "bonus-derivees-r": 375,
+  "bonus-derivees-s": 376,
+  "bonus-derivees-t": 377,
+  "bonus-derivees-u": 378,
+  "bonus-derivees-v": 379,
+  "bonus-derivees-w": 380,
+  "bonus-derivees-y": 381,
+  "bonus-derivees-z": 382,
 };
 
 // Build all exercises
@@ -462,7 +491,24 @@ const dmExercises: IndexedExercise[] = devoirs.flatMap((d) => {
   });
 });
 
-export const allExercises: IndexedExercise[] = [...chapterExercises, ...dmExercises].sort(
+const bonusExercises: IndexedExercise[] = bonusSheets.flatMap((b) => {
+  const chapter = chapters.find((c) => c.number === b.chapter) ?? chapters[0];
+  return b.questions.map((q) => {
+    const uid = FROZEN_REGISTRY[q.id] ?? 999;
+    return {
+      ...q,
+      source: "bonus" as const,
+      bonusSheetId: b.id,
+      answer: bonusAnswers[q.id],
+      uid,
+      formattedUid: `#${String(uid).padStart(3, "0")}`,
+      url: `https://foroagora.org/maths/exo/${uid}`,
+      chapter: { id: chapter.id, number: chapter.number, title: chapter.title },
+    };
+  });
+});
+
+export const allExercises: IndexedExercise[] = [...chapterExercises, ...dmExercises, ...bonusExercises].sort(
   (a, b) => a.uid - b.uid,
 );
 
@@ -493,7 +539,7 @@ const stripAccents = (s: string) =>
 
 export interface SearchOptions {
   chapter?: number;
-  source?: "cours" | "td" | "dm" | "exemple";
+  source?: "cours" | "td" | "dm" | "exemple" | "bonus";
   limit?: number;
 }
 

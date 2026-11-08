@@ -31,6 +31,8 @@ const formatExerciseMarkdown = (e: IndexedExercise, full = true) => {
       ? "Cours"
       : e.source === "dm"
       ? "Devoir Maison"
+      : e.source === "bonus"
+      ? "Exercice bonus"
       : "Travaux Dirigés (TD)";
   let out = `### Exercise ${e.formattedUid} (Chapitre ${e.chapter.number} — ${typeLabel} n°${e.number})\n`;
   out += `- **Internal ID**: \`${e.id}\`\n`;
@@ -38,6 +40,7 @@ const formatExerciseMarkdown = (e: IndexedExercise, full = true) => {
   out += `- **Source Type**: ${typeLabel}\n`;
   out += `- **Web Link**: ${e.url}\n\n`;
   out += `**Énoncé :**\n\n${e.statement}\n`;
+  if (full && e.answer) out += `\n**Réponse (document original) :** ${e.answer}\n`;
   return out;
 };
 
@@ -238,7 +241,7 @@ async function executeTool(name: string, args: Record<string, unknown> = {}): Pr
         if (args.include_statements) {
           md += formatExerciseMarkdown(e) + "\n---\n\n";
         } else {
-          const typeLabel = e.source === "cours" ? "Cours" : e.source === "dm" ? "DM" : "TD";
+          const typeLabel = e.source === "cours" ? "Cours" : e.source === "dm" ? "DM" : e.source === "bonus" ? "Bonus" : "TD";
           md += `- **${e.formattedUid}** [${typeLabel} ${e.number}] : ${e.statement.split("\n")[0].slice(0, 100)}... ([Fiche](${e.url}))\n`;
         }
       }

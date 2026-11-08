@@ -10,10 +10,10 @@ import { useMathFlags } from "@/hooks/useMathFlags";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-type Src = "all" | "exemple" | "cours" | "td" | "dm";
+type Src = "all" | "exemple" | "cours" | "td" | "dm" | "bonus";
 type State = "all" | "done" | "todo" | "flagged";
 
-const srcOf = (e: IndexedExercise) => (e.source === "cours" ? "cours" : e.source === "exemple" ? "exemple" : e.source === "dm" ? "dm" : "td");
+const srcOf = (e: IndexedExercise) => (e.source === "cours" ? "cours" : e.source === "exemple" ? "exemple" : e.source === "dm" ? "dm" : e.source === "bonus" ? "bonus" : "td");
 
 const Chip = ({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) => (
   <button onClick={onClick} aria-pressed={active}
@@ -27,8 +27,8 @@ const Row = ({ e, done, flagged }: { e: IndexedExercise; done: boolean; flagged:
     <Link to={`/maths/exo/${e.uid}`} className="flex items-start gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-foreground/30">
       <span className="w-12 shrink-0 pt-0.5 font-mono text-xs font-semibold text-muted-foreground">{formatUid(e.id)}</span>
       <div className="min-w-0 flex-1">
-        <p className="text-xs font-semibold text-muted-foreground">Chap. {e.chapter.number} · {srcOf(e).toUpperCase().replace("COURS", "Cours")} {e.number}</p>
-        <PreviewText text={e.statement} className="mt-0.5 text-sm text-foreground" />
+        <p className="text-xs font-semibold text-muted-foreground">Chap. {e.chapter.number} · {srcOf(e) === "bonus" ? "Bonus" : srcOf(e).toUpperCase().replace("COURS", "Cours")} {e.number}</p>
+        <PreviewText text={e.source === "bonus" ? e.statement.split("\n\n").pop() ?? e.statement : e.statement} className="mt-0.5 text-sm text-foreground" />
       </div>
       <div className="flex shrink-0 items-center gap-1.5 pt-0.5">
         {flagged && <Flag className="h-4 w-4 fill-current text-accent" aria-label="Marqué" />}
@@ -67,7 +67,7 @@ const MathIndexPage = () => {
           {chapters.map((c) => <Chip key={c.id} active={chapter === c.number} onClick={() => setChapter(c.number)}>Chap. {c.number}</Chip>)}
         </div>
         <div className="mt-2 flex flex-wrap gap-2">
-          {(["all", "exemple", "cours", "td", "dm"] as Src[]).map((s) => <Chip key={s} active={src === s} onClick={() => setSrc(s)}>{s === "all" ? "Toutes sources" : s === "cours" ? "Cours" : s === "exemple" ? "Exemples" : s.toUpperCase()}</Chip>)}
+          {(["all", "exemple", "cours", "td", "dm", "bonus"] as Src[]).map((s) => <Chip key={s} active={src === s} onClick={() => setSrc(s)}>{s === "all" ? "Toutes sources" : s === "cours" ? "Cours" : s === "exemple" ? "Exemples" : s === "bonus" ? "Bonus" : s.toUpperCase()}</Chip>)}
           <span className="mx-1 hidden w-px bg-border sm:block" />
           {(["all", "todo", "done", "flagged"] as State[]).map((s) => <Chip key={s} active={state === s} onClick={() => setState(s)}>{{ all: "Tous états", todo: "Non faits", done: "Faits", flagged: "Marqués" }[s]}</Chip>)}
         </div>

@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { FolderOpen } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ChevronRight, Dumbbell, FolderOpen } from "lucide-react";
+import { bonusSheets } from "@/content/math/bonus";
 import { DRIVE_FOLDER_URL, resourceDocs } from "@/content/math/documents";
 import MathShell from "@/components/math/MathShell";
 import DocumentViewer from "@/components/math/DocumentViewer";
@@ -20,7 +22,15 @@ const MathResourcesPage = () => {
           </div>
           <Button asChild variant="outline"><a href={DRIVE_FOLDER_URL} target="_blank" rel="noopener noreferrer"><FolderOpen /> Dossier Google Drive</a></Button>
         </div>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2">
+        <Link to="/maths/ressources/bonus" className="mt-6 flex items-center gap-4 rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary"><Dumbbell className="h-5 w-5" /></span>
+          <div className="min-w-0 flex-1">
+            <p className="font-heading font-semibold text-foreground">Exercices bonus</p>
+            <p className="mt-0.5 text-sm text-muted-foreground">{bonusSheets.length} fiche{bonusSheets.length > 1 ? "s" : ""} d'entraînement avec réponses · {bonusSheets.map((b) => b.title.replace(/^Entraînement : /, "")).join(", ")}</p>
+          </div>
+          <ChevronRight className="h-5 w-5 shrink-0 text-muted-foreground" />
+        </Link>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
           {resourceDocs.map((d) => (
             <button key={d.id} type="button" onClick={() => setActive(d.id)}
               className={cn("rounded-2xl border bg-card p-4 text-left transition-colors", d.id === active ? "border-primary" : "border-border hover:border-foreground/30")}>

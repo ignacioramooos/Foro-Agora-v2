@@ -29,6 +29,8 @@ const routeMeta = {
   "maths/dm/dm-1": { title: "DM n°1 — Maths — Foro Agora", desc: "Devoir maison n°1." },
   "maths/dm/dm-2": { title: "DM n°2 — Maths — Foro Agora", desc: "Devoir maison n°2." },
   "maths/ressources": { title: "Ressources — Maths — Foro Agora", desc: "Formulaires et méthodologie." },
+  "maths/ressources/bonus": { title: "Exercices bonus — Maths — Foro Agora", desc: "Fiches d'entraînement en plus des TD, avec leurs réponses." },
+  "maths/ressources/bonus/derivees": { title: "Calculs de dérivées — Maths — Foro Agora", desc: "Entraînement : 25 calculs de dérivées avec réponses." },
   "maths/forum": { title: "Forum — Maths — Foro Agora", desc: "Forum de mathématiques pour échanger des questions, méthodes et documents." },
   "maths/simulateur": { title: "Khôlle blanche — Maths — Foro Agora", desc: "Simulateur de khôlle en conditions réelles." },
   "maths/formulaire": { title: "Formulaire — Maths — Foro Agora", desc: "Formules à connaître et flashcards de révision." },

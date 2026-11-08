@@ -46,6 +46,7 @@ const MathKholleSimPage = lazy(() => import("./pages/MathKholleSimPage"));
 const MathFormulairePage = lazy(() => import("./pages/MathFormulairePage"));
 const MathProgressPage = lazy(() => import("./pages/MathProgressPage"));
 const MathPlanchePage = lazy(() => import("./pages/MathPlanchePage"));
+const MathLeaderboardPage = lazy(() => import("./pages/MathLeaderboardPage"));
 const MathExercisePage = lazy(() => import("./pages/MathExercisePage"));
 
 const queryClient = new QueryClient();
@@ -157,6 +158,7 @@ const AppRoutes = () => {
       <Route path="/maths/formulaire" element={<StudyPage><MathFormulairePage /></StudyPage>} />
       <Route path="/maths/progression" element={<StudyPage><MathProgressPage /></StudyPage>} />
       <Route path="/maths/planche" element={<StudyPage><MathPlanchePage /></StudyPage>} />
+      <Route path="/maths/classement" element={<StudyPage><MathLeaderboardPage /></StudyPage>} />
       <Route path="/maths/exo/:uid" element={<StudyPage><MathExercisePage /></StudyPage>} />
       <Route path="/practica/*" element={<LegacyPracticeRedirect />} />
       <Route path="/auth" element={<AuthPage />} />

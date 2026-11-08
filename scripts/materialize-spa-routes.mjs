@@ -33,6 +33,7 @@ const routeMeta = {
   "maths/simulateur": { title: "Khôlle blanche — Maths — Foro Agora", desc: "Simulateur de khôlle en conditions réelles." },
   "maths/formulaire": { title: "Formulaire — Maths — Foro Agora", desc: "Formules à connaître et flashcards de révision." },
   "maths/progression": { title: "Progression — Maths — Foro Agora", desc: "Bilan de progression par chapitre." },
+  "maths/classement": { title: "Leaderboard — Maths — Foro Agora", desc: "Classement des élèves par exercices faits." },
   "maths/planche": { title: "Planche papier — Maths — Foro Agora", desc: "Planche d'exercices imprimable." },
   "maths/index": { title: "Index des exercices — Maths — Foro Agora", desc: "Tous les exercices de mathématiques, avec recherche et filtres." },
   ...Object.fromEntries(Array.from({ length: 800 }, (_, i) => [`maths/exo/${i + 1}`, { title: `Exercice #${String(i + 1).padStart(3, "0")} — Maths — Foro Agora`, desc: "Exercice de mathématiques." }])),

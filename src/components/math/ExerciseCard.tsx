@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { BookOpen, Check, Flag, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { BookOpen, Check, Eye, EyeOff, Flag, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,28 @@ import { ExerciseHints, ExerciseTimer } from "./ExerciseExtras";
 import type { ExerciseWithChapter } from "@/content/math";
 import { exerciseUid, formatUid } from "@/content/math/numbering";
 import { useMathFlags } from "@/hooks/useMathFlags";
+import { bonusAnswers } from "@/content/math/bonus";
+
+/** Official answer printed in the original document (bonus sheets only). */
+const ExerciseAnswer = ({ id }: { id: string }) => {
+  const [open, setOpen] = useState(false);
+  const answer = bonusAnswers[id];
+  if (!answer) return null;
+  return (
+    <div className="mt-4 space-y-2">
+      <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open}
+        className="inline-flex items-center gap-1.5 rounded-full border border-dashed border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground">
+        {open ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />} {open ? "Masquer la réponse" : "Voir la réponse"}
+      </button>
+      {open && (
+        <div className="rounded-lg border border-border bg-muted/50 px-4 py-3 text-sm">
+          <p className="mb-1 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">Réponse du document</p>
+          <MathText text={answer} className="min-w-0 break-words" />
+        </div>
+      )}
+    </div>
+  );
+};
 
 const buildPrompt = (e: ExerciseWithChapter) =>
   `Je suis étudiant en MPSI et je m'entraîne en mathématiques. Explique-moi pas à pas comment résoudre cet exercice, en justifiant chaque étape et sans sauter de calculs. À la fin, donne-moi un conseil pour les exercices similaires.\n\nChapitre : ${e.chapter.title}\nExercice : ${e.statement}`;
@@ -53,10 +76,10 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
       )}
     >
       <div className="mb-4 flex items-center gap-2 text-xs font-heading font-semibold uppercase text-muted-foreground">
-        <span className={cn("rounded-full px-2.5 py-1", exercise.source === "cours" ? "bg-muted text-foreground" : exercise.source === "exemple" ? "bg-accent/15 text-foreground" : "bg-secondary text-secondary-foreground")}>
-          {exercise.source === "cours" ? "Cours" : exercise.source === "exemple" ? "Exemple" : exercise.source === "dm" ? "DM" : "TD"}
+        <span className={cn("rounded-full px-2.5 py-1", exercise.source === "cours" ? "bg-muted text-foreground" : exercise.source === "exemple" ? "bg-accent/15 text-foreground" : exercise.source === "bonus" ? "bg-primary/10 text-primary" : "bg-secondary text-secondary-foreground")}>
+          {exercise.source === "cours" ? "Cours" : exercise.source === "exemple" ? "Exemple" : exercise.source === "dm" ? "DM" : exercise.source === "bonus" ? "Bonus" : "TD"}
         </span>
-        <span className="min-w-0 truncate">Chap. {exercise.chapter.number} · {exercise.source === "dm" ? "Question" : exercise.source === "exemple" ? "Exemple" : "Exercice"} {exercise.number}</span>
+        <span className="min-w-0 truncate">Chap. {exercise.chapter.number} · {exercise.source === "dm" ? "Question" : exercise.source === "exemple" ? "Exemple" : exercise.source === "bonus" ? "Fonction" : "Exercice"} {exercise.number}</span>
         <Link to={`/maths/exo/${exerciseUid(exercise.id)}`} className="ml-auto shrink-0 font-mono normal-case tracking-normal hover:text-foreground" title="Numéro unique de l'exercice">
           {formatUid(exercise.id)}
         </Link>
@@ -75,6 +98,7 @@ const ExerciseCard = ({ exercise, done, onToggle }: { exercise: ExerciseWithChap
       <MathText text={exercise.statement} className="min-w-0 break-words text-base text-foreground sm:text-lg" />
 
       <ExerciseHints id={exercise.id} />
+      <ExerciseAnswer id={exercise.id} />
 
       <div className="mt-5 flex flex-wrap items-center gap-2">
         <ExerciseTimer id={exercise.id} />

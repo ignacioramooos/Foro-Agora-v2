@@ -16,7 +16,7 @@ export interface BonusSheet {
   answers: Record<string, string>;
 }
 
-const DERIV_INTRO = "Entraînement : Calculs de dérivées\n\nPour chacune des fonctions suivantes, déterminer sur quel domaine elle est dérivable et calculer sa dérivée :";
+const DERIV_INTRO = "Pour chacune des fonctions suivantes, déterminer sur quel domaine elle est dérivable et calculer sa dérivée :";
 
 const derivFns: [string, string, string][] = [
   ["a", "a(x) = \\dfrac{\\cos x}{x^2 - 4}", "$\\mathbb{R} \\setminus \\{-2; 2\\}$, $a'(x) = \\dfrac{-(x^2 - 4)\\sin x - 2x\\cos x}{(x^2 - 4)^2}$"],

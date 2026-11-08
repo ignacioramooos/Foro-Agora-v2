@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight, List } from "lucide-react";
 import MathShell from "@/components/math/MathShell";
 import ExerciseCard from "@/components/math/ExerciseCard";
+import { bonusSheetIdFor } from "@/content/math/bonus";
 import { dmIdFor, getExerciseByUid, indexedExercises } from "@/content/math/numbering";
 import { useMathProgress } from "@/hooks/useMathProgress";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,7 @@ const MathExercisePage = () => {
   const prev = indexedExercises[pos - 1];
   const next = indexedExercises[pos + 1];
   const dmId = exercise ? dmIdFor(exercise.id) : undefined;
+  const bonusId = exercise ? bonusSheetIdFor(exercise.id) : undefined;
 
   return (
     <MathShell>
@@ -28,6 +30,7 @@ const MathExercisePage = () => {
               <ExerciseCard exercise={exercise} done={!!progress[exercise.id]} onToggle={() => toggle(exercise.id)} />
             </div>
             {dmId && <Link to={`/maths/dm/${dmId}`} className="mt-3 inline-block text-sm text-muted-foreground underline hover:text-foreground">Voir le devoir complet</Link>}
+            {bonusId && <Link to={`/maths/ressources/bonus/${bonusId}`} className="mt-3 inline-block text-sm text-muted-foreground underline hover:text-foreground">Voir la fiche complète</Link>}
             <div className="mt-5 flex items-center justify-between border-t border-border pt-5">
               {prev ? <Button variant="outline" asChild><Link to={`/maths/exo/${prev.uid}`}><ChevronLeft /> Précédent</Link></Button> : <span />}
               {next && <Button asChild><Link to={`/maths/exo/${next.uid}`}>Suivant <ChevronRight /></Link></Button>}

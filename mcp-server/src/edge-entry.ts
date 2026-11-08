@@ -40,6 +40,7 @@ const formatExerciseMarkdown = (e: IndexedExercise, full = true) => {
   out += `- **Source Type**: ${typeLabel}\n`;
   out += `- **Web Link**: ${e.url}\n\n`;
   out += `**Énoncé :**\n\n${e.statement}\n`;
+  if (full && e.answer) out += `\n**Réponse (document original) :** ${e.answer}\n`;
   return out;
 };
 

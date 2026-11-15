@@ -68,6 +68,10 @@ const routeMeta: Record<string, RouteSeoMeta> = {
     title: "Maths - Foro Agora",
     description: "Exercices de mathématiques pour s'entraîner chaque jour.",
   },
+  "/classes": {
+    title: "Classes & Matières - Foro Agora",
+    description: "Plateforme gratuite d'exercices pour chaque matière : mathématiques, physique, chimie, SII et classes partenaires.",
+  },
 };
 
 const createMeta = (attr: "name" | "property", key: string) => {

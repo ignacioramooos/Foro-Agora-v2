@@ -49,6 +49,8 @@ const MathProgressPage = lazy(() => import("./pages/MathProgressPage"));
 const MathPlanchePage = lazy(() => import("./pages/MathPlanchePage"));
 const MathLeaderboardPage = lazy(() => import("./pages/MathLeaderboardPage"));
 const MathExercisePage = lazy(() => import("./pages/MathExercisePage"));
+const ClassesHubPage = lazy(() => import("./pages/subjects/ClassesHubPage"));
+const SubjectWorkspace = lazy(() => import("./pages/subjects/SubjectWorkspace"));
 
 const queryClient = new QueryClient();
 
@@ -163,12 +165,14 @@ const AppRoutes = () => {
       <Route path="/maths/planche" element={<StudyPage><MathPlanchePage /></StudyPage>} />
       <Route path="/maths/classement" element={<StudyPage><MathLeaderboardPage /></StudyPage>} />
       <Route path="/maths/exo/:uid" element={<StudyPage><MathExercisePage /></StudyPage>} />
+      <Route path="/classes" element={<ClassesHubPage />} />
+      <Route path="/classes/:slug/*" element={<SubjectWorkspace />} />
       <Route path="/practica/*" element={<LegacyPracticeRedirect />} />
       <Route path="/auth" element={<AuthPage />} />
     </>
   );
 
-  if (isLoggedIn && user && !user.onboardingCompleted && location.pathname !== "/auth" && !location.pathname.startsWith("/maths") && !isEventRegistration) {
+  if (isLoggedIn && user && !user.onboardingCompleted && location.pathname !== "/auth" && !location.pathname.startsWith("/maths") && !location.pathname.startsWith("/classes") && !isEventRegistration) {
     return <Navigate to="/auth" replace />;
   }
 
@@ -187,7 +191,7 @@ const AppRoutes = () => {
             <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
           </Routes>
         </Suspense>
-        {!location.pathname.startsWith("/maths") && !location.pathname.startsWith("/practica") && <WhatsAppButton />}
+        {!location.pathname.startsWith("/maths") && !location.pathname.startsWith("/practica") && !location.pathname.startsWith("/classes") && <WhatsAppButton />}
       </>
     );
   }
@@ -202,7 +206,7 @@ const AppRoutes = () => {
           <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
         </Routes>
       </Suspense>
-      {!location.pathname.startsWith("/maths") && !location.pathname.startsWith("/practica") && <WhatsAppButton />}
+      {!location.pathname.startsWith("/maths") && !location.pathname.startsWith("/practica") && !location.pathname.startsWith("/classes") && <WhatsAppButton />}
     </>
   );
 };

@@ -63,6 +63,7 @@ const MathKhollesPage = () => {
                     );
                   })}
                 </ul>
+                {w.warning && <p className="mt-3 text-sm font-semibold text-foreground">{w.warning}</p>}
 
                 <h3 className="mt-5 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">Les incontournables</h3>
                 <ol className="mt-2 space-y-3">

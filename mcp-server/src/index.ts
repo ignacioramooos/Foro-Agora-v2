@@ -408,6 +408,8 @@ server.tool(
       for (const s of k.scope) {
         md += `  - ${s.text}\n`;
       }
+      if (k.warning) md += `- **${k.warning}**\n`;
+      if (k.preamble) md += `- **Préambule** : ${k.preamble}\n`;
       md += `- **Questions de cours incontournables** :\n`;
       for (const inc of k.incontournables) {
         md += `  - ${inc.text}\n`;
@@ -461,6 +463,8 @@ server.tool(
       md += `- **Chapitre ${s.chapter}** : ${s.text}\n`;
     }
     md += `\n`;
+    if (k.warning) md += `**${k.warning}**\n\n`;
+    if (k.preamble) md += `**Préambule** : ${k.preamble}\n\n`;
 
     md += `### Questions de cours incontournables\n\n`;
     md += `*Ces questions et démonstrations doivent être maîtrisées parfaitement par l'étudiant sous peine d'une note inférieure à 10/20.*\n\n`;

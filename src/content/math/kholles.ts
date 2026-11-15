@@ -8,10 +8,31 @@ export interface KholleWeek {
   incontournables: { text: string; chapter?: number }[];
   /** Optional extra instruction specific to this week (shown above the incontournables). */
   preamble?: string;
+  /** Optional warning from the programme (shown in bold under the scope). */
+  warning?: string;
 }
 
 // Add a new week at the top of this list.
 export const kholleWeeks: KholleWeek[] = [
+  {
+    id: "2026-11-16",
+    start: "2026-11-16",
+    label: "Semaine du 16/11/2026",
+    docId: "1ROMbhV8qxxRgPiFVScbvWH8G5-KO96pR",
+    preamble: "En préambule de la question de cours, les étudiants seront interrogés sur une formule de trigonométrie (cf. formulaire ou ch. 6).",
+    scope: [
+      { chapter: 8, text: "Le chapitre 8 : Fonctions d'une variable réelle, en entier." },
+      { chapter: 9, text: "Le chapitre 9 : Suites numériques, jusqu'au paragraphe II.C inclus (nous n'avons pas encore fait d'exercices sur les suites.)" },
+    ],
+    warning: "Attention, l'étude des suites usuelles n'a pas encore été abordée.",
+    incontournables: [
+      { chapter: 8, text: "Théorème de la bijection, théorème des valeurs intermédiaires (énoncés seulement)" },
+      { chapter: 8, text: "Dérivée d'une fonction composée (énoncé seul), d'une fonction réciproque (avec démo)" },
+      { chapter: 8, text: "Inégalités de convexité pour ln et exp (avec démo)" },
+      { chapter: 8, text: "Fonctions usuelles : définition, propriétés et graphe (fonction carré, cube, inverse, ln, exp, racine carrée, racine cubique, valeur absolue, cos, sin, tan, arcos, arcsin, arctan, ch, sh, th)" },
+      { chapter: 9, text: "Définition de $(u_n)$ converge vers $\\ell \\in \\mathbb{R}$, de $(u_n)$ diverge vers $+\\infty$, vers $-\\infty$." },
+    ],
+  },
   {
     id: "2026-11-09",
     start: "2026-11-09",

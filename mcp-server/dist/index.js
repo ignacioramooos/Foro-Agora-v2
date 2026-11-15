@@ -38,9 +38,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/code.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/code.js
 var require_code = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/code.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/code.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.regexpCode = exports.getEsmExportName = exports.getProperty = exports.safeStringify = exports.stringify = exports.strConcat = exports.addCodeArg = exports.str = exports._ = exports.nil = exports._Code = exports.Name = exports.IDENTIFIER = exports._CodeOrName = void 0;
@@ -192,9 +192,9 @@ var require_code = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/scope.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/scope.js
 var require_scope = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/scope.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/scope.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ValueScope = exports.ValueScopeName = exports.Scope = exports.varKinds = exports.UsedValueState = void 0;
@@ -337,9 +337,9 @@ var require_scope = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/index.js
 var require_codegen = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/index.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/codegen/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.or = exports.and = exports.not = exports.CodeGen = exports.operators = exports.varKinds = exports.ValueScopeName = exports.ValueScope = exports.Scope = exports.Name = exports.regexpCode = exports.stringify = exports.getProperty = exports.nil = exports.strConcat = exports.str = exports._ = void 0;
@@ -1057,9 +1057,9 @@ var require_codegen = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/util.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/util.js
 var require_util = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/util.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/util.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.checkStrictMode = exports.getErrorPath = exports.Type = exports.useFunc = exports.setEvaluated = exports.evaluatedPropsToName = exports.mergeEvaluated = exports.eachItem = exports.unescapeJsonPointer = exports.escapeJsonPointer = exports.escapeFragment = exports.unescapeFragment = exports.schemaRefOrVal = exports.schemaHasRulesButRef = exports.schemaHasRules = exports.checkUnknownRules = exports.alwaysValidSchema = exports.toHash = void 0;
@@ -1224,9 +1224,9 @@ var require_util = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/names.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/names.js
 var require_names = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/names.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/names.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -1263,9 +1263,9 @@ var require_names = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/errors.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/errors.js
 var require_errors = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/errors.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/errors.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.extendErrors = exports.resetErrorsCount = exports.reportExtraError = exports.reportError = exports.keyword$DataError = exports.keywordError = void 0;
@@ -1385,9 +1385,9 @@ var require_errors = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/boolSchema.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/boolSchema.js
 var require_boolSchema = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/boolSchema.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/boolSchema.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.boolOrEmptySchema = exports.topBoolOrEmptySchema = void 0;
@@ -1436,9 +1436,9 @@ var require_boolSchema = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/rules.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/rules.js
 var require_rules = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/rules.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/rules.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRules = exports.isJSONType = void 0;
@@ -1467,9 +1467,9 @@ var require_rules = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/applicability.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/applicability.js
 var require_applicability = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/applicability.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/applicability.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.shouldUseRule = exports.shouldUseGroup = exports.schemaHasRulesForType = void 0;
@@ -1490,9 +1490,9 @@ var require_applicability = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/dataType.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/dataType.js
 var require_dataType = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/dataType.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/dataType.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.reportTypeError = exports.checkDataTypes = exports.checkDataType = exports.coerceAndCheckDataType = exports.getJSONTypes = exports.getSchemaTypes = exports.DataType = void 0;
@@ -1674,9 +1674,9 @@ var require_dataType = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/defaults.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/defaults.js
 var require_defaults = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/defaults.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/defaults.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.assignDefaults = void 0;
@@ -1711,9 +1711,9 @@ var require_defaults = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/code.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/code.js
 var require_code2 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/code.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/code.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.validateUnion = exports.validateArray = exports.usePattern = exports.callValidateCode = exports.schemaProperties = exports.allSchemaProperties = exports.noPropertyInData = exports.propertyInData = exports.isOwnProperty = exports.hasPropFunc = exports.reportMissingProp = exports.checkMissingProp = exports.checkReportMissingProp = void 0;
@@ -1844,9 +1844,9 @@ var require_code2 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/keyword.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/keyword.js
 var require_keyword = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/keyword.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/keyword.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.validateKeywordUsage = exports.validSchemaType = exports.funcKeywordCode = exports.macroKeywordCode = void 0;
@@ -1962,9 +1962,9 @@ var require_keyword = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/subschema.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/subschema.js
 var require_subschema = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/subschema.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/subschema.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.extendSubschemaMode = exports.extendSubschemaData = exports.getSubschema = void 0;
@@ -2045,9 +2045,9 @@ var require_subschema = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-deep-equal/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-deep-equal/index.js
 var require_fast_deep_equal = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-deep-equal/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-deep-equal/index.js"(exports, module) {
     "use strict";
     module.exports = function equal(a, b) {
       if (a === b) return true;
@@ -2080,9 +2080,9 @@ var require_fast_deep_equal = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/json-schema-traverse/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/json-schema-traverse/index.js
 var require_json_schema_traverse = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/json-schema-traverse/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/json-schema-traverse/index.js"(exports, module) {
     "use strict";
     var traverse = module.exports = function(schema, opts, cb) {
       if (typeof opts == "function") {
@@ -2168,9 +2168,9 @@ var require_json_schema_traverse = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/resolve.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/resolve.js
 var require_resolve = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/resolve.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/resolve.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getSchemaRefs = exports.resolveUrl = exports.normalizeId = exports._getFullPath = exports.getFullPath = exports.inlineRef = void 0;
@@ -2324,9 +2324,9 @@ var require_resolve = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/index.js
 var require_validate = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/index.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/validate/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getData = exports.KeywordCxt = exports.validateFunctionCode = void 0;
@@ -2832,9 +2832,9 @@ var require_validate = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/validation_error.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/validation_error.js
 var require_validation_error = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/validation_error.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/validation_error.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var ValidationError = class extends Error {
@@ -2848,9 +2848,9 @@ var require_validation_error = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/ref_error.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/ref_error.js
 var require_ref_error = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/ref_error.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/ref_error.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var resolve_1 = require_resolve();
@@ -2865,9 +2865,9 @@ var require_ref_error = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/index.js
 var require_compile = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/index.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/compile/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveSchema = exports.getCompilingSchema = exports.resolveRef = exports.compileSchema = exports.SchemaEnv = void 0;
@@ -3089,9 +3089,9 @@ var require_compile = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/refs/data.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/refs/data.json
 var require_data = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/refs/data.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/refs/data.json"(exports, module) {
     module.exports = {
       $id: "https://raw.githubusercontent.com/ajv-validator/ajv/master/lib/refs/data.json#",
       description: "Meta-schema for $data reference (JSON AnySchema extension proposal)",
@@ -3108,9 +3108,9 @@ var require_data = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/lib/utils.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/lib/utils.js
 var require_utils = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/lib/utils.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/lib/utils.js"(exports, module) {
     "use strict";
     var isUUID = RegExp.prototype.test.bind(/^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/iu);
     var isIPv4 = RegExp.prototype.test.bind(/^(?:(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)\.){3}(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|\d)$/u);
@@ -3365,9 +3365,9 @@ var require_utils = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/lib/schemes.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/lib/schemes.js
 var require_schemes = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/lib/schemes.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/lib/schemes.js"(exports, module) {
     "use strict";
     var { isUUID } = require_utils();
     var URN_REG = /([\da-z][\d\-a-z]{0,31}):((?:[\w!$'()*+,\-.:;=@]|%[\da-f]{2})+)/iu;
@@ -3575,9 +3575,9 @@ var require_schemes = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/index.js
 var require_fast_uri = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/fast-uri/index.js"(exports, module) {
     "use strict";
     var { normalizeIPv6, removeDotSegments, recomposeAuthority, normalizeComponentEncoding, isIPv4, nonSimpleDomain } = require_utils();
     var { SCHEMES, getSchemeHandler } = require_schemes();
@@ -3830,9 +3830,9 @@ var require_fast_uri = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/uri.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/uri.js
 var require_uri = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/uri.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/uri.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var uri = require_fast_uri();
@@ -3841,9 +3841,9 @@ var require_uri = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/core.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/core.js
 var require_core = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/core.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/core.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CodeGen = exports.Name = exports.nil = exports.stringify = exports.str = exports._ = exports.KeywordCxt = void 0;
@@ -4452,9 +4452,9 @@ var require_core = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/id.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/id.js
 var require_id = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/id.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/id.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var def = {
@@ -4467,9 +4467,9 @@ var require_id = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/ref.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/ref.js
 var require_ref = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/ref.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/ref.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.callRef = exports.getValidate = void 0;
@@ -4589,9 +4589,9 @@ var require_ref = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/index.js
 var require_core2 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/index.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/core/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var id_1 = require_id();
@@ -4610,9 +4610,9 @@ var require_core2 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitNumber.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitNumber.js
 var require_limitNumber = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitNumber.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitNumber.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -4642,9 +4642,9 @@ var require_limitNumber = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/multipleOf.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/multipleOf.js
 var require_multipleOf = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/multipleOf.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/multipleOf.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -4670,9 +4670,9 @@ var require_multipleOf = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/ucs2length.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/ucs2length.js
 var require_ucs2length = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/ucs2length.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/ucs2length.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     function ucs2length(str) {
@@ -4696,9 +4696,9 @@ var require_ucs2length = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitLength.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitLength.js
 var require_limitLength = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitLength.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitLength.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -4728,9 +4728,9 @@ var require_limitLength = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/pattern.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/pattern.js
 var require_pattern = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/pattern.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/pattern.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var code_1 = require_code2();
@@ -4765,9 +4765,9 @@ var require_pattern = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitProperties.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitProperties.js
 var require_limitProperties = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitProperties.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitProperties.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -4794,9 +4794,9 @@ var require_limitProperties = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/required.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/required.js
 var require_required = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/required.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/required.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var code_1 = require_code2();
@@ -4876,9 +4876,9 @@ var require_required = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitItems.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitItems.js
 var require_limitItems = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitItems.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/limitItems.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -4905,9 +4905,9 @@ var require_limitItems = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/equal.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/equal.js
 var require_equal = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/equal.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/runtime/equal.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var equal = require_fast_deep_equal();
@@ -4916,9 +4916,9 @@ var require_equal = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/uniqueItems.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/uniqueItems.js
 var require_uniqueItems = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/uniqueItems.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/uniqueItems.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var dataType_1 = require_dataType();
@@ -4983,9 +4983,9 @@ var require_uniqueItems = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/const.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/const.js
 var require_const = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/const.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/const.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -5012,9 +5012,9 @@ var require_const = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/enum.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/enum.js
 var require_enum = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/enum.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/enum.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -5061,9 +5061,9 @@ var require_enum = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/index.js
 var require_validation = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/index.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/validation/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var limitNumber_1 = require_limitNumber();
@@ -5099,9 +5099,9 @@ var require_validation = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/additionalItems.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/additionalItems.js
 var require_additionalItems = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/additionalItems.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/additionalItems.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.validateAdditionalItems = void 0;
@@ -5152,9 +5152,9 @@ var require_additionalItems = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/items.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/items.js
 var require_items = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/items.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/items.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.validateTuple = void 0;
@@ -5209,9 +5209,9 @@ var require_items = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/prefixItems.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/prefixItems.js
 var require_prefixItems = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/prefixItems.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/prefixItems.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var items_1 = require_items();
@@ -5226,9 +5226,9 @@ var require_prefixItems = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/items2020.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/items2020.js
 var require_items2020 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/items2020.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/items2020.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -5261,9 +5261,9 @@ var require_items2020 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/contains.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/contains.js
 var require_contains = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/contains.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/contains.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -5355,9 +5355,9 @@ var require_contains = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/dependencies.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/dependencies.js
 var require_dependencies = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/dependencies.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/dependencies.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.validateSchemaDeps = exports.validatePropertyDeps = exports.error = void 0;
@@ -5449,9 +5449,9 @@ var require_dependencies = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/propertyNames.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/propertyNames.js
 var require_propertyNames = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/propertyNames.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/propertyNames.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -5492,9 +5492,9 @@ var require_propertyNames = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/additionalProperties.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/additionalProperties.js
 var require_additionalProperties = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/additionalProperties.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/additionalProperties.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var code_1 = require_code2();
@@ -5598,9 +5598,9 @@ var require_additionalProperties = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/properties.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/properties.js
 var require_properties = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/properties.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/properties.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var validate_1 = require_validate();
@@ -5656,9 +5656,9 @@ var require_properties = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/patternProperties.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/patternProperties.js
 var require_patternProperties = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/patternProperties.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/patternProperties.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var code_1 = require_code2();
@@ -5730,9 +5730,9 @@ var require_patternProperties = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/not.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/not.js
 var require_not = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/not.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/not.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var util_1 = require_util();
@@ -5761,9 +5761,9 @@ var require_not = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/anyOf.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/anyOf.js
 var require_anyOf = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/anyOf.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/anyOf.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var code_1 = require_code2();
@@ -5778,9 +5778,9 @@ var require_anyOf = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/oneOf.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/oneOf.js
 var require_oneOf = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/oneOf.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/oneOf.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -5836,9 +5836,9 @@ var require_oneOf = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/allOf.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/allOf.js
 var require_allOf = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/allOf.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/allOf.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var util_1 = require_util();
@@ -5863,9 +5863,9 @@ var require_allOf = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/if.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/if.js
 var require_if = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/if.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/if.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -5932,9 +5932,9 @@ var require_if = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/thenElse.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/thenElse.js
 var require_thenElse = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/thenElse.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/thenElse.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var util_1 = require_util();
@@ -5950,9 +5950,9 @@ var require_thenElse = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/index.js
 var require_applicator = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/index.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/applicator/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var additionalItems_1 = require_additionalItems();
@@ -5998,9 +5998,9 @@ var require_applicator = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/format/format.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/format/format.js
 var require_format = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/format/format.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/format/format.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -6088,9 +6088,9 @@ var require_format = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/format/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/format/index.js
 var require_format2 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/format/index.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/format/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var format_1 = require_format();
@@ -6099,9 +6099,9 @@ var require_format2 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/metadata.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/metadata.js
 var require_metadata = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/metadata.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/metadata.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.contentVocabulary = exports.metadataVocabulary = void 0;
@@ -6122,9 +6122,9 @@ var require_metadata = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/draft7.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/draft7.js
 var require_draft7 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/draft7.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/draft7.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var core_1 = require_core2();
@@ -6144,9 +6144,9 @@ var require_draft7 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/discriminator/types.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/discriminator/types.js
 var require_types = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/discriminator/types.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/discriminator/types.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DiscrError = void 0;
@@ -6158,9 +6158,9 @@ var require_types = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/discriminator/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/discriminator/index.js
 var require_discriminator = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/discriminator/index.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/vocabularies/discriminator/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var codegen_1 = require_codegen();
@@ -6263,9 +6263,9 @@ var require_discriminator = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/refs/json-schema-draft-07.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/refs/json-schema-draft-07.json
 var require_json_schema_draft_07 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/refs/json-schema-draft-07.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/refs/json-schema-draft-07.json"(exports, module) {
     module.exports = {
       $schema: "http://json-schema.org/draft-07/schema#",
       $id: "http://json-schema.org/draft-07/schema#",
@@ -6420,9 +6420,9 @@ var require_json_schema_draft_07 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/ajv.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/ajv.js
 var require_ajv = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/ajv.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv/dist/ajv.js"(exports, module) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.MissingRefError = exports.ValidationError = exports.CodeGen = exports.Name = exports.nil = exports.stringify = exports.str = exports._ = exports.KeywordCxt = exports.Ajv = void 0;
@@ -6490,9 +6490,9 @@ var require_ajv = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/formats.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/formats.js
 var require_formats = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/formats.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/formats.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.formatNames = exports.fastFormats = exports.fullFormats = void 0;
@@ -6693,9 +6693,9 @@ var require_formats = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/limit.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/limit.js
 var require_limit = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/limit.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/limit.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.formatLimitDefinition = void 0;
@@ -6765,9 +6765,9 @@ var require_limit = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/index.js
 var require_dist = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/ajv-formats/dist/index.js"(exports, module) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var formats_1 = require_formats();
@@ -6807,9 +6807,9 @@ var require_dist = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/bytes/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/bytes/index.js
 var require_bytes = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/bytes/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/bytes/index.js"(exports, module) {
     "use strict";
     module.exports = bytes;
     module.exports.format = format;
@@ -6896,9 +6896,9 @@ var require_bytes = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/depd/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/depd/index.js
 var require_depd = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/depd/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/depd/index.js"(exports, module) {
     var relative = __require("path").relative;
     module.exports = depd;
     var basePath = process.cwd();
@@ -7202,9 +7202,9 @@ var require_depd = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/setprototypeof/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/setprototypeof/index.js
 var require_setprototypeof = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/setprototypeof/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/setprototypeof/index.js"(exports, module) {
     "use strict";
     module.exports = Object.setPrototypeOf || ({ __proto__: [] } instanceof Array ? setProtoOf : mixinProperties);
     function setProtoOf(obj, proto) {
@@ -7222,9 +7222,9 @@ var require_setprototypeof = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/statuses/codes.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/statuses/codes.json
 var require_codes = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/statuses/codes.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/statuses/codes.json"(exports, module) {
     module.exports = {
       "100": "Continue",
       "101": "Switching Protocols",
@@ -7293,9 +7293,9 @@ var require_codes = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/statuses/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/statuses/index.js
 var require_statuses = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/statuses/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/statuses/index.js"(exports, module) {
     "use strict";
     var codes = require_codes();
     module.exports = status;
@@ -7364,9 +7364,9 @@ var require_statuses = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/inherits/inherits_browser.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/inherits/inherits_browser.js
 var require_inherits_browser = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/inherits/inherits_browser.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/inherits/inherits_browser.js"(exports, module) {
     if (typeof Object.create === "function") {
       module.exports = function inherits(ctor, superCtor) {
         if (superCtor) {
@@ -7396,9 +7396,9 @@ var require_inherits_browser = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/inherits/inherits.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/inherits/inherits.js
 var require_inherits = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/inherits/inherits.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/inherits/inherits.js"(exports, module) {
     try {
       util3 = __require("util");
       if (typeof util3.inherits !== "function") throw "";
@@ -7410,9 +7410,9 @@ var require_inherits = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/toidentifier/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/toidentifier/index.js
 var require_toidentifier = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/toidentifier/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/toidentifier/index.js"(exports, module) {
     "use strict";
     module.exports = toIdentifier;
     function toIdentifier(str) {
@@ -7423,9 +7423,9 @@ var require_toidentifier = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/http-errors/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/http-errors/index.js
 var require_http_errors = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/http-errors/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/http-errors/index.js"(exports, module) {
     "use strict";
     var deprecate = require_depd()("http-errors");
     var setPrototypeOf = require_setprototypeof();
@@ -7587,9 +7587,9 @@ var require_http_errors = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/safer-buffer/safer.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/safer-buffer/safer.js
 var require_safer = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/safer-buffer/safer.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/safer-buffer/safer.js"(exports, module) {
     "use strict";
     var buffer = __require("buffer");
     var Buffer2 = buffer.Buffer;
@@ -7655,9 +7655,9 @@ var require_safer = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/bom-handling.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/bom-handling.js
 var require_bom_handling = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/bom-handling.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/bom-handling.js"(exports) {
     "use strict";
     var BOMChar = "\uFEFF";
     exports.PrependBOM = PrependBOMWrapper;
@@ -7701,9 +7701,9 @@ var require_bom_handling = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/helpers/merge-exports.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/helpers/merge-exports.js
 var require_merge_exports = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/helpers/merge-exports.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/helpers/merge-exports.js"(exports, module) {
     "use strict";
     var hasOwn = typeof Object.hasOwn === "undefined" ? Function.call.bind(Object.prototype.hasOwnProperty) : Object.hasOwn;
     function mergeModules(target, module2) {
@@ -7717,9 +7717,9 @@ var require_merge_exports = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/internal.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/internal.js
 var require_internal = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/internal.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/internal.js"(exports, module) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     module.exports = {
@@ -7898,9 +7898,9 @@ var require_internal = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf32.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf32.js
 var require_utf32 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf32.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf32.js"(exports) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     exports._utf32 = Utf32Codec;
@@ -8129,9 +8129,9 @@ var require_utf32 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf16.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf16.js
 var require_utf16 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf16.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf16.js"(exports) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     exports.utf16be = Utf16BECodec;
@@ -8272,9 +8272,9 @@ var require_utf16 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf7.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf7.js
 var require_utf7 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf7.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/utf7.js"(exports) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     exports.utf7 = Utf7Codec;
@@ -8490,9 +8490,9 @@ var require_utf7 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-codec.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-codec.js
 var require_sbcs_codec = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-codec.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-codec.js"(exports) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     exports._sbcs = SBCSCodec;
@@ -8552,9 +8552,9 @@ var require_sbcs_codec = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-data.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-data.js
 var require_sbcs_data = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-data.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-data.js"(exports, module) {
     "use strict";
     module.exports = {
       // Not supported by iconv, not sure why.
@@ -8705,9 +8705,9 @@ var require_sbcs_data = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-data-generated.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-data-generated.js
 var require_sbcs_data_generated = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-data-generated.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/sbcs-data-generated.js"(exports, module) {
     "use strict";
     module.exports = {
       "437": "cp437",
@@ -9160,9 +9160,9 @@ var require_sbcs_data_generated = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/dbcs-codec.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/dbcs-codec.js
 var require_dbcs_codec = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/dbcs-codec.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/dbcs-codec.js"(exports) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     exports._dbcs = DBCSCodec;
@@ -9606,13 +9606,13 @@ var require_dbcs_codec = __commonJS({
         return -1;
       }
       var l = 0;
-      var r12 = table.length;
-      while (l < r12 - 1) {
-        var mid = l + (r12 - l + 1 >> 1);
+      var r22 = table.length;
+      while (l < r22 - 1) {
+        var mid = l + (r22 - l + 1 >> 1);
         if (table[mid] <= val) {
           l = mid;
         } else {
-          r12 = mid;
+          r22 = mid;
         }
       }
       return l;
@@ -9620,9 +9620,9 @@ var require_dbcs_codec = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/shiftjis.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/shiftjis.json
 var require_shiftjis = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/shiftjis.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/shiftjis.json"(exports, module) {
     module.exports = [
       ["0", "\0", 128],
       ["a1", "\uFF61", 62],
@@ -9751,9 +9751,9 @@ var require_shiftjis = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/eucjp.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/eucjp.json
 var require_eucjp = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/eucjp.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/eucjp.json"(exports, module) {
     module.exports = [
       ["0", "\0", 127],
       ["8ea1", "\uFF61", 62],
@@ -9939,9 +9939,9 @@ var require_eucjp = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp936.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp936.json
 var require_cp936 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp936.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp936.json"(exports, module) {
     module.exports = [
       ["0", "\0", 127, "\u20AC"],
       ["8140", "\u4E02\u4E04\u4E05\u4E06\u4E0F\u4E12\u4E17\u4E1F\u4E20\u4E21\u4E23\u4E26\u4E29\u4E2E\u4E2F\u4E31\u4E33\u4E35\u4E37\u4E3C\u4E40\u4E41\u4E42\u4E44\u4E46\u4E4A\u4E51\u4E55\u4E57\u4E5A\u4E5B\u4E62\u4E63\u4E64\u4E65\u4E67\u4E68\u4E6A", 5, "\u4E72\u4E74", 9, "\u4E7F", 6, "\u4E87\u4E8A"],
@@ -10209,9 +10209,9 @@ var require_cp936 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/gbk-added.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/gbk-added.json
 var require_gbk_added = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/gbk-added.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/gbk-added.json"(exports, module) {
     module.exports = [
       ["a140", "\uE4C6", 62],
       ["a180", "\uE505", 32],
@@ -10271,16 +10271,16 @@ var require_gbk_added = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json
 var require_gb18030_ranges = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json"(exports, module) {
     module.exports = { uChars: [128, 165, 169, 178, 184, 216, 226, 235, 238, 244, 248, 251, 253, 258, 276, 284, 300, 325, 329, 334, 364, 463, 465, 467, 469, 471, 473, 475, 477, 506, 594, 610, 712, 716, 730, 930, 938, 962, 970, 1026, 1104, 1106, 8209, 8215, 8218, 8222, 8231, 8241, 8244, 8246, 8252, 8365, 8452, 8454, 8458, 8471, 8482, 8556, 8570, 8596, 8602, 8713, 8720, 8722, 8726, 8731, 8737, 8740, 8742, 8748, 8751, 8760, 8766, 8777, 8781, 8787, 8802, 8808, 8816, 8854, 8858, 8870, 8896, 8979, 9322, 9372, 9548, 9588, 9616, 9622, 9634, 9652, 9662, 9672, 9676, 9680, 9702, 9735, 9738, 9793, 9795, 11906, 11909, 11913, 11917, 11928, 11944, 11947, 11951, 11956, 11960, 11964, 11979, 12284, 12292, 12312, 12319, 12330, 12351, 12436, 12447, 12535, 12543, 12586, 12842, 12850, 12964, 13200, 13215, 13218, 13253, 13263, 13267, 13270, 13384, 13428, 13727, 13839, 13851, 14617, 14703, 14801, 14816, 14964, 15183, 15471, 15585, 16471, 16736, 17208, 17325, 17330, 17374, 17623, 17997, 18018, 18212, 18218, 18301, 18318, 18760, 18811, 18814, 18820, 18823, 18844, 18848, 18872, 19576, 19620, 19738, 19887, 40870, 59244, 59336, 59367, 59413, 59417, 59423, 59431, 59437, 59443, 59452, 59460, 59478, 59493, 63789, 63866, 63894, 63976, 63986, 64016, 64018, 64021, 64025, 64034, 64037, 64042, 65074, 65093, 65107, 65112, 65127, 65132, 65375, 65510, 65536], gbChars: [0, 36, 38, 45, 50, 81, 89, 95, 96, 100, 103, 104, 105, 109, 126, 133, 148, 172, 175, 179, 208, 306, 307, 308, 309, 310, 311, 312, 313, 341, 428, 443, 544, 545, 558, 741, 742, 749, 750, 805, 819, 820, 7922, 7924, 7925, 7927, 7934, 7943, 7944, 7945, 7950, 8062, 8148, 8149, 8152, 8164, 8174, 8236, 8240, 8262, 8264, 8374, 8380, 8381, 8384, 8388, 8390, 8392, 8393, 8394, 8396, 8401, 8406, 8416, 8419, 8424, 8437, 8439, 8445, 8482, 8485, 8496, 8521, 8603, 8936, 8946, 9046, 9050, 9063, 9066, 9076, 9092, 9100, 9108, 9111, 9113, 9131, 9162, 9164, 9218, 9219, 11329, 11331, 11334, 11336, 11346, 11361, 11363, 11366, 11370, 11372, 11375, 11389, 11682, 11686, 11687, 11692, 11694, 11714, 11716, 11723, 11725, 11730, 11736, 11982, 11989, 12102, 12336, 12348, 12350, 12384, 12393, 12395, 12397, 12510, 12553, 12851, 12962, 12973, 13738, 13823, 13919, 13933, 14080, 14298, 14585, 14698, 15583, 15847, 16318, 16434, 16438, 16481, 16729, 17102, 17122, 17315, 17320, 17402, 17418, 17859, 17909, 17911, 17915, 17916, 17936, 17939, 17961, 18664, 18703, 18814, 18962, 19043, 33469, 33470, 33471, 33484, 33485, 33490, 33497, 33501, 33505, 33513, 33520, 33536, 33550, 37845, 37921, 37948, 38029, 38038, 38064, 38065, 38066, 38069, 38075, 38076, 38078, 39108, 39109, 39113, 39114, 39115, 39116, 39265, 39394, 189e3] };
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp949.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp949.json
 var require_cp949 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp949.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp949.json"(exports, module) {
     module.exports = [
       ["0", "\0", 127],
       ["8141", "\uAC02\uAC03\uAC05\uAC06\uAC0B", 4, "\uAC18\uAC1E\uAC1F\uAC21\uAC22\uAC23\uAC25", 6, "\uAC2E\uAC32\uAC33\uAC34"],
@@ -10557,9 +10557,9 @@ var require_cp949 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp950.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp950.json
 var require_cp950 = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp950.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/cp950.json"(exports, module) {
     module.exports = [
       ["0", "\0", 127],
       ["a140", "\u3000\uFF0C\u3001\u3002\uFF0E\u2027\uFF1B\uFF1A\uFF1F\uFF01\uFE30\u2026\u2025\uFE50\uFE51\uFE52\xB7\uFE54\uFE55\uFE56\uFE57\uFF5C\u2013\uFE31\u2014\uFE33\u2574\uFE34\uFE4F\uFF08\uFF09\uFE35\uFE36\uFF5B\uFF5D\uFE37\uFE38\u3014\u3015\uFE39\uFE3A\u3010\u3011\uFE3B\uFE3C\u300A\u300B\uFE3D\uFE3E\u3008\u3009\uFE3F\uFE40\u300C\u300D\uFE41\uFE42\u300E\u300F\uFE43\uFE44\uFE59\uFE5A"],
@@ -10740,9 +10740,9 @@ var require_cp950 = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/big5-added.json
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/big5-added.json
 var require_big5_added = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/big5-added.json"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/tables/big5-added.json"(exports, module) {
     module.exports = [
       ["8740", "\u43F0\u4C32\u4603\u45A6\u4578\u{27267}\u4D77\u45B3\u{27CB1}\u4CE2\u{27CC5}\u3B95\u4736\u4744\u4C47\u4C40\u{242BF}\u{23617}\u{27352}\u{26E8B}\u{270D2}\u4C57\u{2A351}\u474F\u45DA\u4C85\u{27C6C}\u4D07\u4AA4\u46A1\u{26B23}\u7225\u{25A54}\u{21A63}\u{23E06}\u{23F61}\u664D\u56FB"],
       ["8767", "\u7D95\u591D\u{28BB9}\u3DF4\u9734\u{27BEF}\u5BDB\u{21D5E}\u5AA4\u3625\u{29EB0}\u5AD1\u5BB7\u5CFC\u676E\u8593\u{29945}\u7461\u749D\u3875\u{21D53}\u{2369E}\u{26021}\u3EEC"],
@@ -10868,9 +10868,9 @@ var require_big5_added = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/dbcs-data.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/dbcs-data.js
 var require_dbcs_data = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/dbcs-data.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/dbcs-data.js"(exports, module) {
     "use strict";
     module.exports = {
       // == Japanese/ShiftJIS ====================================================
@@ -11115,9 +11115,9 @@ var require_dbcs_data = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/index.js
 var require_encodings = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/encodings/index.js"(exports, module) {
     "use strict";
     var mergeModules = require_merge_exports();
     var modules = [
@@ -11140,9 +11140,9 @@ var require_encodings = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/streams.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/streams.js
 var require_streams = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/streams.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/streams.js"(exports, module) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     module.exports = function(streamModule) {
@@ -11237,9 +11237,9 @@ var require_streams = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/index.js
 var require_lib = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/iconv-lite/lib/index.js"(exports, module) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     var bomHandling = require_bom_handling();
@@ -11369,9 +11369,9 @@ var require_lib = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/unpipe/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/unpipe/index.js
 var require_unpipe = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/unpipe/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/unpipe/index.js"(exports, module) {
     "use strict";
     module.exports = unpipe;
     function hasPipeDataListeners(stream) {
@@ -11407,9 +11407,9 @@ var require_unpipe = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/raw-body/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/raw-body/index.js
 var require_raw_body = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/raw-body/index.js"(exports, module) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/raw-body/index.js"(exports, module) {
     "use strict";
     var asyncHooks = tryRequireAsyncHooks();
     var bytes = require_bytes();
@@ -11596,9 +11596,9 @@ var require_raw_body = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/content-type/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/content-type/index.js
 var require_content_type = __commonJS({
-  "../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/content-type/index.js"(exports) {
+  "../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/content-type/index.js"(exports) {
     "use strict";
     var PARAM_REGEXP = /; *([!#$%&'*+.^_`|~0-9A-Za-z-]+) *= *("(?:[\u000b\u0020\u0021\u0023-\u005b\u005d-\u007e\u0080-\u00ff]|\\[\u000b\u0020-\u00ff])*"|[!#$%&'*+.^_`|~0-9A-Za-z-]+) */g;
     var TEXT_REGEXP = /^[\u000b\u0020-\u007e\u0080-\u00ff]+$/;
@@ -11700,7 +11700,7 @@ var require_content_type = __commonJS({
   }
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/helpers/util.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/helpers/util.js
 var util;
 (function(util3) {
   util3.assertEqual = (_) => {
@@ -11834,7 +11834,7 @@ var getParsedType = (data) => {
   }
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/ZodError.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/ZodError.js
 var ZodIssueCode = util.arrayToEnum([
   "invalid_type",
   "invalid_literal",
@@ -11948,7 +11948,7 @@ ZodError.create = (issues) => {
   return error2;
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/locales/en.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/locales/en.js
 var errorMap = (issue2, _ctx) => {
   let message;
   switch (issue2.code) {
@@ -12051,13 +12051,13 @@ var errorMap = (issue2, _ctx) => {
 };
 var en_default = errorMap;
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/errors.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/errors.js
 var overrideErrorMap = en_default;
 function getErrorMap() {
   return overrideErrorMap;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/helpers/parseUtil.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/helpers/parseUtil.js
 var makeIssue = (params) => {
   const { data, path, errorMaps, issueData } = params;
   const fullPath = [...path, ...issueData.path || []];
@@ -12166,14 +12166,14 @@ var isDirty = (x) => x.status === "dirty";
 var isValid = (x) => x.status === "valid";
 var isAsync = (x) => typeof Promise !== "undefined" && x instanceof Promise;
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/helpers/errorUtil.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/helpers/errorUtil.js
 var errorUtil;
 (function(errorUtil3) {
   errorUtil3.errToObj = (message) => typeof message === "string" ? { message } : message || {};
   errorUtil3.toString = (message) => typeof message === "string" ? message : message?.message;
 })(errorUtil || (errorUtil = {}));
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/types.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v3/types.js
 var ParseInputLazyPath = class {
   constructor(parent, value, path, key) {
     this._cachedPath = [];
@@ -15577,7 +15577,7 @@ var nullableType = ZodNullable.create;
 var preprocessType = ZodEffects.createWithPreprocess;
 var pipelineType = ZodPipeline.create;
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/core.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/core.js
 var NEVER = Object.freeze({
   status: "aborted"
 });
@@ -15652,7 +15652,7 @@ function config(newConfig) {
   return globalConfig;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/util.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/util.js
 var util_exports = {};
 __export(util_exports, {
   BIGINT_FORMAT_RANGES: () => BIGINT_FORMAT_RANGES,
@@ -16331,7 +16331,7 @@ var Class = class {
   }
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/errors.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/errors.js
 var initializer = (inst, def) => {
   inst.name = "$ZodError";
   Object.defineProperty(inst, "_zod", {
@@ -16397,7 +16397,7 @@ function formatError(error2, mapper = (issue2) => issue2.message) {
   return fieldErrors;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/parse.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/parse.js
 var _parse = (_Err) => (schema, value, _ctx, _params) => {
   const ctx = _ctx ? Object.assign(_ctx, { async: false }) : { async: false };
   const result = schema._zod.run({ value, issues: [] }, ctx);
@@ -16477,7 +16477,7 @@ var _safeDecodeAsync = (_Err) => async (schema, value, _ctx) => {
   return _safeParseAsync(_Err)(schema, value, _ctx);
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/regexes.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/regexes.js
 var regexes_exports = {};
 __export(regexes_exports, {
   base64: () => base64,
@@ -16634,7 +16634,7 @@ var sha512_hex = /^[0-9a-fA-F]{128}$/;
 var sha512_base64 = /* @__PURE__ */ fixedBase64(86, "==");
 var sha512_base64url = /* @__PURE__ */ fixedBase64url(86);
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/checks.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/checks.js
 var $ZodCheck = /* @__PURE__ */ $constructor("$ZodCheck", (inst, def) => {
   var _a2;
   inst._zod ?? (inst._zod = {});
@@ -17182,7 +17182,7 @@ var $ZodCheckOverwrite = /* @__PURE__ */ $constructor("$ZodCheckOverwrite", (ins
   };
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/doc.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/doc.js
 var Doc = class {
   constructor(args = []) {
     this.content = [];
@@ -17218,14 +17218,14 @@ var Doc = class {
   }
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/versions.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/versions.js
 var version = {
   major: 4,
   minor: 3,
   patch: 6
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/schemas.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/schemas.js
 var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
   var _a2;
   inst ?? (inst = {});
@@ -17325,10 +17325,10 @@ var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
   defineLazy(inst, "~standard", () => ({
     validate: (value) => {
       try {
-        const r12 = safeParse(inst, value);
-        return r12.success ? { value: r12.data } : { issues: r12.error?.issues };
+        const r22 = safeParse(inst, value);
+        return r22.success ? { value: r22.data } : { issues: r22.error?.issues };
       } catch (_) {
-        return safeParseAsync(inst, value).then((r12) => r12.success ? { value: r12.data } : { issues: r12.error?.issues });
+        return safeParseAsync(inst, value).then((r22) => r22.success ? { value: r22.data } : { issues: r22.error?.issues });
       }
     },
     vendor: "zod",
@@ -17911,11 +17911,11 @@ function handleCatchall(proms, input, payload, ctx, def, inst) {
       unrecognized.push(key);
       continue;
     }
-    const r12 = _catchall.run({ value: input[key], issues: [] }, ctx);
-    if (r12 instanceof Promise) {
-      proms.push(r12.then((r13) => handlePropertyResult(r13, payload, key, input, isOptionalOut)));
+    const r22 = _catchall.run({ value: input[key], issues: [] }, ctx);
+    if (r22 instanceof Promise) {
+      proms.push(r22.then((r23) => handlePropertyResult(r23, payload, key, input, isOptionalOut)));
     } else {
-      handlePropertyResult(r12, payload, key, input, isOptionalOut);
+      handlePropertyResult(r22, payload, key, input, isOptionalOut);
     }
   }
   if (unrecognized.length) {
@@ -17982,11 +17982,11 @@ var $ZodObject = /* @__PURE__ */ $constructor("$ZodObject", (inst, def) => {
     for (const key of value.keys) {
       const el = shape[key];
       const isOptionalOut = el._zod.optout === "optional";
-      const r12 = el._zod.run({ value: input[key], issues: [] }, ctx);
-      if (r12 instanceof Promise) {
-        proms.push(r12.then((r13) => handlePropertyResult(r13, payload, key, input, isOptionalOut)));
+      const r22 = el._zod.run({ value: input[key], issues: [] }, ctx);
+      if (r22 instanceof Promise) {
+        proms.push(r22.then((r23) => handlePropertyResult(r23, payload, key, input, isOptionalOut)));
       } else {
-        handlePropertyResult(r12, payload, key, input, isOptionalOut);
+        handlePropertyResult(r22, payload, key, input, isOptionalOut);
       }
     }
     if (!catchall) {
@@ -18101,7 +18101,7 @@ function handleUnionResults(results, final, inst, ctx) {
       return final;
     }
   }
-  const nonaborted = results.filter((r12) => !aborted(r12));
+  const nonaborted = results.filter((r22) => !aborted(r22));
   if (nonaborted.length === 1) {
     final.value = nonaborted[0].value;
     return nonaborted[0];
@@ -18161,7 +18161,7 @@ var $ZodUnion = /* @__PURE__ */ $constructor("$ZodUnion", (inst, def) => {
   };
 });
 function handleExclusiveUnionResults(results, final, inst, ctx) {
-  const successes = results.filter((r12) => r12.issues.length === 0);
+  const successes = results.filter((r22) => r22.issues.length === 0);
   if (successes.length === 1) {
     final.value = successes[0].value;
     return final;
@@ -18753,7 +18753,7 @@ var $ZodOptional = /* @__PURE__ */ $constructor("$ZodOptional", (inst, def) => {
     if (def.innerType._zod.optin === "optional") {
       const result = def.innerType._zod.run(payload, ctx);
       if (result instanceof Promise)
-        return result.then((r12) => handleOptionalResult(r12, payload.value));
+        return result.then((r22) => handleOptionalResult(r22, payload.value));
       return handleOptionalResult(result, payload.value);
     }
     if (payload.value === void 0) {
@@ -19170,11 +19170,11 @@ var $ZodCustom = /* @__PURE__ */ $constructor("$ZodCustom", (inst, def) => {
   };
   inst._zod.check = (payload) => {
     const input = payload.value;
-    const r12 = def.fn(input);
-    if (r12 instanceof Promise) {
-      return r12.then((r13) => handleRefineResult(r13, payload, input, inst));
+    const r22 = def.fn(input);
+    if (r22 instanceof Promise) {
+      return r22.then((r23) => handleRefineResult(r23, payload, input, inst));
     }
-    handleRefineResult(r12, payload, input, inst);
+    handleRefineResult(r22, payload, input, inst);
     return;
   };
 });
@@ -19196,7 +19196,7 @@ function handleRefineResult(result, payload, input, inst) {
   }
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/locales/en.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/locales/en.js
 var error = () => {
   const Sizable = {
     string: { unit: "characters", verb: "to have" },
@@ -19305,7 +19305,7 @@ function en_default2() {
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/registries.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/registries.js
 var _a;
 var $output = Symbol("ZodOutput");
 var $input = Symbol("ZodInput");
@@ -19355,7 +19355,7 @@ function registry() {
 (_a = globalThis).__zod_globalRegistry ?? (_a.__zod_globalRegistry = registry());
 var globalRegistry = globalThis.__zod_globalRegistry;
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/api.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/api.js
 // @__NO_SIDE_EFFECTS__
 function _string(Class2, params) {
   return new Class2({
@@ -20159,7 +20159,7 @@ function _stringFormat(Class2, format, fnOrRegex, _params = {}) {
   return inst;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/to-json-schema.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/to-json-schema.js
 function initializeContext(params) {
   let target = params?.target ?? "draft-2020-12";
   if (target === "draft-4")
@@ -20511,7 +20511,7 @@ var createStandardJSONSchemaMethod = (schema, io, processors = {}) => (params) =
   return finalize(ctx, schema);
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/json-schema-processors.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/core/json-schema-processors.js
 var formatMap = {
   guid: "uuid",
   url: "uri",
@@ -21062,7 +21062,7 @@ function toJSONSchema(input, params) {
   return finalize(ctx, input);
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/mini/schemas.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/mini/schemas.js
 var ZodMiniType = /* @__PURE__ */ $constructor("ZodMiniType", (inst, def) => {
   if (!inst._zod)
     throw new Error("Uninitialized schema in ZodMiniType.");
@@ -21106,7 +21106,7 @@ function object(shape, params) {
   return new ZodMiniObject(def);
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-compat.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-compat.js
 function isZ4Schema(s) {
   const schema = s;
   return !!schema._zod;
@@ -21250,7 +21250,7 @@ function getLiteralValue(schema) {
   return void 0;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/schemas.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/schemas.js
 var schemas_exports3 = {};
 __export(schemas_exports3, {
   ZodAny: () => ZodAny2,
@@ -21419,7 +21419,7 @@ __export(schemas_exports3, {
   xor: () => xor
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/checks.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/checks.js
 var checks_exports2 = {};
 __export(checks_exports2, {
   endsWith: () => _endsWith,
@@ -21453,7 +21453,7 @@ __export(checks_exports2, {
   uppercase: () => _uppercase
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/iso.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/iso.js
 var iso_exports2 = {};
 __export(iso_exports2, {
   ZodISODate: () => ZodISODate,
@@ -21494,7 +21494,7 @@ function duration2(params) {
   return _isoDuration(ZodISODuration, params);
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/errors.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/errors.js
 var initializer2 = (inst, issues) => {
   $ZodError.init(inst, issues);
   inst.name = "ZodError";
@@ -21534,7 +21534,7 @@ var ZodRealError = $constructor("ZodError", initializer2, {
   Parent: Error
 });
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/parse.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/parse.js
 var parse2 = /* @__PURE__ */ _parse(ZodRealError);
 var parseAsync2 = /* @__PURE__ */ _parseAsync(ZodRealError);
 var safeParse3 = /* @__PURE__ */ _safeParse(ZodRealError);
@@ -21548,7 +21548,7 @@ var safeDecode2 = /* @__PURE__ */ _safeDecode(ZodRealError);
 var safeEncodeAsync2 = /* @__PURE__ */ _safeEncodeAsync(ZodRealError);
 var safeDecodeAsync2 = /* @__PURE__ */ _safeDecodeAsync(ZodRealError);
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/schemas.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/schemas.js
 var ZodType2 = /* @__PURE__ */ $constructor("ZodType", (inst, def) => {
   $ZodType.init(inst, def);
   Object.assign(inst["~standard"], {
@@ -22627,22 +22627,22 @@ function preprocess(fn, schema) {
   return pipe(transform(fn), schema);
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/compat.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/compat.js
 var ZodFirstPartyTypeKind2;
 /* @__PURE__ */ (function(ZodFirstPartyTypeKind4) {
 })(ZodFirstPartyTypeKind2 || (ZodFirstPartyTypeKind2 = {}));
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/from-json-schema.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/from-json-schema.js
 var z = {
   ...schemas_exports3,
   ...checks_exports2,
   iso: iso_exports2
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/external.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod/v4/classic/external.js
 config(en_default2());
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/types.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/types.js
 var LATEST_PROTOCOL_VERSION = "2025-11-25";
 var SUPPORTED_PROTOCOL_VERSIONS = [LATEST_PROTOCOL_VERSION, "2025-06-18", "2025-03-26", "2024-11-05", "2024-10-07"];
 var RELATED_TASK_META_KEY = "io.modelcontextprotocol/related-task";
@@ -24173,12 +24173,12 @@ var UrlElicitationRequiredError = class extends McpError {
   }
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/interfaces.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/interfaces.js
 function isTerminal(status) {
   return status === "completed" || status === "failed" || status === "cancelled";
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/Options.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/Options.js
 var ignoreOverride = Symbol("Let zodToJsonSchema decide on which parser to use");
 var defaultOptions = {
   name: void 0,
@@ -24212,7 +24212,7 @@ var getDefaultOptions = (options) => typeof options === "string" ? {
   ...options
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/Refs.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/Refs.js
 var getRefs = (options) => {
   const _options = getDefaultOptions(options);
   const currentPath = _options.name !== void 0 ? [..._options.basePath, _options.definitionPath, _options.name] : _options.basePath;
@@ -24233,7 +24233,7 @@ var getRefs = (options) => {
   };
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/errorMessages.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/errorMessages.js
 function addErrorMessage(res, key, errorMessage, refs) {
   if (!refs?.errorMessages)
     return;
@@ -24249,7 +24249,7 @@ function setResponseValueAndErrors(res, key, value, errorMessage, refs) {
   addErrorMessage(res, key, errorMessage, refs);
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/getRelativePath.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/getRelativePath.js
 var getRelativePath = (pathA, pathB) => {
   let i = 0;
   for (; i < pathA.length && i < pathB.length; i++) {
@@ -24259,7 +24259,7 @@ var getRelativePath = (pathA, pathB) => {
   return [(pathA.length - i).toString(), ...pathB.slice(i)].join("/");
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/any.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/any.js
 function parseAnyDef(refs) {
   if (refs.target !== "openAi") {
     return {};
@@ -24275,7 +24275,7 @@ function parseAnyDef(refs) {
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/array.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/array.js
 function parseArrayDef(def, refs) {
   const res = {
     type: "array"
@@ -24299,7 +24299,7 @@ function parseArrayDef(def, refs) {
   return res;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/bigint.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/bigint.js
 function parseBigintDef(def, refs) {
   const res = {
     type: "integer",
@@ -24345,24 +24345,24 @@ function parseBigintDef(def, refs) {
   return res;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/boolean.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/boolean.js
 function parseBooleanDef() {
   return {
     type: "boolean"
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/branded.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/branded.js
 function parseBrandedDef(_def, refs) {
   return parseDef(_def.type._def, refs);
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/catch.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/catch.js
 var parseCatchDef = (def, refs) => {
   return parseDef(def.innerType._def, refs);
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/date.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/date.js
 function parseDateDef(def, refs, overrideDateStrategy) {
   const strategy = overrideDateStrategy ?? refs.dateStrategy;
   if (Array.isArray(strategy)) {
@@ -24421,7 +24421,7 @@ var integerDateParser = (def, refs) => {
   return res;
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/default.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/default.js
 function parseDefaultDef(_def, refs) {
   return {
     ...parseDef(_def.innerType._def, refs),
@@ -24429,12 +24429,12 @@ function parseDefaultDef(_def, refs) {
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/effects.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/effects.js
 function parseEffectsDef(_def, refs) {
   return refs.effectStrategy === "input" ? parseDef(_def.schema._def, refs) : parseAnyDef(refs);
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/enum.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/enum.js
 function parseEnumDef(def) {
   return {
     type: "string",
@@ -24442,7 +24442,7 @@ function parseEnumDef(def) {
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/intersection.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/intersection.js
 var isJsonSchema7AllOfType = (type) => {
   if ("type" in type && type.type === "string")
     return false;
@@ -24484,7 +24484,7 @@ function parseIntersectionDef(def, refs) {
   } : void 0;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/literal.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/literal.js
 function parseLiteralDef(def, refs) {
   const parsedType2 = typeof def.value;
   if (parsedType2 !== "bigint" && parsedType2 !== "number" && parsedType2 !== "boolean" && parsedType2 !== "string") {
@@ -24504,7 +24504,7 @@ function parseLiteralDef(def, refs) {
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/string.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/string.js
 var emojiRegex2 = void 0;
 var zodPatterns = {
   /**
@@ -24829,7 +24829,7 @@ function stringifyRegExpWithFlags(regex, refs) {
   return pattern;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/record.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/record.js
 function parseRecordDef(def, refs) {
   if (refs.target === "openAi") {
     console.warn("Warning: OpenAI may not support records in schemas! Try an array of key-value pairs instead.");
@@ -24881,7 +24881,7 @@ function parseRecordDef(def, refs) {
   return schema;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/map.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/map.js
 function parseMapDef(def, refs) {
   if (refs.mapStrategy === "record") {
     return parseRecordDef(def, refs);
@@ -24906,7 +24906,7 @@ function parseMapDef(def, refs) {
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/nativeEnum.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/nativeEnum.js
 function parseNativeEnumDef(def) {
   const object3 = def.values;
   const actualKeys = Object.keys(def.values).filter((key) => {
@@ -24920,7 +24920,7 @@ function parseNativeEnumDef(def) {
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/never.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/never.js
 function parseNeverDef(refs) {
   return refs.target === "openAi" ? void 0 : {
     not: parseAnyDef({
@@ -24930,7 +24930,7 @@ function parseNeverDef(refs) {
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/null.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/null.js
 function parseNullDef(refs) {
   return refs.target === "openApi3" ? {
     enum: ["null"],
@@ -24940,7 +24940,7 @@ function parseNullDef(refs) {
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/union.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/union.js
 var primitiveMappings = {
   ZodString: "string",
   ZodNumber: "number",
@@ -25008,7 +25008,7 @@ var asAnyOf = (def, refs) => {
   return anyOf.length ? { anyOf } : void 0;
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/nullable.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/nullable.js
 function parseNullableDef(def, refs) {
   if (["ZodString", "ZodNumber", "ZodBigInt", "ZodBoolean", "ZodNull"].includes(def.innerType._def.typeName) && (!def.innerType._def.checks || !def.innerType._def.checks.length)) {
     if (refs.target === "openApi3") {
@@ -25040,7 +25040,7 @@ function parseNullableDef(def, refs) {
   return base && { anyOf: [base, { type: "null" }] };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/number.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/number.js
 function parseNumberDef(def, refs) {
   const res = {
     type: "number"
@@ -25089,7 +25089,7 @@ function parseNumberDef(def, refs) {
   return res;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/object.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/object.js
 function parseObjectDef(def, refs) {
   const forceOptionalIntoNullable = refs.target === "openAi";
   const result = {
@@ -25159,7 +25159,7 @@ function safeIsOptional(schema) {
   }
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/optional.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/optional.js
 var parseOptionalDef = (def, refs) => {
   if (refs.currentPath.toString() === refs.propertyPath?.toString()) {
     return parseDef(def.innerType._def, refs);
@@ -25178,7 +25178,7 @@ var parseOptionalDef = (def, refs) => {
   } : parseAnyDef(refs);
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/pipeline.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/pipeline.js
 var parsePipelineDef = (def, refs) => {
   if (refs.pipeStrategy === "input") {
     return parseDef(def.in._def, refs);
@@ -25198,12 +25198,12 @@ var parsePipelineDef = (def, refs) => {
   };
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/promise.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/promise.js
 function parsePromiseDef(def, refs) {
   return parseDef(def.type._def, refs);
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/set.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/set.js
 function parseSetDef(def, refs) {
   const items = parseDef(def.valueType._def, {
     ...refs,
@@ -25223,7 +25223,7 @@ function parseSetDef(def, refs) {
   return schema;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/tuple.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/tuple.js
 function parseTupleDef(def, refs) {
   if (def.rest) {
     return {
@@ -25251,24 +25251,24 @@ function parseTupleDef(def, refs) {
   }
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/undefined.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/undefined.js
 function parseUndefinedDef(refs) {
   return {
     not: parseAnyDef(refs)
   };
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/unknown.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/unknown.js
 function parseUnknownDef(refs) {
   return parseAnyDef(refs);
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/readonly.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parsers/readonly.js
 var parseReadonlyDef = (def, refs) => {
   return parseDef(def.innerType._def, refs);
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/selectParser.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/selectParser.js
 var selectParser = (def, typeName, refs) => {
   switch (typeName) {
     case ZodFirstPartyTypeKind.ZodString:
@@ -25344,7 +25344,7 @@ var selectParser = (def, typeName, refs) => {
   }
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parseDef.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/parseDef.js
 function parseDef(def, refs, forceResolution = false) {
   const seenItem = refs.seen.get(def);
   if (refs.override) {
@@ -25400,7 +25400,7 @@ var addMeta = (def, refs, jsonSchema) => {
   return jsonSchema;
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/zodToJsonSchema.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/zod-to-json-schema/dist/esm/zodToJsonSchema.js
 var zodToJsonSchema = (schema, options) => {
   const refs = getRefs(options);
   let definitions = typeof options === "object" && options.definitions ? Object.entries(options.definitions).reduce((acc, [name2, schema2]) => ({
@@ -25462,7 +25462,7 @@ var zodToJsonSchema = (schema, options) => {
   return combined;
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-json-schema-compat.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-json-schema-compat.js
 function mapMiniTarget(t) {
   if (!t)
     return "draft-7";
@@ -25504,7 +25504,7 @@ function parseWithCompat(schema, data) {
   return result.data;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/protocol.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/protocol.js
 var DEFAULT_REQUEST_TIMEOUT_MSEC = 6e4;
 var Protocol = class {
   constructor(_options) {
@@ -25782,7 +25782,7 @@ var Protocol = class {
         }
         await this.notification(notification, notificationOptions);
       },
-      sendRequest: async (r12, resultSchema, options) => {
+      sendRequest: async (r22, resultSchema, options) => {
         if (abortController.signal.aborted) {
           throw new McpError(ErrorCode.ConnectionClosed, "Request was cancelled");
         }
@@ -25794,7 +25794,7 @@ var Protocol = class {
         if (effectiveTaskId && taskStore) {
           await taskStore.updateTaskStatus(effectiveTaskId, "input_required");
         }
-        return await this.request(r12, resultSchema, requestOptions);
+        return await this.request(r22, resultSchema, requestOptions);
       },
       authInfo: extra?.authInfo,
       requestId: request.id,
@@ -26458,7 +26458,7 @@ function mergeCapabilities(base, additional) {
   return result;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/validation/ajv-provider.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/validation/ajv-provider.js
 var import_ajv = __toESM(require_ajv(), 1);
 var import_ajv_formats = __toESM(require_dist(), 1);
 function createDefaultAjvInstance() {
@@ -26526,7 +26526,7 @@ var AjvJsonSchemaValidator = class {
   }
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/server.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/server.js
 var ExperimentalServerTasks = class {
   constructor(_server) {
     this._server = _server;
@@ -26739,7 +26739,7 @@ var ExperimentalServerTasks = class {
   }
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/helpers.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/helpers.js
 function assertToolsCallTaskCapability(requests, method, entityName) {
   if (!requests) {
     throw new Error(`${entityName} does not support task creation (required for ${method})`);
@@ -26774,7 +26774,7 @@ function assertClientRequestTaskCapability(requests, method, entityName) {
   }
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/index.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/index.js
 var Server = class extends Protocol {
   /**
    * Initializes this server with the given name and version information.
@@ -27154,7 +27154,7 @@ var Server = class extends Protocol {
   }
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/completable.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/completable.js
 var COMPLETABLE_SYMBOL = Symbol.for("mcp.completable");
 function isCompletable(schema) {
   return !!schema && typeof schema === "object" && COMPLETABLE_SYMBOL in schema;
@@ -27168,7 +27168,7 @@ var McpZodTypeKind;
   McpZodTypeKind2["Completable"] = "McpCompletable";
 })(McpZodTypeKind || (McpZodTypeKind = {}));
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/toolNameValidation.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/toolNameValidation.js
 var TOOL_NAME_REGEX = /^[A-Za-z0-9._-]{1,128}$/;
 function validateToolName(name) {
   const warnings = [];
@@ -27226,7 +27226,7 @@ function validateAndWarnToolName(name) {
   return result.isValid;
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/mcp-server.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/mcp-server.js
 var ExperimentalMcpServerTasks = class {
   constructor(_mcpServer) {
     this._mcpServer = _mcpServer;
@@ -27241,7 +27241,7 @@ var ExperimentalMcpServerTasks = class {
   }
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/mcp.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/mcp.js
 var McpServer = class {
   constructor(serverInfo, options) {
     this._registeredResources = {};
@@ -28033,10 +28033,10 @@ var EMPTY_COMPLETION_RESULT = {
   }
 };
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/stdio.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/stdio.js
 import process3 from "node:process";
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/stdio.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/stdio.js
 var ReadBuffer = class {
   append(chunk) {
     this._buffer = this._buffer ? Buffer.concat([this._buffer, chunk]) : chunk;
@@ -28064,7 +28064,7 @@ function serializeMessage(message) {
   return JSON.stringify(message) + "\n";
 }
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/stdio.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/stdio.js
 var StdioServerTransport = class {
   constructor(_stdin = process3.stdin, _stdout = process3.stdout) {
     this._stdin = _stdin;
@@ -32053,17 +32053,17 @@ function cleanParams(params, data) {
 function custom2(check2, _params = {}, fatal) {
   if (check2)
     return ZodAny3.create().superRefine((data, ctx) => {
-      const r12 = check2(data);
-      if (r12 instanceof Promise) {
-        return r12.then((r13) => {
-          if (!r13) {
+      const r22 = check2(data);
+      if (r22 instanceof Promise) {
+        return r22.then((r23) => {
+          if (!r23) {
             const params = cleanParams(_params, data);
             const _fatal = params.fatal ?? fatal ?? true;
             ctx.addIssue({ code: "custom", ...params, fatal: _fatal });
           }
         });
       }
-      if (!r12) {
+      if (!r22) {
         const params = cleanParams(_params, data);
         const _fatal = params.fatal ?? fatal ?? true;
         ctx.addIssue({ code: "custom", ...params, fatal: _fatal });
@@ -33008,6 +33008,194 @@ $$\forall x \in\, ]1,+\infty[, \ \operatorname{argch}(x) = \ln\left(x + \sqrt{x^
 };
 var chapitre_8_default = chapter8;
 
+// ../src/content/math/chapters/chapitre-9.ts
+var r12 = String.raw;
+var chapter9 = {
+  id: "chapitre-9",
+  number: 9,
+  title: "Suites num\xE9riques",
+  summary: "Limites, \xE9quivalents, suites monotones, adjacentes et extraites, suites complexes et suites usuelles.",
+  exercises: [
+    { id: "ch9-cours-ex1", number: "1", source: "cours", statement: r12`Déterminer les limites des suites suivantes :
+
+1. $(n^3 + n^2)_{n\in\mathbb{N}}$
+
+2. $\left(n^4 + \dfrac{1}{n}\right)_{n\in\mathbb{N}^*}$
+
+3. $(1 + e^n)_{n\in\mathbb{N}}$
+
+4. $(-7n^2)_{n\in\mathbb{N}}$
+
+5. $\left(\dfrac{-5}{n} + 5 \times 3^n\right)_{n\in\mathbb{N}^*}$
+
+6. $(n^2 - n)_{n\geq 0}$
+
+7. $\left(n\left(\dfrac{-5}{n} + 5 \times 3^n\right)\right)_{n\in\mathbb{N}^*}$
+
+8. $\left(\left(\dfrac{1}{2}\right)^n\left(7 + \dfrac{1}{n^2}\right)\right)_{n\in\mathbb{N}^*}$` },
+    { id: "ch9-cours-ex2", number: "2", source: "cours", statement: r12`Déterminer la limite des suites suivantes : $\left(\dfrac{1 + (1/2)^n}{n^2 + n}\right)_{n\in\mathbb{N}^*}$ et $\left(\dfrac{(1/2)^n}{n}\right)_{n\in\mathbb{N}^*}$.` },
+    { id: "ch9-cours-ex3", number: "3", source: "cours", statement: r12`Déterminer si elles existent les limites des suites dont les termes généraux sont donnés par :
+
+1. pour tout $n \geq 0$, $u_n = 3n^{13} - n^5 + 3n + 1$.
+
+2. pour tout $n \geq 1$, $v_n = n\ln(n) - n$.
+
+3. pour tout $n \geq 0$, $w_n = \dfrac{n^2 - 2n + 1}{n^3 + 2n^2 + 1}$.
+
+4. pour tout $n \geq 2$, $z_n = \dfrac{2n^3 - 4n^2 + 1}{3n^3 - 1}$.` },
+    { id: "ch9-cours-ex4", number: "4", source: "cours", statement: r12`Soit $(u_n)_{n\in\mathbb{N}^*}$ la suite définie par $u_n = \dfrac{\sin n}{n}$. Montrer que $(u_n)_{n\in\mathbb{N}^*}$ est convergente et déterminer sa limite.` },
+    { id: "ch9-cours-ex5", number: "5", source: "cours", statement: r12`Soit $(u_n)$ la suite définie par : $\forall n \geq 1, u_n = \displaystyle\sum_{k=0}^{n} \frac{n}{n^2 + k}$. Montrer que la suite $(u_n)$ converge et déterminer sa limite.` },
+    { id: "ch9-cours-ex6", number: "6", source: "cours", statement: r12`On pose : $\forall n \geq 1, u_n = \displaystyle\sum_{k=1}^{n} e^{1/k}$. Montrer que : $\displaystyle\lim_{n\to+\infty} u_n = +\infty$.` },
+    { id: "ch9-cours-ex7", number: "7", source: "cours", statement: r12`Soit la suite $(u_n)$ définie par : $\forall n \in \mathbb{N}^*, u_n = n - (\ln n)^2$. Donner un équivalent de $u_n$.` },
+    { id: "ch9-cours-ex8", number: "8", source: "cours", statement: r12`Soit $k$ un entier naturel donné. Calculer la limite de $\dfrac{\binom{n}{k}}{n^k}$ lorsque $n$ tend vers $+\infty$.` },
+    { id: "ch9-cours-ex9", number: "9", source: "cours", statement: r12`Montrer que : $\displaystyle\lim_{n\to+\infty} \left(1 + \frac{x}{n}\right)^n = e^x$, pour $x$ réel strictement positif.` },
+    { id: "ch9-cours-ex10", number: "10", source: "cours", statement: r12`Déterminer, si elles existent, les limites des suites dont les termes généraux sont donnés par :
+
+1. Pour tout $n \geq 1$, $u_n = \dfrac{3\ln(n)}{n^2}$.
+
+2. Pour tout $n \geq 2$, $v_n = \dfrac{e^n}{n^{2023}}$.
+
+3. Pour tout $n \geq 0$, $w_n = \dfrac{n^2 + 2e^{2n}}{3n^{14} + e^n}$.
+
+4. Pour tout $n \geq 0$, $z_n = \dfrac{\ln(n) + n}{n^2 + e^n}$.` },
+    { id: "ch9-cours-ex11", number: "11", source: "cours", statement: r12`Soient les suites $(u_n)$ et $(v_n)$ définies par : $\forall n \in \mathbb{N}^*, u_n = \binom{2n}{n}$ et $v_n = \dfrac{\binom{2n}{n}}{4^n}$. Etudier les variations de ces suites.` },
+    { id: "ch9-cours-ex12", number: "12", source: "cours", statement: r12`Soit $(x_n)$ la suite définie par : $x_0 = 2$ et $\forall n \in \mathbb{N}, x_{n+1} = \dfrac{x_n}{1 + nx_n^2}$. Montrer que la suite $(x_n)$ est positive et en déduire qu'elle converge.` },
+    { id: "ch9-cours-ex13", number: "13", source: "cours", statement: r12`On considère les suites $(a_n)$ et $(b_n)$ définies par : $\forall n \in \mathbb{N}^*, a_n = \displaystyle\sum_{k=0}^{n} \frac{1}{k!}$ et $b_n = a_n + \dfrac{1}{n!}$.
+Montrer que ces deux suites sont convergentes et de même limite.` },
+    { id: "ch9-cours-ex14", number: "14", source: "cours", statement: r12`On définit la suite $(S_n)_{n\in\mathbb{N}^*}$ par : $\forall n \in \mathbb{N}^*, S_n = \displaystyle\sum_{k=1}^{n} \frac{(-1)^k}{k}$.
+Montrer que les suites $(S_{2n})_{n\in\mathbb{N}^*}$ et $(S_{2n+1})_{n\in\mathbb{N}}$ sont adjacentes puis conclure que la suite $(S_n)_{n\in\mathbb{N}^*}$ converge.` },
+    { id: "ch9-cours-ex15", number: "15", source: "cours", statement: r12`Soient $(u_n)$ une suite bornée et $\ell \in \mathbb{R}$ tels que si une suite extraite de $(u_n)$ converge, alors elle converge vers $\ell$. Nous allons montrer par l'absurde que $(u_n)$ converge vers $\ell$.
+
+1. Supposons que $(u_n)$ ne converge pas vers $\ell$. Montrer que $\exists \varepsilon > 0$ tel que $I_{\ell,\varepsilon} = \{n \in \mathbb{N}, |u_n - \ell| > \varepsilon\}$ est infini. On note alors $I_{\ell,\varepsilon} = \{\varphi(k), k \in \mathbb{N}\}$, avec $\varphi$ strictement croissante.
+
+2. On pose $\forall k \in \mathbb{N}, v_k = u_{\varphi(k)}$. Montrer qu'il existe une suite extraite de $(v_k)$ qui converge et que sa limite est différente de $\ell$.
+
+3. En déduire une contradiction.` },
+    { id: "ch9-cours-ex16", number: "16", source: "cours", statement: r12`Montrer que $A = \left\{\dfrac{p}{\ln n}, p \in \mathbb{Z}, n \in \mathbb{N}, n \geq 2\right\}$. $A$ est dense dans $\mathbb{R}$.` },
+    { id: "ch9-cours-ex17", number: "17", source: "cours", statement: r12`Soit $z = x + iy \in \mathbb{C}$, avec $(x, y) \in \mathbb{R}^2$. On pose pour tout $n \in \mathbb{N}^*$ : $z_n = 1 + \dfrac{z}{n}$.
+
+1. Montrer qu'on a, à partir d'un certain rang : $z_n = \sqrt{1 + 2\dfrac{x}{n} + \dfrac{|z|^2}{n^2}}\, e^{i\arctan\left(\frac{y}{n+x}\right)}$.
+
+2. Montrer que $\displaystyle\lim_{n\to+\infty} \left(1 + 2\frac{x}{n} + \frac{|z|^2}{n^2}\right)^{\frac{n}{2}} = e^x$ et que $\displaystyle\lim_{n\to+\infty} n\arctan\left(\frac{y}{n+x}\right) = y$.
+
+3. En conclure que $\displaystyle\lim_{n\to+\infty} \left(1 + \frac{z}{n}\right)^n = e^z$.` },
+    { id: "ch9-cours-ex18", number: "18", source: "cours", statement: r12`Déterminer $\theta \in [0; 2\pi[$ tel que la limite de $(1 - e^{i\theta})^n$, lorsque $n$ tend vers $+\infty$, existe.` },
+    { id: "ch9-cours-ex19", number: "19", source: "cours", statement: r12`On définit la suite $(u_n)$ par $u_0 = \alpha > 0$ et $\forall n \in \mathbb{N}, u_{n+1} = 2u_n^{\frac{1}{3}}$. Exprimer $u_n$ en fonction de $n$ pour tout $n \in \mathbb{N}$ et déterminer, si elle existe, la limite de la suite $(u_n)$.` },
+    { id: "ch9-cours-ex20", number: "20", source: "cours", statement: r12`Soit $(u_n)$ la suite de Fibonacci définie par : $u_0 = u_1 = 1$ et $\forall n \in \mathbb{N} : u_{n+2} = u_{n+1} + u_n$.
+Déterminer $u_n$ en fonction de $n$, pour tout $n$.` },
+    { id: "ch9-cours-ex21", number: "21", source: "cours", statement: r12`Montrer qu'on définit bien une suite $(u_n)_{n\in\mathbb{N}}$ par : $\begin{cases} u_0 > 1 \\ \forall n \in \mathbb{N}, u_{n+1} = \ln(u_n) + 1 \end{cases}$` },
+    { id: "ch9-cours-ex22", number: "22", source: "cours", statement: r12`On considère la suite $(u_n)$ par $u_0 \leq 1$ et $\forall n \in \mathbb{N}, u_{n+1} = u_n + \ln(2 - u_n)$. Montrer que la suite est bien définie, étudier sa monotonie et sa convergence.` },
+    { id: "ch9-ex1", number: "1", statement: r12`Etudier la limite de la suite $(u_n)$ dans les cas suivants :
+
+1. $\forall n \geq 2, u_n = \dfrac{n+1}{\sqrt{n^3 - 2n + 1}}$
+
+2. $\forall n \in \mathbb{N}, u_n = \dfrac{a^n - b^n}{a^n + b^n}$, où $0 < a < b$
+
+3. $\forall n \in \mathbb{N}, u_n = n\left(2 + \cos\left(\dfrac{n\pi}{12}\right)\right)$
+
+4. $\forall n \geq 1, u_n = \dfrac{n^2(\ln(n+1) - \ln(n))}{\sqrt{n^2 + 1}}$` },
+    { id: "ch9-ex2", number: "2", statement: r12`Suite harmonique
+
+Soit la suite $(H_n)_{n\in\mathbb{N}^*}$ de terme général $H_n = \displaystyle\sum_{k=1}^{n} \frac{1}{k}$. La suite $(H_n)_{n\in\mathbb{N}^*}$ est appelée la suite harmonique.
+
+1. Montrer que $(H_n)$ est croissante.
+
+2. On veut maintenant montrer que $(H_n)$ diverge vers $+\infty$ par deux méthodes :
+
+(a) Montrer que pour tout $p \in \mathbb{N}^*$ on a $H_{2p} - H_p \geqslant \frac{1}{2}$. En déduire le résultat en utilisant le 1).
+
+(b) i. Soit $k \in \mathbb{N}^*$. Montrez que $\displaystyle\int_k^{k+1} \frac{1}{t}\,dt \leqslant \frac{1}{k}$.
+
+ii. En déduire que pour tout $n \in \mathbb{N}^*$ on a $\ln(n+1) = \displaystyle\int_1^{n+1} \frac{1}{t}\,dt \leqslant H_n$.
+
+iii. En déduire le résultat.
+
+3. On pose : $\forall n \in \mathbb{N}^*, v_n = \displaystyle\sum_{k=1}^{n} \frac{1}{k} - \ln(n)$.
+
+(a) Montrer que pour tout $n \in \mathbb{N}^*$ on a $\ln\left(\dfrac{n+1}{n}\right) \geqslant \dfrac{1}{n+1}$ .
+
+(b) Montrer que $v$ est décroissante et minorée. En déduire que $(v_n)$ converge.
+
+La limite de $(v_n)$ est appelée la constante d'Euler (souvent notée $\gamma$).` },
+    { id: "ch9-ex3", number: "3", statement: r12`Suite de Césaro et application à l'étude d'une suite récurrente
+
+1. Soit $(v_n)_{n\geq 1}$ une suite réelle. Pour $n \geq 1$, on pose : $w_n = \dfrac{v_1 + v_2 + \cdots + v_n}{n}$.
+Montrer que si la suite $(v_n)$ converge vers un réel $\alpha$, alors la suite $(w_n)$ converge vers $\alpha$.
+La suite $(w_n)$ s'appelle la suite de Césaro associée à $(v_n)$.
+(Indication : on pourra revenir à la définition de la limite telle que vue dans le cours).
+
+2. On considère la suite $(u_n)$ définie par : $\begin{cases} u_0 \in \left]0; \dfrac{\sqrt{2}}{2}\right[ \\ \forall n \in \mathbb{N}, u_{n+1} = u_n - 2u_n^3 \end{cases}$
+
+(a) Montrer que $\left]0; \dfrac{\sqrt{2}}{2}\right[$ est un intervalle stable par la fonction $f$ définie par : $f(x) = x - 2x^3$.
+
+(b) Montrer que : $\forall n \in \mathbb{N}, 0 < u_{n+1} < u_n < \dfrac{\sqrt{2}}{2}$. En déduire que la suite $(u_n)$ est convergente et déterminer sa limite.
+
+(c) Pour $n \geq 1$, on pose : $v_n = \dfrac{1}{u_n^2} - \dfrac{1}{u_{n-1}^2}$. Montrer que $(v_n)$ est convergente et déterminer sa limite.
+
+(d) A l'aide de la suite de Césaro associée à $(v_n)$, montrer que : $u_n \underset{n\to+\infty}{\sim} \dfrac{1}{2\sqrt{n}}$.` },
+    { id: "ch9-ex4", number: "4", statement: r12`Suite implicite
+
+Soit $f$ la fonction définie sur $]0; +\infty[$ par : $f(x) = x + \ln x$.
+
+1. Montrer que $f$ est une bijection strictement croissante de $]0; +\infty[$ sur $\mathbb{R}$.
+
+2. Pour tout $n \in \mathbb{N}^*$, on note $x_n$ l'unique solution de l'équation : $x + \ln x = n$.
+Calculer $x_1$. Etudier la monotonie et la convergence de la suite $(x_n)$.
+
+3. (a) Pour tout $n \in \mathbb{N}^*$, comparer $f(n)$ et $n$. En déduire que : $x_n \leq n$.
+
+(b) En déduire que : $\forall n \in \mathbb{N}^*, n - \ln n \leq x_n$.
+
+(c) Donner un équivalent de $x_n$ lorsque $n$ est au voisinage de $+\infty$.` },
+    { id: "ch9-ex5", number: "5", statement: r12`On définit la suite $(u_n)$ par : $\begin{cases} u_0 = \dfrac{3}{2} \\ \forall n \in \mathbb{N}, u_{n+1} = \dfrac{1}{2}\left(u_n + \dfrac{2}{u_n}\right) \end{cases}$
+
+1. Montrer que : $\forall n \in \mathbb{N}, u_n \in \left[\sqrt{2}; +\infty\right[$.
+
+2. Montrer que $(u_n)$ est décroissante.
+
+3. En déduire que $(u_n)$ est convergente et déterminer sa limite.` },
+    { id: "ch9-ex6", number: "6", statement: r12`On définit la suite $(u_n)$ par : $u_0 = 0$ et $\forall n \in \mathbb{N}, u_{n+1} = \sqrt{12 - u_n}$.
+
+1. Etudier la fonction : $x \mapsto \sqrt{12 - x}$ (domaine de définition, variations, points fixes, graphe).
+
+2. Montrer que la suite $(u_n)$ est bien définie.
+
+3. (a) Etudier la monotonie des suites $(u_{2n})$ et $(u_{2n+1})$.
+
+(b) On admet que : $\forall n \geq 1, |u_{2n+1} - u_{2n}| \leq \dfrac{1}{4\sqrt{2}}|u_{2n} - u_{2n-1}|$ (ce résultat pourra être démontré ultérieurement avec l'inégalité des accroissements finis). En déduire que les suites $(u_{2n})$ et $(u_{2n+1})$ sont adjacentes.
+
+4. La suite $(u_n)$ est-elle convergente ? Si oui, quelle est sa limite ?` },
+    { id: "ch9-ex7", number: "7", statement: r12`On dit d'une suite de réels $(u_n)_{n\in\mathbb{N}}$ qu'elle est de Cauchy si :
+$$\forall \varepsilon > 0,\ \exists N \in \mathbb{N},\ \forall (p, q) \in \mathbb{N}^2,\ (p \geq N \text{ et } q \geq N) \Rightarrow |u_p - u_q| \leq \varepsilon.$$
+
+1. Montrer qu'une suite de réels convergente est de Cauchy.
+
+2. On veut démontrer que la réciproque du résultat précédent est vraie.
+
+(a) Montrer que toute suite de Cauchy est bornée.
+
+(b) En déduire que toute suite de Cauchy converge.
+
+Du fait de ce résultat, on dit que $\mathbb{R}$ – ou plutôt $\mathbb{R}$ muni de la valeur absolue – est complet.
+
+3. Soit $(u_n)$ une suite réelle telle que : $\forall p \in \mathbb{N},\ u_{n+p} - u_n \underset{n\to+\infty}{\longrightarrow} 0$.
+La suite $(u_n)$ est-elle de Cauchy ?` },
+    { id: "ch9-ex8", number: "8", statement: r12`Dans chacun des cas suivants, exprimer $u_n$ en fonction de $n$.
+
+1. $u_1 = 1$, $u_2 = 0$, et $\forall n \geq 1, u_{n+2} = u_{n+1} - \dfrac{1}{4}u_n$
+
+2. $u_0 = 1$, $u_1 = 0$, et $\forall n \in \mathbb{N}, u_{n+2} - 2\sqrt{2}u_{n+1} + 4u_n = 0$` },
+    { id: "ch9-ex9", number: "9", statement: r12`On considère les suites $(x_n)$ et $(y_n)$ définies par :
+$$x_0 = 2, y_0 = -1 \text{ et : } \forall n \in \mathbb{N}, \begin{cases} x_{n+1} = -2x_n + y_n \\ y_{n+1} = 2x_n - 3y_n \end{cases}$$
+
+1. Déterminer deux réels $a$ et $b$ tels que : $\forall n \in \mathbb{N}, x_{n+2} = ax_{n+1} + bx_n$.
+
+2. En déduire une expression de $x_n$, puis de $y_n$ en fonction de $n$.` },
+    { id: "ch9-ex10", number: "10", statement: r12`Soient $(x_n),(y_n) \in \mathbb{R}^{\mathbb{N}}$ vérifiant : $x_{n+1} = \frac{1}{2}(x_n - y_n)$ et $y_{n+1} = \frac{1}{2}(x_n + y_n)$ pour tout $n \in \mathbb{N}$. Étudier la convergence de la suite $(x_n + iy_n)$, puis celles de $(x_n)$ et de $(y_n)$.` }
+  ]
+};
+var chapitre_9_default = chapter9;
+
 // ../src/content/math/dm.ts
 var devoirs = [
   {
@@ -33054,8 +33242,93 @@ var devoirs = [
   }
 ];
 
+// ../src/content/math/bonus.ts
+var DERIV_INTRO = "Pour chacune des fonctions suivantes, d\xE9terminer sur quel domaine elle est d\xE9rivable et calculer sa d\xE9riv\xE9e :";
+var derivFns = [
+  ["a", "a(x) = \\dfrac{\\cos x}{x^2 - 4}", "$\\mathbb{R} \\setminus \\{-2; 2\\}$, $a'(x) = \\dfrac{-(x^2 - 4)\\sin x - 2x\\cos x}{(x^2 - 4)^2}$"],
+  ["b", "b(x) = (e^x + x^2)\\ln(x)", "$\\mathbb{R}_+^*$, $b'(x) = (e^x + 2x)\\ln(x) + \\dfrac{e^x + x^2}{x}$"],
+  ["c", "c(x) = \\dfrac{5x^4}{3 + \\sqrt{x}}", "$\\mathbb{R}_+^*$, $c'(x) = \\dfrac{5x^3(24 + 7\\sqrt{x})}{2(3 + \\sqrt{x})^2}$"],
+  ["d", "d(x) = \\cos(3x - 5)", "$\\mathbb{R}$, $d'(x) = -3\\sin(3x - 5)$"],
+  ["e", "e(x) = \\ln(-x)", "$\\mathbb{R}_-^*$, $e'(x) = \\dfrac{1}{x}$"],
+  ["f", "f(x) = e^{3x^2 + \\sin x}", "$\\mathbb{R}$, $f'(x) = (6x + \\cos x)e^{3x^2 + \\sin x}$"],
+  ["g", "g(x) = \\ln\\left(\\dfrac{2x}{x - 1}\\right)", "$]-\\infty, 0[\\cup]1, +\\infty[$, $g'(x) = \\dfrac{-1}{x(x - 1)}$"],
+  ["h", "h(x) = e^{x - 7}", "$\\mathbb{R}$, $h'(x) = e^{x - 7}$"],
+  ["i", "i(x) = \\sqrt{x^2 - 6x + 8}", "$]-\\infty, 2[\\cup]4, +\\infty[$, $i'(x) = \\dfrac{x - 3}{\\sqrt{x^2 - 6x + 8}}$"],
+  ["j", "j(x) = (\\tan x)^4", "$\\mathcal{D}_{\\tan}$, $j'(x) = 4(1 + \\tan^2 x)\\tan^3 x$"],
+  ["k", "k(x) = \\sqrt{\\dfrac{1 - x}{1 + x}}", "$]-1; 1[$, $k'(x) = \\dfrac{-1}{(1 + x)\\sqrt{1 - x^2}}$"],
+  ["l", "\\ell(x) = \\tan(5x + 2)", "$\\mathbb{R} \\setminus \\left\\{\\dfrac{\\pi}{10} - \\dfrac{2}{5} + \\dfrac{k\\pi}{5},\\ k \\in \\mathbb{Z}\\right\\}$, $\\ell'(x) = \\dfrac{5}{\\cos^2(5x + 2)}$"],
+  ["m", "m(x) = x\\ln x - x", "$\\mathbb{R}_+^*$, $m'(x) = \\ln x$"],
+  ["n", "n(x) = \\ln\\left((1 + x^2)e^x\\right)", "$\\mathbb{R}$, $n'(x) = \\dfrac{(1 + x)^2}{1 + x^2}$"],
+  ["o", "o(x) = \\ln\\left(\\sqrt{x^2 + 3} - x\\right)", "$\\mathbb{R}$, $o'(x) = -\\dfrac{1}{\\sqrt{x^2 + 3}}$"],
+  ["p", "p(x) = 4^x", "$\\mathbb{R}$, $p'(x) = 2\\ln(2)\\,4^x$"],
+  ["q", "q(x) = (2x + 1)^{x + 3}", "$\\left]-\\dfrac{1}{2}; +\\infty\\right[$, $q'(x) = \\big((2x + 1)\\ln(2x + 1) + (2x + 6)\\big)(2x + 1)^{x + 2}$"],
+  ["r", "r(x) = (\\ln x)^{\\ln x}", "$]1; +\\infty[$, $r'(x) = \\dfrac{\\ln(\\ln x) + 1}{x}(\\ln x)^{\\ln x}$"],
+  ["s", "s(x) = \\operatorname{th} x - \\dfrac{1}{3}\\operatorname{th}^3 x", "$\\mathbb{R}$, $s'(x) = (1 - \\operatorname{th}^2 x)^2$"],
+  ["t", "t(x) = \\ln(\\operatorname{ch} x)", "$\\mathbb{R}$, $t'(x) = \\operatorname{th} x$"],
+  ["u", "u(x) = \\arccos\\left(\\sin(x)\\right)", "$\\mathbb{R} \\setminus \\left\\{-\\dfrac{\\pi}{2} + 2k\\pi; \\dfrac{\\pi}{2} + 2k\\pi\\right\\}$, $u'(x) = -\\dfrac{\\cos(x)}{|\\cos(x)|}$ (\xE0 simplifier en prenant garde)"],
+  ["v", "v(x) = \\arccos\\left(\\dfrac{1 - x^2}{1 + x^2}\\right)", "$\\mathbb{R}^*$, $v'(x) = \\dfrac{2x}{|x|(1 + x^2)}$ (\xE0 simplifier en prenant garde)"],
+  ["w", "w(x) = \\arcsin\\left(\\operatorname{th}(x)\\right)", "$\\mathbb{R}$, $w'(x) = \\sqrt{1 - \\operatorname{th}^2(x)}$"],
+  ["y", "y(x) = \\arctan\\sqrt{x}", "$\\mathbb{R}_+^*$, $y'(x) = \\dfrac{1}{2\\sqrt{x}(1 + x)}$"],
+  ["z", "z(x) = \\arctan\\left(\\dfrac{3x + 4}{2x - 6}\\right)", "$\\mathbb{R} \\setminus \\{3\\}$, $z'(x) = \\dfrac{-2}{x^2 + 4}$"]
+];
+var bonusSheets = [
+  {
+    id: "derivees",
+    title: "Entra\xEEnement : Calculs de d\xE9riv\xE9es",
+    description: "25 fonctions : domaine de d\xE9rivabilit\xE9 et d\xE9riv\xE9e, avec les r\xE9ponses.",
+    chapter: 8,
+    docId: "16_byluyRsyGAW-AJYzgx3YqWuTNB8ckh",
+    questions: derivFns.map(([k, fn]) => ({
+      id: `bonus-derivees-${k}`,
+      number: k === "l" ? "\u2113" : k,
+      source: "bonus",
+      statement: `${DERIV_INTRO}
+
+$$${fn}$$`
+    })),
+    answers: Object.fromEntries(derivFns.map(([k, , ans]) => [`bonus-derivees-${k}`, ans]))
+  }
+];
+var bonusAnswers = Object.assign({}, ...bonusSheets.map((s) => s.answers));
+
 // ../src/content/math/kholles.ts
 var kholleWeeks = [
+  {
+    id: "2026-11-16",
+    start: "2026-11-16",
+    label: "Semaine du 16/11/2026",
+    docId: "1ROMbhV8qxxRgPiFVScbvWH8G5-KO96pR",
+    preamble: "En pr\xE9ambule de la question de cours, les \xE9tudiants seront interrog\xE9s sur une formule de trigonom\xE9trie (cf. formulaire ou ch. 6).",
+    scope: [
+      { chapter: 8, text: "Le chapitre 8 : Fonctions d'une variable r\xE9elle, en entier." },
+      { chapter: 9, text: "Le chapitre 9 : Suites num\xE9riques, jusqu'au paragraphe II.C inclus (nous n'avons pas encore fait d'exercices sur les suites.)" }
+    ],
+    warning: "Attention, l'\xE9tude des suites usuelles n'a pas encore \xE9t\xE9 abord\xE9e.",
+    incontournables: [
+      { chapter: 8, text: "Th\xE9or\xE8me de la bijection, th\xE9or\xE8me des valeurs interm\xE9diaires (\xE9nonc\xE9s seulement)" },
+      { chapter: 8, text: "D\xE9riv\xE9e d'une fonction compos\xE9e (\xE9nonc\xE9 seul), d'une fonction r\xE9ciproque (avec d\xE9mo)" },
+      { chapter: 8, text: "In\xE9galit\xE9s de convexit\xE9 pour ln et exp (avec d\xE9mo)" },
+      { chapter: 8, text: "Fonctions usuelles : d\xE9finition, propri\xE9t\xE9s et graphe (fonction carr\xE9, cube, inverse, ln, exp, racine carr\xE9e, racine cubique, valeur absolue, cos, sin, tan, arcos, arcsin, arctan, ch, sh, th)" },
+      { chapter: 9, text: "D\xE9finition de $(u_n)$ converge vers $\\ell \\in \\mathbb{R}$, de $(u_n)$ diverge vers $+\\infty$, vers $-\\infty$." }
+    ]
+  },
+  {
+    id: "2026-11-09",
+    start: "2026-11-09",
+    label: "Semaine du 09/11/2026",
+    docId: "1PM7WtcX-_5kMAuwuUpO6TwmAgy0KY-af",
+    preamble: "En pr\xE9ambule de la question de cours, les \xE9tudiants seront interrog\xE9s sur une formule de trigonom\xE9trie (cf. formulaire ou ch. 6).",
+    scope: [
+      { chapter: 7, text: "Le chapitre 7 : Les structures alg\xE9briques usuelles, en entier." },
+      { chapter: 8, text: "Le chapitre 8 : Fonctions d'une variable r\xE9elle, jusqu'au paragraphe III.B inclus" }
+    ],
+    incontournables: [
+      { chapter: 7, text: "D\xE9finition d'un corps, exemples, caract\xE9risation des sous-corps" },
+      { chapter: 8, text: "Savoir d\xE9duire le graphe d'une fonction du type $x \\mapsto f(x+a)$, $x \\mapsto f(x)+a$ et $x \\mapsto f(ax)$ en fonction du graphe de $f$ ($a \\in \\mathbb{R}^*$)" },
+      { chapter: 8, text: "Fonctions paires, impaires, p\xE9riodiques" },
+      { chapter: 8, text: "Fonctions major\xE9es, minor\xE9es, born\xE9es, maximum, minimum, borne sup, borne inf" }
+    ]
+  },
   {
     id: "2026-11-02",
     start: "2026-11-02",
@@ -33168,7 +33441,8 @@ var coursDocs = {
   5: { id: "1dDis1Em5s3ih-ipeBxOfl7Ow1ItzGlCw", title: "Cours \u2014 Chapitre 5" },
   6: { id: "17cYVX4t_dA3vqv7ygKAdeOoWvuIf853p", title: "Cours \u2014 Chapitre 6" },
   7: { id: "11xZuYc5LBfo7I-vSlWcofNJ46y_2kn7o", title: "Cours \u2014 Chapitre 7" },
-  8: { id: "1EHRO5T7o0T42SB_jSQ9ehxt9ItiLZLfQ", title: "Cours \u2014 Chapitre 8" }
+  8: { id: "1EHRO5T7o0T42SB_jSQ9ehxt9ItiLZLfQ", title: "Cours \u2014 Chapitre 8" },
+  9: { id: "110ZNh5T_1CNuIy6Z21W0_MZEOy39ZECI", title: "Cours \u2014 Chapitre 9" }
 };
 var tdDocs = {
   1: { id: "1i1V6-4aVL9vMqfPeYV9WZPs3awL1V_Aj", title: "TD \u2014 Chapitre 1" },
@@ -33178,15 +33452,539 @@ var tdDocs = {
   5: { id: "1C5ejYs6Xt01uh_R9cBO06_GCfzGK0gbi", title: "TD \u2014 Chapitre 5" },
   6: { id: "1075iMd66V-tRwIqRJLqro6USEl7S3cuP", title: "TD \u2014 Chapitre 6" },
   7: { id: "1LGLiPlipyTF0O9FsT8JayICEeZGVLdUj", title: "TD \u2014 Chapitre 7" },
-  8: { id: "1X9oqO7tB-j4y-AplMi1AjdhmlXzSFhPo", title: "TD \u2014 Chapitre 8" }
+  8: { id: "1X9oqO7tB-j4y-AplMi1AjdhmlXzSFhPo", title: "TD \u2014 Chapitre 8" },
+  9: { id: "1CZ8JCIIgQtMecN8WRcV7TCzAYE7OGmuD", title: "TD \u2014 Chapitre 9" }
 };
 var resourceDocs = [
   { id: "1gk1hylA8nFzbPXOQZ3jKWhEnf34miURm", title: "Formulaire de trigonom\xE9trie", description: "Toutes les formules de trigo \xE0 conna\xEEtre." },
   { id: "1tnf4gVEXZsFrjARU-IV2IwKuORh4KKh3", title: "M\xE9thodologie : s'exprimer, r\xE9diger, pr\xE9senter", description: "Bien r\xE9diger une copie et pr\xE9senter \xE0 l'oral." }
 ];
 
+// ../src/content/math/course-examples/chapitre-1.ts
+var r13 = String.raw;
+var chapitre1Exemples = [
+  { id: "ch1-exemple-1", number: "2.3", source: "exemple", statement: r13`$\mathcal{P}$ : « $2 \geq 0$ » est une proposition vraie et $\mathcal{Q}$ : « $7 \times 2 = 10$ » est une proposition fausse .` },
+  { id: "ch1-exemple-2", number: "2.4", source: "exemple", statement: r13`• $\forall x \in \mathbb{R},\ x^2 \geq 0$ est une proposition complète. Elle est vraie.
+
+• $\forall x \in \mathbb{R},\ x > 1$ est une proposition complète. Elle est fausse.` },
+  { id: "ch1-exemple-3", number: "2.6", source: "exemple", statement: r13`La proposition « $\forall x \in \mathbb{R},\exists n \in \mathbb{Z},\ n \leq x < n + 1$ » est vraie (tout nombre réel peut-être compris entre deux entiers) tandis que « $\exists n \in \mathbb{Z},\forall x \in \mathbb{R},\ n \leq x < n + 1$ » est fausse. On remarque donc que chaque nombre réel $x$ est compris entre deux entiers consécutifs : $n$ et $n + 1$. Ce nombre $n$ est appelé partie entière de $x$ et noté $\lfloor x\rfloor$ ou parfois $E(x)$.` },
+  { id: "ch1-exemple-4", number: "3.2", source: "exemple", statement: r13`Si $\mathcal{P}$ est la proposition « $2 \leq 3$ ». Alors Non $\mathcal{P}$ est la proposition $2 > 3$. La négation de "je mesure 1,70m ou plus" est "je mesure strictement moins de 1,70 m".` },
+  { id: "ch1-exemple-5", number: "3.6", source: "exemple", statement: r13`On lance un dé à 6 faces, et considère les propositions $\mathcal{P}$ : "le résultat est pair", et $\mathcal{Q}$ : "le résultat est supérieur ou égal à 3". Alors $(\mathcal{P}\text{ ou }\mathcal{Q})$ est la proposition "le résultat est 2,3,4,5 ou 6", et la proposition $(\mathcal{P}\text{ et }\mathcal{Q})$ est "le résultat est 4 ou 6".` },
+  { id: "ch1-exemple-6", number: "3.10", source: "exemple", statement: r13`$\forall x \in [0,+\infty[,\ x^2 \geq 0 \Leftrightarrow x \geq 0$ est vraie.` },
+  { id: "ch1-exemple-7", number: "4.4", source: "exemple", statement: r13`La contraposée de la proposition "s’il pleut, alors le sol est mouillé" est "si le sol n’est pas mouillé, alors il ne pleut pas".` },
+  { id: "ch1-exemple-8", number: "4.6", source: "exemple", statement: r13`L’exemple le plus célèbre de raisonnement par l’absurde est celui de la démonstration de l’infinité de l’ensemble des nombres premiers.
+
+Notons $\mathcal{P}$ l’ensemble des nombres premiers. On sait que $\mathcal{P}$ est non vide vu qu’il contient 2, 3, 5, 7, etc.
+
+Raisonnons par l’absurde en supposant qu’il n’est pas infini, ce qui implique qu’il est fini.
+
+Il possède alors un certain nombre $n$ d’éléments que l’on note $p_1,p_2,...,p_n$. Les nombres $p_1,p_2,...,p_n$ sont donc des nombres premiers et, avec notre hypothèse, sont les seuls.
+
+Notons alors $p = p_1p_2...p_n$ et considérons $q = p + 1$. Comme tout nombre premier est supérieur strictement à 1, le reste de la division euclidienne de $q$ par n’importe quel $p_i$ est 1 (car on écrit $q = p_i \times p_1p_2...p_{i-1}p_{i+1}...p_n + 1$ avec $0 \leq 1 < p_i$), donc aucun des $p_i$ ne divise $q$. Or, d’après le lemme d’Euclide, $q \geq 2$ est divisible par un nombre premier. Contradiction !
+
+Conclusion : l’ensemble $\mathcal{P}$ des nombres premiers est infini.` },
+  { id: "ch1-exemple-9", number: "4.11", source: "exemple", statement: r13`Montrer par récurrence que pour tout $n \in \mathbb{N}$, $2^n \geq n + 1$
+
+Initialisation : Pour $n = 0$ : $2^0 = 1$ et $0 + 1 = 1$. Ainsi on a bien : $2^0 \geq 0 + 1$, donc $P(0)$ est vraie.
+
+Hérédité : Supposons la propriété vraie à un rang $n$ quelconque, c’est notre hypothèse de récurrence. Montrons alors que $P(n + 1)$ est vraie (on cherche donc à montrer que $2^{n+1} \geq n + 2$).
+
+Alors : $2^{n+1} = 2^n \times 2 \geq (n + 1) \times 2$, en utilisant l’hypothèse de récurrence.
+
+Or $2 \times (n + 1) = 2n + 2 \geq n + 2$ car $n \in \mathbb{N}$.
+
+On a alors : $2^{n+1} \geq n + 2$, la propriété est donc héréditaire.
+
+Conclusion : $\forall n \in \mathbb{N}, 2^n \geq n + 1$.` },
+  { id: "ch1-exemple-10", number: "4.12", source: "exemple", statement: r13`On considère la suite $(u_n)_{n\in\mathbb{N}}$ définie par : $$\begin{cases}u_0 = u_1 = -1\\ \forall n \in \mathbb{N}, u_{n+2} = 5u_{n+1} - 6u_n\end{cases}$$
+
+Montrer que : $\forall n \in \mathbb{N}, u_n = 3^n - 2^{n+1}$` },
+  { id: "ch1-exemple-11", number: "4.13", source: "exemple", statement: r13`On considère la suite $(u_n)_{n\in\mathbb{N}}$ définie par : $$\begin{cases}u_0 = 1\\ \forall n \in \mathbb{N}, u_{n+1} = u_0 + u_1 + \cdots + u_n\end{cases}$$
+
+Montrer que : $\forall n \in \mathbb{N}, u_n \leq 2^n$` }
+];
+
+// ../src/content/math/course-examples/chapitre-2.ts
+var r14 = String.raw;
+var chapitre2Exemples = [
+  { id: "ch2-exemple-1", number: "1.2", source: "exemple", statement: r14`1. Ensembles concrets : ensemble des lettres de l’alphabet $\mathcal{A} = \{a,b,c,\ldots\}$ : on a $y \in \mathcal{A}$ et $3 \notin \mathcal{A}$ ; ensemble des villes de la Côte d’Azur, ensemble des atomes dans l’univers...
+
+2. Ensembles de nombres : $\mathbb{N}$, $\mathbb{R}_+$, $\{-5;3;4;7\}$, $]-3,4]$, $\mathbb{C}^*$, $\left\{\dfrac{\pi}{2}+k\pi,\ k\in\mathbb{Z}\right\}$, $\{2\}$ etc.
+
+3. Ensembles de points en géométrie (le plan, l’espace, une droite, une hyperbole,...)
+
+4. Ensembles de fonctions : ensemble des fonctions définies sur $\mathbb{R}$, ensemble des fonctions paires, ensemble des solutions de l’équation différentielle $y' + xy = 0$, etc.` },
+  { id: "ch2-exemple-2", number: "1.5", source: "exemple", statement: r14`Les ensembles $\mathbb{N}$, $\mathbb{N}^*$, $\mathbb{Z}$, et $\mathbb{Q}$ sont dénombrables, mais $\mathbb{R}$ ne l’est pas.` },
+  { id: "ch2-exemple-3", number: "3.2", source: "exemple", statement: r14`Soit $E = \{1,2\}$. Alors $\mathcal{P}(E) = \{\varnothing,\{1\},\{2\},\{1,2\}\}$.` },
+  { id: "ch2-exemple-4", number: "4.2", source: "exemple", statement: r14`Si $A = \{0,1,2\}$ et $B = \{1,2,3\}$, quel est l’ensemble $A \cup B$ ?` },
+  { id: "ch2-exemple-5", number: "4.6", source: "exemple", statement: r14`Reprenons les ensembles de l’exemple 4.2. Quel est l’ensemble $A \cap B$ ?` },
+  { id: "ch2-exemple-6", number: "4.12", source: "exemple", statement: r14`▹ $\mathbb{N}^* = \mathbb{N}\setminus\{0\}$
+
+▹ Si $A = \{1,2,3,6\}$ et $B = \{2,6,7\}$ , quel est l’ensemble $A\setminus B$ ?
+
+▹ Si $E$ est un ensemble alors quel est l’ensemble $E\setminus E$ ?` },
+  { id: "ch2-exemple-7", number: "4.18", source: "exemple", statement: r14`Notons $E$ l’ensemble des candidats au concours Mines-Ponts en filière MP, $I$ le sous-ensemble de $E$ des candidats ayant choisi l’option informatique et $S$ le sous-ensemble de $E$ des candidats ayant choisi l’option SI. $(I,S)$ forme une partition de $E$.` },
+  { id: "ch2-exemple-8", number: "4.21", source: "exemple", statement: r14`• Si $E = \{0,2\}$ et $F = \{0,1,2,3\}$, quel est l’ensemble $E \times F$ ?
+
+• $\mathbb{N}\times\mathbb{N} = \coprod_{n\in\mathbb{N}}\left\{(i,j)\in\mathbb{N}^2,i+j=n\right\}$.` },
+  { id: "ch2-exemple-9", number: "4.24", source: "exemple", statement: r14`• L’ensemble $\mathbb{R}^3$ est l’ensemble des triplets de réels (ensemble utilisé pour la géométrie dans l’espace).
+
+• L’ensemble $\mathbb{R}^n$, avec $n \in \mathbb{N}^*$ est l’ensemble des $n$-uplets de réels.` },
+  { id: "ch2-exemple-10", number: "5.2", source: "exemple", statement: r14`Voici trois exemples d’applications :
+
+• $f : \begin{array}{ccc}\mathbb{R}_+^* & \longrightarrow & \mathbb{R}\\ x & \longmapsto & \ln(x)\end{array}$
+
+• L’application de $\{0,1,2\}$ dans $\{0,1,2\}$ qui à 0 associe 1, à 1 associe 2, et à 2 associe 0.
+
+• Soit $\mathcal{V} = \{\text{Barcelone, Reykjavik, Le Havre, Madrid, Paris, Strasbourg}\}$ et $\mathcal{P} = \{\text{Allemagne, Espagne, France, Islande}\}$. On peut considérer l’application $f : \mathcal{V} \to \mathcal{P}$ qui à une ville associe son pays.` },
+  { id: "ch2-exemple-11", number: "5.9", source: "exemple", statement: r14`Soit $f : \begin{array}{ccc}\mathbb{R}_+ & \longrightarrow & \mathbb{R}\\ x & \longmapsto & \sqrt{x+1}\end{array}$
+
+L’ensemble de départ est $\mathbb{R}_+$, l’ensemble d’arrivée est $\mathbb{R}$.
+
+• Soit $A = [0;3]$. Quel est l’image de $A$ par $f$ ?
+
+• Soit $B = [2;5]$. Quelle est l’image réciproque de $B$ par $f$ ?` },
+  { id: "ch2-exemple-12", number: "5.14", source: "exemple", statement: r14`De quel ensemble la fonction $1 - \mathbb{1}_A$ est-elle la fonction indicatrice ?` },
+  { id: "ch2-exemple-13", number: "5.17", source: "exemple", statement: r14`On peut considérer la famille de nombres réels $(a_{m,n})_{m\in\mathbb{N},n\in\mathbb{N}}$ définie par :
+
+$$a_{m,n} = \frac{1}{m+n+1}$$
+
+On a par exemple $a_{4,2} = \dfrac{1}{7}$.` },
+  { id: "ch2-exemple-14", number: "6.2", source: "exemple", statement: r14`Soit $f$ l’application définie sur $\mathbb{R}$ par :
+
+$$\forall x \in \mathbb{R}^*,\ f(x) = \ln(|x|)\text{ et }f(0) = 0$$
+
+Alors si on note $g$ la restriction de $f$ à $\mathbb{R}^{-*}$, on a :
+
+$$\forall x \in \mathbb{R}^{-*},\ g(x) = \ln(-x)$$` },
+  { id: "ch2-exemple-15", number: "6.4", source: "exemple", statement: r14`La fonction $\ln$ n’est définie que sur $\mathbb{R}^{+*}$. On peut la prolonger sur tout $\mathbb{R}^+$ en posant :
+
+$$f : \begin{array}{ccc}\mathbb{R}^+ & \longrightarrow & \mathbb{R}\\ x & \longmapsto & \begin{cases}\ln(x)&\text{si }x>0\\0&\text{si }x=0\end{cases}\end{array}$$` },
+  { id: "ch2-exemple-16", number: "6.7", source: "exemple", statement: r14`On reprend l’exemple ci-dessus d’une application $f : \mathcal{V}\to\mathcal{P}$ qui à une ville associe son pays, avec $\mathcal{V} = \{\text{Barcelone, Reykjavik, Le Havre, Madrid, Paris, Strasbourg}\}$ et $\mathcal{P} = \{\text{Allemagne, Espagne, France, Islande}\}$. Soit $\mathcal{C} = \{\text{Berlin, Madrid, Paris, Reykjavik}\}$ et $g : \mathcal{P}\to\mathcal{C}$ l’application qui à un pays associe sa capitale.
+
+Alors l’application $g\circ f$ associe à une ville la capitale dont elle dépend.` },
+  { id: "ch2-exemple-17", number: "6.8", source: "exemple", statement: r14`Soit $f : x \mapsto e^x$ et $g : x \mapsto x^2$. A t-on l’égalité $f\circ g = g\circ f$ ?` },
+  { id: "ch2-exemple-18", number: "7.2", source: "exemple", statement: r14`La première application est injective mais pas la deuxième :
+
+[Figure : deux diagrammes d’applications de A vers B ; à gauche, trois éléments ont des images distinctes parmi quatre éléments ; à droite, deux des quatre éléments ont la même image parmi trois éléments.]` },
+  { id: "ch2-exemple-19", number: "7.9", source: "exemple", statement: r14`La deuxième application est surjective mais pas la première :
+
+[Figure : deux diagrammes d’applications de A vers B ; à gauche, trois éléments ont des images distinctes et un des quatre éléments de B n’a pas d’antécédent ; à droite, les trois éléments de B ont un antécédent parmi les quatre éléments de A.]` },
+  { id: "ch2-exemple-20", number: "7.20", source: "exemple", statement: r14`Soit $f : \mathbb{N}\to\mathbb{N}$, définie par : $f(n) = \begin{cases}n+1&\text{si }n\text{ est pair}\\n-1&\text{si }n\text{ est impair}\end{cases}$
+
+Montrer que $f$ est bijective.` },
+  { id: "ch2-exemple-21", number: "8.3", source: "exemple", statement: r14`1. L’égalité est une relation binaire sur tout ensemble $E$.
+
+2. $\leq$ est une relation binaire sur $\mathbb{R}$.
+
+3. Dans $\mathbb{N}$, on connait la relation binaire de divisibilité, notée $\mid$ et définie, pour tout $(a,b)\in\mathbb{N}^2$ par : $a\mid b$ ($a$ divise $b$) lorsqu’il existe $q\in\mathbb{N}$ tel que $b=aq$.
+
+4. ”Est parallèle à” est une relation binaire sur $\mathcal{D}$, ensemble des droites d’un plan donné.
+
+5. Soit $E$ un ensemble. L’inclusion est une relation binaire sur $\mathcal{P}(E)$.` },
+  { id: "ch2-exemple-22", number: "8.5", source: "exemple", statement: r14`1. Soit $E$ un ensemble. L’inclusion est une relation binaire sur $\mathcal{P}(E)$. Elle est réflexive, anti-symétrique et transitive mais non symétrique.
+
+2. La relation de divisibilité dans $\mathbb{Z}$ est une relation binaire : elle est réflexive et transitive mais ni symétrique ni antisymétrique (car $-k$ et $k$ se divisent l’un l’autre).` },
+  { id: "ch2-exemple-23", number: "8.7", source: "exemple", statement: r14`1. L’égalité est une relation d’équivalence.
+
+2. Le fait d’avoir le même signe sur $\mathbb{Z}$ est une relation d’équivalence.
+
+3. Sur $\mathbb{R}$, on définit une relation binaire par : $\forall(x,y)\in\mathbb{R}^2,\ x\mathcal{R}y \Leftrightarrow x\equiv y\ [2\pi]$ ; c’est une relation d’équivalence.` },
+  { id: "ch2-exemple-24", number: "8.9", source: "exemple", statement: r14`1. Si $\mathcal{R}$ est l’égalité, les classes d’équivalences sont précisément les singletons.
+
+2. Plaçons nous dans le cas $E = \mathbb{Z}$ et $a\mathcal{R}b \Leftrightarrow a = \pm b$. Les classes d’équivalence sont les paires $\{n,-n\}$, pour $n\in\mathbb{N}^*$, et le singleton $\{0\}$.
+
+3. Plaçons nous dans le cas $E = \mathbb{N}$, fixons un entier naturel $k>0$ et considérons $a\mathcal{R}b \Leftrightarrow a\equiv b\ [k]$, c’est à dire la restriction à $\mathbb{N}$ de la congruence modulo $k$. Les classes d’équivalence sont les ensembles $k\mathbb{N}+r = \{kn+r,\ n\in\mathbb{N}\}$, pour $r\in\{0,1,\ldots,k-1\}$.` },
+  { id: "ch2-exemple-25", number: "8.14", source: "exemple", statement: r14`1. Sur $\mathbb{R}$, $\leq$ est une relation d’ordre.
+
+2. L’inclusion est une relation d’ordre sur $\mathcal{P}(E)$.` },
+  { id: "ch2-exemple-26", number: "8.17", source: "exemple", statement: r14`1. Sur $\mathbb{R}$, $\leq$ est une relation d’ordre totale.
+
+2. Si l’on définit sur $\mathcal{F}(\mathbb{R},\mathbb{R})$ la relation $\leq$ par : $f\leq g \Leftrightarrow \forall x\in\mathbb{R},\ f(x)\leq g(x)$, alors il s’agit d’une relation d’ordre partielle.
+
+3. La relation de divisibilité sur $\mathbb{N}$ est une relation d’ordre partielle car 2 et 3 ne se divisent pas.` },
+  { id: "ch2-exemple-27", number: "8.20", source: "exemple", statement: r14`1. Le sous-ensemble $]-\infty,1[$ de $\mathbb{R}$ admet une infinité de majorants mais aucun plus grand élément. Il n’admet aucun minorant et donc aucun plus petit élément.
+
+2. Comme on le voit dans l’exemple précédent, il existe des parties de $\mathbb{R}$ qui sont majorées mais n’admettent aucun plus grand élément. Néanmoins, pour $]-\infty,1[\subset\mathbb{R}$, 1 est remarquable car c’est le plus petit des majorants. Nous le nommerons bientôt borne supérieure de $]-\infty,1[$.
+
+3. Dans $\mathbb{N}$ muni de la relation d’ordre "divisibilité", l’ensemble $\{2,6,10\}$ a comme plus petit élément 2 et comme majorant 30, mais ne possède pas de plus grand élément.
+
+4. Dans $\mathcal{P}(E)$, muni de l’inclusion. Soit $\mathcal{A}$ un sous-ensemble de $\mathcal{P}(E)$. Alors $\displaystyle\bigcup_{A\in\mathcal{A}} A$ est un majorant de $\mathcal{A}$ et $\displaystyle\bigcap_{A\in\mathcal{A}} A$ est un minorant de $\mathcal{A}$.` }
+];
+
+// ../src/content/math/course-examples/chapitre-3.ts
+var r15 = String.raw;
+var chapitre3Exemples = [
+  { id: "ch3-exemple-1", number: "1.2", source: "exemple", statement: r15`Le système suivant :
+$$ (S)\begin{cases}3x_1+6x_2=-3 & (L_1)\\-2x_1+x_2=12 & (L_2)\\x_1-4x_2=-5 & (L_3)\end{cases} $$
+est un système d’équations linéaires à 3 équations et 2 inconnues.` },
+  { id: "ch3-exemple-2", number: "1.7", source: "exemple", statement: r15`• Le système d’équations :
+$$\begin{cases}x+2y=1\\2x+4y=3\end{cases}$$
+est un système incompatible.
+
+• Le système d’équations :
+$$\begin{cases}2x-3y=1\\x+2y=4\end{cases}$$
+est un système de 2 équations à 2 inconnues, et n’admet qu’une seule solution : le couple $(2,1)$. C’est donc un système de Cramer.
+
+• Il existe des systèmes admettant une infinité de solutions. Par exemple :
+$$\begin{cases}2x-y=2\\-4x+2y=-4\end{cases}$$
+Les deux équations sont proportionnelles, donc équivalentes. On peut seulement exprimer $y$ en fonction de $x$ (ou le contraire) :
+$$y=2x-2$$
+Et donc l’ensemble solution du système est : $S=\{(x,2x-2),x\in\mathbb{K}\}$.` },
+  { id: "ch3-exemple-3", number: "1.10", source: "exemple", statement: r15`Le système
+$$(S)\begin{cases}x_1+x_2+x_3+x_4=1\\x_3-x_4=3\end{cases}$$
+est un système échelonné.` },
+  { id: "ch3-exemple-4", number: "1.12", source: "exemple", statement: r15`Le système $(S)\begin{cases}x_1+x_2+x_3=1\\-x_2+x_3=-2\\2x_3=4\end{cases}$ est un système triangulaire.` },
+  { id: "ch3-exemple-5", number: "4.3", source: "exemple", statement: r15`On considère le système $(S)\begin{cases}2x_2+3x_3=0\\5x_1-3x_2+x_3=6\\3x_1+3x_2+3x_3=-6.\end{cases}$
+
+Effectuer successivement sur ce système les opérations élémentaires suivantes : $L_1\leftrightarrow L_3$, $L_1\leftarrow\frac{1}{3}L_1$, $L_2\leftarrow L_2-5L_1$, et $L_3\leftarrow4L_3+L_2$.` },
+  { id: "ch3-exemple-6", number: "4.10", source: "exemple", statement: r15`Résoudre le système suivant :
+$$(S)\begin{cases}x-3y+4z=8\\-6x+2y+z=5\\5x+y-z=2\\x+y+z=4\end{cases}$$` }
+];
+
+// ../src/content/math/course-examples/chapitre-4.ts
+var r16 = String.raw;
+var chapitre4Exemples = [
+  { id: "ch4-exemple-1", number: "2.3", source: "exemple", statement: r16`Ecrire avec le signe $\sum$ les sommes suivantes :
+
+• $S_1=10^2+11^2+\cdots+99^2+100^2$
+
+• $S_2=1+2+2^2+\cdots+2^{100}$
+
+• $S_3=1+3+5+7+\cdots+25+27$
+
+• $S_4=1-2+3-\cdots-98+99-100$` },
+  { id: "ch4-exemple-2", number: "2.5", source: "exemple", statement: r16`$$\sum_{k=1}^{n}(2k)=\ldots$$
+
+$$\sum_{k=1}^{n}(k^2+k)=\ldots$$
+
+$$\sum_{k=1}^{n}k(k^2-2)=\ldots$$` },
+  { id: "ch4-exemple-3", number: "3.5", source: "exemple", statement: r16`$4!=$` },
+  { id: "ch4-exemple-4", number: "\u2014", source: "exemple", statement: r16`Si on utilise deux indices (ou plus) pour indexer des nombres, il se peut que les bornes d’un indice dépende des autres indices. Exemple :
+$$\sum_{i=1}^{n}\sum_{j=1}^{i}a_{ij}$$
+Dans cet exemple, les $a_{ij}$ forment un triangle :
+$$\begin{bmatrix}a_{11}&&&&\\a_{21}&a_{22}&&&\\&&\cdots&&\\a_{i1}&a_{i2}&\ldots&a_{ii}&\\&&&\ddots&\\a_{n1}&a_{n2}&\ldots&\ldots&a_{nn}\end{bmatrix}$$
+On dit que la somme est triangulaire.
+
+On pourra aussi écrire cette somme double sous la forme :
+$$\sum_{i=1}^{n}\sum_{j=1}^{i}a_{ij}=\sum_{1\leq j\leq i\leq n}a_{ij}$$` }
+];
+
+// ../src/content/math/course-examples/chapitre-5.ts
+var r17 = String.raw;
+var chapitre5Exemples = [
+  { id: "ch5-exemple-1", number: "1.3", source: "exemple", statement: r17`$\frac{2}{3}$ est une fraction irréductible, $\frac{10}{22}$ ne l’est pas.` },
+  { id: "ch5-exemple-2", number: "2.7", source: "exemple", statement: r17`Lequel des réels $X=\sqrt{21}+\sqrt{10}$ et $Y=\sqrt{24}+\sqrt{7}$ est le plus grand ? Sans utiliser la calculette bien sûr...` },
+  { id: "ch5-exemple-3", number: "2.20", source: "exemple", statement: r17`• $\operatorname{pge}([0;1])=1$
+
+• $[0;+\infty[$ n’a pas de plus grand élément.
+
+• $[0;1[$ n’a pas de plus grand élément.` },
+  { id: "ch5-exemple-4", number: "2.22", source: "exemple", statement: r17`$[0;1]$ et $[0;1[$ sont majorés dans $\mathbb{R}$.` },
+  { id: "ch5-exemple-5", number: "2.23", source: "exemple", statement: r17`$\mathbb{Z},\mathbb{Q},\mathbb{R}$ ne sont ni majorés, ni minorés.` },
+  { id: "ch5-exemple-6", number: "2.26", source: "exemple", statement: r17`Les parties suivantes sont elles majorées ? minorées ? bornées ? Admettent-elles un maximum, un minimum ?
+$$\{-2;-\sqrt{2};\pi\},\ [0,1[,\ ]-\infty;1[,\ [0;1]\cup[-5;-\sqrt{3}[,\ \mathbb{N},\ \left\{\frac{1}{n}/n\in\mathbb{N}^*\right\}$$` },
+  { id: "ch5-exemple-7", number: "2.28", source: "exemple", statement: r17`• $\sup_{\mathbb{R}}([0;1[)=1$
+
+• $\sup_{\mathbb{R}}([0;1])=1$
+
+• $([0;+\infty[)$ n’a pas de borne supérieure.` },
+  { id: "ch5-exemple-8", number: "2.37", source: "exemple", statement: r17`• $\mathbb{R}=]-\infty;+\infty[$
+
+• $[a;a]=\{a\}$
+
+• $]a;a[=\varnothing$` },
+  { id: "ch5-exemple-9", number: "2.39", source: "exemple", statement: r17`Dans la figure ci-dessous, $E_1$ est convexe, $E_2$ ne l’est pas.
+
+[Figure : $E_1$ est une région ovale contenant les segments reliant ses points ; $E_2$ est une région courbée dont un segment reliant deux points sort de la région.]` },
+  { id: "ch5-exemple-10", number: "2.44", source: "exemple", statement: r17`Soient $I$ et $J$ deux intervalles. Alors $I+J=\{x+y,x\in I,y\in J\}$ est un intervalle.` },
+  { id: "ch5-exemple-11", number: "3.3", source: "exemple", statement: r17`$\sqrt{p}$ avec $p$ premier est également irrationnel, tout comme $e$ et $\pi$.` },
+  { id: "ch5-exemple-12", number: "3.8", source: "exemple", statement: r17`Soit $A=\left\{\frac{p}{\ln n},p\in\mathbb{Z},n\in\mathbb{N},n\geq2\right\}$. $A$ est dense dans $\mathbb{R}$.` },
+  { id: "ch5-exemple-13", number: "3.13", source: "exemple", statement: r17`1. Donner les 5 premiers termes de l’approximation décimale par défaut et par excès de $\sqrt{2}$, de $\frac{2}{3}$, de $-\frac{2}{3}$.
+
+2. Que dire de la suite des approximations décimales par défaut d’un nombre entier relatif ? D’un nombre décimal ?` }
+];
+
+// ../src/content/math/course-examples/chapitre-6.ts
+var r18 = String.raw;
+var chapitre6Exemples = [
+  { id: "ch6-exemple-1", number: "1.6", source: "exemple", statement: r18`Calculer $(2 + 3i)(-4 + i)$.` },
+  { id: "ch6-exemple-2", number: "1.12", source: "exemple", statement: r18`Calculer $(1 + i)^{4n}$, pour $n \in \mathbb{N}$.` },
+  { id: "ch6-exemple-3", number: "1.22", source: "exemple", statement: r18`Calculer $|4 + 2i|$.` },
+  { id: "ch6-exemple-4", number: "3.2", source: "exemple", statement: r18`$e^{i\pi} = -1$, $e^{i\frac{\pi}{2}} = i$, $\forall k \in \mathbb{Z}, e^{2ik\pi} = 1$` },
+  { id: "ch6-exemple-5", number: "3.9", source: "exemple", statement: r18`Ecrire $z = 1 - i\sqrt{3}$ sous forme exponentielle.` },
+  { id: "ch6-exemple-6", number: "4.7", source: "exemple", statement: r18`Résoudre dans $\mathbb{C}$ l’équation $e^z = 1 + i$.` },
+  { id: "ch6-exemple-7", number: "5.8", source: "exemple", statement: r18`Résoudre : $z^3 = 4\sqrt{2} - 4\sqrt{2}i$.` },
+  { id: "ch6-exemple-8", number: "5.10", source: "exemple", statement: r18`Résoudre : $z^2 = -3 + 4i$` },
+  { id: "ch6-exemple-9", number: "5.13", source: "exemple", statement: r18`Résoudre dans $\mathbb{C}$ l’équation $z^2 - (1 + 3i)z - 2 + i = 0$. En déduire une factorisation de $z^2 - (1 + 3i)z - 2 + i$.` },
+  { id: "ch6-exemple-10", number: "6.4", source: "exemple", statement: r18`Déterminer géométriquement les nombres complexes $z$ tels que : $|z| = |z + 1| = 1$.` },
+  { id: "ch6-exemple-11", number: "6.8", source: "exemple", statement: r18`• La rotation d’angle $\frac{\pi}{2}$ se traduit par une multiplication par $i$.
+
+• La rotation d’angle $\frac{2\pi}{3}$ se traduit par une multiplication par $j$.` },
+  { id: "ch6-exemple-12", number: "6.9", source: "exemple", statement: r18`Soient $A$ un point d’affixe $1 + i$ et $B$ un point d’affixe $2i$. Déterminer l’affixe d’un point $C$ tel que le triangle $ABC$ soit équilatéral.` }
+];
+
+// ../src/content/math/course-examples/chapitre-7.ts
+var r19 = String.raw;
+var chapitre7Exemples = [
+  { id: "ch7-exemple-1", number: "1.2", source: "exemple", statement: r19`• Sur $\mathbb{N}$, $+$, $\times$ sont des l.c.i. En revanche, $-$ et $:$ ne sont pas des l.c.i sur $\mathbb{N}$ (elles ne sont pas toujours définies).
+
+• Sur $\mathbb{Z}$, $+$, $\times$, $-$ sont des l.c.i. En revanche, $:$ n’en est pas une. Autre exemple : l’application $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$, définie par : $x*y=x-2y+3x^2y$, est une l.c.i.
+
+• Sur $\mathbb{R}$, $+$, $\times$, $-$ sont des l.c.i. En revanche, $:$ n’en est pas une.
+
+• Sur $\mathbb{R}_+^*$ : $+$, $\times$, et $:$ sont des l.c.i. De plus, l’application puissance définie $\mathbb{R}_+^*\times\mathbb{R}_+^*\to\mathbb{R}_+^*$ par : $x*y=x^y$ est aussi une l.c.i.
+
+• Sur $\mathcal{F}(\mathbb{R},\mathbb{R})$ : $+$, $-$, $\times$, $\circ$ sont des l.c.i.
+
+• Sur $\overrightarrow{\mathcal{E}}$ ensemble des vecteurs de l’espace : $+$ et $\wedge$ mais pas le produit scalaire car $\vec{u}\cdot\vec{v}\notin\overrightarrow{\mathcal{E}}$.
+
+• Sur $\mathcal{P}(F)$ où $F$ est un ensemble : $\cap$ et $\cup$.` },
+  { id: "ch7-exemple-2", number: "1.5", source: "exemple", statement: r19`1. Sur $\mathbb{R}$, $+$ et $\times$ sont associatives et commutatives car on a toujours $(x+y)+z=x+(y+z)$, $x+y=y+x$, $(x\times y)\times z=x\times(y\times z)$ et $x\times y=y\times x$.
+Par contre $-$ n’est ni associative ni commutative car par exemple : $(3-2)-1\ne 3-(2-1)$ et $3-2\ne 2-3$.
+
+2. Sur $\mathcal{F}(\mathbb{R},\mathbb{R})$, la composition est associative : on a toujours $(f\circ g)\circ h=f\circ(g\circ h)$. En effet si $x\in\mathbb{R}$ alors $[(f\circ g)\circ h](x)=(f\circ g)\big(h(x)\big)=f\big(g(h(x))\big)$ et $[f\circ(g\circ h)](x)=f\big((g\circ h)(x)\big)=f\big(g(h(x))\big)$.
+
+3. Par contre $\circ$ n’est pas commutative car en général $f\circ g\ne g\circ f$. Prenons par exemple $f=\exp$ et $g:x\mapsto x+1$. On a $(f\circ g)(x)=e^{x+1}$ alors que $(g\circ f)(x)=e^x+1$.
+
+4. Sur $\overrightarrow{\mathcal{E}}$, $+$ est associative et commutative, par contre $\wedge$ n’est ni l’un ni l’autre : en général $\vec{u}\wedge\vec{v}\ne\vec{v}\wedge\vec{u}$ et $(\vec{u}\wedge\vec{v})\wedge\vec{w}\ne\vec{u}\wedge(\vec{v}\wedge\vec{w})$
+
+5. Sur $\mathcal{P}(F)$, $\cap$ et $\cup$ sont associatives et commutatives.` },
+  { id: "ch7-exemple-3", number: "1.8", source: "exemple", statement: r19`1. Sur $\mathbb{R}$, $0$ est élément neutre pour $+$ car on a toujours $x+0=0+x=x$. Et $1$ est élément neutre pour $\times$ car on a toujours $x\times1=1\times x=x$.
+
+2. Sur $\mathcal{F}(\mathbb{R},\mathbb{R})$, la fonction $\operatorname{Id}_E:x\mapsto x$ est élément neutre pour $\circ$ car on a toujours $f\circ\operatorname{Id}_E=f$ et $\operatorname{Id}_E\circ f=f$.
+
+3. Sur $\mathcal{P}(F)$, $\cap$ a pour élément neutre $F$ car pour tout $A\subset F$, $A\cap F=F\cap A=A$. Et $\cup$ a pour élément neutre $\emptyset$ car pour tout $A\subset F$ on a $A\cup\emptyset=\emptyset\cup A=A$.` },
+  { id: "ch7-exemple-4", number: "1.12", source: "exemple", statement: r19`1. Soit $\mathbb{R}$ muni de la loi $+$ qui a $0$ pour élément neutre. Soit $x\in\mathbb{R}$, alors $x+(-x)=0$ et $(-x)+x=0$ donc $x$ admet pour symétrique $-x$. Dans le cas de l’addition, on ne parle pas d’inverse mais d’opposé et on n’écrit pas $x^{-1}$ mais $-x$.
+
+2. Soit $\mathbb{N}$ muni de la loi $+$ qui a $0$ pour élément neutre mais aucun élément n’admet d’opposé, sauf $0$ lui-même qui a pour opposé $0$.
+
+3. Soit $\mathbb{R}$ muni de la loi $\times$ qui a $1$ pour élément neutre. L’élément $0$ n’a pas d’inverse pour $\times$ : il n’existe aucun réel $y$ tel que $0\times y=y\times0=1$. Par contre tous les éléments $x\in\mathbb{R}^*$ ont un inverse qui est $x^{-1}=\dfrac{1}{x}$ car $x\times\dfrac{1}{x}=\dfrac{1}{x}\times x=1$.
+
+4. Soit $\mathcal{F}(\mathbb{R},\mathbb{R})$ muni de la loi $\circ$ qui a $\operatorname{Id}_E:x\mapsto x$ pour élément neutre. Alors $f\in\mathcal{F}(\mathbb{R},\mathbb{R})$ est symétrisable s’il existe $g$ tel que $f\circ g=\operatorname{Id}_E$ et $g\circ f=\operatorname{Id}_E$. Ceci se produit si et seulement si $f$ est bijective, et dans ce cas son symétrique pour $\circ$ est la bijection réciproque $f^{-1}$.
+
+Attention : Il ne suffit pas d’avoir $x*y=e$ pour dire que $y$ est un inverse de $x$.
+Par exemple prenons dans $\mathcal{F}(\mathbb{R},\mathbb{R})$ les fonctions $f:x\mapsto e^x$ et $g:x\mapsto\ln(x)$ si $x>0$ et $0$ sinon.
+On a $g\circ f=\operatorname{Id}_{\mathbb{R}}$ mais $f\circ g\ne\operatorname{Id}_{\mathbb{R}}$.
+En fait ni $f$ ni $g$ ne sont inversibles (ce ne sont pas des bijections !) mais $f$ admet un inverse à gauche ($g$) et $g$ possède un inverse à droite ($f$).` },
+  { id: "ch7-exemple-5", number: "1.14", source: "exemple", statement: r19`Dans le cas $E=\mathcal{F}(\mathbb{R},\mathbb{R})$ muni de la loi $\circ$, les éléments inversibles sont les bijections.
+On obtient (ou on retrouve) ainsi :
+
+• Que la composée de deux bijections est une bijection, et que la bijection réciproque de $f\circ g$ est $g^{-1}\circ f^{-1}$.
+
+• Que si $f$ est une bijection alors $f^{-1}$ aussi, et que $(f^{-1})^{-1}=f$.` },
+  { id: "ch7-exemple-6", number: "1.17", source: "exemple", statement: r19`1. Dans les ensembles de nombres classiques, la loi $\times$ est distributive sur la loi $+$.
+On sait bien en effet que pour trois éléments quelconques $x$, $y$ et $z$ de $\mathbb{C}$, on a $x\times(y+z)=x\times y+x\times z$ et $(y+z)\times x=y\times x+z\times x$.
+
+2. Par contre, dans $\mathcal{F}(\mathbb{R},\mathbb{R})$, la lci $\circ$ n’est pas distributive sur $+$. En effet si l’on prend $f=\exp$, $g=\operatorname{Id}_{\mathbb{R}}$ et $h=-\operatorname{Id}_{\mathbb{R}}$ alors, pour tout réel $x$, on a :
+$$\begin{aligned}
+\big(f\circ(g+h)\big)(x)&=f\big((g+h)(x)\big)\\
+&=f\big(g(x)+h(x)\big)\\
+&=f(x-x)=f(0)\\
+&=1,
+\end{aligned}$$
+tandis qu’on a :
+$$\begin{aligned}
+\big((f\circ g)+(f\circ h)\big)(x)&=(f\circ g)(x)+(f\circ h)(x)\\
+&=f\big(g(x)\big)+f\big(h(x)\big)\\
+&=f(x)+f(-x)=e^x+e^{-x}.
+\end{aligned}$$
+Il est clair qu’on n’a pas toujours $e^x+e^{-x}=1$ (c’est par exemple faux pour $x=0$), ce qui signifie que $f\circ(g+h)\ne(f\circ g)+(f\circ h)$.
+Ainsi $\circ$ n’est pas distributive à gauche sur $+$, donc pas distributive.` },
+  { id: "ch7-exemple-7", number: "1.19", source: "exemple", statement: r19`1. $\mathbb{N}$ est stable pour la loi $+$ de $\mathbb{R}$. En effet, $\forall(m,n)\in\mathbb{N}^2$, $m+n\in\mathbb{N}$.
+
+2. La loi $+$ usuelle de $\mathbb{Z}$ induit une l.c.i dans l’ensemble des entiers relatifs pairs car cet ensemble est stable pour la loi $+$. En effet, la somme de deux entiers relatifs pairs est paire.` },
+  { id: "ch7-exemple-8", number: "2.2", source: "exemple", statement: r19`1. $(\mathbb{N},+)$ n’est pas un groupe puisque seul $0$ a un opposé. Par contre $(\mathbb{Z},+)$, $(\mathbb{Q},+)$, $(\mathbb{R},+)$ et $(\mathbb{C},+)$ sont des groupes, qui sont commutatifs.
+
+2. $(\mathbb{R},\times)$ n’est pas un groupe puisque $0$ n’a pas d’inverse. Par contre si l’on remplace $\mathbb{R}$ par $\mathbb{R}^*$, $\times$ est toujours une l.c.i. puisque si $x,y\in\mathbb{R}^*$ alors $x\times y\in\mathbb{R}^*$. On a toujours $1$ comme élément neutre et cette fois tout élément a un inverse. Ainsi $(\mathbb{R}^*,\times)$ est un groupe, de même que $(\mathbb{C}^*,\times)$, $(\mathbb{Q}^*,\times)$, $(\mathbb{R}_+^*,\times)$ et $(\mathbb{Q}_+^*,\times)$.
+
+3. $(\{-1,1\},\times)$ est un groupe, fini, contrairement aux précédents.` },
+  { id: "ch7-exemple-9", number: "2.3", source: "exemple", statement: r19`$(\mathcal{F}(\mathbb{R},\mathbb{R}),\circ)$ n’est pas un groupe car toute fonction n’est pas bijective. Par contre l’ensemble des bijections $\mathbb{R}\to\mathbb{R}$ est un groupe, qui n’est pas commutatif (contre-exemple avec $x\mapsto x+1$ et $x\mapsto x^3$).` },
+  { id: "ch7-exemple-10", number: "2.7", source: "exemple", statement: r19`$(\mathbb{Z}\times\mathbb{Z},+)$ ou $(\mathbb{R}\times\mathbb{R},+)$ sont des groupes.` },
+  { id: "ch7-exemple-11", number: "2.16", source: "exemple", statement: r19`1. Soit $G$ un groupe d’élément neutre $e$. Alors $\{e\}$ et $G$ sont deux sous-groupes de $G$.
+
+2. $H=\{x\in G,\forall y\in G:x*y=y*x\}$ est un sous-groupe de $G$, on l’appelle le centre du groupe $G$.
+
+3. Dans le groupe $(\mathbb{R},+)$ : $\mathbb{Z}$ est un sous-groupe car il est non vide, si $x\in\mathbb{Z}$ et $y\in\mathbb{Z}$ alors $x+y\in\mathbb{Z}$, et si $x\in\mathbb{Z}$ alors $-x\in\mathbb{Z}$.
+Par contre $(\mathbb{N},+)$ n’est pas un sous-groupe car si $x\in\mathbb{N}$ alors on n’a pas forcément $-x\in\mathbb{N}$.
+
+4. Dans le groupe $(\mathbb{C}^*,\times)$, soit $\mathbb{U}\subset\mathbb{C}^*$ l’ensemble des complexes de module $1$. C’est un sous-groupe car il est non vide ; si $z,z'\in\mathbb{U}$ alors $|z|=1$ et $|z'|=1$ donc $|zz'|=1$ et on a bien $zz'\in\mathbb{U}$ ; enfin, si $z\in\mathbb{U}$ alors $\left|\dfrac{1}{z}\right|=\dfrac{1}{|z|}=1$ donc $\dfrac{1}{z}\in\mathbb{U}$.
+On peut encore obtenir que $\mathbb{U}_n$ est un sous-groupe de $(\mathbb{U},\times)$ et donc de $(\mathbb{C}^*,\times)$.
+Attention : $\mathbb{U}$ est un groupe inclus dans $\mathbb{C}$ mais n’est pas un sous-groupe de $\mathbb{C}$ ! En effet $\mathbb{U}$ est un groupe pour $\times$ mais $\mathbb{C}$ est un groupe pour $+$.
+
+5. Soit $E$ un ensemble quelconque. Pour $x\in E$, montrer que $Stab(x)=\{\sigma\in S_E,\ \sigma(x)=x\}$ est un sous-groupe de $S_E$.` },
+  { id: "ch7-exemple-12", number: "2.22", source: "exemple", statement: r19`1. $t\mapsto e^{it}$ est un morphisme de $(\mathbb{R},+)$ vers $(\mathbb{C}^*,\times)$.
+
+2. Morphismes de $(\mathbb{C},+)$ vers $(\mathbb{R},+)$ : $\operatorname{Re}$ et $\operatorname{Im}$.
+
+3. $z\mapsto\bar{z}$ est un morphisme de $(\mathbb{C},+)$ dans lui-même, et de $(\mathbb{C}^*,\times)$ dans lui-même.
+
+4. Morphisme de $(\mathbb{Z},+)$ vers $(\mathbb{Z},+)$ : la multiplication par $3$, par tout $n\in\mathbb{Z}$.` },
+  { id: "ch7-exemple-13", number: "2.24", source: "exemple", statement: r19`1. Les endomorphismes du groupe $(\mathbb{R},+)$ sont toutes les fonctions $f:\mathbb{R}\to\mathbb{R}$ telles que :
+$$\forall(x,y)\in\mathbb{R}^2,\ f(x+y)=f(x)+f(y)$$
+
+2. $\exp:\mathbb{R}\to\mathbb{R}_+^*$ est un morphisme de $(\mathbb{R},+)$ dans $(\mathbb{R}_+^*,\times)$ qui est bijectif. C’est donc un isomorphisme entre ces deux groupes. Son application réciproque est $\ln:\mathbb{R}_+^*\to\mathbb{R}$ qui est un isomorphisme : $\ln(x\times y)=\ln x+\ln y$.
+
+3. Soit $\mathbb{R}_n[X]$ l’ensemble des polynômes à coefficients réels et de degré $\le n$.
+L’application $a_0+a_1X+a_2X^2+...+a_nX^n\mapsto(a_0,a_1,a_2,...,a_n)$ est un isomorphisme de $(\mathbb{R}_n[X],+)$ dans $(\mathbb{R}^{n+1},+)$.` },
+  { id: "ch7-exemple-14", number: "3.3", source: "exemple", statement: r19`1. $(\mathbb{Z},+,\times)$ est un anneau car :
+
+• $(\mathbb{Z},+)$ est un groupe abélien ;
+
+• $\times$ est bien une l.c.i associative et qui admet $1$ comme élément neutre ;
+
+• dans $\mathbb{Z}$, la multiplication est bien distributive par rapport à l’addition.
+
+La multiplication étant commutative, c’est même un anneau commutatif.
+
+2. De même $(\mathbb{Q},+,\times)$, $(\mathbb{R},+,\times)$ et $(\mathbb{C},+,\times)$ sont des anneaux commutatifs.
+
+3. $(\mathcal{F}(\mathbb{R},\mathbb{R}),+,\times)$ est également un anneau commutatif. L’élément nul est la fonction nulle et l’élément unité est la fonction constante égale à $1$.
+
+4. L’ensemble des suites complexes est un anneau commutatif.
+
+5. On note $\mathbb{R}[X]$ l’ensemble des polynômes à coefficients réels, il est muni de lois $+$ et $\times$ et $(\mathbb{R}[X],+,\times)$ est un anneau commutatif.` },
+  { id: "ch7-exemple-15", number: "3.6", source: "exemple", statement: r19`$(\mathcal{M}_2(\mathbb{R}),+,\times)$ est-il intègre ?` },
+  { id: "ch7-exemple-16", number: "3.11", source: "exemple", statement: r19`1. Si $(A,+,\times)$ est un anneau, $A$ est un sous-anneau (dit trivial) de $A$.
+
+2. $(\mathbb{Z},+,\times)$ est un anneau commutatif. $(\mathbb{Z},+,\times)$ est un sous-anneau de $(\mathbb{Q},+,\times)$, lui même sous-anneau de $(\mathbb{R},+,\times)$, lui même sous-anneau de $(\mathbb{C},+,\times)$ qui est un anneau commutatif (mieux : $\mathbb{Q}$, $\mathbb{R}$ et $\mathbb{C}$ sont en fait des corps -voir plus loin mais on le sait déjà).
+
+3. $(\mathbb{R}^{\mathbb{N}},+,\times)$ est un anneau commutatif. L’ensemble des suites réelles bornées, l’ensemble des suites réelles convergentes sont des sous-anneaux de $(\mathbb{R}^{\mathbb{N}},+,\times)$.
+
+4. Soit $D$ une partie de $\mathbb{R}$. $(\mathcal{F}(D,\mathbb{R}),+,\times)$ est un anneau commutatif. $\mathcal{B}(D,\mathbb{R})$, $\mathcal{D}(D,\mathbb{R})$, $\mathcal{C}^{\infty}(D,\mathbb{R})$ sont des sous-anneaux de $(\mathcal{F}(D,\mathbb{R}),+,\times)$.` },
+  { id: "ch7-exemple-17", number: "3.16", source: "exemple", statement: r19`[Anneau des entiers de Gauss]
+On note $\mathbb{Z}[i]$ la partie $\left\{a+ib,(a,b)\in\mathbb{Z}^2\right\}$ de $\mathbb{C}$. Montrer que $\mathbb{Z}[i]$ est un anneau pour les lois usuelles $+$ et $\times$. $(\mathbb{Z}[i],+,\times)$ est appelé l’anneau des entiers de Gauss.` },
+  { id: "ch7-exemple-18", number: "3.18", source: "exemple", statement: r19`1. On retrouve le fait que $(\mathbb{R}^*,\times)$ est un groupe, de même que $(\mathbb{Q}^*,\times)$ et $(\mathbb{C}^*,\times)$.
+
+2. Dans le cas de $\mathbb{Z}$, les seuls inversibles sont $-1$ et $1$, on trouve donc le groupe à deux éléments $(\{-1,1\},\times)$.
+
+3. Soit $A=\mathbb{Z}[i]$ muni de l’addition et de la multiplication habituelles. On a $A^*=\{1,-1,i,-i\}$ et on peut se rendre compte que $\{1,-1,i,-i\}$ est bien un groupe multiplicatif.` },
+  { id: "ch7-exemple-19", number: "3.22", source: "exemple", statement: r19`1. $A$ étant un anneau, $Id_A$ est un isomorphisme d’anneaux.
+
+2. Soit $D$ une partie de $\mathbb{R}$ et $a\in D$ (fixé). L’application $\begin{array}{rcl}\mathcal{F}(D,\mathbb{R})&\to&\mathbb{R}\\f&\mapsto&f(a)\end{array}$ est un morphisme d’anneaux de $(\mathcal{F}(D,\mathbb{R}),+,\times)$ dans $(\mathbb{R},+,\times)$ (il est appelé morphisme d’évaluation en $a$).
+
+3. $\mathcal{C}$ désignant l’ensemble des suites réelles convergentes, l’application $\begin{array}{rcl}\mathcal{C}&\to&\mathbb{R}\\u&\mapsto&\lim(u)\end{array}$ est un morphisme d’anneaux de $(\mathcal{C},+,\times)$ dans $(\mathbb{R},+,\times)$.` },
+  { id: "ch7-exemple-20", number: "4.9", source: "exemple", statement: r19`Quelques corps usuels :
+
+1. $(\mathbb{Q},+,\times)$ est un corps ; c’est un sous-corps de $(\mathbb{R},+,\times)$, lui même sous-corps de $(\mathbb{C},+,\times)$.
+
+2. On note $\mathbb{R}(X)$ l’ensemble des fractions rationnelles, c’est-à-dire l’ensemble des éléments de la forme $\dfrac{P}{Q}$ où $P\in\mathbb{R}[X]$ et $Q\in(\mathbb{R}[X])\setminus\{0\}$.
+Sur $\mathbb{R}(X)$ on définit : une addition : $\dfrac{P_1}{Q_1}+\dfrac{P_2}{Q_2}=\dfrac{P_1Q_2+P_2Q_1}{Q_1Q_2}$, et une multiplication : $\dfrac{P_1}{Q_1}\dfrac{P_2}{Q_2}=\dfrac{P_1P_2}{Q_1Q_2}$.
+On vérifie alors que $(\mathbb{R}(X),+,\times)$ est un corps.
+
+3. Soit $E=\left\{M\in\mathcal{M}_2(\mathbb{R}),M=\begin{pmatrix}a&b\\-b&a\end{pmatrix},(a,b)\in\mathbb{R}^2\right\}$. $(E,+,\times)$ est un corps.
+
+4. $\begin{array}{rcl}\mathbb{C}&\to&\mathbb{C}\\z&\mapsto&\bar{z}\end{array}$ est un isomorphisme de corps.` }
+];
+
+// ../src/content/math/course-examples/chapitre-8.ts
+var r20 = String.raw;
+var chapitre8Exemples = [
+  { id: "ch8-exemple-1", number: "2.4", source: "exemple", statement: r20`Soient $f$ et $g$ les fonctions définies sur $\mathbb{R}$ par $f(x)=x^2+1$ et $g(x)=x+3$. Déterminer $f\circ g$ et $g\circ f$.` },
+  { id: "ch8-exemple-2", number: "2.6", source: "exemple", statement: r20`Soient $f$ la fonction définie sur $\mathbb{R}$ par $f(x)=2x-3$ et $g$ la fonction définie sur $\mathbb{R}^{+*}$ définie par $g(x)=\ln x$. Peut-on définir $f\circ g$ ? $g\circ f$ ?` },
+  { id: "ch8-exemple-3", number: "2.8", source: "exemple", statement: r20`La fonction exponentielle est bijective de $\mathbb{R}$ sur $\mathbb{R}^{+*}$.` },
+  { id: "ch8-exemple-4", number: "2.11", source: "exemple", statement: r20`La fonction logarithme est la fonction réciproque de la fonction exponentielle.
+
+En effet : $\forall x\in\mathbb{R},\ln(\exp x)=x$ et $\forall x\in\mathbb{R}^{+*},\exp(\ln x)=x$
+
+[Figure : courbes de l’exponentielle et du logarithme népérien, avec la droite d’équation $y=x$.]` },
+  { id: "ch8-exemple-5", number: "2.13", source: "exemple", statement: r20`$\mathbb{R}$, $[-1,1]$ et $\mathbb{R}^*$ sont des ensembles symétriques par rapport à zéro mais $[2,+\infty[$ n’en est pas un.` },
+  { id: "ch8-exemple-6", number: "2.15", source: "exemple", statement: r20`La fonction $f$ définie pour tout $x\in\mathbb{R}$ par $f(x)=x^2+1$ est paire : $\mathbb{R}$ est symétrique par rapport à zéro et pour tout $x\in\mathbb{R}$, $f(-x)=(-x)^2+1=(-1)^2x^2+1=x^2+1=f(x)$.
+
+Exemple de représentation graphique d’une fonction paire
+
+[Figure : parabole $y=x^2+1$, avec les points d’abscisses $-x$ et $x$ de même ordonnée.]` },
+  { id: "ch8-exemple-7", number: "2.16", source: "exemple", statement: r20`La fonction cube $f$ définie pour tout $x\in\mathbb{R}$ par $f(x)=x^3$ est impaire : $\mathbb{R}$ est symétrique par rapport à zéro et pour tout $x\in\mathbb{R}$, $f(-x)=(-x)^3=-x^3=-f(x)$.
+
+Exemple de représentation graphique d’une fonction impaire
+
+[Figure : courbe de la fonction cube, avec les points d’abscisses $-x$ et $x$ symétriques par rapport à l’origine.]` },
+  { id: "ch8-exemple-8", number: "2.19", source: "exemple", statement: r20`Les fonctions $\cos$ et $\sin$ sont $2\pi$ périodiques.` },
+  { id: "ch8-exemple-9", number: "2.23", source: "exemple", statement: r20`Soit $f$ la fonction définie pour tout $x\in\mathbb{R}$ par $f(x)=x^2+1$. Alors $1$ est un minorant de $f$ car pour tout $x\in\mathbb{R}$, $f(x)=x^2+1\geq 1$.` },
+  { id: "ch8-exemple-10", number: "2.26", source: "exemple", statement: r20`Dans l’exemple 2.23, $1$ est le minimum de la fonction $f$ sur $\mathbb{R}$` },
+  { id: "ch8-exemple-11", number: "2.30", source: "exemple", statement: r20`Considérons la fonction inverse $f:x\mapsto\dfrac{1}{x}$ sur $\mathbb{R}^{+*}$. Elle est toujours positive, donc minorée par $0$. Tout réel négatif est également un minorant pour $f$. $0$ est le minorant le plus grand, mais $0$ n’est pas un minimum car $\forall x\in\mathbb{R}^{+*}:\dfrac{1}{x}\neq 0$. On a donc : $\displaystyle\inf_{x\in\mathbb{R}^{+*}}f(x)=0$.` },
+  { id: "ch8-exemple-12", number: "3.2", source: "exemple", statement: r20`Donner la dérivée de la fonction $f$ définie pour tout $x\in\mathbb{R}$ par $f(x)=(x+1)e^x$.` },
+  { id: "ch8-exemple-13", number: "3.9", source: "exemple", statement: r20`A l’aide du tableau de variation de la fonction $\exp$, expliquer pourquoi celle-ci est bijective de $\mathbb{R}$ sur $\mathbb{R}^{+*}$.` },
+  { id: "ch8-exemple-14", number: "3.12", source: "exemple", statement: r20`La fonction inverse est de classe $\mathcal{C}^1$ sur $]0;+\infty[$.` },
+  { id: "ch8-exemple-15", number: "3.15", source: "exemple", statement: r20`La fonction exponentielle est $n$ fois dérivable pour tout $n\in\mathbb{N}^*$.` },
+  { id: "ch8-exemple-16", number: "4.41", source: "exemple", statement: r20`$$\frac{|-7\times 6|}{|(-6)|^2}=$$` },
+  { id: "ch8-exemple-17", number: "7.10", source: "exemple", statement: r20`Soit $a\in\mathbb{C}$. $f:\begin{aligned}\mathbb{R}&\to\mathbb{C}\\t&\mapsto e^{at}\end{aligned}$ est dérivable et $f':\begin{aligned}\mathbb{R}&\to\mathbb{C}\\t&\mapsto ae^{at}\end{aligned}$.` }
+];
+
+// ../src/content/math/course-examples/chapitre-9.ts
+var r21 = String.raw;
+var chapitre9Exemples = [
+  { id: "ch9-exemple-1", number: "2.8", source: "exemple", statement: r21`Soit $(u_n)_{n\in\mathbb{N}}$ une suite convergente vers 4. Alors $\displaystyle\lim_{n\to+\infty} \frac{1}{u_n} = \frac{1}{4}$.` },
+  { id: "ch9-exemple-2", number: "2.19", source: "exemple", statement: r21`Soient $(u_n)_{n\in\mathbb{N}}$ et $(v_n)_{n\in\mathbb{N}}$ deux suites telles que : $\forall n \in \mathbb{N}, u_n \in [0;1]$ et $v_n \in [0;1]$, avec $\displaystyle\lim_{n\to+\infty} u_n v_n = 1$. Alors $\displaystyle\lim_{n\to+\infty} u_n = 1$ et $\displaystyle\lim_{n\to+\infty} v_n = 1$.` },
+  { id: "ch9-exemple-3", number: "2.22", source: "exemple", statement: r21`La suite $(u_n)_{n\in\mathbb{N}^*}$ définie par : $\forall n \in \mathbb{N}^*; u_n = \dfrac{1}{n!}\left(\displaystyle\sum_{k=1}^{n} k!\right)$ converge vers 1.` },
+  { id: "ch9-exemple-4", number: "3.3", source: "exemple", statement: r21`Equivalents usuels
+
+• Si $(u_n)$ est une suite qui converge vers 0, on a :
+$$\ln(1+u_n) \underset{n\to+\infty}{\sim} u_n \qquad e^{u_n} - 1 \underset{n\to+\infty}{\sim} u_n \qquad (1+u_n)^a - 1 \underset{n\to+\infty}{\sim} au_n \ (\text{avec } a \neq 0)$$
+$$\sin u_n \underset{n\to+\infty}{\sim} u_n \qquad 1 - \cos u_n \underset{n\to+\infty}{\sim} \frac{1}{2}u_n^2 \qquad \tan u_n \underset{n\to+\infty}{\sim} u_n$$
+$$\arctan u_n \underset{n\to+\infty}{\sim} u_n \qquad \arcsin u_n \underset{n\to+\infty}{\sim} u_n$$
+
+• Une suite polynômiale est toujours équivalente à son terme de plus haut degré.` },
+  { id: "ch9-exemple-5", number: "3.6", source: "exemple", statement: r21`• $n + 1 \underset{n\to+\infty}{\sim} n + 2$ et $-n \underset{n\to+\infty}{\sim} -n$ , et pourtant on n'a pas $1 \underset{n\to+\infty}{\sim} 2$ !
+
+• $n^2 + n \underset{n\to+\infty}{\sim} n^2$ or $\exp(n^2 + n)$ n'est pas équivalent à $\exp(n^2)$ en $+\infty$.` },
+  { id: "ch9-exemple-6", number: "3.9", source: "exemple", statement: r21`$n \underset{n\to+\infty}{=} o(n^2)$` },
+  { id: "ch9-exemple-7", number: "3.16", source: "exemple", statement: r21`Déterminer un équivalent de : $2^n - 12n^2 - 3\ln(n)$ au voisinage de $+\infty$.` },
+  { id: "ch9-exemple-8", number: "3.19", source: "exemple", statement: r21`$\ln(1 + 3n) \underset{n\to+\infty}{=} O(n)$ car $\forall x \in \mathbb{R}_+^*,\ \ln(1 + x) \leq x$.` },
+  { id: "ch9-exemple-9", number: "4.9", source: "exemple", statement: r21`Les suites $(u_{2n})$ et $(u_{2n+1})$ sont des suites extraites de la suite $(u_n)$.` },
+  { id: "ch9-exemple-10", number: "4.11", source: "exemple", statement: r21`La suite $(u_n)_{n\in\mathbb{N}}$ définie par $u_n = (-1)^n$ diverge.` },
+  { id: "ch9-exemple-11", number: "5.6", source: "exemple", statement: r21`$\mathbb{D}$, $\mathbb{Q}$, $\mathbb{R} \setminus \mathbb{Q}$ sont denses dans $\mathbb{R}$.` },
+  { id: "ch9-exemple-12", number: "6.9", source: "exemple", statement: r21`Si $(\theta_n)$ est une suite réelle convergente vers un réel $\theta$, alors la suite $(e^{i\theta_n})$ converge vers $e^{i\theta}$.` },
+  { id: "ch9-exemple-13", number: "7.4", source: "exemple", statement: r21`Soit $(u_n)$ une suite arithmétique de raison 4 et de premier terme $u_0 = 1$. Calculer $u_{29}$.` },
+  { id: "ch9-exemple-14", number: "7.6", source: "exemple", statement: r21`Soit $(u_n)$ une suite arithmétique de raison 4 telle que : $u_{10} = 1$. Calculer $u_{20}$.` },
+  { id: "ch9-exemple-15", number: "7.8", source: "exemple", statement: r21`Calculer : $S = 2 + 5 + 8 + \cdots + 20$.` },
+  { id: "ch9-exemple-16", number: "7.12", source: "exemple", statement: r21`Soit $(u_n)$ une suite géométrique de raison 2 et de premier terme $u_0 = 3$. Calculer $u_{12}$.` },
+  { id: "ch9-exemple-17", number: "7.14", source: "exemple", statement: r21`Soit $(u_n)$ une suite géométrique de raison 2 telle que : $u_{10} = 4$. Calculer $u_{20}$.` },
+  { id: "ch9-exemple-18", number: "7.16", source: "exemple", statement: r21`Calculer : $S = 4 + 8 + 16 + \cdots + 64$.` },
+  { id: "ch9-exemple-19", number: "7.21", source: "exemple", statement: r21`Donner une expression explicite de la suite $(u_n)$, définie par : $u_0 = -1$, et $\forall n \in \mathbb{N}, u_{n+1} = 2u_n - 3$. En déduire la limite de cette suite.` },
+  { id: "ch9-exemple-20", number: "7.25", source: "exemple", statement: r21`Une suite arithmético-géométrique est de la forme : $u_{n+1} = f(u_n)$ avec : $\forall x \in \mathbb{R}, f(x) = ax + b$.` }
+];
+
+// src/examples.ts
+var courseExamplesByChapter = {
+  1: chapitre1Exemples,
+  2: chapitre2Exemples,
+  3: chapitre3Exemples,
+  4: chapitre4Exemples,
+  5: chapitre5Exemples,
+  6: chapitre6Exemples,
+  7: chapitre7Exemples,
+  8: chapitre8Exemples,
+  9: chapitre9Exemples
+};
+
+// ../src/content/math/course-order.ts
+var courseOrder = {
+  1: ["ch1-cours-ex1", "ch1-cours-ex2", "ch1-exemple-1", "ch1-exemple-2", "ch1-exemple-3", "ch1-exemple-4", "ch1-cours-ex3", "ch1-cours-ex4", "ch1-cours-ex5", "ch1-exemple-5", "ch1-cours-ex6", "ch1-cours-ex7", "ch1-cours-ex8", "ch1-cours-ex9", "ch1-exemple-6", "ch1-cours-ex10", "ch1-cours-ex11", "ch1-cours-ex12", "ch1-cours-ex13", "ch1-exemple-7", "ch1-cours-ex14", "ch1-exemple-8", "ch1-cours-ex15", "ch1-cours-ex16", "ch1-cours-ex17", "ch1-cours-ex18", "ch1-exemple-9", "ch1-cours-ex19", "ch1-cours-ex20", "ch1-exemple-10", "ch1-exemple-11", "ch1-cours-ex21"],
+  2: ["ch2-exemple-1", "ch2-cours-ex1", "ch2-cours-ex2", "ch2-exemple-2", "ch2-cours-ex3", "ch2-cours-ex4", "ch2-cours-ex5", "ch2-exemple-3", "ch2-cours-ex6", "ch2-exemple-4", "ch2-cours-ex7", "ch2-cours-ex8", "ch2-exemple-5", "ch2-cours-ex9", "ch2-cours-ex10", "ch2-cours-ex11", "ch2-exemple-6", "ch2-cours-ex12", "ch2-cours-ex13", "ch2-cours-ex14", "ch2-cours-ex15", "ch2-cours-ex16", "ch2-exemple-7", "ch2-exemple-8", "ch2-exemple-9", "ch2-exemple-10", "ch2-exemple-11", "ch2-exemple-12", "ch2-exemple-13", "ch2-exemple-14", "ch2-exemple-15", "ch2-exemple-16", "ch2-exemple-17", "ch2-cours-ex17", "ch2-exemple-18", "ch2-cours-ex18", "ch2-cours-ex19", "ch2-cours-ex20", "ch2-cours-ex21", "ch2-cours-ex22", "ch2-exemple-19", "ch2-cours-ex23", "ch2-cours-ex24", "ch2-cours-ex25", "ch2-cours-ex26", "ch2-cours-ex27", "ch2-exemple-20", "ch2-cours-ex28", "ch2-exemple-21", "ch2-exemple-22", "ch2-exemple-23", "ch2-exemple-24", "ch2-exemple-25", "ch2-exemple-26", "ch2-exemple-27", "ch2-cours-ex29"],
+  3: ["ch3-exemple-1", "ch3-cours-ex1", "ch3-exemple-2", "ch3-exemple-3", "ch3-exemple-4", "ch3-exemple-5", "ch3-cours-ex2", "ch3-exemple-6"],
+  4: ["ch4-exemple-1", "ch4-exemple-2", "ch4-cours-ex1", "ch4-cours-ex2", "ch4-cours-ex3", "ch4-cours-ex4", "ch4-cours-ex5", "ch4-cours-ex6", "ch4-cours-ex7", "ch4-exemple-3", "ch4-cours-ex8", "ch4-cours-ex9", "ch4-cours-ex10", "ch4-cours-ex11", "ch4-cours-ex12", "ch4-cours-ex13", "ch4-exemple-4", "ch4-cours-ex14", "ch4-cours-ex15", "ch4-cours-ex16"],
+  5: ["ch5-exemple-1", "ch5-exemple-2", "ch5-cours-ex1", "ch5-cours-ex2", "ch5-cours-ex3", "ch5-cours-ex4", "ch5-cours-ex5", "ch5-cours-ex6", "ch5-cours-ex7", "ch5-exemple-3", "ch5-exemple-4", "ch5-cours-ex8", "ch5-exemple-5", "ch5-exemple-6", "ch5-exemple-7", "ch5-cours-ex9", "ch5-cours-ex10", "ch5-cours-ex11", "ch5-exemple-8", "ch5-exemple-9", "ch5-exemple-10", "ch5-exemple-11", "ch5-cours-ex12", "ch5-exemple-12", "ch5-exemple-13"],
+  6: ["ch6-exemple-1", "ch6-exemple-2", "ch6-cours-ex1", "ch6-cours-ex2", "ch6-exemple-3", "ch6-cours-ex3", "ch6-cours-ex4", "ch6-cours-ex5", "ch6-cours-ex6", "ch6-cours-ex7", "ch6-exemple-4", "ch6-exemple-5", "ch6-cours-ex8", "ch6-cours-ex9", "ch6-cours-ex10", "ch6-cours-ex11", "ch6-cours-ex12", "ch6-exemple-6", "ch6-cours-ex13", "ch6-exemple-7", "ch6-exemple-8", "ch6-exemple-9", "ch6-cours-ex14", "ch6-exemple-10", "ch6-cours-ex15", "ch6-exemple-11", "ch6-exemple-12", "ch6-cours-ex16"],
+  7: ["ch7-exemple-1", "ch7-exemple-2", "ch7-exemple-3", "ch7-exemple-4", "ch7-exemple-5", "ch7-exemple-6", "ch7-exemple-7", "ch7-exemple-8", "ch7-exemple-9", "ch7-exemple-10", "ch7-exemple-11", "ch7-exemple-12", "ch7-exemple-13", "ch7-cours-ex1", "ch7-exemple-14", "ch7-cours-ex2", "ch7-exemple-15", "ch7-exemple-16", "ch7-cours-ex3", "ch7-exemple-17", "ch7-exemple-18", "ch7-exemple-19", "ch7-exemple-20"],
+  8: ["ch8-cours-ex1", "ch8-cours-ex2", "ch8-cours-ex3", "ch8-exemple-1", "ch8-exemple-2", "ch8-exemple-3", "ch8-exemple-4", "ch8-exemple-5", "ch8-exemple-6", "ch8-exemple-7", "ch8-cours-ex4", "ch8-exemple-8", "ch8-exemple-9", "ch8-cours-ex5", "ch8-exemple-10", "ch8-exemple-11", "ch8-cours-ex6", "ch8-exemple-12", "ch8-cours-ex7", "ch8-cours-ex8", "ch8-exemple-13", "ch8-exemple-14", "ch8-exemple-15", "ch8-cours-ex9", "ch8-cours-ex10", "ch8-cours-ex11", "ch8-cours-ex12", "ch8-cours-ex13", "ch8-cours-ex14", "ch8-cours-ex15", "ch8-cours-ex16", "ch8-exemple-16", "ch8-cours-ex17", "ch8-cours-ex18", "ch8-cours-ex19", "ch8-exemple-17", "ch8-cours-ex20", "ch8-cours-ex21"],
+  9: ["ch9-cours-ex1", "ch9-exemple-1", "ch9-cours-ex2", "ch9-cours-ex3", "ch9-cours-ex4", "ch9-exemple-2", "ch9-cours-ex5", "ch9-exemple-3", "ch9-cours-ex6", "ch9-exemple-4", "ch9-cours-ex7", "ch9-exemple-5", "ch9-cours-ex8", "ch9-cours-ex9", "ch9-exemple-6", "ch9-exemple-7", "ch9-cours-ex10", "ch9-exemple-8", "ch9-cours-ex11", "ch9-cours-ex12", "ch9-cours-ex13", "ch9-exemple-9", "ch9-exemple-10", "ch9-cours-ex14", "ch9-cours-ex15", "ch9-exemple-11", "ch9-cours-ex16", "ch9-exemple-12", "ch9-cours-ex17", "ch9-exemple-13", "ch9-exemple-14", "ch9-exemple-15", "ch9-exemple-16", "ch9-exemple-17", "ch9-exemple-18", "ch9-cours-ex18", "ch9-exemple-19", "ch9-cours-ex19", "ch9-cours-ex20", "ch9-exemple-20", "ch9-cours-ex21", "ch9-cours-ex22"]
+};
+
 // src/data.ts
-var chapters = [chapitre_1_default, chapitre_2_default, chapitre_3_default, chapitre_4_default, chapitre_5_default, chapitre_6_default, chapitre_7_default, chapitre_8_default].sort(
+var chapters = [chapitre_1_default, chapitre_2_default, chapitre_3_default, chapitre_4_default, chapitre_5_default, chapitre_6_default, chapitre_7_default, chapitre_8_default, chapitre_9_default].map((c) => ({
+  ...c,
+  exercises: (() => {
+    const list = [...courseExamplesByChapter[c.number] ?? [], ...c.exercises];
+    const order = courseOrder[c.number] ?? [];
+    const rank = (e) => {
+      const i = order.indexOf(e.id);
+      return i === -1 ? order.length : i;
+    };
+    const isCourse = (e) => e.source === "cours" || e.source === "exemple";
+    return [...list.filter(isCourse).sort((a, b) => rank(a) - rank(b)), ...list.filter((e) => !isCourse(e))];
+  })()
+})).sort(
   (a, b) => a.number - b.number
 );
 var FROZEN_REGISTRY = {
@@ -33436,11 +34234,198 @@ var FROZEN_REGISTRY = {
   "dm3-q1": 244,
   "dm3-q2": 245,
   "dm3-q3": 246,
-  "dm3-q4": 247
+  "dm3-q4": 247,
+  "ch1-exemple-1": 248,
+  "ch1-exemple-2": 249,
+  "ch1-exemple-3": 250,
+  "ch1-exemple-4": 251,
+  "ch1-exemple-5": 252,
+  "ch1-exemple-6": 253,
+  "ch1-exemple-7": 254,
+  "ch1-exemple-8": 255,
+  "ch1-exemple-9": 256,
+  "ch1-exemple-10": 257,
+  "ch1-exemple-11": 258,
+  "ch2-exemple-1": 259,
+  "ch2-exemple-2": 260,
+  "ch2-exemple-3": 261,
+  "ch2-exemple-4": 262,
+  "ch2-exemple-5": 263,
+  "ch2-exemple-6": 264,
+  "ch2-exemple-7": 265,
+  "ch2-exemple-8": 266,
+  "ch2-exemple-9": 267,
+  "ch2-exemple-10": 268,
+  "ch2-exemple-11": 269,
+  "ch2-exemple-12": 270,
+  "ch2-exemple-13": 271,
+  "ch2-exemple-14": 272,
+  "ch2-exemple-15": 273,
+  "ch2-exemple-16": 274,
+  "ch2-exemple-17": 275,
+  "ch2-exemple-18": 276,
+  "ch2-exemple-19": 277,
+  "ch2-exemple-20": 278,
+  "ch2-exemple-21": 279,
+  "ch2-exemple-22": 280,
+  "ch2-exemple-23": 281,
+  "ch2-exemple-24": 282,
+  "ch2-exemple-25": 283,
+  "ch2-exemple-26": 284,
+  "ch2-exemple-27": 285,
+  "ch3-exemple-1": 286,
+  "ch3-exemple-2": 287,
+  "ch3-exemple-3": 288,
+  "ch3-exemple-4": 289,
+  "ch3-exemple-5": 290,
+  "ch3-exemple-6": 291,
+  "ch4-exemple-1": 292,
+  "ch4-exemple-2": 293,
+  "ch4-exemple-3": 294,
+  "ch4-exemple-4": 295,
+  "ch5-exemple-1": 296,
+  "ch5-exemple-2": 297,
+  "ch5-exemple-3": 298,
+  "ch5-exemple-4": 299,
+  "ch5-exemple-5": 300,
+  "ch5-exemple-6": 301,
+  "ch5-exemple-7": 302,
+  "ch5-exemple-8": 303,
+  "ch5-exemple-9": 304,
+  "ch5-exemple-10": 305,
+  "ch5-exemple-11": 306,
+  "ch5-exemple-12": 307,
+  "ch5-exemple-13": 308,
+  "ch6-exemple-1": 309,
+  "ch6-exemple-2": 310,
+  "ch6-exemple-3": 311,
+  "ch6-exemple-4": 312,
+  "ch6-exemple-5": 313,
+  "ch6-exemple-6": 314,
+  "ch6-exemple-7": 315,
+  "ch6-exemple-8": 316,
+  "ch6-exemple-9": 317,
+  "ch6-exemple-10": 318,
+  "ch6-exemple-11": 319,
+  "ch6-exemple-12": 320,
+  "ch7-exemple-1": 321,
+  "ch7-exemple-2": 322,
+  "ch7-exemple-3": 323,
+  "ch7-exemple-4": 324,
+  "ch7-exemple-5": 325,
+  "ch7-exemple-6": 326,
+  "ch7-exemple-7": 327,
+  "ch7-exemple-8": 328,
+  "ch7-exemple-9": 329,
+  "ch7-exemple-10": 330,
+  "ch7-exemple-11": 331,
+  "ch7-exemple-12": 332,
+  "ch7-exemple-13": 333,
+  "ch7-exemple-14": 334,
+  "ch7-exemple-15": 335,
+  "ch7-exemple-16": 336,
+  "ch7-exemple-17": 337,
+  "ch7-exemple-18": 338,
+  "ch7-exemple-19": 339,
+  "ch7-exemple-20": 340,
+  "ch8-exemple-1": 341,
+  "ch8-exemple-2": 342,
+  "ch8-exemple-3": 343,
+  "ch8-exemple-4": 344,
+  "ch8-exemple-5": 345,
+  "ch8-exemple-6": 346,
+  "ch8-exemple-7": 347,
+  "ch8-exemple-8": 348,
+  "ch8-exemple-9": 349,
+  "ch8-exemple-10": 350,
+  "ch8-exemple-11": 351,
+  "ch8-exemple-12": 352,
+  "ch8-exemple-13": 353,
+  "ch8-exemple-14": 354,
+  "ch8-exemple-15": 355,
+  "ch8-exemple-16": 356,
+  "ch8-exemple-17": 357,
+  "bonus-derivees-a": 358,
+  "bonus-derivees-b": 359,
+  "bonus-derivees-c": 360,
+  "bonus-derivees-d": 361,
+  "bonus-derivees-e": 362,
+  "bonus-derivees-f": 363,
+  "bonus-derivees-g": 364,
+  "bonus-derivees-h": 365,
+  "bonus-derivees-i": 366,
+  "bonus-derivees-j": 367,
+  "bonus-derivees-k": 368,
+  "bonus-derivees-l": 369,
+  "bonus-derivees-m": 370,
+  "bonus-derivees-n": 371,
+  "bonus-derivees-o": 372,
+  "bonus-derivees-p": 373,
+  "bonus-derivees-q": 374,
+  "bonus-derivees-r": 375,
+  "bonus-derivees-s": 376,
+  "bonus-derivees-t": 377,
+  "bonus-derivees-u": 378,
+  "bonus-derivees-v": 379,
+  "bonus-derivees-w": 380,
+  "bonus-derivees-y": 381,
+  "bonus-derivees-z": 382,
+  "ch9-cours-ex1": 383,
+  "ch9-cours-ex2": 384,
+  "ch9-cours-ex3": 385,
+  "ch9-cours-ex4": 386,
+  "ch9-cours-ex5": 387,
+  "ch9-cours-ex6": 388,
+  "ch9-cours-ex7": 389,
+  "ch9-cours-ex8": 390,
+  "ch9-cours-ex9": 391,
+  "ch9-cours-ex10": 392,
+  "ch9-cours-ex11": 393,
+  "ch9-cours-ex12": 394,
+  "ch9-cours-ex13": 395,
+  "ch9-cours-ex14": 396,
+  "ch9-cours-ex15": 397,
+  "ch9-cours-ex16": 398,
+  "ch9-cours-ex17": 399,
+  "ch9-cours-ex18": 400,
+  "ch9-cours-ex19": 401,
+  "ch9-cours-ex20": 402,
+  "ch9-cours-ex21": 403,
+  "ch9-cours-ex22": 404,
+  "ch9-ex1": 405,
+  "ch9-ex2": 406,
+  "ch9-ex3": 407,
+  "ch9-ex4": 408,
+  "ch9-ex5": 409,
+  "ch9-ex6": 410,
+  "ch9-ex7": 411,
+  "ch9-ex8": 412,
+  "ch9-ex9": 413,
+  "ch9-ex10": 414,
+  "ch9-exemple-1": 415,
+  "ch9-exemple-2": 416,
+  "ch9-exemple-3": 417,
+  "ch9-exemple-4": 418,
+  "ch9-exemple-5": 419,
+  "ch9-exemple-6": 420,
+  "ch9-exemple-7": 421,
+  "ch9-exemple-8": 422,
+  "ch9-exemple-9": 423,
+  "ch9-exemple-10": 424,
+  "ch9-exemple-11": 425,
+  "ch9-exemple-12": 426,
+  "ch9-exemple-13": 427,
+  "ch9-exemple-14": 428,
+  "ch9-exemple-15": 429,
+  "ch9-exemple-16": 430,
+  "ch9-exemple-17": 431,
+  "ch9-exemple-18": 432,
+  "ch9-exemple-19": 433,
+  "ch9-exemple-20": 434
 };
 var chapterExercises = chapters.flatMap(
-  (chapter9) => chapter9.exercises.map((e) => {
-    const src = e.source === "cours" ? "cours" : "td";
+  (chapter10) => chapter10.exercises.map((e) => {
+    const src = e.source === "cours" ? "cours" : e.source === "exemple" ? "exemple" : "td";
     const uid = FROZEN_REGISTRY[e.id] ?? 999;
     return {
       ...e,
@@ -33449,15 +34434,15 @@ var chapterExercises = chapters.flatMap(
       formattedUid: `#${String(uid).padStart(3, "0")}`,
       url: `https://foroagora.org/maths/exo/${uid}`,
       chapter: {
-        id: chapter9.id,
-        number: chapter9.number,
-        title: chapter9.title
+        id: chapter10.id,
+        number: chapter10.number,
+        title: chapter10.title
       }
     };
   })
 );
 var dmExercises = devoirs.flatMap((d) => {
-  const chapter9 = chapters.find((c) => c.number === d.chapter) ?? chapters[0];
+  const chapter10 = chapters.find((c) => c.number === d.chapter) ?? chapters[0];
   return d.questions.map((q) => {
     const uid = FROZEN_REGISTRY[q.id] ?? 999;
     return {
@@ -33468,14 +34453,30 @@ var dmExercises = devoirs.flatMap((d) => {
       formattedUid: `#${String(uid).padStart(3, "0")}`,
       url: `https://foroagora.org/maths/exo/${uid}`,
       chapter: {
-        id: chapter9.id,
-        number: chapter9.number,
-        title: chapter9.title
+        id: chapter10.id,
+        number: chapter10.number,
+        title: chapter10.title
       }
     };
   });
 });
-var allExercises = [...chapterExercises, ...dmExercises].sort(
+var bonusExercises = bonusSheets.flatMap((b) => {
+  const chapter10 = chapters.find((c) => c.number === b.chapter) ?? chapters[0];
+  return b.questions.map((q) => {
+    const uid = FROZEN_REGISTRY[q.id] ?? 999;
+    return {
+      ...q,
+      source: "bonus",
+      bonusSheetId: b.id,
+      answer: bonusAnswers[q.id],
+      uid,
+      formattedUid: `#${String(uid).padStart(3, "0")}`,
+      url: `https://foroagora.org/maths/exo/${uid}`,
+      chapter: { id: chapter10.id, number: chapter10.number, title: chapter10.title }
+    };
+  });
+});
+var allExercises = [...chapterExercises, ...dmExercises, ...bonusExercises].sort(
   (a, b) => a.uid - b.uid
 );
 var getChapter = (identifier) => {
@@ -33500,12 +34501,12 @@ var getExercise = (identifier) => {
 };
 var stripAccents = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 var searchExercises = (query, options = {}) => {
-  const { chapter: chapter9, source, limit = 20 } = options;
+  const { chapter: chapter10, source, limit = 20 } = options;
   const rawQuery = query.trim();
   const cleanQuery = stripAccents(rawQuery).replace(/^#/, "");
   let list = allExercises;
-  if (chapter9 !== void 0) {
-    list = list.filter((e) => e.chapter.number === chapter9);
+  if (chapter10 !== void 0) {
+    list = list.filter((e) => e.chapter.number === chapter10);
   }
   if (source !== void 0) {
     list = list.filter((e) => e.source === source);
@@ -33520,7 +34521,7 @@ var searchExercises = (query, options = {}) => {
   }
   const terms = cleanQuery.split(/\s+/).filter(Boolean);
   const scored = list.map((e) => {
-    const srcText = e.source === "cours" ? "cours" : e.source === "dm" ? "dm" : "td";
+    const srcText = e.source === "cours" ? "cours" : e.source === "dm" ? "dm" : e.source === "exemple" ? "exemple" : "td";
     const haystack = stripAccents(
       `${e.statement} ${e.chapter.title} chapitre ${e.chapter.number} chap ${e.chapter.number} ${srcText} exercice ${e.number} ${e.formattedUid} ${e.id}`
     );
@@ -33603,7 +34604,7 @@ var getMathStats = () => {
 // src/index.ts
 import http from "node:http";
 
-// ../../nix/store/bfdb6m7h90ylv0min5ssby14snk6kp95-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/sse.js
+// ../../nix/store/7ia654yzvxa73960asd0xwmv9rrv49sq-sandbox-global-tools-node-modules-1.0.0/node_modules/@modelcontextprotocol/sdk/dist/esm/server/sse.js
 import { randomUUID } from "node:crypto";
 import { TLSSocket } from "node:tls";
 var import_raw_body = __toESM(require_raw_body(), 1);
@@ -33831,15 +34832,15 @@ server.tool(
     chapter: external_exports4.union([external_exports4.number(), external_exports4.string()]).describe("Chapter number (1 to 7) or ID ('chapitre-1', 'chapitre-2', etc.)"),
     include_statements: external_exports4.boolean().optional().default(false).describe("If true, includes the complete LaTeX statements of all exercises in the chapter")
   },
-  async ({ chapter: chapter9, include_statements }) => {
-    const chap = getChapter(chapter9);
+  async ({ chapter: chapter10, include_statements }) => {
+    const chap = getChapter(chapter10);
     if (!chap) {
       return {
         isError: true,
         content: [
           {
             type: "text",
-            text: `Chapter '${chapter9}' not found. Please specify a chapter number between 1 and 7, or an ID like 'chapitre-1'.`
+            text: `Chapter '${chapter10}' not found. Please specify a chapter number between 1 and 7, or an ID like 'chapitre-1'.`
           }
         ]
       };
@@ -33939,14 +34940,14 @@ server.tool(
     source: external_exports4.enum(["cours", "td", "dm"]).optional().describe("Filter by exercise origin: 'cours' (embedded lecture exercise), 'td' (worksheet), 'dm' (homework)"),
     limit: external_exports4.number().int().min(1).max(50).optional().default(10).describe("Maximum number of results to return (default: 10)")
   },
-  async ({ query, chapter: chapter9, source, limit }) => {
-    const results = searchExercises(query, { chapter: chapter9, source, limit });
+  async ({ query, chapter: chapter10, source, limit }) => {
+    const results = searchExercises(query, { chapter: chapter10, source, limit });
     if (results.length === 0) {
       return {
         content: [
           {
             type: "text",
-            text: `Aucun exercice ne correspond \xE0 la recherche "${query}"${chapter9 ? ` dans le chapitre ${chapter9}` : ""}${source ? ` (source: ${source})` : ""}.`
+            text: `Aucun exercice ne correspond \xE0 la recherche "${query}"${chapter10 ? ` dans le chapitre ${chapter10}` : ""}${source ? ` (source: ${source})` : ""}.`
           }
         ]
       };
@@ -33974,13 +34975,13 @@ server.tool(
     date: external_exports4.string().optional().describe("Date in YYYY-MM-DD format (defaults to today in Europe/Paris timezone)"),
     chapter: external_exports4.union([external_exports4.number(), external_exports4.string()]).optional().default("all").describe("Filter to a specific chapter number (1-7) or 'all'")
   },
-  async ({ date: date4, chapter: chapter9 }) => {
+  async ({ date: date4, chapter: chapter10 }) => {
     const resolvedDate = date4 || parisDateString();
-    const workout = getDailyWorkout(resolvedDate, chapter9);
+    const workout = getDailyWorkout(resolvedDate, chapter10);
     let md = `# Entra\xEEnement du Jour \u2014 ${resolvedDate}
 
 `;
-    md += `S\xE9lection quotidienne de 5 exercices (${chapter9 === "all" ? "tous chapitres confondus" : `chapitre ${chapter9}`}).
+    md += `S\xE9lection quotidienne de 5 exercices (${chapter10 === "all" ? "tous chapitres confondus" : `chapitre ${chapter10}`}).
 
 `;
     for (let i = 0; i < workout.length; i++) {
@@ -34128,6 +35129,10 @@ server.tool(
         md += `  - ${s.text}
 `;
       }
+      if (k.warning) md += `- **${k.warning}**
+`;
+      if (k.preamble) md += `- **Pr\xE9ambule** : ${k.preamble}
+`;
       md += `- **Questions de cours incontournables** :
 `;
       for (const inc of k.incontournables) {
@@ -34184,6 +35189,12 @@ server.tool(
 `;
     }
     md += `
+`;
+    if (k.warning) md += `**${k.warning}**
+
+`;
+    if (k.preamble) md += `**Pr\xE9ambule** : ${k.preamble}
+
 `;
     md += `### Questions de cours incontournables
 

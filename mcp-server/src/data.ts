@@ -7,6 +7,7 @@ import c5 from "../../src/content/math/chapters/chapitre-5.js";
 import c6 from "../../src/content/math/chapters/chapitre-6.js";
 import c7 from "../../src/content/math/chapters/chapitre-7.js";
 import c8 from "../../src/content/math/chapters/chapitre-8.js";
+import c9 from "../../src/content/math/chapters/chapitre-9.js";
 import { devoirs, type Devoir } from "../../src/content/math/dm.js";
 import { bonusSheets, bonusAnswers, type BonusSheet } from "../../src/content/math/bonus.js";
 import { kholleWeeks, KHOLLE_NOTE, type KholleWeek } from "../../src/content/math/kholles.js";
@@ -37,7 +38,7 @@ export type { MathChapter, MathExercise, Devoir, KholleWeek, DriveDoc, BonusShee
 import { courseExamplesByChapter } from "./examples.js";
 import { courseOrder } from "../../src/content/math/course-order.js";
 
-export const chapters: MathChapter[] = [c1, c2, c3, c4, c5, c6, c7, c8].map((c) => ({
+export const chapters: MathChapter[] = [c1, c2, c3, c4, c5, c6, c7, c8, c9].map((c) => ({
   ...c,
   exercises: (() => {
     const list = [...(courseExamplesByChapter[c.number] ?? []), ...c.exercises];
@@ -449,6 +450,58 @@ export const FROZEN_REGISTRY: Record<string, number> = {
   "bonus-derivees-w": 380,
   "bonus-derivees-y": 381,
   "bonus-derivees-z": 382,
+  "ch9-cours-ex1": 383,
+  "ch9-cours-ex2": 384,
+  "ch9-cours-ex3": 385,
+  "ch9-cours-ex4": 386,
+  "ch9-cours-ex5": 387,
+  "ch9-cours-ex6": 388,
+  "ch9-cours-ex7": 389,
+  "ch9-cours-ex8": 390,
+  "ch9-cours-ex9": 391,
+  "ch9-cours-ex10": 392,
+  "ch9-cours-ex11": 393,
+  "ch9-cours-ex12": 394,
+  "ch9-cours-ex13": 395,
+  "ch9-cours-ex14": 396,
+  "ch9-cours-ex15": 397,
+  "ch9-cours-ex16": 398,
+  "ch9-cours-ex17": 399,
+  "ch9-cours-ex18": 400,
+  "ch9-cours-ex19": 401,
+  "ch9-cours-ex20": 402,
+  "ch9-cours-ex21": 403,
+  "ch9-cours-ex22": 404,
+  "ch9-ex1": 405,
+  "ch9-ex2": 406,
+  "ch9-ex3": 407,
+  "ch9-ex4": 408,
+  "ch9-ex5": 409,
+  "ch9-ex6": 410,
+  "ch9-ex7": 411,
+  "ch9-ex8": 412,
+  "ch9-ex9": 413,
+  "ch9-ex10": 414,
+  "ch9-exemple-1": 415,
+  "ch9-exemple-2": 416,
+  "ch9-exemple-3": 417,
+  "ch9-exemple-4": 418,
+  "ch9-exemple-5": 419,
+  "ch9-exemple-6": 420,
+  "ch9-exemple-7": 421,
+  "ch9-exemple-8": 422,
+  "ch9-exemple-9": 423,
+  "ch9-exemple-10": 424,
+  "ch9-exemple-11": 425,
+  "ch9-exemple-12": 426,
+  "ch9-exemple-13": 427,
+  "ch9-exemple-14": 428,
+  "ch9-exemple-15": 429,
+  "ch9-exemple-16": 430,
+  "ch9-exemple-17": 431,
+  "ch9-exemple-18": 432,
+  "ch9-exemple-19": 433,
+  "ch9-exemple-20": 434,
 };
 
 // Build all exercises

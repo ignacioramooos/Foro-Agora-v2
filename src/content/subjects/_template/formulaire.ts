@@ -1,4 +1,4 @@
-import type { FormulaireSection } from "../../types";
+import type { FormulaireSection } from "../types";
 
 export const templateFormulaire: FormulaireSection[] = [
   {

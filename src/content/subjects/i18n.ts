@@ -199,6 +199,100 @@ export interface SubjectStrings {
     fallbackPrefix: string;
     fallbackLink: string;
   };
+  workspace: {
+    notFoundTitle: string;
+    notFoundBody: string;
+    restrictedTitle: string;
+    signInTitle: string;
+    restrictedBody: string;
+    signInBody: string;
+    signIn: string;
+    requestAccess: string;
+    backToClasses: string;
+    loading: (name: string) => string;
+    offline: string;
+    language: string;
+  };
+  kholles: {
+    subtitle: string;
+    thisWeek: string;
+    showProgramme: string;
+    hideProgramme: string;
+    inScope: string;
+    reviewCourse: string;
+    incontournables: string;
+    programmeTitle: (label: string) => string;
+  };
+  simulator: {
+    title: string;
+    noProgramme: string;
+    intro: (chapters: string) => string;
+    chapterShort: (n: number) => string;
+    prep: string;
+    pass: string;
+    exercises: string;
+    draw: string;
+    weekIncontournables: string;
+    phasePass: string;
+    phaseDone: string;
+    resume: string;
+    pause: string;
+    goToBoard: string;
+    finish: string;
+    hideDesmos: string;
+    newDraw: string;
+    courseQuestion: string;
+    exerciseLabel: (i: number, chapter: number) => string;
+  };
+  mcp: {
+    title: string;
+    privateDesc: string;
+    publicDesc: string;
+    copied: string;
+    copyUrl: string;
+  };
+  auth: {
+    signIn: string;
+    createAccount: string;
+    dialogDesc: string;
+    google: string;
+    or: string;
+    firstName: string;
+    email: string;
+    password: string;
+    submitSignup: string;
+    toSignup: string;
+    toLogin: string;
+    hello: string;
+    myAccount: string;
+    editProfile: string;
+    signOut: string;
+    googleError: string;
+    errInvalid: string;
+    errExists: string;
+    errPassword: string;
+    errUnconfirmed: string;
+    errGeneric: string;
+    created: string;
+  };
+  profile: {
+    title: string;
+    desc: string;
+    displayName: string;
+    photo: string;
+    choosePhoto: string;
+    save: string;
+    errName: string;
+    errImage: string;
+    errPhoto: string;
+    errSave: string;
+  };
+  desmos: {
+    aria: string;
+    title: string;
+    openNewTab: string;
+    close: string;
+  };
   theme: {
     toLight: string;
     toDark: string;
@@ -401,6 +495,101 @@ const strings: Record<SubjectLocale, SubjectStrings> = {
       fallbackPrefix: "Le document ne s'affiche pas ?",
       fallbackLink: "Ouvre-le dans Google Drive",
     },
+    workspace: {
+      notFoundTitle: "Classe introuvable",
+      notFoundBody: "Cet espace d'exercices n'existe pas encore.",
+      restrictedTitle: "Accès restreint",
+      signInTitle: "Connexion requise",
+      restrictedBody: "Cette classe est privée. Votre compte n'a pas encore l'autorisation d'y accéder.",
+      signInBody: "Cette classe est protégée par connexion. Connectez-vous avec votre compte Foro Agora pour y accéder.",
+      signIn: "Se connecter",
+      requestAccess: "Demander l'accès",
+      backToClasses: "Retour aux classes",
+      loading: (name) => `Chargement de ${name}…`,
+      offline: "Hors ligne",
+      language: "Langue",
+    },
+    kholles: {
+      subtitle: "Le programme de chaque semaine et ses incontournables.",
+      thisWeek: "Cette semaine",
+      showProgramme: "Voir le programme",
+      hideProgramme: "Masquer le programme",
+      inScope: "Au programme",
+      reviewCourse: "Réviser le cours",
+      incontournables: "Les incontournables",
+      programmeTitle: (label) => `Programme — ${label}`,
+    },
+    simulator: {
+      title: "Simulateur de khôlle",
+      noProgramme: "Aucun programme de khôlle configuré.",
+      intro: (chapters) =>
+        `Un tirage en conditions réelles : une question de cours parmi les incontournables de la semaine, puis des exercices des chapitres au programme (${chapters}).`,
+      chapterShort: (n) => `ch. ${n}`,
+      prep: "Préparation",
+      pass: "Passage",
+      exercises: "Exercices",
+      draw: "Lancer le tirage",
+      weekIncontournables: "Incontournables de la semaine",
+      phasePass: "Passage au tableau",
+      phaseDone: "Terminé",
+      resume: "Reprendre",
+      pause: "Pause",
+      goToBoard: "Passer au tableau",
+      finish: "Terminer",
+      hideDesmos: "Masquer Desmos",
+      newDraw: "Nouveau tirage",
+      courseQuestion: "Question de cours",
+      exerciseLabel: (i, c) => `Exercice ${i} · Ch. ${c}`,
+    },
+    mcp: {
+      title: "Serveur MCP (outils IA)",
+      privateDesc: "Classe privée — connecte-toi avec le jeton Bearer qui t'a été attribué.",
+      publicDesc: "Connecte cette classe à Gemini, Claude, Cursor ou tout client IA compatible MCP.",
+      copied: "Copié",
+      copyUrl: "Copier l'URL",
+    },
+    auth: {
+      signIn: "Se connecter",
+      createAccount: "Créer un compte",
+      dialogDesc: "Ta progression et ton objectif seront sauvegardés sur ton compte.",
+      google: "Continuer avec Google",
+      or: "ou",
+      firstName: "Prénom",
+      email: "E-mail",
+      password: "Mot de passe",
+      submitSignup: "Créer mon compte",
+      toSignup: "Pas encore de compte ? Créer un compte",
+      toLogin: "Déjà un compte ? Se connecter",
+      hello: "Salut,",
+      myAccount: "Mon compte",
+      editProfile: "Modifier mon profil",
+      signOut: "Se déconnecter",
+      googleError: "Impossible de se connecter avec Google.",
+      errInvalid: "E-mail ou mot de passe incorrect.",
+      errExists: "Un compte existe déjà avec cet e-mail.",
+      errPassword: "Le mot de passe doit contenir au moins 6 caractères.",
+      errUnconfirmed: "Confirme ton e-mail avant de te connecter.",
+      errGeneric: "Une erreur est survenue. Réessaie.",
+      created: "Compte créé ! Vérifie ta boîte mail pour confirmer ton adresse, puis reviens ici.",
+    },
+    profile: {
+      title: "Mon profil",
+      desc: "Ce profil est le même sur Maths et Foro Agora.",
+      displayName: "Nom affiché",
+      photo: "Photo",
+      choosePhoto: "Choisir une photo",
+      save: "Enregistrer",
+      errName: "Le nom doit contenir entre 1 et 100 caractères.",
+      errImage: "Choisis une image JPG, PNG ou WebP de moins de 5 Mo.",
+      errPhoto: "La photo n'a pas pu être enregistrée.",
+      errSave: "Le profil n'a pas pu être enregistré.",
+    },
+    desmos: {
+      aria: "Calculatrice graphique Desmos",
+      title: "Calculatrice",
+      openNewTab: "Ouvrir Desmos dans un nouvel onglet",
+      close: "Fermer",
+    },
     theme: {
       toLight: "Passer au mode clair",
       toDark: "Passer au mode sombre",
@@ -600,6 +789,101 @@ const strings: Record<SubjectLocale, SubjectStrings> = {
       openDrive: "Google Drive",
       fallbackPrefix: "Document not loading?",
       fallbackLink: "Open it in Google Drive",
+    },
+    workspace: {
+      notFoundTitle: "Classroom not found",
+      notFoundBody: "This practice space doesn't exist yet.",
+      restrictedTitle: "Restricted access",
+      signInTitle: "Sign-in required",
+      restrictedBody: "This classroom is private. Your account doesn't have access yet.",
+      signInBody: "This classroom requires sign-in. Sign in with your Foro Agora account to continue.",
+      signIn: "Sign in",
+      requestAccess: "Request access",
+      backToClasses: "Back to classrooms",
+      loading: (name) => `Loading ${name}…`,
+      offline: "Offline",
+      language: "Language",
+    },
+    kholles: {
+      subtitle: "Each week's programme and its must-know questions.",
+      thisWeek: "This week",
+      showProgramme: "Show programme",
+      hideProgramme: "Hide programme",
+      inScope: "In scope",
+      reviewCourse: "Review the lecture",
+      incontournables: "Must-know questions",
+      programmeTitle: (label) => `Programme — ${label}`,
+    },
+    simulator: {
+      title: "Oral exam simulator",
+      noProgramme: "No oral exam programme set up.",
+      intro: (chapters) =>
+        `A realistic draw: one lecture question from this week's must-know list, then exercises from the chapters in scope (${chapters}).`,
+      chapterShort: (n) => `ch. ${n}`,
+      prep: "Preparation",
+      pass: "At the board",
+      exercises: "Exercises",
+      draw: "Start the draw",
+      weekIncontournables: "This week's must-know questions",
+      phasePass: "At the board",
+      phaseDone: "Finished",
+      resume: "Resume",
+      pause: "Pause",
+      goToBoard: "Go to the board",
+      finish: "Finish",
+      hideDesmos: "Hide Desmos",
+      newDraw: "New draw",
+      courseQuestion: "Lecture question",
+      exerciseLabel: (i, c) => `Exercise ${i} · Ch. ${c}`,
+    },
+    mcp: {
+      title: "MCP server (AI tools)",
+      privateDesc: "Private classroom — connect with your assigned Bearer token.",
+      publicDesc: "Connect this classroom to Gemini, Claude, Cursor, or any MCP-compatible AI client.",
+      copied: "Copied",
+      copyUrl: "Copy URL",
+    },
+    auth: {
+      signIn: "Sign in",
+      createAccount: "Create an account",
+      dialogDesc: "Your progress and daily goal will be saved to your account.",
+      google: "Continue with Google",
+      or: "or",
+      firstName: "First name",
+      email: "Email",
+      password: "Password",
+      submitSignup: "Create my account",
+      toSignup: "No account yet? Create one",
+      toLogin: "Already have an account? Sign in",
+      hello: "Hi,",
+      myAccount: "My account",
+      editProfile: "Edit my profile",
+      signOut: "Sign out",
+      googleError: "Couldn't sign in with Google.",
+      errInvalid: "Wrong email or password.",
+      errExists: "An account already exists with this email.",
+      errPassword: "The password must be at least 6 characters long.",
+      errUnconfirmed: "Confirm your email before signing in.",
+      errGeneric: "Something went wrong. Please try again.",
+      created: "Account created! Check your inbox to confirm your email, then come back here.",
+    },
+    profile: {
+      title: "My profile",
+      desc: "This profile is shared across Foro Agora.",
+      displayName: "Display name",
+      photo: "Photo",
+      choosePhoto: "Choose a photo",
+      save: "Save",
+      errName: "The name must be between 1 and 100 characters.",
+      errImage: "Choose a JPG, PNG or WebP image under 5 MB.",
+      errPhoto: "The photo couldn't be saved.",
+      errSave: "The profile couldn't be saved.",
+    },
+    desmos: {
+      aria: "Desmos graphing calculator",
+      title: "Calculator",
+      openNewTab: "Open Desmos in a new tab",
+      close: "Close",
     },
     theme: {
       toLight: "Switch to light mode",
@@ -801,6 +1085,101 @@ const strings: Record<SubjectLocale, SubjectStrings> = {
       fallbackPrefix: "¿No carga el documento?",
       fallbackLink: "Ábrelo en Google Drive",
     },
+    workspace: {
+      notFoundTitle: "Clase no encontrada",
+      notFoundBody: "Este espacio de ejercicios todavía no existe.",
+      restrictedTitle: "Acceso restringido",
+      signInTitle: "Tenés que iniciar sesión",
+      restrictedBody: "Esta clase es privada. Tu cuenta todavía no tiene permiso para entrar.",
+      signInBody: "Esta clase está protegida. Iniciá sesión con tu cuenta de Foro Agora para entrar.",
+      signIn: "Iniciar sesión",
+      requestAccess: "Pedir acceso",
+      backToClasses: "Volver a las clases",
+      loading: (name) => `Cargando ${name}…`,
+      offline: "Sin conexión",
+      language: "Idioma",
+    },
+    kholles: {
+      subtitle: "El programa de cada semana y sus preguntas imprescindibles.",
+      thisWeek: "Esta semana",
+      showProgramme: "Ver el programa",
+      hideProgramme: "Ocultar el programa",
+      inScope: "En el programa",
+      reviewCourse: "Repasar el curso",
+      incontournables: "Preguntas imprescindibles",
+      programmeTitle: (label) => `Programa — ${label}`,
+    },
+    simulator: {
+      title: "Simulador de examen oral",
+      noProgramme: "No hay ningún programa de examen oral configurado.",
+      intro: (chapters) =>
+        `Un sorteo en condiciones reales: una pregunta de curso entre las imprescindibles de la semana y luego ejercicios de los capítulos del programa (${chapters}).`,
+      chapterShort: (n) => `cap. ${n}`,
+      prep: "Preparación",
+      pass: "Exposición",
+      exercises: "Ejercicios",
+      draw: "Sortear",
+      weekIncontournables: "Imprescindibles de la semana",
+      phasePass: "Exposición en el pizarrón",
+      phaseDone: "Terminado",
+      resume: "Reanudar",
+      pause: "Pausa",
+      goToBoard: "Pasar al pizarrón",
+      finish: "Terminar",
+      hideDesmos: "Ocultar Desmos",
+      newDraw: "Nuevo sorteo",
+      courseQuestion: "Pregunta de curso",
+      exerciseLabel: (i, c) => `Ejercicio ${i} · Cap. ${c}`,
+    },
+    mcp: {
+      title: "Servidor MCP (herramientas de IA)",
+      privateDesc: "Clase privada — conectate con el token Bearer que te asignaron.",
+      publicDesc: "Conectá esta clase a Gemini, Claude, Cursor o cualquier cliente de IA compatible con MCP.",
+      copied: "Copiado",
+      copyUrl: "Copiar URL",
+    },
+    auth: {
+      signIn: "Iniciar sesión",
+      createAccount: "Crear una cuenta",
+      dialogDesc: "Tu progreso y tu objetivo diario se guardan en tu cuenta.",
+      google: "Continuar con Google",
+      or: "o",
+      firstName: "Nombre",
+      email: "Email",
+      password: "Contraseña",
+      submitSignup: "Crear mi cuenta",
+      toSignup: "¿No tenés cuenta? Creá una",
+      toLogin: "¿Ya tenés cuenta? Iniciá sesión",
+      hello: "Hola,",
+      myAccount: "Mi cuenta",
+      editProfile: "Editar mi perfil",
+      signOut: "Cerrar sesión",
+      googleError: "No se pudo iniciar sesión con Google.",
+      errInvalid: "Email o contraseña incorrectos.",
+      errExists: "Ya existe una cuenta con este email.",
+      errPassword: "La contraseña tiene que tener al menos 6 caracteres.",
+      errUnconfirmed: "Confirmá tu email antes de iniciar sesión.",
+      errGeneric: "Ocurrió un error. Probá de nuevo.",
+      created: "¡Cuenta creada! Revisá tu correo para confirmar tu email y después volvé acá.",
+    },
+    profile: {
+      title: "Mi perfil",
+      desc: "Este perfil es el mismo en todo Foro Agora.",
+      displayName: "Nombre visible",
+      photo: "Foto",
+      choosePhoto: "Elegir una foto",
+      save: "Guardar",
+      errName: "El nombre tiene que tener entre 1 y 100 caracteres.",
+      errImage: "Elegí una imagen JPG, PNG o WebP de menos de 5 MB.",
+      errPhoto: "No se pudo guardar la foto.",
+      errSave: "No se pudo guardar el perfil.",
+    },
+    desmos: {
+      aria: "Calculadora gráfica Desmos",
+      title: "Calculadora",
+      openNewTab: "Abrir Desmos en una pestaña nueva",
+      close: "Cerrar",
+    },
     theme: {
       toLight: "Cambiar a modo claro",
       toDark: "Cambiar a modo oscuro",
@@ -1000,6 +1379,101 @@ const strings: Record<SubjectLocale, SubjectStrings> = {
       openDrive: "Google Drive",
       fallbackPrefix: "O documento não carregou?",
       fallbackLink: "Abra no Google Drive",
+    },
+    workspace: {
+      notFoundTitle: "Turma não encontrada",
+      notFoundBody: "Este espaço de exercícios ainda não existe.",
+      restrictedTitle: "Acesso restrito",
+      signInTitle: "Login necessário",
+      restrictedBody: "Esta turma é privada. Sua conta ainda não tem permissão de acesso.",
+      signInBody: "Esta turma é protegida por login. Entre com sua conta Foro Agora para acessar.",
+      signIn: "Entrar",
+      requestAccess: "Pedir acesso",
+      backToClasses: "Voltar às turmas",
+      loading: (name) => `Carregando ${name}…`,
+      offline: "Offline",
+      language: "Idioma",
+    },
+    kholles: {
+      subtitle: "O programa de cada semana e suas perguntas essenciais.",
+      thisWeek: "Esta semana",
+      showProgramme: "Ver o programa",
+      hideProgramme: "Ocultar o programa",
+      inScope: "No programa",
+      reviewCourse: "Revisar a aula",
+      incontournables: "Perguntas essenciais",
+      programmeTitle: (label) => `Programa — ${label}`,
+    },
+    simulator: {
+      title: "Simulador de prova oral",
+      noProgramme: "Nenhum programa de prova oral configurado.",
+      intro: (chapters) =>
+        `Um sorteio em condições reais: uma pergunta de aula entre as essenciais da semana e depois exercícios dos capítulos do programa (${chapters}).`,
+      chapterShort: (n) => `cap. ${n}`,
+      prep: "Preparação",
+      pass: "Apresentação",
+      exercises: "Exercícios",
+      draw: "Sortear",
+      weekIncontournables: "Essenciais da semana",
+      phasePass: "Apresentação no quadro",
+      phaseDone: "Concluído",
+      resume: "Retomar",
+      pause: "Pausar",
+      goToBoard: "Ir para o quadro",
+      finish: "Concluir",
+      hideDesmos: "Ocultar Desmos",
+      newDraw: "Novo sorteio",
+      courseQuestion: "Pergunta de aula",
+      exerciseLabel: (i, c) => `Exercício ${i} · Cap. ${c}`,
+    },
+    mcp: {
+      title: "Servidor MCP (ferramentas de IA)",
+      privateDesc: "Turma privada — conecte-se com o token Bearer que foi atribuído a você.",
+      publicDesc: "Conecte esta turma ao Gemini, Claude, Cursor ou qualquer cliente de IA compatível com MCP.",
+      copied: "Copiado",
+      copyUrl: "Copiar URL",
+    },
+    auth: {
+      signIn: "Entrar",
+      createAccount: "Criar uma conta",
+      dialogDesc: "Seu progresso e sua meta diária ficam salvos na sua conta.",
+      google: "Continuar com o Google",
+      or: "ou",
+      firstName: "Nome",
+      email: "E-mail",
+      password: "Senha",
+      submitSignup: "Criar minha conta",
+      toSignup: "Ainda não tem conta? Crie uma",
+      toLogin: "Já tem conta? Entrar",
+      hello: "Olá,",
+      myAccount: "Minha conta",
+      editProfile: "Editar meu perfil",
+      signOut: "Sair",
+      googleError: "Não foi possível entrar com o Google.",
+      errInvalid: "E-mail ou senha incorretos.",
+      errExists: "Já existe uma conta com este e-mail.",
+      errPassword: "A senha precisa ter pelo menos 6 caracteres.",
+      errUnconfirmed: "Confirme seu e-mail antes de entrar.",
+      errGeneric: "Ocorreu um erro. Tente novamente.",
+      created: "Conta criada! Confira sua caixa de entrada para confirmar o e-mail e depois volte aqui.",
+    },
+    profile: {
+      title: "Meu perfil",
+      desc: "Este perfil é o mesmo em todo o Foro Agora.",
+      displayName: "Nome exibido",
+      photo: "Foto",
+      choosePhoto: "Escolher uma foto",
+      save: "Salvar",
+      errName: "O nome deve ter entre 1 e 100 caracteres.",
+      errImage: "Escolha uma imagem JPG, PNG ou WebP com menos de 5 MB.",
+      errPhoto: "Não foi possível salvar a foto.",
+      errSave: "Não foi possível salvar o perfil.",
+    },
+    desmos: {
+      aria: "Calculadora gráfica Desmos",
+      title: "Calculadora",
+      openNewTab: "Abrir o Desmos em uma nova aba",
+      close: "Fechar",
     },
     theme: {
       toLight: "Mudar para modo claro",

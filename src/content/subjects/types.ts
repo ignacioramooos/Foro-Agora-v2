@@ -130,6 +130,28 @@ export interface ClassroomAccessConfig {
   unlisted?: boolean;
 }
 
+/** Translated text for one language. Any field left out falls back to the classroom's original text. */
+export interface SubjectContentTranslation {
+  name?: string;
+  fullName?: string;
+  description?: string;
+  professor?: string;
+  institution?: string;
+  level?: string;
+  aiContext?: string;
+  phrases?: string[];
+  /** Keyed by chapter id. */
+  chapters?: Record<string, { title?: string; summary?: string; notes?: string[] }>;
+  /** Keyed by exercise id (ids themselves never change). */
+  exercises?: Record<string, { statement?: string; hints?: string[]; answer?: string }>;
+  /** Keyed by formulaire section id, then item id. */
+  formulaire?: Record<string, { title?: string; items?: Record<string, { name?: string; tex?: string }> }>;
+}
+
+export type ClassroomSummaryTranslation = Partial<
+  Pick<ClassroomSummary, "name" | "fullName" | "description" | "professor" | "institution" | "level">
+>;
+
 export interface SubjectConfig {
   /** URL slug under /classroom/:slug (e.g. "maths", "physique", "chimie", "sii"). */
   slug: string;
@@ -147,8 +169,15 @@ export interface SubjectConfig {
   level?: string;
   /** Marks whether this class uses CPGE-specific workflows (khôlles, Cours/TD). */
   isCpge?: boolean;
-  /** Default UI language ("fr" | "en" | "es" | "pt"). Users can also switch it live. */
+  /** Language the original content is written in ("fr" | "en" | "es" | "pt"). */
   locale?: SubjectLocale;
+  /**
+   * When true the classroom always shows `locale` and hides the language switch (e.g. Maths, French-only).
+   * Otherwise visitors get their browser language automatically and can switch live.
+   */
+  lockLocale?: boolean;
+  /** Optional translated content per language (applied on top of the original text). */
+  translations?: Partial<Record<SubjectLocale, SubjectContentTranslation>>;
   /** Language/level context injected into the "Copier pour Gemini" prompt (e.g. "en physique"). */
   aiContext?: string;
   /** Prefix for localStorage keys. Defaults to `fa_subject_${slug}`. */
@@ -200,6 +229,10 @@ export interface ClassroomSummary {
   level?: string;
   isCpge?: boolean;
   locale?: SubjectLocale;
+  /** Mirrors SubjectConfig.lockLocale for the directory card. */
+  lockLocale?: boolean;
+  /** Optional translated directory card text per language. */
+  translations?: Partial<Record<SubjectLocale, ClassroomSummaryTranslation>>;
   chaptersCount: number;
   exercisesCount: number;
   features: SubjectFeatures;

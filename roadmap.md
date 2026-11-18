@@ -16,3 +16,6 @@
 - [x] Add shared profile editing and a compact “Salut, [nom]” greeting to Maths
 - [x] Verify banner, Forum, profile, mobile, desktop, dark mode, and direct routes
 - [x] Ordenar exemples y exercices del cours en el orden exacto de cada ficha
+- [x] Classrooms: auto-detect visitor language (fr/en/es/pt) for /classroom and the sample class, shared choice between directory and class
+- [x] Translate the sample class (modèle) UI and content into en/es/pt
+- [x] Keep the Maths classroom French-only (no language switch) — user request

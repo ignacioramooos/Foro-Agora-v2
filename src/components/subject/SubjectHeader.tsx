@@ -14,7 +14,7 @@ const LOCALES: SubjectLocale[] = ["fr", "en", "es", "pt"];
 
 const SubjectHeader = () => {
   const { theme, toggleTheme } = useTheme();
-  const { subject, basePath, locale, setLocale, t } = useSubject();
+  const { subject, basePath, locale, canChangeLocale, setLocale, t } = useSubject();
   const [isOffline, setIsOffline] = useState(() =>
     typeof navigator !== "undefined" ? !navigator.onLine : false,
   );
@@ -49,15 +49,16 @@ const SubjectHeader = () => {
           {isOffline && (
             <span className="inline-flex items-center gap-1 rounded-full border border-border bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
               <WifiOff className="h-3 w-3" />
-              <span>Offline</span>
+              <span>{t.workspace.offline}</span>
             </span>
           )}
         </div>
         <div className="flex items-center gap-1">
+          {canChangeLocale && (
           <label className="hidden items-center gap-1 rounded-md px-1.5 text-xs text-muted-foreground hover:text-foreground sm:inline-flex">
             <Globe className="h-3.5 w-3.5" />
             <select
-              aria-label="Language"
+              aria-label={t.workspace.language}
               value={locale}
               onChange={(e) => setLocale(e.target.value as SubjectLocale)}
               className="cursor-pointer bg-transparent py-1 text-xs font-semibold uppercase text-foreground focus:outline-none"
@@ -69,12 +70,13 @@ const SubjectHeader = () => {
               ))}
             </select>
           </label>
+          )}
           <SubjectSearchDialog />
           <SubjectSettings />
           <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label={theme === "dark" ? t.theme.toLight : t.theme.toDark}>
             {theme === "dark" ? <Sun /> : <Moon />}
           </Button>
-          <StudyAuth />
+          <StudyAuth strings={t} redirectPath={basePath} />
         </div>
       </div>
     </header>

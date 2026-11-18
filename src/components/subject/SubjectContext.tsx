@@ -1,7 +1,9 @@
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { getSubjectStrings, type SubjectLocale, type SubjectStrings } from "@/content/subjects/i18n";
 import type { SubjectIndex } from "@/content/subjects/helpers";
 import { getSubjectIndex } from "@/content/subjects/registry";
+import { localizeSubject } from "@/content/subjects/localize";
+import { readClassroomLocale, saveClassroomLocale } from "@/content/subjects/locale";
 import type { SubjectConfig } from "@/content/subjects/types";
 import { useLocalMap } from "@/hooks/useLocalMap";
 import { useMathFlags } from "@/hooks/useMathFlags";
@@ -14,6 +16,8 @@ interface SubjectContextValue {
   basePath: string;
   storagePrefix: string;
   locale: SubjectLocale;
+  /** False when the classroom is locked to one language (no language switch shown). */
+  canChangeLocale: boolean;
   setLocale: (locale: SubjectLocale) => void;
   t: SubjectStrings;
   progress: Record<string, string>;
@@ -34,16 +38,42 @@ const SubjectContext = createContext<SubjectContextValue | null>(null);
 const normalizeGoal = (value: number) => Math.min(30, Math.max(1, Math.round(value)));
 
 export const SubjectProvider = ({
-  subject,
+  subject: baseSubject,
   children,
 }: {
   subject: SubjectConfig;
   children: React.ReactNode;
 }) => {
-  const storagePrefix = subject.storagePrefix ?? `fa_subject_${subject.slug}`;
-  const isMathSynced = subject.slug === "maths" && storagePrefix === "fa_math";
+  const storagePrefix = baseSubject.storagePrefix ?? `fa_subject_${baseSubject.slug}`;
+  const isMathSynced = baseSubject.slug === "maths" && storagePrefix === "fa_math";
+  const basePath = `/classroom/${baseSubject.slug}`;
+
+  // Language: locked classrooms (e.g. Maths) always use their own language;
+  // others use the saved choice, else the visitor's browser language.
+  const lockedLocale: SubjectLocale | null = baseSubject.lockLocale ? (baseSubject.locale ?? "fr") : null;
+  const [chosenLocale, setLocaleState] = useState<SubjectLocale>(() =>
+    readClassroomLocale(`${storagePrefix}_locale`),
+  );
+  const locale = lockedLocale ?? chosenLocale;
+  const setLocale = useCallback(
+    (next: SubjectLocale) => {
+      if (lockedLocale) return;
+      setLocaleState(next);
+      saveClassroomLocale(next);
+    },
+    [lockedLocale],
+  );
+  const t = useMemo(() => getSubjectStrings(locale), [locale]);
+  const subject = useMemo(() => localizeSubject(baseSubject, locale), [baseSubject, locale]);
   const index = useMemo(() => getSubjectIndex(subject), [subject]);
-  const basePath = `/classroom/${subject.slug}`;
+
+  useEffect(() => {
+    const previous = document.documentElement.lang;
+    document.documentElement.lang = locale;
+    return () => {
+      document.documentElement.lang = previous;
+    };
+  }, [locale]);
 
   // Synced hooks for Maths (preserves Supabase sync & existing /maths state)
   const mathProgress = useMathProgress();
@@ -85,19 +115,6 @@ export const SubjectProvider = ({
     [localFlags, setLocalFlagEntry],
   );
 
-  const defaultLocale: SubjectLocale = subject.locale ?? "fr";
-  const [locale, setLocaleState] = useState<SubjectLocale>(() => {
-    const saved = localStorage.getItem(`${storagePrefix}_locale`) as SubjectLocale | null;
-    return saved && ["fr", "en", "es", "pt"].includes(saved) ? saved : defaultLocale;
-  });
-  const setLocale = useCallback(
-    (next: SubjectLocale) => {
-      setLocaleState(next);
-      localStorage.setItem(`${storagePrefix}_locale`, next);
-    },
-    [storagePrefix],
-  );
-  const t = useMemo(() => getSubjectStrings(locale), [locale]);
 
   const value: SubjectContextValue = {
     subject,
@@ -105,6 +122,7 @@ export const SubjectProvider = ({
     basePath,
     storagePrefix,
     locale,
+    canChangeLocale: !lockedLocale,
     setLocale,
     t,
     progress: isMathSynced ? mathProgress.progress : localProgress,

@@ -1,4 +1,5 @@
 import { buildSubjectIndex, type SubjectIndex } from "./helpers";
+import { templateSummaryTranslations } from "./_template/translations-summary";
 import type { ClassroomAccessConfig, ClassroomSummary, SubjectConfig } from "./types";
 
 /**
@@ -18,6 +19,8 @@ export const classrooms: ClassroomSummary[] = [
     level: "CPGE MPSI",
     isCpge: true,
     locale: "fr",
+    // Maths stays French-only (verbatim CPGE material): no translation, no language switch.
+    lockLocale: true,
     chaptersCount: 9,
     exercisesCount: 434,
     features: {
@@ -44,6 +47,7 @@ export const classrooms: ClassroomSummary[] = [
     level: "Tout niveau",
     isCpge: false,
     locale: "fr",
+    translations: templateSummaryTranslations,
     chaptersCount: 1,
     exercisesCount: 2,
     features: {
@@ -62,7 +66,8 @@ export const classrooms: ClassroomSummary[] = [
 ];
 
 const subjectCache = new Map<string, SubjectConfig>();
-const indexCache = new Map<string, SubjectIndex>();
+// Keyed by the (possibly localized) subject object so each language gets its own index.
+const indexCache = new WeakMap<SubjectConfig, SubjectIndex>();
 
 export const getClassroomSummary = (slug: string): ClassroomSummary | undefined =>
   classrooms.find((c) => c.slug === slug);
@@ -80,10 +85,10 @@ export const loadClassroom = async (slug: string): Promise<SubjectConfig | undef
 };
 
 export const getSubjectIndex = (subject: SubjectConfig): SubjectIndex => {
-  let cached = indexCache.get(subject.slug);
+  let cached = indexCache.get(subject);
   if (!cached) {
     cached = buildSubjectIndex(subject, subject.uidMap);
-    indexCache.set(subject.slug, cached);
+    indexCache.set(subject, cached);
   }
   return cached;
 };

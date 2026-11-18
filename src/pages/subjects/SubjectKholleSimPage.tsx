@@ -14,7 +14,8 @@ const pick = <T,>(arr: T[], n: number) => [...arr].sort(() => Math.random() - 0.
 type Phase = "setup" | "prep" | "pass" | "done";
 
 const SubjectKholleSimPage = () => {
-  const { subject, index, basePath } = useSubject();
+  const { subject, index, basePath, t: tr } = useSubject();
+  const s = tr.simulator;
   const week = useMemo(() => {
     const list = subject.kholleWeeks ?? [];
     const today = parisDay();
@@ -48,7 +49,7 @@ const SubjectKholleSimPage = () => {
   if (!week) {
     return (
       <SubjectShell>
-        <div className="mx-auto max-w-4xl p-6 text-muted-foreground">Aucun programme de khôlle configuré.</div>
+        <div className="mx-auto max-w-4xl p-6 text-muted-foreground">{s.noProgramme}</div>
       </SubjectShell>
     );
   }
@@ -75,22 +76,22 @@ const SubjectKholleSimPage = () => {
   return (
     <SubjectShell>
       <div className="mx-auto max-w-5xl p-4 sm:p-6">
-        <p className="text-xs font-heading uppercase tracking-wider text-muted-foreground">Khôlle blanche · {week.label}</p>
-        <h1 className="mt-0.5 font-heading text-2xl font-bold text-foreground">Simulateur de khôlle</h1>
+        <p className="text-xs font-heading uppercase tracking-wider text-muted-foreground">{tr.nav.simulator} · {week.label}</p>
+        <h1 className="mt-0.5 font-heading text-2xl font-bold text-foreground">{s.title}</h1>
 
         {phase === "setup" && (
           <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
             <div className="space-y-3">
               <p className="text-sm text-muted-foreground">
-                Un tirage en conditions réelles : une question de cours parmi les incontournables de la semaine, puis des exercices des chapitres au programme ({chapters.map((c) => `ch. ${c}`).join(", ")}).
+                {s.intro(chapters.map((c) => s.chapterShort(c)).join(", "))}
               </p>
-              {stepper("Préparation", prepMin, setPrepMin, 5, 60, " min")}
-              {stepper("Passage", passMin, setPassMin, 5, 60, " min")}
-              {stepper("Exercices", count, setCount, 1, 3)}
-              <Button onClick={draw} className="w-full" size="lg"><Shuffle /> Lancer le tirage</Button>
+              {stepper(s.prep, prepMin, setPrepMin, 5, 60, " min")}
+              {stepper(s.pass, passMin, setPassMin, 5, 60, " min")}
+              {stepper(s.exercises, count, setCount, 1, 3)}
+              <Button onClick={draw} className="w-full" size="lg"><Shuffle /> {s.draw}</Button>
             </div>
             <div className="rounded-2xl border border-border bg-card p-5">
-              <p className="mb-3 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">Incontournables de la semaine</p>
+              <p className="mb-3 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">{s.weekIncontournables}</p>
               <ul className="space-y-2 text-sm">
                 {week.incontournables.map((q, i) => (
                   <li key={i} className="flex gap-2"><span className="text-muted-foreground">{i + 1}.</span><MathText text={q.text} /></li>
@@ -104,34 +105,34 @@ const SubjectKholleSimPage = () => {
           <>
             <div className="sticky top-0 z-10 -mx-4 mt-4 flex flex-wrap items-center gap-3 border-b border-border bg-background/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
               <span className={cn("rounded-full px-3 py-1 text-xs font-heading font-semibold uppercase", phase === "prep" ? "bg-secondary text-secondary-foreground" : phase === "pass" ? "bg-primary text-primary-foreground" : "bg-muted text-foreground")}>
-                {phase === "prep" ? "Préparation" : phase === "pass" ? "Passage au tableau" : "Terminé"}
+                {phase === "prep" ? s.prep : phase === "pass" ? s.phasePass : s.phaseDone}
               </span>
               <span className="font-mono text-2xl font-bold tabular-nums text-foreground">{formatDuration(left)}</span>
               {phase !== "done" && (
                 <>
-                  <Button variant="outline" size="sm" onClick={() => setPaused(!paused)}>{paused ? <><Play /> Reprendre</> : <><Pause /> Pause</>}</Button>
-                  <Button variant="outline" size="sm" onClick={() => setLeft(0)}>{phase === "prep" ? "Passer au tableau" : "Terminer"}</Button>
+                  <Button variant="outline" size="sm" onClick={() => setPaused(!paused)}>{paused ? <><Play /> {s.resume}</> : <><Pause /> {s.pause}</>}</Button>
+                  <Button variant="outline" size="sm" onClick={() => setLeft(0)}>{phase === "prep" ? s.goToBoard : s.finish}</Button>
                 </>
               )}
               {subject.features.calculator && (
                 <Button variant={desmos ? "secondary" : "outline"} size="sm" onClick={() => setDesmos(!desmos)} className="ml-auto">
-                  {desmos ? <><X /> Masquer Desmos</> : <><Calculator /> Desmos</>}
+                  {desmos ? <><X /> {s.hideDesmos}</> : <><Calculator /> Desmos</>}
                 </Button>
               )}
-              <Button variant="ghost" size="sm" onClick={() => setPhase("setup")}><RotateCcw /> Nouveau tirage</Button>
+              <Button variant="ghost" size="sm" onClick={() => setPhase("setup")}><RotateCcw /> {s.newDraw}</Button>
             </div>
             <div className={cn("mt-6 grid gap-6", desmos && "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]")}>
               <div className="space-y-4">
                 {question && (
                   <article className="rounded-2xl border border-primary/40 bg-card p-5">
-                    <p className="mb-2 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">Question de cours</p>
+                    <p className="mb-2 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">{s.courseQuestion}</p>
                     <MathText text={question.text} />
                   </article>
                 )}
                 {exos.map((e, i) => (
                   <article key={e.id} className="rounded-2xl border border-border bg-card p-5">
                     <div className="mb-2 flex items-center justify-between text-xs font-heading font-semibold uppercase text-muted-foreground">
-                      <span>Exercice {i + 1} · Ch. {e.chapter.number}</span>
+                      <span>{s.exerciseLabel(i + 1, e.chapter.number)}</span>
                       <Link to={`${basePath}/exo/${index.exerciseUid(e.id)}`} className="font-mono hover:text-foreground">
                         {index.formatUid(e.id)}
                       </Link>
@@ -142,7 +143,7 @@ const SubjectKholleSimPage = () => {
               </div>
               {desmos && (
                 <div className="h-[70dvh] overflow-hidden rounded-2xl border border-border">
-                  <DesmosPanel onClose={() => setDesmos(false)} />
+                  <DesmosPanel onClose={() => setDesmos(false)} strings={tr.desmos} />
                 </div>
               )}
             </div>

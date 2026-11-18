@@ -3,6 +3,9 @@ import { Link, Navigate, Route, Routes, useLocation, useParams } from "react-rou
 import { ArrowLeft, Lock } from "lucide-react";
 import { canAccessClassroom, getClassroomSummary, loadClassroom } from "@/content/subjects/registry";
 import type { SubjectConfig } from "@/content/subjects/types";
+import { getSubjectStrings } from "@/content/subjects/i18n";
+import { readClassroomLocale } from "@/content/subjects/locale";
+import { localizeSummary } from "@/content/subjects/localize";
 import { SubjectProvider } from "@/components/subject/SubjectContext";
 import SubjectLayout from "@/components/subject/SubjectLayout";
 import { Button } from "@/components/ui/button";
@@ -24,7 +27,12 @@ const SubjectWorkspace = () => {
   const { slug = "" } = useParams();
   const location = useLocation();
   const { isLoggedIn, user } = useAuth();
-  const summary = getClassroomSummary(slug);
+  const baseSummary = getClassroomSummary(slug);
+  // Screens shown before the classroom loads follow the same language rules as the classroom itself.
+  const locale = baseSummary?.lockLocale ? (baseSummary.locale ?? "fr") : readClassroomLocale();
+  const w = getSubjectStrings(locale).workspace;
+  const summary = baseSummary;
+  const display = baseSummary ? localizeSummary(baseSummary, locale) : undefined;
   const [subject, setSubject] = useState<SubjectConfig | null>(null);
   const [loading, setLoading] = useState(Boolean(summary));
 
@@ -54,10 +62,10 @@ const SubjectWorkspace = () => {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center">
         <p className="text-xs font-heading uppercase tracking-wider text-muted-foreground">Foro Agora Classrooms</p>
-        <h1 className="mt-2 font-heading text-2xl font-bold text-foreground">Classe introuvable</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Cet espace d'exercices n'existe pas encore.</p>
+        <h1 className="mt-2 font-heading text-2xl font-bold text-foreground">{w.notFoundTitle}</h1>
+        <p className="mt-2 text-sm text-muted-foreground">{w.notFoundBody}</p>
         <Button asChild className="mt-6">
-          <Link to="/classroom"><ArrowLeft className="h-4 w-4" /> Voir toutes les classes</Link>
+          <Link to="/classroom"><ArrowLeft className="h-4 w-4" /> {getSubjectStrings(locale).nav.allClasses}</Link>
         </Button>
       </div>
     );
@@ -71,30 +79,28 @@ const SubjectWorkspace = () => {
           <Lock className="h-5 w-5" />
         </div>
         <p className="mt-4 text-xs font-heading uppercase tracking-wider text-muted-foreground">
-          Foro Agora Classrooms · {summary.fullName}
+          Foro Agora Classrooms · {display?.fullName}
         </p>
         <h1 className="mt-2 font-heading text-2xl font-bold text-foreground">
-          {isLoggedIn ? "Accès restreint" : "Connexion requise"}
+          {isLoggedIn ? w.restrictedTitle : w.signInTitle}
         </h1>
         <p className="mt-2 max-w-md text-sm text-muted-foreground">
-          {isLoggedIn
-            ? "Cette classe est privée. Votre compte n'a pas encore l'autorisation d'y accéder."
-            : "Cette classe est protégée par connexion. Connectez-vous avec votre compte Foro Agora pour y accéder."}
+          {isLoggedIn ? w.restrictedBody : w.signInBody}
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           {!isLoggedIn ? (
             <Button asChild>
-              <Link to={authTarget}>Se connecter</Link>
+              <Link to={authTarget}>{w.signIn}</Link>
             </Button>
           ) : (
             <Button asChild variant="outline">
               <a href="mailto:ignacio@foroagora.org?subject=Acc%C3%A8s%20classe%20priv%C3%A9e">
-                Demander l'accès
+                {w.requestAccess}
               </a>
             </Button>
           )}
           <Button asChild variant="ghost">
-            <Link to="/classroom"><ArrowLeft className="h-4 w-4" /> Retour aux classes</Link>
+            <Link to="/classroom"><ArrowLeft className="h-4 w-4" /> {w.backToClasses}</Link>
           </Button>
         </div>
       </div>
@@ -104,7 +110,7 @@ const SubjectWorkspace = () => {
   if (loading || !subject) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 text-center">
-        <span className="text-sm font-heading text-muted-foreground">Chargement de {summary.name}…</span>
+        <span className="text-sm font-heading text-muted-foreground">{w.loading(display?.name ?? summary.name)}</span>
       </div>
     );
   }

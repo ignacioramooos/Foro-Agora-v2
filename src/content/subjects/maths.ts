@@ -21,6 +21,9 @@ export const mathsSubject: SubjectConfig = {
   institution: "CPGE MPSI",
   level: "CPGE MPSI",
   isCpge: true,
+  locale: "fr",
+  // French-only classroom: never translated, no language switch.
+  lockLocale: true,
   aiContext: "en MPSI en mathématiques",
   storagePrefix: "fa_math",
   dailyGoalDefault: 5,

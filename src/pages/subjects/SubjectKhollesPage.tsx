@@ -16,7 +16,7 @@ const addDays = (d: string, n: number) => {
 };
 
 const SubjectKhollesPage = () => {
-  const { subject, index, basePath } = useSubject();
+  const { subject, index, basePath, t } = useSubject();
   const today = parisDay();
   const weeks = [...(subject.kholleWeeks ?? [])].sort((a, b) => b.start.localeCompare(a.start));
   const currentId =
@@ -28,8 +28,8 @@ const SubjectKhollesPage = () => {
   return (
     <SubjectShell>
       <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:py-10">
-        <h1 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">Khôlles</h1>
-        <p className="mt-2 text-muted-foreground">Le programme de chaque semaine et ses incontournables.</p>
+        <h1 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">{t.nav.kholles}</h1>
+        <p className="mt-2 text-muted-foreground">{t.kholles.subtitle}</p>
         {subject.kholleNote && <p className="mt-3 rounded-md bg-muted p-3 text-sm text-foreground">{subject.kholleNote}</p>}
 
         <div className="mt-8 space-y-6">
@@ -40,11 +40,11 @@ const SubjectKhollesPage = () => {
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
                     <h2 className="font-heading text-lg font-bold text-foreground">{w.label}</h2>
-                    {current && <span className="shrink-0 whitespace-nowrap rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-primary-foreground">Cette semaine</span>}
+                    {current && <span className="shrink-0 whitespace-nowrap rounded-full bg-primary px-2.5 py-0.5 text-xs font-semibold text-primary-foreground">{t.kholles.thisWeek}</span>}
                   </div>
                   {w.docId && (
                     <Button variant="outline" size="sm" onClick={() => setOpenDoc(openDoc === w.id ? null : w.id)}>
-                      <FileText /> {openDoc === w.id ? "Masquer le programme" : "Voir le programme"}
+                      <FileText /> {openDoc === w.id ? t.kholles.hideProgramme : t.kholles.showProgramme}
                     </Button>
                   )}
                 </div>
@@ -55,7 +55,7 @@ const SubjectKhollesPage = () => {
                   </p>
                 )}
 
-                <h3 className="mt-5 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">Au programme</h3>
+                <h3 className="mt-5 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">{t.kholles.inScope}</h3>
                 <ul className="mt-2 space-y-1.5">
                   {w.scope.map((s) => {
                     const c = chapterLink(s.chapter);
@@ -67,7 +67,7 @@ const SubjectKhollesPage = () => {
                             to={subject.features.coursTdSplit ? `${basePath}/chapitre/${c.id}/cours` : `${basePath}/chapitre/${c.id}`}
                             className="text-xs font-medium text-primary underline-offset-4 hover:underline"
                           >
-                            Réviser le cours
+                            {t.kholles.reviewCourse}
                           </Link>
                         )}
                       </li>
@@ -76,7 +76,7 @@ const SubjectKhollesPage = () => {
                 </ul>
                 {w.warning && <p className="mt-3 text-sm font-semibold text-foreground">{w.warning}</p>}
 
-                <h3 className="mt-5 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">Les incontournables</h3>
+                <h3 className="mt-5 text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">{t.kholles.incontournables}</h3>
                 <ol className="mt-2 space-y-3">
                   {w.incontournables.map((item, i) => (
                     <li key={i} className="flex gap-3">
@@ -84,7 +84,7 @@ const SubjectKhollesPage = () => {
                       <div className="min-w-0 flex-1">
                         <MathText text={item.text} className="min-w-0 break-words text-foreground" />
                         {item.chapter && chapterLink(item.chapter) && (
-                          <span className="mt-0.5 block text-xs text-muted-foreground">Chapitre {item.chapter}</span>
+                          <span className="mt-0.5 block text-xs text-muted-foreground">{t.chapter.chapterLabel(item.chapter)}</span>
                         )}
                       </div>
                     </li>
@@ -92,7 +92,7 @@ const SubjectKhollesPage = () => {
                 </ol>
 
                 {w.docId && openDoc === w.id && (
-                  <SubjectDocumentViewer docId={w.docId} title={`Programme — ${w.label}`} className="mt-5" frameClassName="min-h-[60dvh]" />
+                  <SubjectDocumentViewer docId={w.docId} title={t.kholles.programmeTitle(w.label)} className="mt-5" frameClassName="min-h-[60dvh]" />
                 )}
               </section>
             );

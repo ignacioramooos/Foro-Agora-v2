@@ -163,7 +163,7 @@ const SubjectPracticePage = () => {
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="bottom" className="h-[92dvh] p-0">
-                  <DesmosPanel />
+                  <DesmosPanel strings={t.desmos} />
                 </SheetContent>
               </Sheet>
             )}
@@ -172,7 +172,7 @@ const SubjectPracticePage = () => {
           <ResizablePanelGroup direction="horizontal" className="h-full">
             <ResizablePanel defaultSize={62} minSize={42}>{workspace}</ResizablePanel>
             <ResizableHandle withHandle />
-            <ResizablePanel defaultSize={38} minSize={25}><DesmosPanel onClose={() => setCalculator(false)} /></ResizablePanel>
+            <ResizablePanel defaultSize={38} minSize={25}><DesmosPanel onClose={() => setCalculator(false)} strings={t.desmos} /></ResizablePanel>
           </ResizablePanelGroup>
         ) : (
           workspace

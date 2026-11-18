@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
@@ -21,6 +21,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import logoMark from "@/assets/stone-trail-logo.png";
 import { canAccessClassroom, classrooms } from "@/content/subjects/registry";
 import { LOCALE_LABELS, type SubjectLocale } from "@/content/subjects/i18n";
+import { readClassroomLocale, saveClassroomLocale, SUPPORTED_LOCALES } from "@/content/subjects/locale";
+import { localizeSummary } from "@/content/subjects/localize";
 
 const HUB_COPY: Record<
   SubjectLocale,
@@ -43,6 +45,8 @@ const HUB_COPY: Record<
     hostCta: string;
     altEmailCta: string;
     tryTemplate: string;
+    offline: string;
+    languageLabel: string;
   }
 > = {
   fr: {
@@ -72,6 +76,8 @@ const HUB_COPY: Record<
     hostCta: "Écrire à ignacio@foroagora.org",
     altEmailCta: "ignacio@juanignacioramos.com",
     tryTemplate: "Voir le modèle en direct",
+    offline: "Hors ligne",
+    languageLabel: "Langue",
   },
   en: {
     eyebrow: "Foro Agora Classrooms · 100% free",
@@ -100,6 +106,8 @@ const HUB_COPY: Record<
     hostCta: "Email ignacio@foroagora.org",
     altEmailCta: "ignacio@juanignacioramos.com",
     tryTemplate: "Try live template",
+    offline: "Offline",
+    languageLabel: "Language",
   },
   es: {
     eyebrow: "Foro Agora Classrooms · 100% gratis",
@@ -128,6 +136,8 @@ const HUB_COPY: Record<
     hostCta: "Escribir a ignacio@foroagora.org",
     altEmailCta: "ignacio@juanignacioramos.com",
     tryTemplate: "Ver plantilla en vivo",
+    offline: "Sin conexión",
+    languageLabel: "Idioma",
   },
   pt: {
     eyebrow: "Foro Agora Classrooms · 100% gratuito",
@@ -156,28 +166,36 @@ const HUB_COPY: Record<
     hostCta: "Enviar e-mail para ignacio@foroagora.org",
     altEmailCta: "ignacio@juanignacioramos.com",
     tryTemplate: "Ver modelo ao vivo",
+    offline: "Offline",
+    languageLabel: "Idioma",
   },
 };
 
-const LOCALES: SubjectLocale[] = ["fr", "en", "es", "pt"];
+const LOCALES: SubjectLocale[] = SUPPORTED_LOCALES;
 
 const ClassesHubPage = () => {
   const { theme, toggleTheme } = useTheme();
   const { user } = useAuth();
-  const [locale, setLocale] = useState<SubjectLocale>(() => {
-    const saved = localStorage.getItem("fa_classes_locale") as SubjectLocale | null;
-    return saved && LOCALES.includes(saved) ? saved : "en";
-  });
+  // Saved choice, otherwise the visitor's browser language (shared with every translatable classroom).
+  const [locale, setLocale] = useState<SubjectLocale>(() => readClassroomLocale());
   const copy = HUB_COPY[locale];
 
   const changeLocale = (next: SubjectLocale) => {
     setLocale(next);
-    localStorage.setItem("fa_classes_locale", next);
+    saveClassroomLocale(next);
   };
 
-  const visibleClassrooms = classrooms.filter(
-    (c) => !c.access?.unlisted || canAccessClassroom(c.access, user?.email),
-  );
+  useEffect(() => {
+    const previous = document.documentElement.lang;
+    document.documentElement.lang = locale;
+    return () => {
+      document.documentElement.lang = previous;
+    };
+  }, [locale]);
+
+  const visibleClassrooms = classrooms
+    .filter((c) => !c.access?.unlisted || canAccessClassroom(c.access, user?.email))
+    .map((c) => localizeSummary(c, locale));
 
   return (
     <div className="min-h-screen bg-background">
@@ -191,7 +209,7 @@ const ClassesHubPage = () => {
             <label className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1.5 text-xs text-muted-foreground">
               <Globe className="h-3.5 w-3.5" />
               <select
-                aria-label="Language"
+                aria-label={copy.languageLabel}
                 value={locale}
                 onChange={(e) => changeLocale(e.target.value as SubjectLocale)}
                 className="cursor-pointer bg-transparent font-semibold text-foreground focus:outline-none"
@@ -240,7 +258,7 @@ const ClassesHubPage = () => {
                   {c.features.calculator && <span className="inline-flex items-center gap-1"><Calculator className="h-3.5 w-3.5" /> Desmos</span>}
                   {c.features.formulaire && <span className="inline-flex items-center gap-1"><Layers className="h-3.5 w-3.5" /> Flashcards</span>}
                   {c.features.printableSheet !== false && <span className="inline-flex items-center gap-1"><Printer className="h-3.5 w-3.5" /> PDF A4</span>}
-                  <span className="inline-flex items-center gap-1"><WifiOff className="h-3.5 w-3.5" /> Offline</span>
+                  <span className="inline-flex items-center gap-1"><WifiOff className="h-3.5 w-3.5" /> {copy.offline}</span>
                 </div>
 
                 <div className="mt-6 flex items-center justify-between border-t border-border pt-4">

@@ -1,6 +1,7 @@
 import type { SubjectConfig } from "../types";
 import chapitre1 from "./chapters/chapitre-1";
 import { templateFormulaire } from "./formulaire";
+import { templateTranslations } from "./translations";
 
 /**
  * TEMPLATE DE MATIÈRE / CLASSE FORO AGORA
@@ -11,7 +12,9 @@ import { templateFormulaire } from "./formulaire";
  * 3. Ajoute tes chapitres dans `chapters/` et importe-les ci-dessous.
  * 4. Active uniquement les modules utiles dans `features` (les options CPGE comme `kholles`
  *    et `kholleSimulator` sont désactivées par défaut).
- * 5. Enregistre ta matière dans `src/content/subjects/registry.ts`.
+ * 5. Traduis le contenu dans `translations.ts` (les visiteurs voient automatiquement la langue
+ *    de leur navigateur : fr, en, es, pt). Mets `lockLocale: true` pour une classe à langue unique.
+ * 6. Enregistre ta matière dans `src/content/subjects/registry.ts`.
  */
 export const templateSubject: SubjectConfig = {
   slug: "modele",
@@ -23,6 +26,9 @@ export const templateSubject: SubjectConfig = {
   institution: "Établissement / Ouvert à tous",
   level: "Tout niveau",
   isCpge: false,
+  // Langue du contenu original ci-dessous ; les autres langues viennent de `translations`.
+  locale: "fr",
+  translations: templateTranslations,
   aiContext: "dans cette matière",
   // Laisser par défaut (`fa_subject_<slug>`) pour isoler la progression de chaque classe.
   storagePrefix: "fa_subject_modele",

@@ -86,11 +86,9 @@ const SubjectResourcesPage = () => {
                 <Cpu className="h-4 w-4" />
               </span>
               <div>
-                <p className="font-heading text-sm font-semibold text-foreground">MCP Server (AI Tools)</p>
+                <p className="font-heading text-sm font-semibold text-foreground">{t.mcp.title}</p>
                 <p className="mt-0.5 text-xs text-muted-foreground">
-                  {isPrivate
-                    ? "Private classroom — connect with your assigned Bearer token."
-                    : "Connect this classroom to Gemini, Claude, Cursor, or any MCP-compatible AI client."}
+                  {isPrivate ? t.mcp.privateDesc : t.mcp.publicDesc}
                 </p>
                 <code className="mt-2 block break-all rounded-md bg-muted px-2.5 py-1.5 font-mono text-xs text-foreground">
                   {mcpUrl}
@@ -99,7 +97,7 @@ const SubjectResourcesPage = () => {
             </div>
             <Button type="button" variant="outline" size="sm" onClick={copyMcpUrl}>
               {copiedMcp ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-              <span>{copiedMcp ? "Copied" : "Copy URL"}</span>
+              <span>{copiedMcp ? t.mcp.copied : t.mcp.copyUrl}</span>
             </Button>
           </div>
         </section>

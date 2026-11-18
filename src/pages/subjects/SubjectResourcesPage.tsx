@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight, Dumbbell, FolderOpen } from "lucide-react";
+import { Check, ChevronRight, Copy, Cpu, Dumbbell, FolderOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { getClassroomMcpUrl } from "@/content/subjects/registry";
 import { useSubject } from "@/components/subject/SubjectContext";
 import SubjectShell from "@/components/subject/SubjectShell";
 import SubjectDocumentViewer from "@/components/subject/SubjectDocumentViewer";
@@ -12,7 +13,17 @@ const SubjectResourcesPage = () => {
   const docs = subject.resourceDocs ?? [];
   const bonusSheets = subject.bonusSheets ?? [];
   const [active, setActive] = useState(docs[0]?.id);
+  const [copiedMcp, setCopiedMcp] = useState(false);
   const doc = docs.find((d) => d.id === active);
+  const mcpUrl = getClassroomMcpUrl(subject.slug);
+  const isPrivate = subject.access && subject.access.mode !== "public";
+
+  const copyMcpUrl = () => {
+    navigator.clipboard?.writeText(mcpUrl).then(() => {
+      setCopiedMcp(true);
+      window.setTimeout(() => setCopiedMcp(false), 2000);
+    });
+  };
 
   return (
     <SubjectShell>
@@ -67,6 +78,31 @@ const SubjectResourcesPage = () => {
         </div>
 
         {doc && <SubjectDocumentViewer key={doc.id} docId={doc.id} title={doc.title} className="mt-6" frameClassName="min-h-[75dvh]" />}
+
+        <section className="mt-6 rounded-2xl border border-border bg-card p-5">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Cpu className="h-4 w-4" />
+              </span>
+              <div>
+                <p className="font-heading text-sm font-semibold text-foreground">MCP Server (AI Tools)</p>
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  {isPrivate
+                    ? "Private classroom — connect with your assigned Bearer token."
+                    : "Connect this classroom to Gemini, Claude, Cursor, or any MCP-compatible AI client."}
+                </p>
+                <code className="mt-2 block break-all rounded-md bg-muted px-2.5 py-1.5 font-mono text-xs text-foreground">
+                  {mcpUrl}
+                </code>
+              </div>
+            </div>
+            <Button type="button" variant="outline" size="sm" onClick={copyMcpUrl}>
+              {copiedMcp ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+              <span>{copiedMcp ? "Copied" : "Copy URL"}</span>
+            </Button>
+          </div>
+        </section>
       </div>
     </SubjectShell>
   );

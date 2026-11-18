@@ -6,14 +6,16 @@
   "scripts": {
     "dev": "vite",
     "export:math-db": "npx tsx mcp-server/scripts/export.ts",
-    "build": "npm run export:math-db && vite build && node scripts/materialize-spa-routes.mjs",
-    "build:dev": "npm run export:math-db && vite build --mode development && node scripts/materialize-spa-routes.mjs",
+    "export:classrooms": "npx tsx mcp-server/scripts/export-classrooms.ts",
+    "build": "npm run export:math-db && npm run export:classrooms && vite build && node scripts/materialize-spa-routes.mjs",
+    "build:dev": "npm run export:math-db && npm run export:classrooms && vite build --mode development && node scripts/materialize-spa-routes.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
     "mcp": "node mcp-server/dist/index.js",
     "mcp:sse": "node mcp-server/dist/index.js --port 3333",
+    "mcp:classroom": "node mcp-server/dist/index.js --classroom",
     "build:mcp": "node mcp-server/build.mjs"
   },
   "dependencies": {

@@ -56,4 +56,5 @@ export const mathsSubject: SubjectConfig = {
   driveFolderUrl: DRIVE_FOLDER_URL,
   kholleWeeks,
   kholleNote: KHOLLE_NOTE,
+  uidMap: mathUidMap,
 };

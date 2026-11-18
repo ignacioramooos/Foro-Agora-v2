@@ -113,14 +113,31 @@ export interface SubjectFeatures {
   aiPrompt?: boolean;
 }
 
+export type ClassroomAccessMode = "public" | "authenticated" | "restricted";
+
+export interface ClassroomAccessConfig {
+  /**
+   * "public" (default): anyone can access without signing in.
+   * "authenticated": requires any signed-in Foro Agora account.
+   * "restricted": requires sign-in AND email/domain match (or admin).
+   */
+  mode: ClassroomAccessMode;
+  /** Optional list of allowed emails (case-insensitive) when mode === "restricted". */
+  allowedEmails?: string[];
+  /** Optional list of allowed email domains (e.g. "lycee-example.fr") when mode === "restricted". */
+  allowedDomains?: string[];
+  /** If true, hides this classroom from the public /classroom directory unless the user has access. */
+  unlisted?: boolean;
+}
+
 export interface SubjectConfig {
-  /** URL slug under /classes/:slug (e.g. "maths", "physique", "chimie", "sii"). */
+  /** URL slug under /classroom/:slug (e.g. "maths", "physique", "chimie", "sii"). */
   slug: string;
   /** Short display name in header & sidebar (e.g. "Maths", "Physique"). */
   name: string;
-  /** Full title shown in the /classes directory (e.g. "Mathématiques — MPSI"). */
+  /** Full title shown in the /classroom directory (e.g. "Mathématiques — MPSI"). */
   fullName: string;
-  /** Short description for the /classes directory. */
+  /** Short description for the /classroom directory. */
   description: string;
   /** Professor or maintainer name (e.g. "Prof. Martin" or "Foro Agora"). */
   professor?: string;
@@ -140,12 +157,16 @@ export interface SubjectConfig {
   dailyGoalDefault?: number;
   /** Motivational phrases rotated daily in the Practice sidebar. */
   phrases?: string[];
+  /** Access control. Omit or set mode: "public" for open classrooms (default). */
+  access?: ClassroomAccessConfig;
   /** Feature toggles for this subject. */
   features: SubjectFeatures;
   /** Chapters and their exercises. */
   chapters: SubjectChapter[];
   /** Optional frozen #NNN order of exercise IDs (like numbering.ts in Maths). */
   numberingOrder?: string[];
+  /** Optional pre-built exerciseId -> #NNN map (used by Maths to preserve frozen numbering). */
+  uidMap?: Record<string, number>;
   /** Optional external hints map (exerciseId -> string[]). Merged with inline exercise.hints. */
   hints?: Record<string, string[]>;
   /** Optional external answers map (exerciseId -> string). Merged with inline exercise.answer. */
@@ -164,4 +185,25 @@ export interface SubjectConfig {
   kholleWeeks?: KholleWeek[];
   /** Optional CPGE khôlle note banner. */
   kholleNote?: string;
+  /** Optional list of reference links shown in the Resources tab. */
+  externalLinks?: Array<{ label: string; url: string; description?: string }>;
+}
+
+/** Lightweight metadata entry used in the /classroom directory so 50+ classrooms scale without eager bundling. */
+export interface ClassroomSummary {
+  slug: string;
+  name: string;
+  fullName: string;
+  description: string;
+  professor?: string;
+  institution?: string;
+  level?: string;
+  isCpge?: boolean;
+  locale?: SubjectLocale;
+  chaptersCount: number;
+  exercisesCount: number;
+  features: SubjectFeatures;
+  access?: ClassroomAccessConfig;
+  /** Dynamic loader for the full SubjectConfig chunk. */
+  load: () => Promise<SubjectConfig>;
 }

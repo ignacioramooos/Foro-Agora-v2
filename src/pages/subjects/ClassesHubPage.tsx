@@ -7,15 +7,19 @@ import {
   CheckCircle2,
   Globe,
   Layers,
+  Lock,
+  Mail,
   Moon,
   Printer,
   Sparkles,
   Sun,
+  WifiOff,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useAuth } from "@/contexts/AuthContext";
 import logoMark from "@/assets/stone-trail-logo.png";
-import { subjects, getSubjectIndex } from "@/content/subjects/registry";
+import { canAccessClassroom, classrooms } from "@/content/subjects/registry";
 import { LOCALE_LABELS, type SubjectLocale } from "@/content/subjects/i18n";
 
 const HUB_COPY: Record<
@@ -29,113 +33,128 @@ const HUB_COPY: Record<
     exercisesCount: (n: number) => string;
     cpgeBadge: string;
     generalBadge: string;
+    privateBadge: string;
     hostTitle: string;
     hostSubtitle: string;
     hostPoints: string[];
-    cpgeNoteTitle: string;
-    cpgeNoteBody: string;
+    howTitle: string;
+    howBody: string;
+    missionNote: string;
     hostCta: string;
+    altEmailCta: string;
     tryTemplate: string;
   }
 > = {
   fr: {
-    eyebrow: "Plateforme d'exercices gratuite",
-    title: "Classes & Matières",
+    eyebrow: "Foro Agora Classrooms · 100 % gratuit",
+    title: "Foro Agora Classrooms",
     subtitle:
-      "Un espace d'entraînement clair, rapide et sans distraction pour chaque matière — bientôt ouvert à la physique, la chimie, les SII et aux classes de professeurs externes.",
+      "Un espace gratuit et sans distraction pour héberger vos exercices et ressources, connecté à vos outils IA (MCP), accessible hors ligne et privé sur demande.",
     openClass: "Ouvrir l'espace",
     chaptersCount: (n) => `${n} chapitre${n > 1 ? "s" : ""}`,
     exercisesCount: (n) => `${n} exercice${n > 1 ? "s" : ""}`,
     cpgeBadge: "CPGE",
     generalBadge: "Modèle universel",
-    hostTitle: "Vous êtes professeur ? Hébergez votre classe gratuitement.",
+    privateBadge: "Privé",
+    hostTitle: "Étudiant ou professeur ? Créez votre classroom gratuitement.",
     hostSubtitle:
-      "Nous préparons l'ouverture gratuite de cette plateforme pour que n'importe quel professeur puisse offrir à ses élèves une banque d'exercices interactive, en français, anglais, espagnol ou portugais.",
+      "Envoyez-nous vos exercices et supports pédagogiques : nous configurons tout pour vous et vos élèves, sans but lucratif.",
     hostPoints: [
-      "Exercices avec LaTeX, indices progressifs et réponses cachées",
-      "Objectif quotidien, série (streak) et suivi par chapitre",
-      "Recherche instantanée (#NNN), fiches de formules (flashcards) et planches A4 imprimables",
-      "Interface multilingue : Français, English, Español, Português",
+      "Plateforme centralisée : exercices LaTeX, indices progressifs, réponses et suivi par chapitre",
+      "Serveur MCP dédié pour connecter votre classe à vos modèles et outils IA préférés",
+      "Accès hors ligne (PWA) pour réviser même quand le Wi-Fi lâche avant un examen",
+      "Public par défaut, ou protégé par connexion et accès contrôlé sur simple demande",
     ],
-    cpgeNoteTitle: "Modules CPGE optionnels",
-    cpgeNoteBody:
-      "Certaines fonctionnalités de Foro Agora Maths (khôlles hebdomadaires, simulateur d'oral, séparation Cours/TD) sont spécifiques aux classes préparatoires et sont désactivées par défaut dans le modèle général.",
-    hostCta: "Proposer une classe",
+    howTitle: "Comment ça marche ?",
+    howBody:
+      "Écrivez à ignacio@foroagora.org ou ignacio@juanignacioramos.com avec les ressources à ajouter, et nous nous occupons du reste.",
+    missionNote: "EDUCAR • ACOMPAÑAR • IMPULSAR — 100 % gratuit.",
+    hostCta: "Écrire à ignacio@foroagora.org",
+    altEmailCta: "ignacio@juanignacioramos.com",
     tryTemplate: "Voir le modèle en direct",
   },
   en: {
-    eyebrow: "Free exercise pool platform",
-    title: "Classes & Subjects",
+    eyebrow: "Foro Agora Classrooms · 100% free",
+    title: "Foro Agora Classrooms",
     subtitle:
-      "A clean, distraction-free practice space for every subject — expanding soon to physics, chemistry, engineering (SII), and classes hosted by external professors.",
-    openClass: "Open workspace",
+      "A free, focus-oriented space to set up your own classroom—centralized exercises, custom MCP server for AI tools, offline access, and optional login-protected privacy.",
+    openClass: "Open classroom",
     chaptersCount: (n) => `${n} chapter${n !== 1 ? "s" : ""}`,
     exercisesCount: (n) => `${n} exercise${n !== 1 ? "s" : ""}`,
     cpgeBadge: "CPGE",
     generalBadge: "Universal template",
-    hostTitle: "Are you a professor? Host your class for free.",
+    privateBadge: "Private",
+    hostTitle: "Student or teacher? Set up your classroom for free.",
     hostSubtitle:
-      "We are opening this platform for free so any professor can give their students an interactive exercise pool in English, Spanish, French, or Portuguese.",
+      "Send us the exercises and educational resources you want to include, and we'll take care of the rest—100% free, built for learning.",
     hostPoints: [
-      "Exercises with LaTeX, progressive hints, and toggleable answers",
-      "Daily goals, streaks, and per-chapter progress tracking",
-      "Instant search (#NNN), formula flashcards, and printable A4 worksheets",
-      "Multilingual interface: English, Español, Français, Português",
+      "Centralized platform to organize and practice exercises, hints, solutions, and formula flashcards",
+      "Custom MCP server to connect your classroom to your favorite AI models and tools",
+      "Offline access so you can study and pass your exam even when Wi-Fi fails",
+      "Public by default, with login-protected access and controlled connections upon request",
     ],
-    cpgeNoteTitle: "Optional CPGE modules",
-    cpgeNoteBody:
-      "Some Foro Agora Maths features (weekly oral exams / khôlles, oral simulator, Lecture/TD split) are specific to French preparatory classes and are turned off by default in the general template.",
-    hostCta: "Host a class",
+    howTitle: "How does it work?",
+    howBody:
+      "Email ignacio@foroagora.org or ignacio@juanignacioramos.com with the resources you'd like us to add, and we'll set everything up for you.",
+    missionNote: "EDUCAR • ACOMPAÑAR • IMPULSAR — Just people helping people learn.",
+    hostCta: "Email ignacio@foroagora.org",
+    altEmailCta: "ignacio@juanignacioramos.com",
     tryTemplate: "Try live template",
   },
   es: {
-    eyebrow: "Plataforma gratuita de ejercicios",
-    title: "Clases y Materias",
+    eyebrow: "Foro Agora Classrooms · 100% gratis",
+    title: "Foro Agora Classrooms",
     subtitle:
-      "Un espacio de práctica limpio y sin distracciones para cada materia — pronto disponible para física, química, SII y clases de profesores externos.",
+      "Un espacio gratuito y enfocado en el aprendizaje para tu propia clase: ejercicios centralizados, servidor MCP propio para IA, acceso sin conexión y privacidad opcional.",
     openClass: "Abrir espacio",
     chaptersCount: (n) => `${n} capítulo${n !== 1 ? "s" : ""}`,
     exercisesCount: (n) => `${n} ejercicio${n !== 1 ? "s" : ""}`,
     cpgeBadge: "CPGE",
     generalBadge: "Plantilla universal",
-    hostTitle: "¿Sos profesor? Alojá tu clase gratis.",
+    privateBadge: "Privada",
+    hostTitle: "¿Sos estudiante o profesor? Creá tu classroom gratis.",
     hostSubtitle:
-      "Estamos abriendo esta plataforma de forma gratuita para que cualquier profesor pueda ofrecer a sus estudiantes un banco de ejercicios interactivo en español, inglés, francés o portugués.",
+      "Envianos los ejercicios y recursos que quieras sumar y nosotros nos encargamos de todo. Sin fines de lucro, para ayudar a aprender mejor.",
     hostPoints: [
-      "Ejercicios con LaTeX, pistas progresivas y respuestas ocultables",
-      "Meta diaria, racha y seguimiento de progreso por capítulo",
-      "Búsqueda instantánea (#NNN), flashcards de fórmulas y hojas A4 imprimibles",
-      "Interfaz multilingüe: Español, English, Français, Português",
+      "Plataforma centralizada con LaTeX, pistas progresivas, respuestas y flashcards de fórmulas",
+      "Servidor MCP personalizado para conectar tu clase con tus modelos y herramientas de IA",
+      "Acceso sin conexión para estudiar incluso cuando falla el Wi-Fi antes de un examen",
+      "Pública por defecto, con acceso protegido por login y conexiones controladas si lo pedís",
     ],
-    cpgeNoteTitle: "Módulos CPGE opcionales",
-    cpgeNoteBody:
-      "Algunas funciones de Foro Agora Maths (exámenes orales / khôlles, simulador oral, división Teoría/Práctica) son exclusivas de CPGE y vienen desactivadas por defecto en la plantilla general.",
-    hostCta: "Proponer una clase",
+    howTitle: "¿Cómo funciona?",
+    howBody:
+      "Escribinos a ignacio@foroagora.org o ignacio@juanignacioramos.com con los recursos que querés agregar, y nos ocupamos del resto.",
+    missionNote: "EDUCAR • ACOMPAÑAR • IMPULSAR — 100% gratis.",
+    hostCta: "Escribir a ignacio@foroagora.org",
+    altEmailCta: "ignacio@juanignacioramos.com",
     tryTemplate: "Ver plantilla en vivo",
   },
   pt: {
-    eyebrow: "Plataforma gratuita de exercícios",
-    title: "Turmas e Matérias",
+    eyebrow: "Foro Agora Classrooms · 100% gratuito",
+    title: "Foro Agora Classrooms",
     subtitle:
-      "Um espaço de treino limpo e sem distrações para cada matéria — em breve com física, química, SII e turmas de professores externos.",
+      "Um espaço gratuito e focado no aprendizado para sua turma: exercícios centralizados, servidor MCP próprio para IA, acesso offline e privacidade opcional.",
     openClass: "Abrir espaço",
     chaptersCount: (n) => `${n} capítulo${n !== 1 ? "s" : ""}`,
     exercisesCount: (n) => `${n} exercício${n !== 1 ? "s" : ""}`,
     cpgeBadge: "CPGE",
     generalBadge: "Modelo universal",
-    hostTitle: "É professor? Hospede sua turma gratuitamente.",
+    privateBadge: "Privada",
+    hostTitle: "Estudante ou professor? Crie sua classroom gratuitamente.",
     hostSubtitle:
-      "Estamos abrindo esta plataforma gratuitamente para que qualquer professor ofereça aos seus alunos um banco de exercícios interativo em português, espanhol, inglês ou francês.",
+      "Envie os exercícios e materiais que deseja adicionar e nós cuidamos do resto. 100% gratuito, sem fins lucrativos.",
     hostPoints: [
-      "Exercícios com LaTeX, dicas progressivas e respostas ocultáveis",
-      "Meta diária, sequência e acompanhamento por capítulo",
-      "Busca instantânea (#NNN), flashcards de fórmulas e folhas A4 imprimíveis",
-      "Interface multilíngue: Português, Español, English, Français",
+      "Plataforma centralizada com LaTeX, dicas progressivas, respostas e flashcards",
+      "Servidor MCP dedicado para conectar sua turma aos seus modelos e ferramentas de IA",
+      "Acesso offline para estudar mesmo quando o Wi-Fi falha antes da prova",
+      "Pública por padrão, com acesso protegido por login e conexões controladas sob pedido",
     ],
-    cpgeNoteTitle: "Módulos CPGE opcionais",
-    cpgeNoteBody:
-      "Alguns recursos do Foro Agora Maths (provas orais / khôlles, simulador oral, divisão Teoria/Listas) são exclusivos de CPGE e ficam desativados por padrão no modelo geral.",
-    hostCta: "Hospedar uma turma",
+    howTitle: "Como funciona?",
+    howBody:
+      "Envie um e-mail para ignacio@foroagora.org ou ignacio@juanignacioramos.com com os materiais desejados e nós configuramos tudo.",
+    missionNote: "EDUCAR • ACOMPAÑAR • IMPULSAR — 100% gratuito.",
+    hostCta: "Enviar e-mail para ignacio@foroagora.org",
+    altEmailCta: "ignacio@juanignacioramos.com",
     tryTemplate: "Ver modelo ao vivo",
   },
 };
@@ -144,9 +163,10 @@ const LOCALES: SubjectLocale[] = ["fr", "en", "es", "pt"];
 
 const ClassesHubPage = () => {
   const { theme, toggleTheme } = useTheme();
+  const { user } = useAuth();
   const [locale, setLocale] = useState<SubjectLocale>(() => {
     const saved = localStorage.getItem("fa_classes_locale") as SubjectLocale | null;
-    return saved && LOCALES.includes(saved) ? saved : "fr";
+    return saved && LOCALES.includes(saved) ? saved : "en";
   });
   const copy = HUB_COPY[locale];
 
@@ -154,6 +174,10 @@ const ClassesHubPage = () => {
     setLocale(next);
     localStorage.setItem("fa_classes_locale", next);
   };
+
+  const visibleClassrooms = classrooms.filter(
+    (c) => !c.access?.unlisted || canAccessClassroom(c.access, user?.email),
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -192,34 +216,40 @@ const ClassesHubPage = () => {
         <p className="mt-2 max-w-2xl text-base text-muted-foreground">{copy.subtitle}</p>
 
         <section className="mt-8 grid gap-4 md:grid-cols-2">
-          {subjects.map((s) => {
-            const idx = getSubjectIndex(s);
+          {visibleClassrooms.map((c) => {
+            const isPrivate = c.access && c.access.mode !== "public";
             return (
-              <article key={s.slug} className="flex flex-col rounded-2xl border border-border bg-card p-6 transition-colors hover:border-foreground/30">
+              <article key={c.slug} className="flex flex-col rounded-2xl border border-border bg-card p-6 transition-colors hover:border-foreground/30">
                 <div className="flex flex-wrap items-center gap-2 text-xs font-heading font-semibold uppercase tracking-wider">
-                  <span className="rounded-full bg-secondary px-2.5 py-1 text-secondary-foreground">{s.level ?? "Foro Agora"}</span>
+                  <span className="rounded-full bg-secondary px-2.5 py-1 text-secondary-foreground">{c.level ?? "Foro Agora"}</span>
                   <span className="rounded-full border border-border px-2.5 py-1 text-muted-foreground">
-                    {s.isCpge ? copy.cpgeBadge : copy.generalBadge}
+                    {c.isCpge ? copy.cpgeBadge : copy.generalBadge}
                   </span>
+                  {isPrivate && (
+                    <span className="inline-flex items-center gap-1 rounded-full border border-border px-2.5 py-1 text-foreground">
+                      <Lock className="h-3 w-3" /> {copy.privateBadge}
+                    </span>
+                  )}
                 </div>
-                <h2 className="mt-4 font-heading text-xl font-bold text-foreground">{s.fullName}</h2>
-                <p className="mt-1.5 text-sm text-muted-foreground">{s.description}</p>
+                <h2 className="mt-4 font-heading text-xl font-bold text-foreground">{c.fullName}</h2>
+                <p className="mt-1.5 text-sm text-muted-foreground">{c.description}</p>
 
                 <div className="mt-4 flex flex-wrap gap-3 text-xs text-muted-foreground">
-                  <span className="inline-flex items-center gap-1"><BookOpen className="h-3.5 w-3.5" /> {copy.chaptersCount(idx.chapters.length)}</span>
-                  <span className="inline-flex items-center gap-1"><Sparkles className="h-3.5 w-3.5" /> {copy.exercisesCount(idx.indexedExercises.length)}</span>
-                  {s.features.calculator && <span className="inline-flex items-center gap-1"><Calculator className="h-3.5 w-3.5" /> Desmos</span>}
-                  {s.features.formulaire && <span className="inline-flex items-center gap-1"><Layers className="h-3.5 w-3.5" /> Flashcards</span>}
-                  {s.features.printableSheet !== false && <span className="inline-flex items-center gap-1"><Printer className="h-3.5 w-3.5" /> PDF A4</span>}
+                  <span className="inline-flex items-center gap-1"><BookOpen className="h-3.5 w-3.5" /> {copy.chaptersCount(c.chaptersCount)}</span>
+                  <span className="inline-flex items-center gap-1"><Sparkles className="h-3.5 w-3.5" /> {copy.exercisesCount(c.exercisesCount)}</span>
+                  {c.features.calculator && <span className="inline-flex items-center gap-1"><Calculator className="h-3.5 w-3.5" /> Desmos</span>}
+                  {c.features.formulaire && <span className="inline-flex items-center gap-1"><Layers className="h-3.5 w-3.5" /> Flashcards</span>}
+                  {c.features.printableSheet !== false && <span className="inline-flex items-center gap-1"><Printer className="h-3.5 w-3.5" /> PDF A4</span>}
+                  <span className="inline-flex items-center gap-1"><WifiOff className="h-3.5 w-3.5" /> Offline</span>
                 </div>
 
                 <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
                   <div className="text-xs text-muted-foreground">
-                    <span className="font-medium text-foreground">{s.professor ?? "Foro Agora"}</span>
-                    {s.institution && <span> · {s.institution}</span>}
+                    <span className="font-medium text-foreground">{c.professor ?? "Foro Agora"}</span>
+                    {c.institution && <span> · {c.institution}</span>}
                   </div>
                   <Button asChild size="sm">
-                    <Link to={`/classes/${s.slug}`}>{copy.openClass} <ArrowRight className="h-4 w-4" /></Link>
+                    <Link to={`/classroom/${c.slug}`}>{copy.openClass} <ArrowRight className="h-4 w-4" /></Link>
                   </Button>
                 </div>
               </article>
@@ -242,20 +272,30 @@ const ClassesHubPage = () => {
               </ul>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild>
-                  <Link to="/contacto">{copy.hostCta} <ArrowRight className="h-4 w-4" /></Link>
+                  <a href="mailto:ignacio@foroagora.org?subject=Foro%20Agora%20Classroom%20Request">
+                    <Mail className="h-4 w-4" /> {copy.hostCta}
+                  </a>
                 </Button>
                 <Button asChild variant="outline">
-                  <Link to="/classes/modele">{copy.tryTemplate}</Link>
+                  <Link to="/classroom/modele">{copy.tryTemplate}</Link>
                 </Button>
               </div>
             </div>
-            <div className="rounded-xl border border-border bg-muted/50 p-5">
-              <p className="text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">
-                {copy.cpgeNoteTitle}
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{copy.cpgeNoteBody}</p>
-              <p className="mt-4 font-mono text-xs text-muted-foreground">
-                src/content/subjects/_template/
+            <div className="flex flex-col justify-between rounded-xl border border-border bg-muted/50 p-5">
+              <div>
+                <p className="text-xs font-heading font-semibold uppercase tracking-wider text-muted-foreground">
+                  {copy.howTitle}
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{copy.howBody}</p>
+                <a
+                  href="mailto:ignacio@juanignacioramos.com?subject=Foro%20Agora%20Classroom%20Request"
+                  className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-foreground underline-offset-4 hover:underline"
+                >
+                  <Mail className="h-3.5 w-3.5" /> {copy.altEmailCta}
+                </a>
+              </div>
+              <p className="mt-6 border-t border-border pt-3 font-heading text-xs font-semibold tracking-wider text-muted-foreground">
+                {copy.missionNote}
               </p>
             </div>
           </div>

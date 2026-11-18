@@ -81,6 +81,12 @@ const LegacyPracticeRedirect = () => {
   return <Navigate to={chapterMatch ? `/maths/chapitre/${chapterMatch[1]}/cours` : "/maths"} replace />;
 };
 
+const LegacyClassesRedirect = () => {
+  const location = useLocation();
+  const nextPath = location.pathname.replace(/^\/classes(?=\/|$)/, "/classroom") + location.search;
+  return <Navigate to={nextPath} replace />;
+};
+
 const PageFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
     <span className="text-muted-foreground text-sm font-heading">Cargando...</span>
@@ -165,14 +171,16 @@ const AppRoutes = () => {
       <Route path="/maths/planche" element={<StudyPage><MathPlanchePage /></StudyPage>} />
       <Route path="/maths/classement" element={<StudyPage><MathLeaderboardPage /></StudyPage>} />
       <Route path="/maths/exo/:uid" element={<StudyPage><MathExercisePage /></StudyPage>} />
-      <Route path="/classes" element={<ClassesHubPage />} />
-      <Route path="/classes/:slug/*" element={<SubjectWorkspace />} />
+      <Route path="/classroom" element={<ClassesHubPage />} />
+      <Route path="/classroom/:slug/*" element={<SubjectWorkspace />} />
+      <Route path="/classes" element={<Navigate to="/classroom" replace />} />
+      <Route path="/classes/:slug/*" element={<LegacyClassesRedirect />} />
       <Route path="/practica/*" element={<LegacyPracticeRedirect />} />
       <Route path="/auth" element={<AuthPage />} />
     </>
   );
 
-  if (isLoggedIn && user && !user.onboardingCompleted && location.pathname !== "/auth" && !location.pathname.startsWith("/maths") && !location.pathname.startsWith("/classes") && !isEventRegistration) {
+  if (isLoggedIn && user && !user.onboardingCompleted && location.pathname !== "/auth" && !location.pathname.startsWith("/maths") && !location.pathname.startsWith("/classes") && !location.pathname.startsWith("/classroom") && !isEventRegistration) {
     return <Navigate to="/auth" replace />;
   }
 
@@ -191,7 +199,7 @@ const AppRoutes = () => {
             <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
           </Routes>
         </Suspense>
-        {!location.pathname.startsWith("/maths") && !location.pathname.startsWith("/practica") && !location.pathname.startsWith("/classes") && <WhatsAppButton />}
+        {!location.pathname.startsWith("/maths") && !location.pathname.startsWith("/practica") && !location.pathname.startsWith("/classes") && !location.pathname.startsWith("/classroom") && <WhatsAppButton />}
       </>
     );
   }
@@ -206,7 +214,7 @@ const AppRoutes = () => {
           <Route path="*" element={<PublicPage><NotFound /></PublicPage>} />
         </Routes>
       </Suspense>
-      {!location.pathname.startsWith("/maths") && !location.pathname.startsWith("/practica") && !location.pathname.startsWith("/classes") && <WhatsAppButton />}
+      {!location.pathname.startsWith("/maths") && !location.pathname.startsWith("/practica") && !location.pathname.startsWith("/classes") && !location.pathname.startsWith("/classroom") && <WhatsAppButton />}
     </>
   );
 };

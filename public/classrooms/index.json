@@ -1,0 +1,32 @@
+{
+  "classrooms": [
+    {
+      "slug": "maths",
+      "name": "Maths",
+      "fullName": "Mathématiques — MPSI",
+      "description": "Programme complet de première année (MPSI) : cours, TD, khôlles, DM, formulaire et suivi de progression.",
+      "professor": "Foro Agora",
+      "institution": "CPGE MPSI",
+      "level": "CPGE MPSI",
+      "locale": "fr",
+      "chaptersCount": 9,
+      "exercisesCount": 434,
+      "url": "https://foroagora.org/classroom/maths",
+      "dbUrl": "/classrooms/maths.json"
+    },
+    {
+      "slug": "modele",
+      "name": "Modèle",
+      "fullName": "Matière modèle — Exemple de plateforme",
+      "description": "Gabarit prêt à l'emploi pour héberger une nouvelle matière ou la classe d'un professeur sur Foro Agora.",
+      "professor": "Professeur exemple",
+      "institution": "Établissement / Ouvert à tous",
+      "level": "Tout niveau",
+      "locale": "fr",
+      "chaptersCount": 1,
+      "exercisesCount": 2,
+      "url": "https://foroagora.org/classroom/modele",
+      "dbUrl": "/classrooms/modele.json"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Globe, LayoutGrid, Moon, Sun } from "lucide-react";
+import { Globe, LayoutGrid, Moon, Sun, WifiOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
 import logoMark from "@/assets/stone-trail-logo.png";
@@ -14,6 +15,20 @@ const LOCALES: SubjectLocale[] = ["fr", "en", "es", "pt"];
 const SubjectHeader = () => {
   const { theme, toggleTheme } = useTheme();
   const { subject, basePath, locale, setLocale, t } = useSubject();
+  const [isOffline, setIsOffline] = useState(() =>
+    typeof navigator !== "undefined" ? !navigator.onLine : false,
+  );
+
+  useEffect(() => {
+    const onOnline = () => setIsOffline(false);
+    const onOffline = () => setIsOffline(true);
+    window.addEventListener("online", onOnline);
+    window.addEventListener("offline", onOffline);
+    return () => {
+      window.removeEventListener("online", onOnline);
+      window.removeEventListener("offline", onOffline);
+    };
+  }, []);
 
   return (
     <header className="border-b border-border bg-background">
@@ -24,13 +39,19 @@ const SubjectHeader = () => {
             <span>Foro Agora</span>
           </Link>
           <Link
-            to="/classes"
+            to="/classroom"
             className="hidden items-center gap-1.5 rounded-full border border-border bg-card px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground/30 hover:text-foreground sm:inline-flex"
             title={t.nav.allClasses}
           >
             <LayoutGrid className="h-3 w-3" />
             <span>{subject.name}</span>
           </Link>
+          {isOffline && (
+            <span className="inline-flex items-center gap-1 rounded-full border border-border bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+              <WifiOff className="h-3 w-3" />
+              <span>Offline</span>
+            </span>
+          )}
         </div>
         <div className="flex items-center gap-1">
           <label className="hidden items-center gap-1 rounded-md px-1.5 text-xs text-muted-foreground hover:text-foreground sm:inline-flex">

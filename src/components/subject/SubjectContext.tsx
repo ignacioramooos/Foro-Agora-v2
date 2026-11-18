@@ -43,7 +43,7 @@ export const SubjectProvider = ({
   const storagePrefix = subject.storagePrefix ?? `fa_subject_${subject.slug}`;
   const isMathSynced = subject.slug === "maths" && storagePrefix === "fa_math";
   const index = useMemo(() => getSubjectIndex(subject), [subject]);
-  const basePath = `/classes/${subject.slug}`;
+  const basePath = `/classroom/${subject.slug}`;
 
   // Synced hooks for Maths (preserves Supabase sync & existing /maths state)
   const mathProgress = useMathProgress();

@@ -700,18 +700,41 @@ Commence l'interrogation par une question de cours tirée des incontournables, p
 
 import http from "node:http";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+import { createClassroomMcpServer } from "./classroom-server.js";
 
 // ============================================================================
 // Start Server (Stdio or SSE / HTTP)
 // ============================================================================
-async function startStdioServer() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.error("[foroagora-math] MCP Server running on stdio");
+function getArgValue(args: string[], flag: string): string | undefined {
+  const idx = args.indexOf(flag);
+  if (idx !== -1 && args[idx + 1] && !args[idx + 1].startsWith("-")) {
+    return args[idx + 1];
+  }
+  const eq = args.find((a) => a.startsWith(`${flag}=`));
+  return eq ? eq.slice(flag.length + 1) : undefined;
 }
 
-async function startSseServer(port: number) {
+async function startStdioServer(activeServer: McpServer, serverName: string) {
+  const transport = new StdioServerTransport();
+  await activeServer.connect(transport);
+  console.error(`[${serverName}] MCP Server running on stdio`);
+}
+
+async function startSseServer(
+  activeServer: McpServer,
+  port: number,
+  serverName: string,
+  accessToken?: string,
+) {
   const transports = new Map<string, SSEServerTransport>();
+
+  const isAuthorized = (req: http.IncomingMessage, url: URL): boolean => {
+    if (!accessToken) return true;
+    const authHeader = req.headers.authorization;
+    const bearer = authHeader?.startsWith("Bearer ") ? authHeader.slice(7).trim() : undefined;
+    const queryToken = url.searchParams.get("token") ?? undefined;
+    return bearer === accessToken || queryToken === accessToken;
+  };
 
   const httpServer = http.createServer(async (req, res) => {
     // CORS headers for web/tool integration
@@ -728,13 +751,19 @@ async function startSseServer(port: number) {
     const host = req.headers.host ?? `localhost:${port}`;
     const url = new URL(req.url ?? "/", `http://${host}`);
 
+    if ((url.pathname === "/sse" || url.pathname === "/messages") && !isAuthorized(req, url)) {
+      res.writeHead(401, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "Unauthorized: valid classroom MCP token required" }));
+      return;
+    }
+
     if (url.pathname === "/sse" && req.method === "GET") {
       const transport = new SSEServerTransport("/messages", res);
       transports.set(transport.sessionId, transport);
       transport.onclose = () => {
         transports.delete(transport.sessionId);
       };
-      await server.connect(transport);
+      await activeServer.connect(transport);
       return;
     }
 
@@ -756,16 +785,16 @@ async function startSseServer(port: number) {
         JSON.stringify(
           {
             status: "ok",
-            server: "foroagora-math",
+            server: serverName,
             version: "1.0.0",
             transport: "sse",
+            authRequired: Boolean(accessToken),
             url: `http://${host}/sse`,
             endpoints: {
               sse: `http://${host}/sse`,
               messages: `http://${host}/messages`,
               health: `http://${host}/health`,
             },
-            toolsCount: 11,
           },
           null,
           2,
@@ -779,13 +808,20 @@ async function startSseServer(port: number) {
   });
 
   httpServer.listen(port, () => {
-    console.log(`[foroagora-math] MCP SSE Server running at http://localhost:${port}/sse`);
-    console.log(`[foroagora-math] Health check: http://localhost:${port}/health`);
+    console.log(`[${serverName}] MCP SSE Server running at http://localhost:${port}/sse`);
+    console.log(`[${serverName}] Health check: http://localhost:${port}/health`);
   });
 }
 
 async function main() {
   const args = process.argv.slice(2);
+  const classroomSlug = getArgValue(args, "--classroom") ?? process.env.MCP_CLASSROOM;
+  const accessToken = getArgValue(args, "--token") ?? process.env.MCP_ACCESS_TOKEN;
+
+  const { server: activeServer, serverName } = classroomSlug
+    ? createClassroomMcpServer(classroomSlug)
+    : { server, serverName: "foroagora-math" };
+
   const isSse = args.includes("--sse") || args.includes("--port") || args.includes("-p") || Boolean(process.env.PORT) || process.env.MCP_TRANSPORT === "sse";
 
   let port = 3333;
@@ -797,14 +833,14 @@ async function main() {
   }
 
   if (isSse) {
-    await startSseServer(port);
+    await startSseServer(activeServer, port, serverName, accessToken);
   } else {
-    await startStdioServer();
+    await startStdioServer(activeServer, serverName);
   }
 }
 
 main().catch((err) => {
-  console.error("[foroagora-math] Fatal server error:", err);
+  console.error("[foroagora-mcp] Fatal server error:", err);
   process.exit(1);
 });
 

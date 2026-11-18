@@ -92,7 +92,7 @@ const StudyAuth = ({ strings = getSubjectStrings("fr"), redirectPath = "/maths" 
 
   return (
     <>
-      <Button variant="outline" size="sm" onClick={() => { setOpen(true); setError(""); setInfo(""); }} className="ml-1">
+      <Button variant="outline" size="sm" onClick={() => { setOpen(true); setError(""); setInfo(""); }} className="ml-1" aria-label={a.signIn}>
         <LogIn className="h-4 w-4" /><span className="hidden sm:inline">{a.signIn}</span>
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>

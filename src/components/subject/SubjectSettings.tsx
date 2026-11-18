@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { Check, Copy, Cpu, Settings } from "lucide-react";
+import { Check, Copy, Cpu, Globe, Settings } from "lucide-react";
+import { LOCALE_LABELS, type SubjectLocale } from "@/content/subjects/i18n";
+import { SUPPORTED_LOCALES } from "@/content/subjects/locale";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -14,7 +16,7 @@ import { getClassroomMcpUrl } from "@/content/subjects/registry";
 import { useSubject } from "./SubjectContext";
 
 const SubjectSettings = () => {
-  const { subject, goal, setGoal, t } = useSubject();
+  const { subject, goal, setGoal, t, locale, setLocale, canChangeLocale } = useSubject();
   const [copied, setCopied] = useState(false);
   const mcpUrl = getClassroomMcpUrl(subject.slug);
 
@@ -38,6 +40,25 @@ const SubjectSettings = () => {
           <DialogDescription>{t.settings.description}</DialogDescription>
         </DialogHeader>
         <div className="space-y-6 py-4">
+          {canChangeLocale && (
+            <label className="flex items-center justify-between gap-4">
+              <span className="inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-foreground">
+                <Globe className="h-4 w-4 text-muted-foreground" /> {t.workspace.language}
+              </span>
+              <select
+                aria-label={t.workspace.language}
+                value={locale}
+                onChange={(e) => setLocale(e.target.value as SubjectLocale)}
+                className="h-9 rounded-md border border-border bg-background px-2 text-sm text-foreground"
+              >
+                {SUPPORTED_LOCALES.map((code) => (
+                  <option key={code} value={code}>
+                    {LOCALE_LABELS[code]}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
           <div>
             <div className="mb-5 flex items-end justify-between gap-4">
               <div>
@@ -60,11 +81,11 @@ const SubjectSettings = () => {
           <div className="border-t border-border pt-4">
             <div className="flex items-center justify-between gap-2">
               <p className="inline-flex items-center gap-1.5 font-heading text-sm font-semibold text-foreground">
-                <Cpu className="h-4 w-4 text-primary" /> MCP Server
+                <Cpu className="h-4 w-4 text-primary" /> {t.mcp.title}
               </p>
               <Button type="button" variant="outline" size="sm" onClick={copyMcp}>
                 {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-                <span>{copied ? "Copied" : "Copy"}</span>
+                <span>{copied ? t.mcp.copied : t.mcp.copyUrl}</span>
               </Button>
             </div>
             <code className="mt-2 block break-all rounded-md bg-muted px-2.5 py-1.5 font-mono text-xs text-muted-foreground">

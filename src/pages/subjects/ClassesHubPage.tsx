@@ -20,7 +20,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { useAuth } from "@/contexts/AuthContext";
 import logoMark from "@/assets/stone-trail-logo.png";
 import { canAccessClassroom, classrooms } from "@/content/subjects/registry";
-import { LOCALE_LABELS, type SubjectLocale } from "@/content/subjects/i18n";
+import { getSubjectStrings, LOCALE_LABELS, type SubjectLocale } from "@/content/subjects/i18n";
 import { readClassroomLocale, saveClassroomLocale, SUPPORTED_LOCALES } from "@/content/subjects/locale";
 import { localizeSummary } from "@/content/subjects/localize";
 
@@ -221,7 +221,7 @@ const ClassesHubPage = () => {
                 ))}
               </select>
             </label>
-            <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
+            <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label={theme === "dark" ? getSubjectStrings(locale).theme.toLight : getSubjectStrings(locale).theme.toDark}>
               {theme === "dark" ? <Sun /> : <Moon />}
             </Button>
           </div>

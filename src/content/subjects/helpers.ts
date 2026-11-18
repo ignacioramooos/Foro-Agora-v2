@@ -158,7 +158,7 @@ export function buildSubjectIndex(subject: SubjectConfig, uidRegistry?: Record<s
                   ? "exercice"
                   : "td";
       const hay = strip(
-        `${e.statement} ${e.chapter.title} chapitre ${e.chapter.number} chap ${e.chapter.number} ${src} exercice ${e.number}`,
+        `${e.statement} ${e.chapter.title} chapitre ${e.chapter.number} chap ${e.chapter.number} ch ${e.chapter.number} chapter ${e.chapter.number} capitulo ${e.chapter.number} cap ${e.chapter.number} ${src} exercice ${e.number} exercise ${e.number} ejercicio ${e.number} exercicio ${e.number}`,
       );
       return terms.every((t) => hay.includes(t));
     });

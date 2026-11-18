@@ -51,7 +51,7 @@ const SubjectPlanchePage = () => {
               />
             </div>
             <select
-              aria-label="Filter"
+              aria-label={t.nav.chapters}
               value={chapter}
               onChange={(e) => setChapter(e.target.value)}
               className="h-10 rounded-md border border-border bg-background px-2 text-sm text-foreground"

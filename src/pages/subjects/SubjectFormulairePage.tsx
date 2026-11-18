@@ -27,7 +27,7 @@ const SubjectFormulairePage = () => {
 
         <div className="sticky top-0 z-10 -mx-4 mt-4 flex flex-wrap items-center gap-2 border-b border-border bg-background/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
           <select
-            aria-label="Section"
+            aria-label={t.formulaire.allSections}
             value={section}
             onChange={(e) => setSection(e.target.value)}
             className="h-9 rounded-md border border-border bg-background px-2 text-sm text-foreground"

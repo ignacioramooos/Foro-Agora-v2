@@ -15,6 +15,24 @@ export interface KholleWeek {
 // Add a new week at the top of this list.
 export const kholleWeeks: KholleWeek[] = [
   {
+    id: "2026-11-23",
+    start: "2026-11-23",
+    label: "Semaine du 23/11/2026",
+    docId: "1C1el3BZo_akiEsxOXORMDbNjphadPoKz",
+    scope: [
+      { chapter: 9, text: "Le chapitre 9 : Suites numériques, en entier." },
+    ],
+    incontournables: [
+      { chapter: 9, text: "Définition de $(u_n)$ converge vers $\\ell \\in \\mathbb{R}$, de $(u_n)$ diverge vers $+\\infty$, vers $-\\infty$." },
+      { chapter: 9, text: "Théorème des gendarmes, avec démonstration" },
+      { chapter: 9, text: "Equivalents usuels des suites" },
+      { chapter: 9, text: "Théorème des suites adjacentes, avec démonstration" },
+      { chapter: 9, text: "Caractérisation séquentielle de la borne inférieure d'une partie, avec démonstration" },
+      { chapter: 9, text: "Caractérisation séquentielle de la densité" },
+      { chapter: 9, text: "Suites usuelles, méthodes et propriétés" },
+    ],
+  },
+  {
     id: "2026-11-16",
     start: "2026-11-16",
     label: "Semaine du 16/11/2026",

@@ -8,6 +8,7 @@ import c6 from "../../src/content/math/chapters/chapitre-6.js";
 import c7 from "../../src/content/math/chapters/chapitre-7.js";
 import c8 from "../../src/content/math/chapters/chapitre-8.js";
 import c9 from "../../src/content/math/chapters/chapitre-9.js";
+import c10 from "../../src/content/math/chapters/chapitre-10.js";
 import { devoirs, type Devoir } from "../../src/content/math/dm.js";
 import { bonusSheets, bonusAnswers, type BonusSheet } from "../../src/content/math/bonus.js";
 import { kholleWeeks, KHOLLE_NOTE, type KholleWeek } from "../../src/content/math/kholles.js";
@@ -38,7 +39,7 @@ export type { MathChapter, MathExercise, Devoir, KholleWeek, DriveDoc, BonusShee
 import { courseExamplesByChapter } from "./examples.js";
 import { courseOrder } from "../../src/content/math/course-order.js";
 
-export const chapters: MathChapter[] = [c1, c2, c3, c4, c5, c6, c7, c8, c9].map((c) => ({
+export const chapters: MathChapter[] = [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10].map((c) => ({
   ...c,
   exercises: (() => {
     const list = [...(courseExamplesByChapter[c.number] ?? []), ...c.exercises];
@@ -502,6 +503,65 @@ export const FROZEN_REGISTRY: Record<string, number> = {
   "ch9-exemple-18": 432,
   "ch9-exemple-19": 433,
   "ch9-exemple-20": 434,
+  "ch10-cours-ex1": 435,
+  "ch10-cours-ex2": 436,
+  "ch10-cours-ex3": 437,
+  "ch10-cours-ex4": 438,
+  "ch10-cours-ex5": 439,
+  "ch10-cours-ex6": 440,
+  "ch10-cours-ex7": 441,
+  "ch10-cours-ex8": 442,
+  "ch10-cours-ex9": 443,
+  "ch10-cours-ex10": 444,
+  "ch10-cours-ex11": 445,
+  "ch10-ex1": 446,
+  "ch10-ex2": 447,
+  "ch10-ex3": 448,
+  "ch10-ex4": 449,
+  "ch10-ex5": 450,
+  "ch10-ex6": 451,
+  "ch10-ex7": 452,
+  "ch10-ex8": 453,
+  "ch10-ex9": 454,
+  "ch10-ex10": 455,
+  "ch10-ex11": 456,
+  "ch10-ex12": 457,
+  "ch10-ex13": 458,
+  "ch10-ex14": 459,
+  "ch10-ex15": 460,
+  "ch10-ex16": 461,
+  "ch10-ex17": 462,
+  "ch10-ex18": 463,
+  "ch10-ex19": 464,
+  "ch10-exemple-1": 465,
+  "ch10-exemple-2": 466,
+  "ch10-exemple-3": 467,
+  "ch10-exemple-4": 468,
+  "ch10-exemple-5": 469,
+  "ch10-exemple-6": 470,
+  "ch10-exemple-7": 471,
+  "ch10-exemple-8": 472,
+  "ch10-exemple-9": 473,
+  "ch10-exemple-10": 474,
+  "ch10-exemple-11": 475,
+  "ch10-exemple-12": 476,
+  "ch10-exemple-13": 477,
+  "ch10-exemple-14": 478,
+  "ch10-exemple-15": 479,
+  "ch10-exemple-16": 480,
+  "ch10-exemple-17": 481,
+  "ch10-exemple-18": 482,
+  "ch10-exemple-19": 483,
+  "ch10-exemple-20": 484,
+  "ch10-exemple-21": 485,
+  "ch10-exemple-22": 486,
+  "ch10-exemple-23": 487,
+  "ch10-exemple-24": 488,
+  "ch10-exemple-25": 489,
+  "ch10-exemple-26": 490,
+  "ch10-exemple-27": 491,
+  "dm4-e1": 492,
+  "dm4-e2": 493,
 };
 
 // Build all exercises

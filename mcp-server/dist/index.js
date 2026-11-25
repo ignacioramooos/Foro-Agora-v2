@@ -9606,13 +9606,13 @@ var require_dbcs_codec = __commonJS({
         return -1;
       }
       var l = 0;
-      var r22 = table.length;
-      while (l < r22 - 1) {
-        var mid = l + (r22 - l + 1 >> 1);
+      var r24 = table.length;
+      while (l < r24 - 1) {
+        var mid = l + (r24 - l + 1 >> 1);
         if (table[mid] <= val) {
           l = mid;
         } else {
-          r22 = mid;
+          r24 = mid;
         }
       }
       return l;
@@ -17325,10 +17325,10 @@ var $ZodType = /* @__PURE__ */ $constructor("$ZodType", (inst, def) => {
   defineLazy(inst, "~standard", () => ({
     validate: (value) => {
       try {
-        const r22 = safeParse(inst, value);
-        return r22.success ? { value: r22.data } : { issues: r22.error?.issues };
+        const r24 = safeParse(inst, value);
+        return r24.success ? { value: r24.data } : { issues: r24.error?.issues };
       } catch (_) {
-        return safeParseAsync(inst, value).then((r22) => r22.success ? { value: r22.data } : { issues: r22.error?.issues });
+        return safeParseAsync(inst, value).then((r24) => r24.success ? { value: r24.data } : { issues: r24.error?.issues });
       }
     },
     vendor: "zod",
@@ -17911,11 +17911,11 @@ function handleCatchall(proms, input, payload, ctx, def, inst) {
       unrecognized.push(key);
       continue;
     }
-    const r22 = _catchall.run({ value: input[key], issues: [] }, ctx);
-    if (r22 instanceof Promise) {
-      proms.push(r22.then((r23) => handlePropertyResult(r23, payload, key, input, isOptionalOut)));
+    const r24 = _catchall.run({ value: input[key], issues: [] }, ctx);
+    if (r24 instanceof Promise) {
+      proms.push(r24.then((r25) => handlePropertyResult(r25, payload, key, input, isOptionalOut)));
     } else {
-      handlePropertyResult(r22, payload, key, input, isOptionalOut);
+      handlePropertyResult(r24, payload, key, input, isOptionalOut);
     }
   }
   if (unrecognized.length) {
@@ -17982,11 +17982,11 @@ var $ZodObject = /* @__PURE__ */ $constructor("$ZodObject", (inst, def) => {
     for (const key of value.keys) {
       const el = shape[key];
       const isOptionalOut = el._zod.optout === "optional";
-      const r22 = el._zod.run({ value: input[key], issues: [] }, ctx);
-      if (r22 instanceof Promise) {
-        proms.push(r22.then((r23) => handlePropertyResult(r23, payload, key, input, isOptionalOut)));
+      const r24 = el._zod.run({ value: input[key], issues: [] }, ctx);
+      if (r24 instanceof Promise) {
+        proms.push(r24.then((r25) => handlePropertyResult(r25, payload, key, input, isOptionalOut)));
       } else {
-        handlePropertyResult(r22, payload, key, input, isOptionalOut);
+        handlePropertyResult(r24, payload, key, input, isOptionalOut);
       }
     }
     if (!catchall) {
@@ -18101,7 +18101,7 @@ function handleUnionResults(results, final, inst, ctx) {
       return final;
     }
   }
-  const nonaborted = results.filter((r22) => !aborted(r22));
+  const nonaborted = results.filter((r24) => !aborted(r24));
   if (nonaborted.length === 1) {
     final.value = nonaborted[0].value;
     return nonaborted[0];
@@ -18161,7 +18161,7 @@ var $ZodUnion = /* @__PURE__ */ $constructor("$ZodUnion", (inst, def) => {
   };
 });
 function handleExclusiveUnionResults(results, final, inst, ctx) {
-  const successes = results.filter((r22) => r22.issues.length === 0);
+  const successes = results.filter((r24) => r24.issues.length === 0);
   if (successes.length === 1) {
     final.value = successes[0].value;
     return final;
@@ -18753,7 +18753,7 @@ var $ZodOptional = /* @__PURE__ */ $constructor("$ZodOptional", (inst, def) => {
     if (def.innerType._zod.optin === "optional") {
       const result = def.innerType._zod.run(payload, ctx);
       if (result instanceof Promise)
-        return result.then((r22) => handleOptionalResult(r22, payload.value));
+        return result.then((r24) => handleOptionalResult(r24, payload.value));
       return handleOptionalResult(result, payload.value);
     }
     if (payload.value === void 0) {
@@ -19170,11 +19170,11 @@ var $ZodCustom = /* @__PURE__ */ $constructor("$ZodCustom", (inst, def) => {
   };
   inst._zod.check = (payload) => {
     const input = payload.value;
-    const r22 = def.fn(input);
-    if (r22 instanceof Promise) {
-      return r22.then((r23) => handleRefineResult(r23, payload, input, inst));
+    const r24 = def.fn(input);
+    if (r24 instanceof Promise) {
+      return r24.then((r25) => handleRefineResult(r25, payload, input, inst));
     }
-    handleRefineResult(r22, payload, input, inst);
+    handleRefineResult(r24, payload, input, inst);
     return;
   };
 });
@@ -25782,7 +25782,7 @@ var Protocol = class {
         }
         await this.notification(notification, notificationOptions);
       },
-      sendRequest: async (r22, resultSchema, options) => {
+      sendRequest: async (r24, resultSchema, options) => {
         if (abortController.signal.aborted) {
           throw new McpError(ErrorCode.ConnectionClosed, "Request was cancelled");
         }
@@ -25794,7 +25794,7 @@ var Protocol = class {
         if (effectiveTaskId && taskStore) {
           await taskStore.updateTaskStatus(effectiveTaskId, "input_required");
         }
-        return await this.request(r22, resultSchema, requestOptions);
+        return await this.request(r24, resultSchema, requestOptions);
       },
       authInfo: extra?.authInfo,
       requestId: request.id,
@@ -32053,17 +32053,17 @@ function cleanParams(params, data) {
 function custom2(check2, _params = {}, fatal) {
   if (check2)
     return ZodAny3.create().superRefine((data, ctx) => {
-      const r22 = check2(data);
-      if (r22 instanceof Promise) {
-        return r22.then((r23) => {
-          if (!r23) {
+      const r24 = check2(data);
+      if (r24 instanceof Promise) {
+        return r24.then((r25) => {
+          if (!r25) {
             const params = cleanParams(_params, data);
             const _fatal = params.fatal ?? fatal ?? true;
             ctx.addIssue({ code: "custom", ...params, fatal: _fatal });
           }
         });
       }
-      if (!r22) {
+      if (!r24) {
         const params = cleanParams(_params, data);
         const _fatal = params.fatal ?? fatal ?? true;
         ctx.addIssue({ code: "custom", ...params, fatal: _fatal });
@@ -33196,8 +33196,147 @@ $$x_0 = 2, y_0 = -1 \text{ et : } \forall n \in \mathbb{N}, \begin{cases} x_{n+1
 };
 var chapitre_9_default = chapter9;
 
+// ../src/content/math/chapters/chapitre-10.ts
+var r13 = String.raw;
+var chapter10 = {
+  id: "chapitre-10",
+  number: 10,
+  title: "Limites et continuit\xE9",
+  summary: "Limites d'une fonction, op\xE9rations, composition et ordre, \xE9quivalents et n\xE9gligeabilit\xE9, continuit\xE9, th\xE9or\xE8me des valeurs interm\xE9diaires.",
+  exercises: [
+    { id: "ch10-cours-ex1", number: "1", source: "cours", statement: r13`Déterminer, quand cela est possible, la limite des fonctions suivantes.
+
+1. $f(x) = |x| + \ln(x)$ en 1.
+
+2. $f(x) = \dfrac{1}{x} + e^{-x}$ en $+\infty$.
+
+3. $f(x) = \dfrac{1}{x} + x^5$ en $0^+$ et en $0^-$.
+
+4. $f(x) = x^2 + \ln(x)$ en $+\infty$.
+
+5. $f(x) = xe^x$ en 1 et $+\infty$.
+
+6. $g(x) = \dfrac{-7}{x}$ en $0^+$.
+
+7. $f(x) = \frac{1}{x-2}$ en $2^+$ puis en $2^-$.
+
+8. $f(x) = \frac{1}{(x-2)^2}$ en $2^+$ puis en $2^-$.
+
+9. $f(x) = \dfrac{x^2 + 5}{1 + \dfrac{1}{x}}$ en $+\infty$.
+
+10. $g(x) = \dfrac{x^2 - 3}{x - 1}$ en $1^+$ et $1^-$.` },
+    { id: "ch10-cours-ex2", number: "2", source: "cours", statement: r13`Étudier la convergence de la suite $\left(\sqrt{2 + \frac{3}{n^2}}\right)_{n\in\mathbb{N}^*}$.` },
+    { id: "ch10-cours-ex3", number: "3", source: "cours", statement: r13`Étudier la convergence de la suite $\left(1 - e^{-\sqrt{n}}\right)_{n\in\mathbb{N}}$.` },
+    { id: "ch10-cours-ex4", number: "4", source: "cours", statement: r13`Étudier les limites suivantes :
+
+1. $e^{\frac{1}{x}}$ quand $x$ tend vers $+\infty$.
+
+2. $\ln(2 - x)$ quand $x$ tend vers 2.` },
+    { id: "ch10-cours-ex5", number: "5", source: "cours", statement: r13`Calculer : $\displaystyle\lim_{x\to+\infty} \frac{\lfloor x \rfloor}{x + 1}$.` },
+    { id: "ch10-cours-ex6", number: "6", source: "cours", statement: r13`Déterminer si les limites suivantes existent et le cas échéant, déterminer leur valeur (on distinguera limite à gauche et limite à droite lorsque c'est pertinent).
+
+1. $\displaystyle\lim_{x\to 0} \frac{(\ln x)^2}{e^x}$
+
+2. $\displaystyle\lim_{x\to+\infty} \frac{(\ln x)^2}{e^x}$
+
+3. $\displaystyle\lim_{x\to+\infty} \frac{\sqrt{x}}{e^x - 1}$
+
+4. $\displaystyle\lim_{x\to 0} \frac{x^2 + x + \ln x}{3\ln x}$` },
+    { id: "ch10-cours-ex7", number: "7", source: "cours", statement: r13`Considérons sur $]0;+\infty[$ les fonctions $f$ et $g$ définies par : $f(x) = x^2 - \ln x$ et $g(x) = x^2$. Les fonctions $f$ et $g$ sont-elles équivalentes au voisinage de $+\infty$ ?` },
+    { id: "ch10-cours-ex8", number: "8", source: "cours", statement: r13`Donner un équivalent au voisinage de $+\infty$ de : $f(x) = \dfrac{x^3 + 2x^2 + x - 2}{x^4 + 2x^2 + 1}$.` },
+    { id: "ch10-cours-ex9", number: "9", source: "cours", statement: r13`Peut-on prolonger par continuité en 0 la fonction $f$ définie sur $\mathbb{R}^{+*}$ par : $f(x) = x^x$ ?
+Peut-on prolonger par continuité en 0 la fonction $f$ définie sur $\mathbb{R}^*$ par : $f(x) = \dfrac{e^x - 1}{x^3}$ ?` },
+    { id: "ch10-cours-ex10", number: "10", source: "cours", statement: r13`Montrer qu'un polynôme de degré impair possède au moins une racine réelle.` },
+    { id: "ch10-cours-ex11", number: "11", source: "cours", statement: r13`Soit $f$ la fonction définie par : $f(x) = (\ln x)^2 + 1$. Déterminer $f(]0, e])$ et $f([e^2, +\infty[)$.` },
+    { id: "ch10-ex1", number: "1", statement: r13`Étudier la fonction $f$ définie par $f(x) = x^{x^2}$ (étude de variations et limites éventuelles).` },
+    { id: "ch10-ex2", number: "2", statement: r13`Soit $f : \mathbb{R} \to \mathbb{R}$ une fonction périodique telle que $f$ admette une limite finie en $+\infty$. Montrer que $f$ est constante.` },
+    { id: "ch10-ex3", number: "3", statement: r13`1. On suppose qu'on a une fonction $f$ définie au voisinage de $+\infty$ et vérifiant :
+$$f(x) \underset{x\to+\infty}{=} \frac{\ln(x) + 1}{x^2} - \frac{2}{x} + O\left(\frac{1}{x^2}\right)$$
+Pouvez-vous donner un équivalent simple de $f$ en $+\infty$ ?
+
+2. On suppose qu'on a une fonction $g$ définie au voisinage de 0 et vérifiant :
+$$g(x) \underset{x\to 0}{=} \frac{x^2}{2} + x^2\ln(x) + o\left(x^2\right)$$
+Pouvez-vous donner un équivalent simple de $g$ en 0 ?` },
+    { id: "ch10-ex4", number: "4", statement: r13`Donner un équivalent de $f(x)$ au point $a$ pour :
+
+a. $f(x) = \dfrac{\ln(1 + \sqrt{x})}{x}$ et $a = 0$,
+
+b. $f(x) = \dfrac{\ln(1 + x + x^2)}{x^2}$ et $a = 0$,
+
+c. $f(x) = \sqrt{x + 4}\,\tan x$ et $a = 0$,
+
+d. $f(x) = x^2\left(e^{\frac{1}{x}} - 1\right)$ et $a = +\infty$.` },
+    { id: "ch10-ex5", number: "5", statement: r13`Dans chacun des cas suivants, déterminer les limites de la fonction aux bornes de son ensemble de définition.
+
+1. $f(x) = \dfrac{x^2 + 1}{x - 1}$
+
+2. $f(x) = \dfrac{\ln x}{x^2 - 1}$
+
+3. $f(x) = x^{1/x}$
+
+4. $f(x) = \dfrac{x^2 - 1}{\sqrt{3x^2 + 1} - 2}$
+
+5. $f(x) = x + \cos x$
+
+6. $f(x) = \dfrac{x - 9}{\sqrt{x} - 3}$` },
+    { id: "ch10-ex6", number: "6", statement: r13`Etudier la continuité en 0 des fonctions définies respectivement sur $\mathbb{R}$ et $[0;1[$ :
+
+1. $f(x) = \begin{cases} \dfrac{\ln(1 + e^{1/x})}{e^{1/x}} & \text{si} \quad x \neq 0 \\ 0 & \text{si} \quad x = 0 \end{cases}$
+
+2. $g(x) = \begin{cases} \dfrac{e^x - 1}{x^x - 1} & \text{si} \quad x \in ]0;1[ \\ 0 & \text{si} \quad x = 0 \end{cases}$` },
+    { id: "ch10-ex7", number: "7", statement: r13`Soit f une fonction continue sur $[0;1]$ à valeurs dans $[0;1]$. Montrer qu'il existe au moins un réel $x_0$ dans $[0;1]$ tel que $f(x_0) = x_0$.` },
+    { id: "ch10-ex8", number: "8", statement: r13`Montrer que l'équation $x^2e^x = 1$ admet une unique solution sur $\mathbb{R}$ que l'on notera $\alpha$. Vérifier que $\alpha \in [0;1]$.` },
+    { id: "ch10-ex9", number: "9", statement: r13`Montrer que l'équation $\ln x = -x$ admet une unique solution sur $]0;+\infty[$.` },
+    { id: "ch10-ex10", number: "10", statement: r13`Soit $f$ la fonction définie par : $f(x) = \dfrac{\sqrt{\ln x}}{x}$. Montrer que $f$ réalise une bijection de $[\sqrt{e};+\infty[$ sur un intervalle que l'on déterminera.` },
+    { id: "ch10-ex11", number: "11", statement: r13`Pour quelle valeur de $a$ la fonction
+$$f : \begin{array}{ccl} \mathbb{R}^* & \to & \mathbb{R} \\ x & \mapsto & \begin{cases} \dfrac{\sin(ax)}{2x} & \text{si } x < 0 \\[2mm] \dfrac{e^{3x} - 1}{x} & \text{si } x > 0 \end{cases} \end{array}$$
+est-elle prolongeable par continuité en 0 ?` },
+    { id: "ch10-ex12", number: "12", statement: r13`Soit $f : \begin{array}{ccl} \mathbb{R}^{+*} & \to & \mathbb{R} \\ x & \mapsto & xE\left(\dfrac{1}{x}\right) \end{array}$.
+
+1. Montrer que $f$ n'est pas continue en $\dfrac{1}{k}$ où $k \in \mathbb{N}^*$.
+
+2. Montrer que $f$ admet un prolongement par continuité en 0 noté $\tilde{f}$.` },
+    { id: "ch10-ex13", number: "13", statement: r13`Étudier la définition et la continuité de chacune des fonctions suivantes, ainsi que les éventuels prolongements par continuité aux bornes :
+$$f : x \mapsto \sqrt{(1 - x)\arcsin(1 - x)}, \quad g : x \mapsto e^{-\frac{1}{x^2}}, \quad h : x \mapsto \frac{x\ln x}{x - 1}, \quad j : x \mapsto \left(x(\ln x)^2 + 1\right)^{\frac{1}{\ln x}}.$$` },
+    { id: "ch10-ex14", number: "14", statement: r13`1. Déterminer tous les endomorphismes de groupe continus de $\mathbb{R}$.
+
+2. En déduire tous les morphismes de groupes continus de $(\mathbb{R}, +)$ dans $(\mathbb{R}_+^*, \times)$.` },
+    { id: "ch10-ex15", number: "15", statement: r13`Soit $f$ une fonction continue et strictement positive sur un intervalle fermé $[a, b]$.
+
+1. Montrer que la fonction $\dfrac{1}{f}$ est bornée sur $[a, b]$.
+
+2. Montrer que le résultat est faux si l'on ne suppose pas que $f$ est continue.
+
+3. Montrer que le résultat est faux si l'on remplace $[a, b]$ par un intervalle ouvert.` },
+    { id: "ch10-ex16", number: "16", statement: r13`Soit $f : \mathbb{R} \to \mathbb{R}$ une fonction continue dont toutes les valeurs sont des nombres rationnels. Montrer que $f$ est constante.` },
+    { id: "ch10-ex17", number: "17", statement: r13`Une fonction implicite
+
+1. Montrer qu'il existe une fonction $f$ définie et continue sur $\mathbb{R}_+$, telle que : $\forall x \in \mathbb{R}_+,\ f(x)e^{f(x)} = x$. A-t-on unicité de $f$ ?
+
+2. Étudier $\displaystyle\lim_{x\to+\infty} \frac{f(x)}{\ln x}$, puis déterminer un équivalent en $+\infty$ de $f(x) - \ln x$.
+
+3. Déterminer un équivalent de $f$ en $0^+$.` },
+    { id: "ch10-ex18", number: "18", statement: r13`Soit $f : \mathbb{R} \to \mathbb{R}$ une fonction continue et périodique. Montrer que $f$ est uniformément continue sur $\mathbb{R}$.` },
+    { id: "ch10-ex19", number: "19", statement: r13`1. Soit $f : \mathbb{R}^+ \to \mathbb{R}$ une fonction uniformément continue sur $\mathbb{R}_+$. Montrer que $f(x) \underset{x\to+\infty}{=} O(x)$.
+
+2. En déduire que l'exponentielle n'est pas uniformément continue sur $\mathbb{R}_+$.` }
+  ]
+};
+var chapitre_10_default = chapter10;
+
 // ../src/content/math/dm.ts
 var devoirs = [
+  {
+    id: "dm-4",
+    title: "DM n\xB04",
+    due: "\xC0 rendre (facultatif) pour le 30/11/2026",
+    chapter: 9,
+    docId: "1O4hSX8iluHwqtCu2mftm4hp6Zj_UEToW",
+    questions: [
+      { id: "dm4-e1", number: "1", source: "dm", statement: "Exercice 1\n\nSoit $a > 2$ et $(u_n)_{n\\geq 0}$ la suite d\xE9finie par r\xE9currence par : $u_0 = a$ et $u_{n+1} = 2\\sqrt{u_n - 1}$ pour $n \\geq 0$.\n\n1. Soit $g(x) = 2\\sqrt{x - 1} - x$ pour $x \\geq 1$. Etudier le signe de $g$.\n\n2. Etudier la convergence de la suite $(u_n)$.\n\n3. On pose $v_n = u_n - 2$. Montrer que : $\\displaystyle\\lim_{n\\to+\\infty} \\frac{1}{v_{n+1}} - \\frac{1}{v_n} = \\frac{1}{4}$." },
+      { id: "dm4-e2", number: "2", source: "dm", statement: "Exercice 2\n\nSoient $f : \\mathbb{R} \\to \\mathbb{R}$ la fonction d\xE9finie par :\n\n$$f(t) = \\frac{1}{2}\\int_0^1 \\max(x,t)\\mathrm{d}x$$\n\n, pour tout $t \\in \\mathbb{R}$.\n\n1. Montrer que $f(t) = \\dfrac{1}{4} + \\dfrac{t^2}{4}$ pour $0 \\leq t \\leq 1$.\n\n2. Repr\xE9senter le graphe de $f$ sur $\\mathbb{R}$.\n\n3. On d\xE9finit la suite $(a_n)$ par $a_0 \\in \\mathbb{R}$ et : $\\forall n \\in \\mathbb{N}, a_{n+1} = f(a_n)$. Etudier la convergence de la suite $(a_n)$ (on distinguera les cas selon la valeur de $a_0$)." }
+    ]
+  },
   {
     id: "dm-3",
     title: "DM n\xB03",
@@ -33460,7 +33599,8 @@ var coursDocs = {
   6: { id: "17cYVX4t_dA3vqv7ygKAdeOoWvuIf853p", title: "Cours \u2014 Chapitre 6" },
   7: { id: "11xZuYc5LBfo7I-vSlWcofNJ46y_2kn7o", title: "Cours \u2014 Chapitre 7" },
   8: { id: "1EHRO5T7o0T42SB_jSQ9ehxt9ItiLZLfQ", title: "Cours \u2014 Chapitre 8" },
-  9: { id: "110ZNh5T_1CNuIy6Z21W0_MZEOy39ZECI", title: "Cours \u2014 Chapitre 9" }
+  9: { id: "110ZNh5T_1CNuIy6Z21W0_MZEOy39ZECI", title: "Cours \u2014 Chapitre 9" },
+  10: { id: "1oNf96StnyFuWO1wmybSZRi8a5OA3Uxpa", title: "Cours \u2014 Chapitre 10" }
 };
 var tdDocs = {
   1: { id: "1i1V6-4aVL9vMqfPeYV9WZPs3awL1V_Aj", title: "TD \u2014 Chapitre 1" },
@@ -33471,7 +33611,8 @@ var tdDocs = {
   6: { id: "1075iMd66V-tRwIqRJLqro6USEl7S3cuP", title: "TD \u2014 Chapitre 6" },
   7: { id: "1LGLiPlipyTF0O9FsT8JayICEeZGVLdUj", title: "TD \u2014 Chapitre 7" },
   8: { id: "1X9oqO7tB-j4y-AplMi1AjdhmlXzSFhPo", title: "TD \u2014 Chapitre 8" },
-  9: { id: "1CZ8JCIIgQtMecN8WRcV7TCzAYE7OGmuD", title: "TD \u2014 Chapitre 9" }
+  9: { id: "1CZ8JCIIgQtMecN8WRcV7TCzAYE7OGmuD", title: "TD \u2014 Chapitre 9" },
+  10: { id: "1KPg8zuBHt-fwsHa7bMSQItqQGf6Oo-2D", title: "TD \u2014 Chapitre 10" }
 };
 var resourceDocs = [
   { id: "1gk1hylA8nFzbPXOQZ3jKWhEnf34miURm", title: "Formulaire de trigonom\xE9trie", description: "Toutes les formules de trigo \xE0 conna\xEEtre." },
@@ -33479,18 +33620,18 @@ var resourceDocs = [
 ];
 
 // ../src/content/math/course-examples/chapitre-1.ts
-var r13 = String.raw;
+var r14 = String.raw;
 var chapitre1Exemples = [
-  { id: "ch1-exemple-1", number: "2.3", source: "exemple", statement: r13`$\mathcal{P}$ : « $2 \geq 0$ » est une proposition vraie et $\mathcal{Q}$ : « $7 \times 2 = 10$ » est une proposition fausse .` },
-  { id: "ch1-exemple-2", number: "2.4", source: "exemple", statement: r13`• $\forall x \in \mathbb{R},\ x^2 \geq 0$ est une proposition complète. Elle est vraie.
+  { id: "ch1-exemple-1", number: "2.3", source: "exemple", statement: r14`$\mathcal{P}$ : « $2 \geq 0$ » est une proposition vraie et $\mathcal{Q}$ : « $7 \times 2 = 10$ » est une proposition fausse .` },
+  { id: "ch1-exemple-2", number: "2.4", source: "exemple", statement: r14`• $\forall x \in \mathbb{R},\ x^2 \geq 0$ est une proposition complète. Elle est vraie.
 
 • $\forall x \in \mathbb{R},\ x > 1$ est une proposition complète. Elle est fausse.` },
-  { id: "ch1-exemple-3", number: "2.6", source: "exemple", statement: r13`La proposition « $\forall x \in \mathbb{R},\exists n \in \mathbb{Z},\ n \leq x < n + 1$ » est vraie (tout nombre réel peut-être compris entre deux entiers) tandis que « $\exists n \in \mathbb{Z},\forall x \in \mathbb{R},\ n \leq x < n + 1$ » est fausse. On remarque donc que chaque nombre réel $x$ est compris entre deux entiers consécutifs : $n$ et $n + 1$. Ce nombre $n$ est appelé partie entière de $x$ et noté $\lfloor x\rfloor$ ou parfois $E(x)$.` },
-  { id: "ch1-exemple-4", number: "3.2", source: "exemple", statement: r13`Si $\mathcal{P}$ est la proposition « $2 \leq 3$ ». Alors Non $\mathcal{P}$ est la proposition $2 > 3$. La négation de "je mesure 1,70m ou plus" est "je mesure strictement moins de 1,70 m".` },
-  { id: "ch1-exemple-5", number: "3.6", source: "exemple", statement: r13`On lance un dé à 6 faces, et considère les propositions $\mathcal{P}$ : "le résultat est pair", et $\mathcal{Q}$ : "le résultat est supérieur ou égal à 3". Alors $(\mathcal{P}\text{ ou }\mathcal{Q})$ est la proposition "le résultat est 2,3,4,5 ou 6", et la proposition $(\mathcal{P}\text{ et }\mathcal{Q})$ est "le résultat est 4 ou 6".` },
-  { id: "ch1-exemple-6", number: "3.10", source: "exemple", statement: r13`$\forall x \in [0,+\infty[,\ x^2 \geq 0 \Leftrightarrow x \geq 0$ est vraie.` },
-  { id: "ch1-exemple-7", number: "4.4", source: "exemple", statement: r13`La contraposée de la proposition "s’il pleut, alors le sol est mouillé" est "si le sol n’est pas mouillé, alors il ne pleut pas".` },
-  { id: "ch1-exemple-8", number: "4.6", source: "exemple", statement: r13`L’exemple le plus célèbre de raisonnement par l’absurde est celui de la démonstration de l’infinité de l’ensemble des nombres premiers.
+  { id: "ch1-exemple-3", number: "2.6", source: "exemple", statement: r14`La proposition « $\forall x \in \mathbb{R},\exists n \in \mathbb{Z},\ n \leq x < n + 1$ » est vraie (tout nombre réel peut-être compris entre deux entiers) tandis que « $\exists n \in \mathbb{Z},\forall x \in \mathbb{R},\ n \leq x < n + 1$ » est fausse. On remarque donc que chaque nombre réel $x$ est compris entre deux entiers consécutifs : $n$ et $n + 1$. Ce nombre $n$ est appelé partie entière de $x$ et noté $\lfloor x\rfloor$ ou parfois $E(x)$.` },
+  { id: "ch1-exemple-4", number: "3.2", source: "exemple", statement: r14`Si $\mathcal{P}$ est la proposition « $2 \leq 3$ ». Alors Non $\mathcal{P}$ est la proposition $2 > 3$. La négation de "je mesure 1,70m ou plus" est "je mesure strictement moins de 1,70 m".` },
+  { id: "ch1-exemple-5", number: "3.6", source: "exemple", statement: r14`On lance un dé à 6 faces, et considère les propositions $\mathcal{P}$ : "le résultat est pair", et $\mathcal{Q}$ : "le résultat est supérieur ou égal à 3". Alors $(\mathcal{P}\text{ ou }\mathcal{Q})$ est la proposition "le résultat est 2,3,4,5 ou 6", et la proposition $(\mathcal{P}\text{ et }\mathcal{Q})$ est "le résultat est 4 ou 6".` },
+  { id: "ch1-exemple-6", number: "3.10", source: "exemple", statement: r14`$\forall x \in [0,+\infty[,\ x^2 \geq 0 \Leftrightarrow x \geq 0$ est vraie.` },
+  { id: "ch1-exemple-7", number: "4.4", source: "exemple", statement: r14`La contraposée de la proposition "s’il pleut, alors le sol est mouillé" est "si le sol n’est pas mouillé, alors il ne pleut pas".` },
+  { id: "ch1-exemple-8", number: "4.6", source: "exemple", statement: r14`L’exemple le plus célèbre de raisonnement par l’absurde est celui de la démonstration de l’infinité de l’ensemble des nombres premiers.
 
 Notons $\mathcal{P}$ l’ensemble des nombres premiers. On sait que $\mathcal{P}$ est non vide vu qu’il contient 2, 3, 5, 7, etc.
 
@@ -33501,7 +33642,7 @@ Il possède alors un certain nombre $n$ d’éléments que l’on note $p_1,p_2,
 Notons alors $p = p_1p_2...p_n$ et considérons $q = p + 1$. Comme tout nombre premier est supérieur strictement à 1, le reste de la division euclidienne de $q$ par n’importe quel $p_i$ est 1 (car on écrit $q = p_i \times p_1p_2...p_{i-1}p_{i+1}...p_n + 1$ avec $0 \leq 1 < p_i$), donc aucun des $p_i$ ne divise $q$. Or, d’après le lemme d’Euclide, $q \geq 2$ est divisible par un nombre premier. Contradiction !
 
 Conclusion : l’ensemble $\mathcal{P}$ des nombres premiers est infini.` },
-  { id: "ch1-exemple-9", number: "4.11", source: "exemple", statement: r13`Montrer par récurrence que pour tout $n \in \mathbb{N}$, $2^n \geq n + 1$
+  { id: "ch1-exemple-9", number: "4.11", source: "exemple", statement: r14`Montrer par récurrence que pour tout $n \in \mathbb{N}$, $2^n \geq n + 1$
 
 Initialisation : Pour $n = 0$ : $2^0 = 1$ et $0 + 1 = 1$. Ainsi on a bien : $2^0 \geq 0 + 1$, donc $P(0)$ est vraie.
 
@@ -33514,84 +33655,84 @@ Or $2 \times (n + 1) = 2n + 2 \geq n + 2$ car $n \in \mathbb{N}$.
 On a alors : $2^{n+1} \geq n + 2$, la propriété est donc héréditaire.
 
 Conclusion : $\forall n \in \mathbb{N}, 2^n \geq n + 1$.` },
-  { id: "ch1-exemple-10", number: "4.12", source: "exemple", statement: r13`On considère la suite $(u_n)_{n\in\mathbb{N}}$ définie par : $$\begin{cases}u_0 = u_1 = -1\\ \forall n \in \mathbb{N}, u_{n+2} = 5u_{n+1} - 6u_n\end{cases}$$
+  { id: "ch1-exemple-10", number: "4.12", source: "exemple", statement: r14`On considère la suite $(u_n)_{n\in\mathbb{N}}$ définie par : $$\begin{cases}u_0 = u_1 = -1\\ \forall n \in \mathbb{N}, u_{n+2} = 5u_{n+1} - 6u_n\end{cases}$$
 
 Montrer que : $\forall n \in \mathbb{N}, u_n = 3^n - 2^{n+1}$` },
-  { id: "ch1-exemple-11", number: "4.13", source: "exemple", statement: r13`On considère la suite $(u_n)_{n\in\mathbb{N}}$ définie par : $$\begin{cases}u_0 = 1\\ \forall n \in \mathbb{N}, u_{n+1} = u_0 + u_1 + \cdots + u_n\end{cases}$$
+  { id: "ch1-exemple-11", number: "4.13", source: "exemple", statement: r14`On considère la suite $(u_n)_{n\in\mathbb{N}}$ définie par : $$\begin{cases}u_0 = 1\\ \forall n \in \mathbb{N}, u_{n+1} = u_0 + u_1 + \cdots + u_n\end{cases}$$
 
 Montrer que : $\forall n \in \mathbb{N}, u_n \leq 2^n$` }
 ];
 
 // ../src/content/math/course-examples/chapitre-2.ts
-var r14 = String.raw;
+var r15 = String.raw;
 var chapitre2Exemples = [
-  { id: "ch2-exemple-1", number: "1.2", source: "exemple", statement: r14`1. Ensembles concrets : ensemble des lettres de l’alphabet $\mathcal{A} = \{a,b,c,\ldots\}$ : on a $y \in \mathcal{A}$ et $3 \notin \mathcal{A}$ ; ensemble des villes de la Côte d’Azur, ensemble des atomes dans l’univers...
+  { id: "ch2-exemple-1", number: "1.2", source: "exemple", statement: r15`1. Ensembles concrets : ensemble des lettres de l’alphabet $\mathcal{A} = \{a,b,c,\ldots\}$ : on a $y \in \mathcal{A}$ et $3 \notin \mathcal{A}$ ; ensemble des villes de la Côte d’Azur, ensemble des atomes dans l’univers...
 
 2. Ensembles de nombres : $\mathbb{N}$, $\mathbb{R}_+$, $\{-5;3;4;7\}$, $]-3,4]$, $\mathbb{C}^*$, $\left\{\dfrac{\pi}{2}+k\pi,\ k\in\mathbb{Z}\right\}$, $\{2\}$ etc.
 
 3. Ensembles de points en géométrie (le plan, l’espace, une droite, une hyperbole,...)
 
 4. Ensembles de fonctions : ensemble des fonctions définies sur $\mathbb{R}$, ensemble des fonctions paires, ensemble des solutions de l’équation différentielle $y' + xy = 0$, etc.` },
-  { id: "ch2-exemple-2", number: "1.5", source: "exemple", statement: r14`Les ensembles $\mathbb{N}$, $\mathbb{N}^*$, $\mathbb{Z}$, et $\mathbb{Q}$ sont dénombrables, mais $\mathbb{R}$ ne l’est pas.` },
-  { id: "ch2-exemple-3", number: "3.2", source: "exemple", statement: r14`Soit $E = \{1,2\}$. Alors $\mathcal{P}(E) = \{\varnothing,\{1\},\{2\},\{1,2\}\}$.` },
-  { id: "ch2-exemple-4", number: "4.2", source: "exemple", statement: r14`Si $A = \{0,1,2\}$ et $B = \{1,2,3\}$, quel est l’ensemble $A \cup B$ ?` },
-  { id: "ch2-exemple-5", number: "4.6", source: "exemple", statement: r14`Reprenons les ensembles de l’exemple 4.2. Quel est l’ensemble $A \cap B$ ?` },
-  { id: "ch2-exemple-6", number: "4.12", source: "exemple", statement: r14`▹ $\mathbb{N}^* = \mathbb{N}\setminus\{0\}$
+  { id: "ch2-exemple-2", number: "1.5", source: "exemple", statement: r15`Les ensembles $\mathbb{N}$, $\mathbb{N}^*$, $\mathbb{Z}$, et $\mathbb{Q}$ sont dénombrables, mais $\mathbb{R}$ ne l’est pas.` },
+  { id: "ch2-exemple-3", number: "3.2", source: "exemple", statement: r15`Soit $E = \{1,2\}$. Alors $\mathcal{P}(E) = \{\varnothing,\{1\},\{2\},\{1,2\}\}$.` },
+  { id: "ch2-exemple-4", number: "4.2", source: "exemple", statement: r15`Si $A = \{0,1,2\}$ et $B = \{1,2,3\}$, quel est l’ensemble $A \cup B$ ?` },
+  { id: "ch2-exemple-5", number: "4.6", source: "exemple", statement: r15`Reprenons les ensembles de l’exemple 4.2. Quel est l’ensemble $A \cap B$ ?` },
+  { id: "ch2-exemple-6", number: "4.12", source: "exemple", statement: r15`▹ $\mathbb{N}^* = \mathbb{N}\setminus\{0\}$
 
 ▹ Si $A = \{1,2,3,6\}$ et $B = \{2,6,7\}$ , quel est l’ensemble $A\setminus B$ ?
 
 ▹ Si $E$ est un ensemble alors quel est l’ensemble $E\setminus E$ ?` },
-  { id: "ch2-exemple-7", number: "4.18", source: "exemple", statement: r14`Notons $E$ l’ensemble des candidats au concours Mines-Ponts en filière MP, $I$ le sous-ensemble de $E$ des candidats ayant choisi l’option informatique et $S$ le sous-ensemble de $E$ des candidats ayant choisi l’option SI. $(I,S)$ forme une partition de $E$.` },
-  { id: "ch2-exemple-8", number: "4.21", source: "exemple", statement: r14`• Si $E = \{0,2\}$ et $F = \{0,1,2,3\}$, quel est l’ensemble $E \times F$ ?
+  { id: "ch2-exemple-7", number: "4.18", source: "exemple", statement: r15`Notons $E$ l’ensemble des candidats au concours Mines-Ponts en filière MP, $I$ le sous-ensemble de $E$ des candidats ayant choisi l’option informatique et $S$ le sous-ensemble de $E$ des candidats ayant choisi l’option SI. $(I,S)$ forme une partition de $E$.` },
+  { id: "ch2-exemple-8", number: "4.21", source: "exemple", statement: r15`• Si $E = \{0,2\}$ et $F = \{0,1,2,3\}$, quel est l’ensemble $E \times F$ ?
 
 • $\mathbb{N}\times\mathbb{N} = \coprod_{n\in\mathbb{N}}\left\{(i,j)\in\mathbb{N}^2,i+j=n\right\}$.` },
-  { id: "ch2-exemple-9", number: "4.24", source: "exemple", statement: r14`• L’ensemble $\mathbb{R}^3$ est l’ensemble des triplets de réels (ensemble utilisé pour la géométrie dans l’espace).
+  { id: "ch2-exemple-9", number: "4.24", source: "exemple", statement: r15`• L’ensemble $\mathbb{R}^3$ est l’ensemble des triplets de réels (ensemble utilisé pour la géométrie dans l’espace).
 
 • L’ensemble $\mathbb{R}^n$, avec $n \in \mathbb{N}^*$ est l’ensemble des $n$-uplets de réels.` },
-  { id: "ch2-exemple-10", number: "5.2", source: "exemple", statement: r14`Voici trois exemples d’applications :
+  { id: "ch2-exemple-10", number: "5.2", source: "exemple", statement: r15`Voici trois exemples d’applications :
 
 • $f : \begin{array}{ccc}\mathbb{R}_+^* & \longrightarrow & \mathbb{R}\\ x & \longmapsto & \ln(x)\end{array}$
 
 • L’application de $\{0,1,2\}$ dans $\{0,1,2\}$ qui à 0 associe 1, à 1 associe 2, et à 2 associe 0.
 
 • Soit $\mathcal{V} = \{\text{Barcelone, Reykjavik, Le Havre, Madrid, Paris, Strasbourg}\}$ et $\mathcal{P} = \{\text{Allemagne, Espagne, France, Islande}\}$. On peut considérer l’application $f : \mathcal{V} \to \mathcal{P}$ qui à une ville associe son pays.` },
-  { id: "ch2-exemple-11", number: "5.9", source: "exemple", statement: r14`Soit $f : \begin{array}{ccc}\mathbb{R}_+ & \longrightarrow & \mathbb{R}\\ x & \longmapsto & \sqrt{x+1}\end{array}$
+  { id: "ch2-exemple-11", number: "5.9", source: "exemple", statement: r15`Soit $f : \begin{array}{ccc}\mathbb{R}_+ & \longrightarrow & \mathbb{R}\\ x & \longmapsto & \sqrt{x+1}\end{array}$
 
 L’ensemble de départ est $\mathbb{R}_+$, l’ensemble d’arrivée est $\mathbb{R}$.
 
 • Soit $A = [0;3]$. Quel est l’image de $A$ par $f$ ?
 
 • Soit $B = [2;5]$. Quelle est l’image réciproque de $B$ par $f$ ?` },
-  { id: "ch2-exemple-12", number: "5.14", source: "exemple", statement: r14`De quel ensemble la fonction $1 - \mathbb{1}_A$ est-elle la fonction indicatrice ?` },
-  { id: "ch2-exemple-13", number: "5.17", source: "exemple", statement: r14`On peut considérer la famille de nombres réels $(a_{m,n})_{m\in\mathbb{N},n\in\mathbb{N}}$ définie par :
+  { id: "ch2-exemple-12", number: "5.14", source: "exemple", statement: r15`De quel ensemble la fonction $1 - \mathbb{1}_A$ est-elle la fonction indicatrice ?` },
+  { id: "ch2-exemple-13", number: "5.17", source: "exemple", statement: r15`On peut considérer la famille de nombres réels $(a_{m,n})_{m\in\mathbb{N},n\in\mathbb{N}}$ définie par :
 
 $$a_{m,n} = \frac{1}{m+n+1}$$
 
 On a par exemple $a_{4,2} = \dfrac{1}{7}$.` },
-  { id: "ch2-exemple-14", number: "6.2", source: "exemple", statement: r14`Soit $f$ l’application définie sur $\mathbb{R}$ par :
+  { id: "ch2-exemple-14", number: "6.2", source: "exemple", statement: r15`Soit $f$ l’application définie sur $\mathbb{R}$ par :
 
 $$\forall x \in \mathbb{R}^*,\ f(x) = \ln(|x|)\text{ et }f(0) = 0$$
 
 Alors si on note $g$ la restriction de $f$ à $\mathbb{R}^{-*}$, on a :
 
 $$\forall x \in \mathbb{R}^{-*},\ g(x) = \ln(-x)$$` },
-  { id: "ch2-exemple-15", number: "6.4", source: "exemple", statement: r14`La fonction $\ln$ n’est définie que sur $\mathbb{R}^{+*}$. On peut la prolonger sur tout $\mathbb{R}^+$ en posant :
+  { id: "ch2-exemple-15", number: "6.4", source: "exemple", statement: r15`La fonction $\ln$ n’est définie que sur $\mathbb{R}^{+*}$. On peut la prolonger sur tout $\mathbb{R}^+$ en posant :
 
 $$f : \begin{array}{ccc}\mathbb{R}^+ & \longrightarrow & \mathbb{R}\\ x & \longmapsto & \begin{cases}\ln(x)&\text{si }x>0\\0&\text{si }x=0\end{cases}\end{array}$$` },
-  { id: "ch2-exemple-16", number: "6.7", source: "exemple", statement: r14`On reprend l’exemple ci-dessus d’une application $f : \mathcal{V}\to\mathcal{P}$ qui à une ville associe son pays, avec $\mathcal{V} = \{\text{Barcelone, Reykjavik, Le Havre, Madrid, Paris, Strasbourg}\}$ et $\mathcal{P} = \{\text{Allemagne, Espagne, France, Islande}\}$. Soit $\mathcal{C} = \{\text{Berlin, Madrid, Paris, Reykjavik}\}$ et $g : \mathcal{P}\to\mathcal{C}$ l’application qui à un pays associe sa capitale.
+  { id: "ch2-exemple-16", number: "6.7", source: "exemple", statement: r15`On reprend l’exemple ci-dessus d’une application $f : \mathcal{V}\to\mathcal{P}$ qui à une ville associe son pays, avec $\mathcal{V} = \{\text{Barcelone, Reykjavik, Le Havre, Madrid, Paris, Strasbourg}\}$ et $\mathcal{P} = \{\text{Allemagne, Espagne, France, Islande}\}$. Soit $\mathcal{C} = \{\text{Berlin, Madrid, Paris, Reykjavik}\}$ et $g : \mathcal{P}\to\mathcal{C}$ l’application qui à un pays associe sa capitale.
 
 Alors l’application $g\circ f$ associe à une ville la capitale dont elle dépend.` },
-  { id: "ch2-exemple-17", number: "6.8", source: "exemple", statement: r14`Soit $f : x \mapsto e^x$ et $g : x \mapsto x^2$. A t-on l’égalité $f\circ g = g\circ f$ ?` },
-  { id: "ch2-exemple-18", number: "7.2", source: "exemple", statement: r14`La première application est injective mais pas la deuxième :
+  { id: "ch2-exemple-17", number: "6.8", source: "exemple", statement: r15`Soit $f : x \mapsto e^x$ et $g : x \mapsto x^2$. A t-on l’égalité $f\circ g = g\circ f$ ?` },
+  { id: "ch2-exemple-18", number: "7.2", source: "exemple", statement: r15`La première application est injective mais pas la deuxième :
 
 [Figure : deux diagrammes d’applications de A vers B ; à gauche, trois éléments ont des images distinctes parmi quatre éléments ; à droite, deux des quatre éléments ont la même image parmi trois éléments.]` },
-  { id: "ch2-exemple-19", number: "7.9", source: "exemple", statement: r14`La deuxième application est surjective mais pas la première :
+  { id: "ch2-exemple-19", number: "7.9", source: "exemple", statement: r15`La deuxième application est surjective mais pas la première :
 
 [Figure : deux diagrammes d’applications de A vers B ; à gauche, trois éléments ont des images distinctes et un des quatre éléments de B n’a pas d’antécédent ; à droite, les trois éléments de B ont un antécédent parmi les quatre éléments de A.]` },
-  { id: "ch2-exemple-20", number: "7.20", source: "exemple", statement: r14`Soit $f : \mathbb{N}\to\mathbb{N}$, définie par : $f(n) = \begin{cases}n+1&\text{si }n\text{ est pair}\\n-1&\text{si }n\text{ est impair}\end{cases}$
+  { id: "ch2-exemple-20", number: "7.20", source: "exemple", statement: r15`Soit $f : \mathbb{N}\to\mathbb{N}$, définie par : $f(n) = \begin{cases}n+1&\text{si }n\text{ est pair}\\n-1&\text{si }n\text{ est impair}\end{cases}$
 
 Montrer que $f$ est bijective.` },
-  { id: "ch2-exemple-21", number: "8.3", source: "exemple", statement: r14`1. L’égalité est une relation binaire sur tout ensemble $E$.
+  { id: "ch2-exemple-21", number: "8.3", source: "exemple", statement: r15`1. L’égalité est une relation binaire sur tout ensemble $E$.
 
 2. $\leq$ est une relation binaire sur $\mathbb{R}$.
 
@@ -33600,28 +33741,28 @@ Montrer que $f$ est bijective.` },
 4. ”Est parallèle à” est une relation binaire sur $\mathcal{D}$, ensemble des droites d’un plan donné.
 
 5. Soit $E$ un ensemble. L’inclusion est une relation binaire sur $\mathcal{P}(E)$.` },
-  { id: "ch2-exemple-22", number: "8.5", source: "exemple", statement: r14`1. Soit $E$ un ensemble. L’inclusion est une relation binaire sur $\mathcal{P}(E)$. Elle est réflexive, anti-symétrique et transitive mais non symétrique.
+  { id: "ch2-exemple-22", number: "8.5", source: "exemple", statement: r15`1. Soit $E$ un ensemble. L’inclusion est une relation binaire sur $\mathcal{P}(E)$. Elle est réflexive, anti-symétrique et transitive mais non symétrique.
 
 2. La relation de divisibilité dans $\mathbb{Z}$ est une relation binaire : elle est réflexive et transitive mais ni symétrique ni antisymétrique (car $-k$ et $k$ se divisent l’un l’autre).` },
-  { id: "ch2-exemple-23", number: "8.7", source: "exemple", statement: r14`1. L’égalité est une relation d’équivalence.
+  { id: "ch2-exemple-23", number: "8.7", source: "exemple", statement: r15`1. L’égalité est une relation d’équivalence.
 
 2. Le fait d’avoir le même signe sur $\mathbb{Z}$ est une relation d’équivalence.
 
 3. Sur $\mathbb{R}$, on définit une relation binaire par : $\forall(x,y)\in\mathbb{R}^2,\ x\mathcal{R}y \Leftrightarrow x\equiv y\ [2\pi]$ ; c’est une relation d’équivalence.` },
-  { id: "ch2-exemple-24", number: "8.9", source: "exemple", statement: r14`1. Si $\mathcal{R}$ est l’égalité, les classes d’équivalences sont précisément les singletons.
+  { id: "ch2-exemple-24", number: "8.9", source: "exemple", statement: r15`1. Si $\mathcal{R}$ est l’égalité, les classes d’équivalences sont précisément les singletons.
 
 2. Plaçons nous dans le cas $E = \mathbb{Z}$ et $a\mathcal{R}b \Leftrightarrow a = \pm b$. Les classes d’équivalence sont les paires $\{n,-n\}$, pour $n\in\mathbb{N}^*$, et le singleton $\{0\}$.
 
 3. Plaçons nous dans le cas $E = \mathbb{N}$, fixons un entier naturel $k>0$ et considérons $a\mathcal{R}b \Leftrightarrow a\equiv b\ [k]$, c’est à dire la restriction à $\mathbb{N}$ de la congruence modulo $k$. Les classes d’équivalence sont les ensembles $k\mathbb{N}+r = \{kn+r,\ n\in\mathbb{N}\}$, pour $r\in\{0,1,\ldots,k-1\}$.` },
-  { id: "ch2-exemple-25", number: "8.14", source: "exemple", statement: r14`1. Sur $\mathbb{R}$, $\leq$ est une relation d’ordre.
+  { id: "ch2-exemple-25", number: "8.14", source: "exemple", statement: r15`1. Sur $\mathbb{R}$, $\leq$ est une relation d’ordre.
 
 2. L’inclusion est une relation d’ordre sur $\mathcal{P}(E)$.` },
-  { id: "ch2-exemple-26", number: "8.17", source: "exemple", statement: r14`1. Sur $\mathbb{R}$, $\leq$ est une relation d’ordre totale.
+  { id: "ch2-exemple-26", number: "8.17", source: "exemple", statement: r15`1. Sur $\mathbb{R}$, $\leq$ est une relation d’ordre totale.
 
 2. Si l’on définit sur $\mathcal{F}(\mathbb{R},\mathbb{R})$ la relation $\leq$ par : $f\leq g \Leftrightarrow \forall x\in\mathbb{R},\ f(x)\leq g(x)$, alors il s’agit d’une relation d’ordre partielle.
 
 3. La relation de divisibilité sur $\mathbb{N}$ est une relation d’ordre partielle car 2 et 3 ne se divisent pas.` },
-  { id: "ch2-exemple-27", number: "8.20", source: "exemple", statement: r14`1. Le sous-ensemble $]-\infty,1[$ de $\mathbb{R}$ admet une infinité de majorants mais aucun plus grand élément. Il n’admet aucun minorant et donc aucun plus petit élément.
+  { id: "ch2-exemple-27", number: "8.20", source: "exemple", statement: r15`1. Le sous-ensemble $]-\infty,1[$ de $\mathbb{R}$ admet une infinité de majorants mais aucun plus grand élément. Il n’admet aucun minorant et donc aucun plus petit élément.
 
 2. Comme on le voit dans l’exemple précédent, il existe des parties de $\mathbb{R}$ qui sont majorées mais n’admettent aucun plus grand élément. Néanmoins, pour $]-\infty,1[\subset\mathbb{R}$, 1 est remarquable car c’est le plus petit des majorants. Nous le nommerons bientôt borne supérieure de $]-\infty,1[$.
 
@@ -33631,12 +33772,12 @@ Montrer que $f$ est bijective.` },
 ];
 
 // ../src/content/math/course-examples/chapitre-3.ts
-var r15 = String.raw;
+var r16 = String.raw;
 var chapitre3Exemples = [
-  { id: "ch3-exemple-1", number: "1.2", source: "exemple", statement: r15`Le système suivant :
+  { id: "ch3-exemple-1", number: "1.2", source: "exemple", statement: r16`Le système suivant :
 $$ (S)\begin{cases}3x_1+6x_2=-3 & (L_1)\\-2x_1+x_2=12 & (L_2)\\x_1-4x_2=-5 & (L_3)\end{cases} $$
 est un système d’équations linéaires à 3 équations et 2 inconnues.` },
-  { id: "ch3-exemple-2", number: "1.7", source: "exemple", statement: r15`• Le système d’équations :
+  { id: "ch3-exemple-2", number: "1.7", source: "exemple", statement: r16`• Le système d’équations :
 $$\begin{cases}x+2y=1\\2x+4y=3\end{cases}$$
 est un système incompatible.
 
@@ -33649,21 +33790,21 @@ $$\begin{cases}2x-y=2\\-4x+2y=-4\end{cases}$$
 Les deux équations sont proportionnelles, donc équivalentes. On peut seulement exprimer $y$ en fonction de $x$ (ou le contraire) :
 $$y=2x-2$$
 Et donc l’ensemble solution du système est : $S=\{(x,2x-2),x\in\mathbb{K}\}$.` },
-  { id: "ch3-exemple-3", number: "1.10", source: "exemple", statement: r15`Le système
+  { id: "ch3-exemple-3", number: "1.10", source: "exemple", statement: r16`Le système
 $$(S)\begin{cases}x_1+x_2+x_3+x_4=1\\x_3-x_4=3\end{cases}$$
 est un système échelonné.` },
-  { id: "ch3-exemple-4", number: "1.12", source: "exemple", statement: r15`Le système $(S)\begin{cases}x_1+x_2+x_3=1\\-x_2+x_3=-2\\2x_3=4\end{cases}$ est un système triangulaire.` },
-  { id: "ch3-exemple-5", number: "4.3", source: "exemple", statement: r15`On considère le système $(S)\begin{cases}2x_2+3x_3=0\\5x_1-3x_2+x_3=6\\3x_1+3x_2+3x_3=-6.\end{cases}$
+  { id: "ch3-exemple-4", number: "1.12", source: "exemple", statement: r16`Le système $(S)\begin{cases}x_1+x_2+x_3=1\\-x_2+x_3=-2\\2x_3=4\end{cases}$ est un système triangulaire.` },
+  { id: "ch3-exemple-5", number: "4.3", source: "exemple", statement: r16`On considère le système $(S)\begin{cases}2x_2+3x_3=0\\5x_1-3x_2+x_3=6\\3x_1+3x_2+3x_3=-6.\end{cases}$
 
 Effectuer successivement sur ce système les opérations élémentaires suivantes : $L_1\leftrightarrow L_3$, $L_1\leftarrow\frac{1}{3}L_1$, $L_2\leftarrow L_2-5L_1$, et $L_3\leftarrow4L_3+L_2$.` },
-  { id: "ch3-exemple-6", number: "4.10", source: "exemple", statement: r15`Résoudre le système suivant :
+  { id: "ch3-exemple-6", number: "4.10", source: "exemple", statement: r16`Résoudre le système suivant :
 $$(S)\begin{cases}x-3y+4z=8\\-6x+2y+z=5\\5x+y-z=2\\x+y+z=4\end{cases}$$` }
 ];
 
 // ../src/content/math/course-examples/chapitre-4.ts
-var r16 = String.raw;
+var r17 = String.raw;
 var chapitre4Exemples = [
-  { id: "ch4-exemple-1", number: "2.3", source: "exemple", statement: r16`Ecrire avec le signe $\sum$ les sommes suivantes :
+  { id: "ch4-exemple-1", number: "2.3", source: "exemple", statement: r17`Ecrire avec le signe $\sum$ les sommes suivantes :
 
 • $S_1=10^2+11^2+\cdots+99^2+100^2$
 
@@ -33672,13 +33813,13 @@ var chapitre4Exemples = [
 • $S_3=1+3+5+7+\cdots+25+27$
 
 • $S_4=1-2+3-\cdots-98+99-100$` },
-  { id: "ch4-exemple-2", number: "2.5", source: "exemple", statement: r16`$$\sum_{k=1}^{n}(2k)=\ldots$$
+  { id: "ch4-exemple-2", number: "2.5", source: "exemple", statement: r17`$$\sum_{k=1}^{n}(2k)=\ldots$$
 
 $$\sum_{k=1}^{n}(k^2+k)=\ldots$$
 
 $$\sum_{k=1}^{n}k(k^2-2)=\ldots$$` },
-  { id: "ch4-exemple-3", number: "3.5", source: "exemple", statement: r16`$4!=$` },
-  { id: "ch4-exemple-4", number: "\u2014", source: "exemple", statement: r16`Si on utilise deux indices (ou plus) pour indexer des nombres, il se peut que les bornes d’un indice dépende des autres indices. Exemple :
+  { id: "ch4-exemple-3", number: "3.5", source: "exemple", statement: r17`$4!=$` },
+  { id: "ch4-exemple-4", number: "\u2014", source: "exemple", statement: r17`Si on utilise deux indices (ou plus) pour indexer des nombres, il se peut que les bornes d’un indice dépende des autres indices. Exemple :
 $$\sum_{i=1}^{n}\sum_{j=1}^{i}a_{ij}$$
 Dans cet exemple, les $a_{ij}$ forment un triangle :
 $$\begin{bmatrix}a_{11}&&&&\\a_{21}&a_{22}&&&\\&&\cdots&&\\a_{i1}&a_{i2}&\ldots&a_{ii}&\\&&&\ddots&\\a_{n1}&a_{n2}&\ldots&\ldots&a_{nn}\end{bmatrix}$$
@@ -33689,63 +33830,63 @@ $$\sum_{i=1}^{n}\sum_{j=1}^{i}a_{ij}=\sum_{1\leq j\leq i\leq n}a_{ij}$$` }
 ];
 
 // ../src/content/math/course-examples/chapitre-5.ts
-var r17 = String.raw;
+var r18 = String.raw;
 var chapitre5Exemples = [
-  { id: "ch5-exemple-1", number: "1.3", source: "exemple", statement: r17`$\frac{2}{3}$ est une fraction irréductible, $\frac{10}{22}$ ne l’est pas.` },
-  { id: "ch5-exemple-2", number: "2.7", source: "exemple", statement: r17`Lequel des réels $X=\sqrt{21}+\sqrt{10}$ et $Y=\sqrt{24}+\sqrt{7}$ est le plus grand ? Sans utiliser la calculette bien sûr...` },
-  { id: "ch5-exemple-3", number: "2.20", source: "exemple", statement: r17`• $\operatorname{pge}([0;1])=1$
+  { id: "ch5-exemple-1", number: "1.3", source: "exemple", statement: r18`$\frac{2}{3}$ est une fraction irréductible, $\frac{10}{22}$ ne l’est pas.` },
+  { id: "ch5-exemple-2", number: "2.7", source: "exemple", statement: r18`Lequel des réels $X=\sqrt{21}+\sqrt{10}$ et $Y=\sqrt{24}+\sqrt{7}$ est le plus grand ? Sans utiliser la calculette bien sûr...` },
+  { id: "ch5-exemple-3", number: "2.20", source: "exemple", statement: r18`• $\operatorname{pge}([0;1])=1$
 
 • $[0;+\infty[$ n’a pas de plus grand élément.
 
 • $[0;1[$ n’a pas de plus grand élément.` },
-  { id: "ch5-exemple-4", number: "2.22", source: "exemple", statement: r17`$[0;1]$ et $[0;1[$ sont majorés dans $\mathbb{R}$.` },
-  { id: "ch5-exemple-5", number: "2.23", source: "exemple", statement: r17`$\mathbb{Z},\mathbb{Q},\mathbb{R}$ ne sont ni majorés, ni minorés.` },
-  { id: "ch5-exemple-6", number: "2.26", source: "exemple", statement: r17`Les parties suivantes sont elles majorées ? minorées ? bornées ? Admettent-elles un maximum, un minimum ?
+  { id: "ch5-exemple-4", number: "2.22", source: "exemple", statement: r18`$[0;1]$ et $[0;1[$ sont majorés dans $\mathbb{R}$.` },
+  { id: "ch5-exemple-5", number: "2.23", source: "exemple", statement: r18`$\mathbb{Z},\mathbb{Q},\mathbb{R}$ ne sont ni majorés, ni minorés.` },
+  { id: "ch5-exemple-6", number: "2.26", source: "exemple", statement: r18`Les parties suivantes sont elles majorées ? minorées ? bornées ? Admettent-elles un maximum, un minimum ?
 $$\{-2;-\sqrt{2};\pi\},\ [0,1[,\ ]-\infty;1[,\ [0;1]\cup[-5;-\sqrt{3}[,\ \mathbb{N},\ \left\{\frac{1}{n}/n\in\mathbb{N}^*\right\}$$` },
-  { id: "ch5-exemple-7", number: "2.28", source: "exemple", statement: r17`• $\sup_{\mathbb{R}}([0;1[)=1$
+  { id: "ch5-exemple-7", number: "2.28", source: "exemple", statement: r18`• $\sup_{\mathbb{R}}([0;1[)=1$
 
 • $\sup_{\mathbb{R}}([0;1])=1$
 
 • $([0;+\infty[)$ n’a pas de borne supérieure.` },
-  { id: "ch5-exemple-8", number: "2.37", source: "exemple", statement: r17`• $\mathbb{R}=]-\infty;+\infty[$
+  { id: "ch5-exemple-8", number: "2.37", source: "exemple", statement: r18`• $\mathbb{R}=]-\infty;+\infty[$
 
 • $[a;a]=\{a\}$
 
 • $]a;a[=\varnothing$` },
-  { id: "ch5-exemple-9", number: "2.39", source: "exemple", statement: r17`Dans la figure ci-dessous, $E_1$ est convexe, $E_2$ ne l’est pas.
+  { id: "ch5-exemple-9", number: "2.39", source: "exemple", statement: r18`Dans la figure ci-dessous, $E_1$ est convexe, $E_2$ ne l’est pas.
 
 [Figure : $E_1$ est une région ovale contenant les segments reliant ses points ; $E_2$ est une région courbée dont un segment reliant deux points sort de la région.]` },
-  { id: "ch5-exemple-10", number: "2.44", source: "exemple", statement: r17`Soient $I$ et $J$ deux intervalles. Alors $I+J=\{x+y,x\in I,y\in J\}$ est un intervalle.` },
-  { id: "ch5-exemple-11", number: "3.3", source: "exemple", statement: r17`$\sqrt{p}$ avec $p$ premier est également irrationnel, tout comme $e$ et $\pi$.` },
-  { id: "ch5-exemple-12", number: "3.8", source: "exemple", statement: r17`Soit $A=\left\{\frac{p}{\ln n},p\in\mathbb{Z},n\in\mathbb{N},n\geq2\right\}$. $A$ est dense dans $\mathbb{R}$.` },
-  { id: "ch5-exemple-13", number: "3.13", source: "exemple", statement: r17`1. Donner les 5 premiers termes de l’approximation décimale par défaut et par excès de $\sqrt{2}$, de $\frac{2}{3}$, de $-\frac{2}{3}$.
+  { id: "ch5-exemple-10", number: "2.44", source: "exemple", statement: r18`Soient $I$ et $J$ deux intervalles. Alors $I+J=\{x+y,x\in I,y\in J\}$ est un intervalle.` },
+  { id: "ch5-exemple-11", number: "3.3", source: "exemple", statement: r18`$\sqrt{p}$ avec $p$ premier est également irrationnel, tout comme $e$ et $\pi$.` },
+  { id: "ch5-exemple-12", number: "3.8", source: "exemple", statement: r18`Soit $A=\left\{\frac{p}{\ln n},p\in\mathbb{Z},n\in\mathbb{N},n\geq2\right\}$. $A$ est dense dans $\mathbb{R}$.` },
+  { id: "ch5-exemple-13", number: "3.13", source: "exemple", statement: r18`1. Donner les 5 premiers termes de l’approximation décimale par défaut et par excès de $\sqrt{2}$, de $\frac{2}{3}$, de $-\frac{2}{3}$.
 
 2. Que dire de la suite des approximations décimales par défaut d’un nombre entier relatif ? D’un nombre décimal ?` }
 ];
 
 // ../src/content/math/course-examples/chapitre-6.ts
-var r18 = String.raw;
+var r19 = String.raw;
 var chapitre6Exemples = [
-  { id: "ch6-exemple-1", number: "1.6", source: "exemple", statement: r18`Calculer $(2 + 3i)(-4 + i)$.` },
-  { id: "ch6-exemple-2", number: "1.12", source: "exemple", statement: r18`Calculer $(1 + i)^{4n}$, pour $n \in \mathbb{N}$.` },
-  { id: "ch6-exemple-3", number: "1.22", source: "exemple", statement: r18`Calculer $|4 + 2i|$.` },
-  { id: "ch6-exemple-4", number: "3.2", source: "exemple", statement: r18`$e^{i\pi} = -1$, $e^{i\frac{\pi}{2}} = i$, $\forall k \in \mathbb{Z}, e^{2ik\pi} = 1$` },
-  { id: "ch6-exemple-5", number: "3.9", source: "exemple", statement: r18`Ecrire $z = 1 - i\sqrt{3}$ sous forme exponentielle.` },
-  { id: "ch6-exemple-6", number: "4.7", source: "exemple", statement: r18`Résoudre dans $\mathbb{C}$ l’équation $e^z = 1 + i$.` },
-  { id: "ch6-exemple-7", number: "5.8", source: "exemple", statement: r18`Résoudre : $z^3 = 4\sqrt{2} - 4\sqrt{2}i$.` },
-  { id: "ch6-exemple-8", number: "5.10", source: "exemple", statement: r18`Résoudre : $z^2 = -3 + 4i$` },
-  { id: "ch6-exemple-9", number: "5.13", source: "exemple", statement: r18`Résoudre dans $\mathbb{C}$ l’équation $z^2 - (1 + 3i)z - 2 + i = 0$. En déduire une factorisation de $z^2 - (1 + 3i)z - 2 + i$.` },
-  { id: "ch6-exemple-10", number: "6.4", source: "exemple", statement: r18`Déterminer géométriquement les nombres complexes $z$ tels que : $|z| = |z + 1| = 1$.` },
-  { id: "ch6-exemple-11", number: "6.8", source: "exemple", statement: r18`• La rotation d’angle $\frac{\pi}{2}$ se traduit par une multiplication par $i$.
+  { id: "ch6-exemple-1", number: "1.6", source: "exemple", statement: r19`Calculer $(2 + 3i)(-4 + i)$.` },
+  { id: "ch6-exemple-2", number: "1.12", source: "exemple", statement: r19`Calculer $(1 + i)^{4n}$, pour $n \in \mathbb{N}$.` },
+  { id: "ch6-exemple-3", number: "1.22", source: "exemple", statement: r19`Calculer $|4 + 2i|$.` },
+  { id: "ch6-exemple-4", number: "3.2", source: "exemple", statement: r19`$e^{i\pi} = -1$, $e^{i\frac{\pi}{2}} = i$, $\forall k \in \mathbb{Z}, e^{2ik\pi} = 1$` },
+  { id: "ch6-exemple-5", number: "3.9", source: "exemple", statement: r19`Ecrire $z = 1 - i\sqrt{3}$ sous forme exponentielle.` },
+  { id: "ch6-exemple-6", number: "4.7", source: "exemple", statement: r19`Résoudre dans $\mathbb{C}$ l’équation $e^z = 1 + i$.` },
+  { id: "ch6-exemple-7", number: "5.8", source: "exemple", statement: r19`Résoudre : $z^3 = 4\sqrt{2} - 4\sqrt{2}i$.` },
+  { id: "ch6-exemple-8", number: "5.10", source: "exemple", statement: r19`Résoudre : $z^2 = -3 + 4i$` },
+  { id: "ch6-exemple-9", number: "5.13", source: "exemple", statement: r19`Résoudre dans $\mathbb{C}$ l’équation $z^2 - (1 + 3i)z - 2 + i = 0$. En déduire une factorisation de $z^2 - (1 + 3i)z - 2 + i$.` },
+  { id: "ch6-exemple-10", number: "6.4", source: "exemple", statement: r19`Déterminer géométriquement les nombres complexes $z$ tels que : $|z| = |z + 1| = 1$.` },
+  { id: "ch6-exemple-11", number: "6.8", source: "exemple", statement: r19`• La rotation d’angle $\frac{\pi}{2}$ se traduit par une multiplication par $i$.
 
 • La rotation d’angle $\frac{2\pi}{3}$ se traduit par une multiplication par $j$.` },
-  { id: "ch6-exemple-12", number: "6.9", source: "exemple", statement: r18`Soient $A$ un point d’affixe $1 + i$ et $B$ un point d’affixe $2i$. Déterminer l’affixe d’un point $C$ tel que le triangle $ABC$ soit équilatéral.` }
+  { id: "ch6-exemple-12", number: "6.9", source: "exemple", statement: r19`Soient $A$ un point d’affixe $1 + i$ et $B$ un point d’affixe $2i$. Déterminer l’affixe d’un point $C$ tel que le triangle $ABC$ soit équilatéral.` }
 ];
 
 // ../src/content/math/course-examples/chapitre-7.ts
-var r19 = String.raw;
+var r20 = String.raw;
 var chapitre7Exemples = [
-  { id: "ch7-exemple-1", number: "1.2", source: "exemple", statement: r19`• Sur $\mathbb{N}$, $+$, $\times$ sont des l.c.i. En revanche, $-$ et $:$ ne sont pas des l.c.i sur $\mathbb{N}$ (elles ne sont pas toujours définies).
+  { id: "ch7-exemple-1", number: "1.2", source: "exemple", statement: r20`• Sur $\mathbb{N}$, $+$, $\times$ sont des l.c.i. En revanche, $-$ et $:$ ne sont pas des l.c.i sur $\mathbb{N}$ (elles ne sont pas toujours définies).
 
 • Sur $\mathbb{Z}$, $+$, $\times$, $-$ sont des l.c.i. En revanche, $:$ n’en est pas une. Autre exemple : l’application $\mathbb{Z}\times\mathbb{Z}\to\mathbb{Z}$, définie par : $x*y=x-2y+3x^2y$, est une l.c.i.
 
@@ -33758,7 +33899,7 @@ var chapitre7Exemples = [
 • Sur $\overrightarrow{\mathcal{E}}$ ensemble des vecteurs de l’espace : $+$ et $\wedge$ mais pas le produit scalaire car $\vec{u}\cdot\vec{v}\notin\overrightarrow{\mathcal{E}}$.
 
 • Sur $\mathcal{P}(F)$ où $F$ est un ensemble : $\cap$ et $\cup$.` },
-  { id: "ch7-exemple-2", number: "1.5", source: "exemple", statement: r19`1. Sur $\mathbb{R}$, $+$ et $\times$ sont associatives et commutatives car on a toujours $(x+y)+z=x+(y+z)$, $x+y=y+x$, $(x\times y)\times z=x\times(y\times z)$ et $x\times y=y\times x$.
+  { id: "ch7-exemple-2", number: "1.5", source: "exemple", statement: r20`1. Sur $\mathbb{R}$, $+$ et $\times$ sont associatives et commutatives car on a toujours $(x+y)+z=x+(y+z)$, $x+y=y+x$, $(x\times y)\times z=x\times(y\times z)$ et $x\times y=y\times x$.
 Par contre $-$ n’est ni associative ni commutative car par exemple : $(3-2)-1\ne 3-(2-1)$ et $3-2\ne 2-3$.
 
 2. Sur $\mathcal{F}(\mathbb{R},\mathbb{R})$, la composition est associative : on a toujours $(f\circ g)\circ h=f\circ(g\circ h)$. En effet si $x\in\mathbb{R}$ alors $[(f\circ g)\circ h](x)=(f\circ g)\big(h(x)\big)=f\big(g(h(x))\big)$ et $[f\circ(g\circ h)](x)=f\big((g\circ h)(x)\big)=f\big(g(h(x))\big)$.
@@ -33768,12 +33909,12 @@ Par contre $-$ n’est ni associative ni commutative car par exemple : $(3-2)-1\
 4. Sur $\overrightarrow{\mathcal{E}}$, $+$ est associative et commutative, par contre $\wedge$ n’est ni l’un ni l’autre : en général $\vec{u}\wedge\vec{v}\ne\vec{v}\wedge\vec{u}$ et $(\vec{u}\wedge\vec{v})\wedge\vec{w}\ne\vec{u}\wedge(\vec{v}\wedge\vec{w})$
 
 5. Sur $\mathcal{P}(F)$, $\cap$ et $\cup$ sont associatives et commutatives.` },
-  { id: "ch7-exemple-3", number: "1.8", source: "exemple", statement: r19`1. Sur $\mathbb{R}$, $0$ est élément neutre pour $+$ car on a toujours $x+0=0+x=x$. Et $1$ est élément neutre pour $\times$ car on a toujours $x\times1=1\times x=x$.
+  { id: "ch7-exemple-3", number: "1.8", source: "exemple", statement: r20`1. Sur $\mathbb{R}$, $0$ est élément neutre pour $+$ car on a toujours $x+0=0+x=x$. Et $1$ est élément neutre pour $\times$ car on a toujours $x\times1=1\times x=x$.
 
 2. Sur $\mathcal{F}(\mathbb{R},\mathbb{R})$, la fonction $\operatorname{Id}_E:x\mapsto x$ est élément neutre pour $\circ$ car on a toujours $f\circ\operatorname{Id}_E=f$ et $\operatorname{Id}_E\circ f=f$.
 
 3. Sur $\mathcal{P}(F)$, $\cap$ a pour élément neutre $F$ car pour tout $A\subset F$, $A\cap F=F\cap A=A$. Et $\cup$ a pour élément neutre $\emptyset$ car pour tout $A\subset F$ on a $A\cup\emptyset=\emptyset\cup A=A$.` },
-  { id: "ch7-exemple-4", number: "1.12", source: "exemple", statement: r19`1. Soit $\mathbb{R}$ muni de la loi $+$ qui a $0$ pour élément neutre. Soit $x\in\mathbb{R}$, alors $x+(-x)=0$ et $(-x)+x=0$ donc $x$ admet pour symétrique $-x$. Dans le cas de l’addition, on ne parle pas d’inverse mais d’opposé et on n’écrit pas $x^{-1}$ mais $-x$.
+  { id: "ch7-exemple-4", number: "1.12", source: "exemple", statement: r20`1. Soit $\mathbb{R}$ muni de la loi $+$ qui a $0$ pour élément neutre. Soit $x\in\mathbb{R}$, alors $x+(-x)=0$ et $(-x)+x=0$ donc $x$ admet pour symétrique $-x$. Dans le cas de l’addition, on ne parle pas d’inverse mais d’opposé et on n’écrit pas $x^{-1}$ mais $-x$.
 
 2. Soit $\mathbb{N}$ muni de la loi $+$ qui a $0$ pour élément neutre mais aucun élément n’admet d’opposé, sauf $0$ lui-même qui a pour opposé $0$.
 
@@ -33785,13 +33926,13 @@ Attention : Il ne suffit pas d’avoir $x*y=e$ pour dire que $y$ est un inverse 
 Par exemple prenons dans $\mathcal{F}(\mathbb{R},\mathbb{R})$ les fonctions $f:x\mapsto e^x$ et $g:x\mapsto\ln(x)$ si $x>0$ et $0$ sinon.
 On a $g\circ f=\operatorname{Id}_{\mathbb{R}}$ mais $f\circ g\ne\operatorname{Id}_{\mathbb{R}}$.
 En fait ni $f$ ni $g$ ne sont inversibles (ce ne sont pas des bijections !) mais $f$ admet un inverse à gauche ($g$) et $g$ possède un inverse à droite ($f$).` },
-  { id: "ch7-exemple-5", number: "1.14", source: "exemple", statement: r19`Dans le cas $E=\mathcal{F}(\mathbb{R},\mathbb{R})$ muni de la loi $\circ$, les éléments inversibles sont les bijections.
+  { id: "ch7-exemple-5", number: "1.14", source: "exemple", statement: r20`Dans le cas $E=\mathcal{F}(\mathbb{R},\mathbb{R})$ muni de la loi $\circ$, les éléments inversibles sont les bijections.
 On obtient (ou on retrouve) ainsi :
 
 • Que la composée de deux bijections est une bijection, et que la bijection réciproque de $f\circ g$ est $g^{-1}\circ f^{-1}$.
 
 • Que si $f$ est une bijection alors $f^{-1}$ aussi, et que $(f^{-1})^{-1}=f$.` },
-  { id: "ch7-exemple-6", number: "1.17", source: "exemple", statement: r19`1. Dans les ensembles de nombres classiques, la loi $\times$ est distributive sur la loi $+$.
+  { id: "ch7-exemple-6", number: "1.17", source: "exemple", statement: r20`1. Dans les ensembles de nombres classiques, la loi $\times$ est distributive sur la loi $+$.
 On sait bien en effet que pour trois éléments quelconques $x$, $y$ et $z$ de $\mathbb{C}$, on a $x\times(y+z)=x\times y+x\times z$ et $(y+z)\times x=y\times x+z\times x$.
 
 2. Par contre, dans $\mathcal{F}(\mathbb{R},\mathbb{R})$, la lci $\circ$ n’est pas distributive sur $+$. En effet si l’on prend $f=\exp$, $g=\operatorname{Id}_{\mathbb{R}}$ et $h=-\operatorname{Id}_{\mathbb{R}}$ alors, pour tout réel $x$, on a :
@@ -33809,17 +33950,17 @@ $$\begin{aligned}
 \end{aligned}$$
 Il est clair qu’on n’a pas toujours $e^x+e^{-x}=1$ (c’est par exemple faux pour $x=0$), ce qui signifie que $f\circ(g+h)\ne(f\circ g)+(f\circ h)$.
 Ainsi $\circ$ n’est pas distributive à gauche sur $+$, donc pas distributive.` },
-  { id: "ch7-exemple-7", number: "1.19", source: "exemple", statement: r19`1. $\mathbb{N}$ est stable pour la loi $+$ de $\mathbb{R}$. En effet, $\forall(m,n)\in\mathbb{N}^2$, $m+n\in\mathbb{N}$.
+  { id: "ch7-exemple-7", number: "1.19", source: "exemple", statement: r20`1. $\mathbb{N}$ est stable pour la loi $+$ de $\mathbb{R}$. En effet, $\forall(m,n)\in\mathbb{N}^2$, $m+n\in\mathbb{N}$.
 
 2. La loi $+$ usuelle de $\mathbb{Z}$ induit une l.c.i dans l’ensemble des entiers relatifs pairs car cet ensemble est stable pour la loi $+$. En effet, la somme de deux entiers relatifs pairs est paire.` },
-  { id: "ch7-exemple-8", number: "2.2", source: "exemple", statement: r19`1. $(\mathbb{N},+)$ n’est pas un groupe puisque seul $0$ a un opposé. Par contre $(\mathbb{Z},+)$, $(\mathbb{Q},+)$, $(\mathbb{R},+)$ et $(\mathbb{C},+)$ sont des groupes, qui sont commutatifs.
+  { id: "ch7-exemple-8", number: "2.2", source: "exemple", statement: r20`1. $(\mathbb{N},+)$ n’est pas un groupe puisque seul $0$ a un opposé. Par contre $(\mathbb{Z},+)$, $(\mathbb{Q},+)$, $(\mathbb{R},+)$ et $(\mathbb{C},+)$ sont des groupes, qui sont commutatifs.
 
 2. $(\mathbb{R},\times)$ n’est pas un groupe puisque $0$ n’a pas d’inverse. Par contre si l’on remplace $\mathbb{R}$ par $\mathbb{R}^*$, $\times$ est toujours une l.c.i. puisque si $x,y\in\mathbb{R}^*$ alors $x\times y\in\mathbb{R}^*$. On a toujours $1$ comme élément neutre et cette fois tout élément a un inverse. Ainsi $(\mathbb{R}^*,\times)$ est un groupe, de même que $(\mathbb{C}^*,\times)$, $(\mathbb{Q}^*,\times)$, $(\mathbb{R}_+^*,\times)$ et $(\mathbb{Q}_+^*,\times)$.
 
 3. $(\{-1,1\},\times)$ est un groupe, fini, contrairement aux précédents.` },
-  { id: "ch7-exemple-9", number: "2.3", source: "exemple", statement: r19`$(\mathcal{F}(\mathbb{R},\mathbb{R}),\circ)$ n’est pas un groupe car toute fonction n’est pas bijective. Par contre l’ensemble des bijections $\mathbb{R}\to\mathbb{R}$ est un groupe, qui n’est pas commutatif (contre-exemple avec $x\mapsto x+1$ et $x\mapsto x^3$).` },
-  { id: "ch7-exemple-10", number: "2.7", source: "exemple", statement: r19`$(\mathbb{Z}\times\mathbb{Z},+)$ ou $(\mathbb{R}\times\mathbb{R},+)$ sont des groupes.` },
-  { id: "ch7-exemple-11", number: "2.16", source: "exemple", statement: r19`1. Soit $G$ un groupe d’élément neutre $e$. Alors $\{e\}$ et $G$ sont deux sous-groupes de $G$.
+  { id: "ch7-exemple-9", number: "2.3", source: "exemple", statement: r20`$(\mathcal{F}(\mathbb{R},\mathbb{R}),\circ)$ n’est pas un groupe car toute fonction n’est pas bijective. Par contre l’ensemble des bijections $\mathbb{R}\to\mathbb{R}$ est un groupe, qui n’est pas commutatif (contre-exemple avec $x\mapsto x+1$ et $x\mapsto x^3$).` },
+  { id: "ch7-exemple-10", number: "2.7", source: "exemple", statement: r20`$(\mathbb{Z}\times\mathbb{Z},+)$ ou $(\mathbb{R}\times\mathbb{R},+)$ sont des groupes.` },
+  { id: "ch7-exemple-11", number: "2.16", source: "exemple", statement: r20`1. Soit $G$ un groupe d’élément neutre $e$. Alors $\{e\}$ et $G$ sont deux sous-groupes de $G$.
 
 2. $H=\{x\in G,\forall y\in G:x*y=y*x\}$ est un sous-groupe de $G$, on l’appelle le centre du groupe $G$.
 
@@ -33831,21 +33972,21 @@ On peut encore obtenir que $\mathbb{U}_n$ est un sous-groupe de $(\mathbb{U},\ti
 Attention : $\mathbb{U}$ est un groupe inclus dans $\mathbb{C}$ mais n’est pas un sous-groupe de $\mathbb{C}$ ! En effet $\mathbb{U}$ est un groupe pour $\times$ mais $\mathbb{C}$ est un groupe pour $+$.
 
 5. Soit $E$ un ensemble quelconque. Pour $x\in E$, montrer que $Stab(x)=\{\sigma\in S_E,\ \sigma(x)=x\}$ est un sous-groupe de $S_E$.` },
-  { id: "ch7-exemple-12", number: "2.22", source: "exemple", statement: r19`1. $t\mapsto e^{it}$ est un morphisme de $(\mathbb{R},+)$ vers $(\mathbb{C}^*,\times)$.
+  { id: "ch7-exemple-12", number: "2.22", source: "exemple", statement: r20`1. $t\mapsto e^{it}$ est un morphisme de $(\mathbb{R},+)$ vers $(\mathbb{C}^*,\times)$.
 
 2. Morphismes de $(\mathbb{C},+)$ vers $(\mathbb{R},+)$ : $\operatorname{Re}$ et $\operatorname{Im}$.
 
 3. $z\mapsto\bar{z}$ est un morphisme de $(\mathbb{C},+)$ dans lui-même, et de $(\mathbb{C}^*,\times)$ dans lui-même.
 
 4. Morphisme de $(\mathbb{Z},+)$ vers $(\mathbb{Z},+)$ : la multiplication par $3$, par tout $n\in\mathbb{Z}$.` },
-  { id: "ch7-exemple-13", number: "2.24", source: "exemple", statement: r19`1. Les endomorphismes du groupe $(\mathbb{R},+)$ sont toutes les fonctions $f:\mathbb{R}\to\mathbb{R}$ telles que :
+  { id: "ch7-exemple-13", number: "2.24", source: "exemple", statement: r20`1. Les endomorphismes du groupe $(\mathbb{R},+)$ sont toutes les fonctions $f:\mathbb{R}\to\mathbb{R}$ telles que :
 $$\forall(x,y)\in\mathbb{R}^2,\ f(x+y)=f(x)+f(y)$$
 
 2. $\exp:\mathbb{R}\to\mathbb{R}_+^*$ est un morphisme de $(\mathbb{R},+)$ dans $(\mathbb{R}_+^*,\times)$ qui est bijectif. C’est donc un isomorphisme entre ces deux groupes. Son application réciproque est $\ln:\mathbb{R}_+^*\to\mathbb{R}$ qui est un isomorphisme : $\ln(x\times y)=\ln x+\ln y$.
 
 3. Soit $\mathbb{R}_n[X]$ l’ensemble des polynômes à coefficients réels et de degré $\le n$.
 L’application $a_0+a_1X+a_2X^2+...+a_nX^n\mapsto(a_0,a_1,a_2,...,a_n)$ est un isomorphisme de $(\mathbb{R}_n[X],+)$ dans $(\mathbb{R}^{n+1},+)$.` },
-  { id: "ch7-exemple-14", number: "3.3", source: "exemple", statement: r19`1. $(\mathbb{Z},+,\times)$ est un anneau car :
+  { id: "ch7-exemple-14", number: "3.3", source: "exemple", statement: r20`1. $(\mathbb{Z},+,\times)$ est un anneau car :
 
 • $(\mathbb{Z},+)$ est un groupe abélien ;
 
@@ -33862,27 +34003,27 @@ La multiplication étant commutative, c’est même un anneau commutatif.
 4. L’ensemble des suites complexes est un anneau commutatif.
 
 5. On note $\mathbb{R}[X]$ l’ensemble des polynômes à coefficients réels, il est muni de lois $+$ et $\times$ et $(\mathbb{R}[X],+,\times)$ est un anneau commutatif.` },
-  { id: "ch7-exemple-15", number: "3.6", source: "exemple", statement: r19`$(\mathcal{M}_2(\mathbb{R}),+,\times)$ est-il intègre ?` },
-  { id: "ch7-exemple-16", number: "3.11", source: "exemple", statement: r19`1. Si $(A,+,\times)$ est un anneau, $A$ est un sous-anneau (dit trivial) de $A$.
+  { id: "ch7-exemple-15", number: "3.6", source: "exemple", statement: r20`$(\mathcal{M}_2(\mathbb{R}),+,\times)$ est-il intègre ?` },
+  { id: "ch7-exemple-16", number: "3.11", source: "exemple", statement: r20`1. Si $(A,+,\times)$ est un anneau, $A$ est un sous-anneau (dit trivial) de $A$.
 
 2. $(\mathbb{Z},+,\times)$ est un anneau commutatif. $(\mathbb{Z},+,\times)$ est un sous-anneau de $(\mathbb{Q},+,\times)$, lui même sous-anneau de $(\mathbb{R},+,\times)$, lui même sous-anneau de $(\mathbb{C},+,\times)$ qui est un anneau commutatif (mieux : $\mathbb{Q}$, $\mathbb{R}$ et $\mathbb{C}$ sont en fait des corps -voir plus loin mais on le sait déjà).
 
 3. $(\mathbb{R}^{\mathbb{N}},+,\times)$ est un anneau commutatif. L’ensemble des suites réelles bornées, l’ensemble des suites réelles convergentes sont des sous-anneaux de $(\mathbb{R}^{\mathbb{N}},+,\times)$.
 
 4. Soit $D$ une partie de $\mathbb{R}$. $(\mathcal{F}(D,\mathbb{R}),+,\times)$ est un anneau commutatif. $\mathcal{B}(D,\mathbb{R})$, $\mathcal{D}(D,\mathbb{R})$, $\mathcal{C}^{\infty}(D,\mathbb{R})$ sont des sous-anneaux de $(\mathcal{F}(D,\mathbb{R}),+,\times)$.` },
-  { id: "ch7-exemple-17", number: "3.16", source: "exemple", statement: r19`[Anneau des entiers de Gauss]
+  { id: "ch7-exemple-17", number: "3.16", source: "exemple", statement: r20`[Anneau des entiers de Gauss]
 On note $\mathbb{Z}[i]$ la partie $\left\{a+ib,(a,b)\in\mathbb{Z}^2\right\}$ de $\mathbb{C}$. Montrer que $\mathbb{Z}[i]$ est un anneau pour les lois usuelles $+$ et $\times$. $(\mathbb{Z}[i],+,\times)$ est appelé l’anneau des entiers de Gauss.` },
-  { id: "ch7-exemple-18", number: "3.18", source: "exemple", statement: r19`1. On retrouve le fait que $(\mathbb{R}^*,\times)$ est un groupe, de même que $(\mathbb{Q}^*,\times)$ et $(\mathbb{C}^*,\times)$.
+  { id: "ch7-exemple-18", number: "3.18", source: "exemple", statement: r20`1. On retrouve le fait que $(\mathbb{R}^*,\times)$ est un groupe, de même que $(\mathbb{Q}^*,\times)$ et $(\mathbb{C}^*,\times)$.
 
 2. Dans le cas de $\mathbb{Z}$, les seuls inversibles sont $-1$ et $1$, on trouve donc le groupe à deux éléments $(\{-1,1\},\times)$.
 
 3. Soit $A=\mathbb{Z}[i]$ muni de l’addition et de la multiplication habituelles. On a $A^*=\{1,-1,i,-i\}$ et on peut se rendre compte que $\{1,-1,i,-i\}$ est bien un groupe multiplicatif.` },
-  { id: "ch7-exemple-19", number: "3.22", source: "exemple", statement: r19`1. $A$ étant un anneau, $Id_A$ est un isomorphisme d’anneaux.
+  { id: "ch7-exemple-19", number: "3.22", source: "exemple", statement: r20`1. $A$ étant un anneau, $Id_A$ est un isomorphisme d’anneaux.
 
 2. Soit $D$ une partie de $\mathbb{R}$ et $a\in D$ (fixé). L’application $\begin{array}{rcl}\mathcal{F}(D,\mathbb{R})&\to&\mathbb{R}\\f&\mapsto&f(a)\end{array}$ est un morphisme d’anneaux de $(\mathcal{F}(D,\mathbb{R}),+,\times)$ dans $(\mathbb{R},+,\times)$ (il est appelé morphisme d’évaluation en $a$).
 
 3. $\mathcal{C}$ désignant l’ensemble des suites réelles convergentes, l’application $\begin{array}{rcl}\mathcal{C}&\to&\mathbb{R}\\u&\mapsto&\lim(u)\end{array}$ est un morphisme d’anneaux de $(\mathcal{C},+,\times)$ dans $(\mathbb{R},+,\times)$.` },
-  { id: "ch7-exemple-20", number: "4.9", source: "exemple", statement: r19`Quelques corps usuels :
+  { id: "ch7-exemple-20", number: "4.9", source: "exemple", statement: r20`Quelques corps usuels :
 
 1. $(\mathbb{Q},+,\times)$ est un corps ; c’est un sous-corps de $(\mathbb{R},+,\times)$, lui même sous-corps de $(\mathbb{C},+,\times)$.
 
@@ -33896,46 +34037,46 @@ On vérifie alors que $(\mathbb{R}(X),+,\times)$ est un corps.
 ];
 
 // ../src/content/math/course-examples/chapitre-8.ts
-var r20 = String.raw;
+var r21 = String.raw;
 var chapitre8Exemples = [
-  { id: "ch8-exemple-1", number: "2.4", source: "exemple", statement: r20`Soient $f$ et $g$ les fonctions définies sur $\mathbb{R}$ par $f(x)=x^2+1$ et $g(x)=x+3$. Déterminer $f\circ g$ et $g\circ f$.` },
-  { id: "ch8-exemple-2", number: "2.6", source: "exemple", statement: r20`Soient $f$ la fonction définie sur $\mathbb{R}$ par $f(x)=2x-3$ et $g$ la fonction définie sur $\mathbb{R}^{+*}$ définie par $g(x)=\ln x$. Peut-on définir $f\circ g$ ? $g\circ f$ ?` },
-  { id: "ch8-exemple-3", number: "2.8", source: "exemple", statement: r20`La fonction exponentielle est bijective de $\mathbb{R}$ sur $\mathbb{R}^{+*}$.` },
-  { id: "ch8-exemple-4", number: "2.11", source: "exemple", statement: r20`La fonction logarithme est la fonction réciproque de la fonction exponentielle.
+  { id: "ch8-exemple-1", number: "2.4", source: "exemple", statement: r21`Soient $f$ et $g$ les fonctions définies sur $\mathbb{R}$ par $f(x)=x^2+1$ et $g(x)=x+3$. Déterminer $f\circ g$ et $g\circ f$.` },
+  { id: "ch8-exemple-2", number: "2.6", source: "exemple", statement: r21`Soient $f$ la fonction définie sur $\mathbb{R}$ par $f(x)=2x-3$ et $g$ la fonction définie sur $\mathbb{R}^{+*}$ définie par $g(x)=\ln x$. Peut-on définir $f\circ g$ ? $g\circ f$ ?` },
+  { id: "ch8-exemple-3", number: "2.8", source: "exemple", statement: r21`La fonction exponentielle est bijective de $\mathbb{R}$ sur $\mathbb{R}^{+*}$.` },
+  { id: "ch8-exemple-4", number: "2.11", source: "exemple", statement: r21`La fonction logarithme est la fonction réciproque de la fonction exponentielle.
 
 En effet : $\forall x\in\mathbb{R},\ln(\exp x)=x$ et $\forall x\in\mathbb{R}^{+*},\exp(\ln x)=x$
 
 [Figure : courbes de l’exponentielle et du logarithme népérien, avec la droite d’équation $y=x$.]` },
-  { id: "ch8-exemple-5", number: "2.13", source: "exemple", statement: r20`$\mathbb{R}$, $[-1,1]$ et $\mathbb{R}^*$ sont des ensembles symétriques par rapport à zéro mais $[2,+\infty[$ n’en est pas un.` },
-  { id: "ch8-exemple-6", number: "2.15", source: "exemple", statement: r20`La fonction $f$ définie pour tout $x\in\mathbb{R}$ par $f(x)=x^2+1$ est paire : $\mathbb{R}$ est symétrique par rapport à zéro et pour tout $x\in\mathbb{R}$, $f(-x)=(-x)^2+1=(-1)^2x^2+1=x^2+1=f(x)$.
+  { id: "ch8-exemple-5", number: "2.13", source: "exemple", statement: r21`$\mathbb{R}$, $[-1,1]$ et $\mathbb{R}^*$ sont des ensembles symétriques par rapport à zéro mais $[2,+\infty[$ n’en est pas un.` },
+  { id: "ch8-exemple-6", number: "2.15", source: "exemple", statement: r21`La fonction $f$ définie pour tout $x\in\mathbb{R}$ par $f(x)=x^2+1$ est paire : $\mathbb{R}$ est symétrique par rapport à zéro et pour tout $x\in\mathbb{R}$, $f(-x)=(-x)^2+1=(-1)^2x^2+1=x^2+1=f(x)$.
 
 Exemple de représentation graphique d’une fonction paire
 
 [Figure : parabole $y=x^2+1$, avec les points d’abscisses $-x$ et $x$ de même ordonnée.]` },
-  { id: "ch8-exemple-7", number: "2.16", source: "exemple", statement: r20`La fonction cube $f$ définie pour tout $x\in\mathbb{R}$ par $f(x)=x^3$ est impaire : $\mathbb{R}$ est symétrique par rapport à zéro et pour tout $x\in\mathbb{R}$, $f(-x)=(-x)^3=-x^3=-f(x)$.
+  { id: "ch8-exemple-7", number: "2.16", source: "exemple", statement: r21`La fonction cube $f$ définie pour tout $x\in\mathbb{R}$ par $f(x)=x^3$ est impaire : $\mathbb{R}$ est symétrique par rapport à zéro et pour tout $x\in\mathbb{R}$, $f(-x)=(-x)^3=-x^3=-f(x)$.
 
 Exemple de représentation graphique d’une fonction impaire
 
 [Figure : courbe de la fonction cube, avec les points d’abscisses $-x$ et $x$ symétriques par rapport à l’origine.]` },
-  { id: "ch8-exemple-8", number: "2.19", source: "exemple", statement: r20`Les fonctions $\cos$ et $\sin$ sont $2\pi$ périodiques.` },
-  { id: "ch8-exemple-9", number: "2.23", source: "exemple", statement: r20`Soit $f$ la fonction définie pour tout $x\in\mathbb{R}$ par $f(x)=x^2+1$. Alors $1$ est un minorant de $f$ car pour tout $x\in\mathbb{R}$, $f(x)=x^2+1\geq 1$.` },
-  { id: "ch8-exemple-10", number: "2.26", source: "exemple", statement: r20`Dans l’exemple 2.23, $1$ est le minimum de la fonction $f$ sur $\mathbb{R}$` },
-  { id: "ch8-exemple-11", number: "2.30", source: "exemple", statement: r20`Considérons la fonction inverse $f:x\mapsto\dfrac{1}{x}$ sur $\mathbb{R}^{+*}$. Elle est toujours positive, donc minorée par $0$. Tout réel négatif est également un minorant pour $f$. $0$ est le minorant le plus grand, mais $0$ n’est pas un minimum car $\forall x\in\mathbb{R}^{+*}:\dfrac{1}{x}\neq 0$. On a donc : $\displaystyle\inf_{x\in\mathbb{R}^{+*}}f(x)=0$.` },
-  { id: "ch8-exemple-12", number: "3.2", source: "exemple", statement: r20`Donner la dérivée de la fonction $f$ définie pour tout $x\in\mathbb{R}$ par $f(x)=(x+1)e^x$.` },
-  { id: "ch8-exemple-13", number: "3.9", source: "exemple", statement: r20`A l’aide du tableau de variation de la fonction $\exp$, expliquer pourquoi celle-ci est bijective de $\mathbb{R}$ sur $\mathbb{R}^{+*}$.` },
-  { id: "ch8-exemple-14", number: "3.12", source: "exemple", statement: r20`La fonction inverse est de classe $\mathcal{C}^1$ sur $]0;+\infty[$.` },
-  { id: "ch8-exemple-15", number: "3.15", source: "exemple", statement: r20`La fonction exponentielle est $n$ fois dérivable pour tout $n\in\mathbb{N}^*$.` },
-  { id: "ch8-exemple-16", number: "4.41", source: "exemple", statement: r20`$$\frac{|-7\times 6|}{|(-6)|^2}=$$` },
-  { id: "ch8-exemple-17", number: "7.10", source: "exemple", statement: r20`Soit $a\in\mathbb{C}$. $f:\begin{aligned}\mathbb{R}&\to\mathbb{C}\\t&\mapsto e^{at}\end{aligned}$ est dérivable et $f':\begin{aligned}\mathbb{R}&\to\mathbb{C}\\t&\mapsto ae^{at}\end{aligned}$.` }
+  { id: "ch8-exemple-8", number: "2.19", source: "exemple", statement: r21`Les fonctions $\cos$ et $\sin$ sont $2\pi$ périodiques.` },
+  { id: "ch8-exemple-9", number: "2.23", source: "exemple", statement: r21`Soit $f$ la fonction définie pour tout $x\in\mathbb{R}$ par $f(x)=x^2+1$. Alors $1$ est un minorant de $f$ car pour tout $x\in\mathbb{R}$, $f(x)=x^2+1\geq 1$.` },
+  { id: "ch8-exemple-10", number: "2.26", source: "exemple", statement: r21`Dans l’exemple 2.23, $1$ est le minimum de la fonction $f$ sur $\mathbb{R}$` },
+  { id: "ch8-exemple-11", number: "2.30", source: "exemple", statement: r21`Considérons la fonction inverse $f:x\mapsto\dfrac{1}{x}$ sur $\mathbb{R}^{+*}$. Elle est toujours positive, donc minorée par $0$. Tout réel négatif est également un minorant pour $f$. $0$ est le minorant le plus grand, mais $0$ n’est pas un minimum car $\forall x\in\mathbb{R}^{+*}:\dfrac{1}{x}\neq 0$. On a donc : $\displaystyle\inf_{x\in\mathbb{R}^{+*}}f(x)=0$.` },
+  { id: "ch8-exemple-12", number: "3.2", source: "exemple", statement: r21`Donner la dérivée de la fonction $f$ définie pour tout $x\in\mathbb{R}$ par $f(x)=(x+1)e^x$.` },
+  { id: "ch8-exemple-13", number: "3.9", source: "exemple", statement: r21`A l’aide du tableau de variation de la fonction $\exp$, expliquer pourquoi celle-ci est bijective de $\mathbb{R}$ sur $\mathbb{R}^{+*}$.` },
+  { id: "ch8-exemple-14", number: "3.12", source: "exemple", statement: r21`La fonction inverse est de classe $\mathcal{C}^1$ sur $]0;+\infty[$.` },
+  { id: "ch8-exemple-15", number: "3.15", source: "exemple", statement: r21`La fonction exponentielle est $n$ fois dérivable pour tout $n\in\mathbb{N}^*$.` },
+  { id: "ch8-exemple-16", number: "4.41", source: "exemple", statement: r21`$$\frac{|-7\times 6|}{|(-6)|^2}=$$` },
+  { id: "ch8-exemple-17", number: "7.10", source: "exemple", statement: r21`Soit $a\in\mathbb{C}$. $f:\begin{aligned}\mathbb{R}&\to\mathbb{C}\\t&\mapsto e^{at}\end{aligned}$ est dérivable et $f':\begin{aligned}\mathbb{R}&\to\mathbb{C}\\t&\mapsto ae^{at}\end{aligned}$.` }
 ];
 
 // ../src/content/math/course-examples/chapitre-9.ts
-var r21 = String.raw;
+var r22 = String.raw;
 var chapitre9Exemples = [
-  { id: "ch9-exemple-1", number: "2.8", source: "exemple", statement: r21`Soit $(u_n)_{n\in\mathbb{N}}$ une suite convergente vers 4. Alors $\displaystyle\lim_{n\to+\infty} \frac{1}{u_n} = \frac{1}{4}$.` },
-  { id: "ch9-exemple-2", number: "2.19", source: "exemple", statement: r21`Soient $(u_n)_{n\in\mathbb{N}}$ et $(v_n)_{n\in\mathbb{N}}$ deux suites telles que : $\forall n \in \mathbb{N}, u_n \in [0;1]$ et $v_n \in [0;1]$, avec $\displaystyle\lim_{n\to+\infty} u_n v_n = 1$. Alors $\displaystyle\lim_{n\to+\infty} u_n = 1$ et $\displaystyle\lim_{n\to+\infty} v_n = 1$.` },
-  { id: "ch9-exemple-3", number: "2.22", source: "exemple", statement: r21`La suite $(u_n)_{n\in\mathbb{N}^*}$ définie par : $\forall n \in \mathbb{N}^*; u_n = \dfrac{1}{n!}\left(\displaystyle\sum_{k=1}^{n} k!\right)$ converge vers 1.` },
-  { id: "ch9-exemple-4", number: "3.3", source: "exemple", statement: r21`Equivalents usuels
+  { id: "ch9-exemple-1", number: "2.8", source: "exemple", statement: r22`Soit $(u_n)_{n\in\mathbb{N}}$ une suite convergente vers 4. Alors $\displaystyle\lim_{n\to+\infty} \frac{1}{u_n} = \frac{1}{4}$.` },
+  { id: "ch9-exemple-2", number: "2.19", source: "exemple", statement: r22`Soient $(u_n)_{n\in\mathbb{N}}$ et $(v_n)_{n\in\mathbb{N}}$ deux suites telles que : $\forall n \in \mathbb{N}, u_n \in [0;1]$ et $v_n \in [0;1]$, avec $\displaystyle\lim_{n\to+\infty} u_n v_n = 1$. Alors $\displaystyle\lim_{n\to+\infty} u_n = 1$ et $\displaystyle\lim_{n\to+\infty} v_n = 1$.` },
+  { id: "ch9-exemple-3", number: "2.22", source: "exemple", statement: r22`La suite $(u_n)_{n\in\mathbb{N}^*}$ définie par : $\forall n \in \mathbb{N}^*; u_n = \dfrac{1}{n!}\left(\displaystyle\sum_{k=1}^{n} k!\right)$ converge vers 1.` },
+  { id: "ch9-exemple-4", number: "3.3", source: "exemple", statement: r22`Equivalents usuels
 
 • Si $(u_n)$ est une suite qui converge vers 0, on a :
 $$\ln(1+u_n) \underset{n\to+\infty}{\sim} u_n \qquad e^{u_n} - 1 \underset{n\to+\infty}{\sim} u_n \qquad (1+u_n)^a - 1 \underset{n\to+\infty}{\sim} au_n \ (\text{avec } a \neq 0)$$
@@ -33943,24 +34084,90 @@ $$\sin u_n \underset{n\to+\infty}{\sim} u_n \qquad 1 - \cos u_n \underset{n\to+\
 $$\arctan u_n \underset{n\to+\infty}{\sim} u_n \qquad \arcsin u_n \underset{n\to+\infty}{\sim} u_n$$
 
 • Une suite polynômiale est toujours équivalente à son terme de plus haut degré.` },
-  { id: "ch9-exemple-5", number: "3.6", source: "exemple", statement: r21`• $n + 1 \underset{n\to+\infty}{\sim} n + 2$ et $-n \underset{n\to+\infty}{\sim} -n$ , et pourtant on n'a pas $1 \underset{n\to+\infty}{\sim} 2$ !
+  { id: "ch9-exemple-5", number: "3.6", source: "exemple", statement: r22`• $n + 1 \underset{n\to+\infty}{\sim} n + 2$ et $-n \underset{n\to+\infty}{\sim} -n$ , et pourtant on n'a pas $1 \underset{n\to+\infty}{\sim} 2$ !
 
 • $n^2 + n \underset{n\to+\infty}{\sim} n^2$ or $\exp(n^2 + n)$ n'est pas équivalent à $\exp(n^2)$ en $+\infty$.` },
-  { id: "ch9-exemple-6", number: "3.9", source: "exemple", statement: r21`$n \underset{n\to+\infty}{=} o(n^2)$` },
-  { id: "ch9-exemple-7", number: "3.16", source: "exemple", statement: r21`Déterminer un équivalent de : $2^n - 12n^2 - 3\ln(n)$ au voisinage de $+\infty$.` },
-  { id: "ch9-exemple-8", number: "3.19", source: "exemple", statement: r21`$\ln(1 + 3n) \underset{n\to+\infty}{=} O(n)$ car $\forall x \in \mathbb{R}_+^*,\ \ln(1 + x) \leq x$.` },
-  { id: "ch9-exemple-9", number: "4.9", source: "exemple", statement: r21`Les suites $(u_{2n})$ et $(u_{2n+1})$ sont des suites extraites de la suite $(u_n)$.` },
-  { id: "ch9-exemple-10", number: "4.11", source: "exemple", statement: r21`La suite $(u_n)_{n\in\mathbb{N}}$ définie par $u_n = (-1)^n$ diverge.` },
-  { id: "ch9-exemple-11", number: "5.6", source: "exemple", statement: r21`$\mathbb{D}$, $\mathbb{Q}$, $\mathbb{R} \setminus \mathbb{Q}$ sont denses dans $\mathbb{R}$.` },
-  { id: "ch9-exemple-12", number: "6.9", source: "exemple", statement: r21`Si $(\theta_n)$ est une suite réelle convergente vers un réel $\theta$, alors la suite $(e^{i\theta_n})$ converge vers $e^{i\theta}$.` },
-  { id: "ch9-exemple-13", number: "7.4", source: "exemple", statement: r21`Soit $(u_n)$ une suite arithmétique de raison 4 et de premier terme $u_0 = 1$. Calculer $u_{29}$.` },
-  { id: "ch9-exemple-14", number: "7.6", source: "exemple", statement: r21`Soit $(u_n)$ une suite arithmétique de raison 4 telle que : $u_{10} = 1$. Calculer $u_{20}$.` },
-  { id: "ch9-exemple-15", number: "7.8", source: "exemple", statement: r21`Calculer : $S = 2 + 5 + 8 + \cdots + 20$.` },
-  { id: "ch9-exemple-16", number: "7.12", source: "exemple", statement: r21`Soit $(u_n)$ une suite géométrique de raison 2 et de premier terme $u_0 = 3$. Calculer $u_{12}$.` },
-  { id: "ch9-exemple-17", number: "7.14", source: "exemple", statement: r21`Soit $(u_n)$ une suite géométrique de raison 2 telle que : $u_{10} = 4$. Calculer $u_{20}$.` },
-  { id: "ch9-exemple-18", number: "7.16", source: "exemple", statement: r21`Calculer : $S = 4 + 8 + 16 + \cdots + 64$.` },
-  { id: "ch9-exemple-19", number: "7.21", source: "exemple", statement: r21`Donner une expression explicite de la suite $(u_n)$, définie par : $u_0 = -1$, et $\forall n \in \mathbb{N}, u_{n+1} = 2u_n - 3$. En déduire la limite de cette suite.` },
-  { id: "ch9-exemple-20", number: "7.25", source: "exemple", statement: r21`Une suite arithmético-géométrique est de la forme : $u_{n+1} = f(u_n)$ avec : $\forall x \in \mathbb{R}, f(x) = ax + b$.` }
+  { id: "ch9-exemple-6", number: "3.9", source: "exemple", statement: r22`$n \underset{n\to+\infty}{=} o(n^2)$` },
+  { id: "ch9-exemple-7", number: "3.16", source: "exemple", statement: r22`Déterminer un équivalent de : $2^n - 12n^2 - 3\ln(n)$ au voisinage de $+\infty$.` },
+  { id: "ch9-exemple-8", number: "3.19", source: "exemple", statement: r22`$\ln(1 + 3n) \underset{n\to+\infty}{=} O(n)$ car $\forall x \in \mathbb{R}_+^*,\ \ln(1 + x) \leq x$.` },
+  { id: "ch9-exemple-9", number: "4.9", source: "exemple", statement: r22`Les suites $(u_{2n})$ et $(u_{2n+1})$ sont des suites extraites de la suite $(u_n)$.` },
+  { id: "ch9-exemple-10", number: "4.11", source: "exemple", statement: r22`La suite $(u_n)_{n\in\mathbb{N}}$ définie par $u_n = (-1)^n$ diverge.` },
+  { id: "ch9-exemple-11", number: "5.6", source: "exemple", statement: r22`$\mathbb{D}$, $\mathbb{Q}$, $\mathbb{R} \setminus \mathbb{Q}$ sont denses dans $\mathbb{R}$.` },
+  { id: "ch9-exemple-12", number: "6.9", source: "exemple", statement: r22`Si $(\theta_n)$ est une suite réelle convergente vers un réel $\theta$, alors la suite $(e^{i\theta_n})$ converge vers $e^{i\theta}$.` },
+  { id: "ch9-exemple-13", number: "7.4", source: "exemple", statement: r22`Soit $(u_n)$ une suite arithmétique de raison 4 et de premier terme $u_0 = 1$. Calculer $u_{29}$.` },
+  { id: "ch9-exemple-14", number: "7.6", source: "exemple", statement: r22`Soit $(u_n)$ une suite arithmétique de raison 4 telle que : $u_{10} = 1$. Calculer $u_{20}$.` },
+  { id: "ch9-exemple-15", number: "7.8", source: "exemple", statement: r22`Calculer : $S = 2 + 5 + 8 + \cdots + 20$.` },
+  { id: "ch9-exemple-16", number: "7.12", source: "exemple", statement: r22`Soit $(u_n)$ une suite géométrique de raison 2 et de premier terme $u_0 = 3$. Calculer $u_{12}$.` },
+  { id: "ch9-exemple-17", number: "7.14", source: "exemple", statement: r22`Soit $(u_n)$ une suite géométrique de raison 2 telle que : $u_{10} = 4$. Calculer $u_{20}$.` },
+  { id: "ch9-exemple-18", number: "7.16", source: "exemple", statement: r22`Calculer : $S = 4 + 8 + 16 + \cdots + 64$.` },
+  { id: "ch9-exemple-19", number: "7.21", source: "exemple", statement: r22`Donner une expression explicite de la suite $(u_n)$, définie par : $u_0 = -1$, et $\forall n \in \mathbb{N}, u_{n+1} = 2u_n - 3$. En déduire la limite de cette suite.` },
+  { id: "ch9-exemple-20", number: "7.25", source: "exemple", statement: r22`Une suite arithmético-géométrique est de la forme : $u_{n+1} = f(u_n)$ avec : $\forall x \in \mathbb{R}, f(x) = ax + b$.` }
+];
+
+// ../src/content/math/course-examples/chapitre-10.ts
+var r23 = String.raw;
+var chapitre10Exemples = [
+  { id: "ch10-exemple-1", number: "1.5", source: "exemple", statement: r23`$\displaystyle\lim_{x\to 2} 2x + 1 = 5$` },
+  { id: "ch10-exemple-2", number: "1.8", source: "exemple", statement: r23`$\displaystyle\lim_{x\to 0} \ln x = -\infty$` },
+  { id: "ch10-exemple-3", number: "1.10", source: "exemple", statement: r23`Si on reprend l'exemple précédent, la droite d'équation $x = 0$ est une asymptote verticale à la courbe représentative de ln en 0.` },
+  { id: "ch10-exemple-4", number: "1.12", source: "exemple", statement: r23`En notant $E(x)$ la partie entière de $x$, on a : $\displaystyle\lim_{x\to 1^+} E(x) = 1$ et $\displaystyle\lim_{x\to 1^-} E(x) = 0$` },
+  { id: "ch10-exemple-5", number: "1.15", source: "exemple", statement: r23`La fonction partie entière n'admet donc pas de limite en 1.` },
+  { id: "ch10-exemple-6", number: "1.17", source: "exemple", statement: r23`$\displaystyle\lim_{x\to+\infty} \arctan x = \frac{\pi}{2}$` },
+  { id: "ch10-exemple-7", number: "1.19", source: "exemple", statement: r23`$\displaystyle\lim_{x\to-\infty} \arctan x = -\frac{\pi}{2}$` },
+  { id: "ch10-exemple-8", number: "1.21", source: "exemple", statement: r23`Si on reprend l'exemple précédent, la droite d'équation $y = \dfrac{\pi}{2}$ est une asymptote horizontale à la courbe représentative de arctan en $+\infty$ et la droite d'équation $y = -\dfrac{\pi}{2}$ est une asymptote horizontale à la courbe représentative de arctan en $-\infty$ .` },
+  { id: "ch10-exemple-9", number: "1.24", source: "exemple", statement: r23`• $\displaystyle\lim_{x\to+\infty} \ln x = +\infty$
+
+• $\displaystyle\lim_{x\to+\infty} -x^2 = -\infty$` },
+  { id: "ch10-exemple-10", number: "1.26", source: "exemple", statement: r23`• $\displaystyle\lim_{x\to-\infty} -x^2 = -\infty$
+
+• $\displaystyle\lim_{x\to-\infty} x^2 = +\infty$` },
+  { id: "ch10-exemple-11", number: "1.35", source: "exemple", statement: r23`Pour tout $x \in \mathbb{R}$, $\lfloor x \rfloor \leq x \leq \lfloor x \rfloor + 1$. Ainsi, pour tout $x \in \mathbb{R}$, $\lfloor x \rfloor \geq x - 1$. Or, on sait que :
+$$\lim_{x\to+\infty} x - 1 = +\infty$$
+Par minoration, on a alors :
+$$\lim_{x\to+\infty} \lfloor x \rfloor = +\infty$$` },
+  { id: "ch10-exemple-12", number: "1.38", source: "exemple", statement: r23`Montrer que $\displaystyle\lim_{x\to 0} \frac{x}{2 - \cos\frac{1}{x}} = 0$.` },
+  { id: "ch10-exemple-13", number: "2.3", source: "exemple", statement: r23`Equivalents classiques
+
+• Un polynôme non nul est équivalent au voisinage de 0 à son monôme de plus bas degré.
+
+• Un polynôme non nul est équivalent au voisinage de $\pm\infty$ à son monôme de plus haut degré.
+
+• $$\ln(1+x) \underset{x\to 0}{\sim} x \qquad e^x - 1 \underset{x\to 0}{\sim} x \qquad (1+x)^\alpha - 1 \underset{x\to 0}{\sim} \alpha x \ (\text{avec } \alpha \neq 0)$$
+$$\sin x \underset{x\to 0}{\sim} x \qquad 1 - \cos x \underset{x\to 0}{\sim} \frac{1}{2}x^2 \qquad \tan x \underset{x\to 0}{\sim} x$$` },
+  { id: "ch10-exemple-14", number: "2.7", source: "exemple", statement: r23`Soient $f$ et $g$ deux fonctions définies sur $\mathbb{R}$ par : $f(x) = x^2 + x$ et $g(x) = -x^2 + 1$. Donner un équivalent de $f(x) + g(x)$ au voisinage de $+\infty$.` },
+  { id: "ch10-exemple-15", number: "2.8", source: "exemple", statement: r23`A-t-on : $e^{x+1} \underset{x\to+\infty}{\sim} e^x$ ?` },
+  { id: "ch10-exemple-16", number: "2.11", source: "exemple", statement: r23`$x \underset{x\to+\infty}{=} o(x^2)$` },
+  { id: "ch10-exemple-17", number: "2.17", source: "exemple", statement: r23`On a : $\ln(x) \underset{x\to+\infty}{=} O(x)$.` },
+  { id: "ch10-exemple-18", number: "3.3", source: "exemple", statement: r23`Soit la fonction $f$ définie sur $\mathbb{R}$ par : $f(x) = e^x - 1$ si $x < 0$ et $f(x) = x^2$ si $x \geq 0$. La fonction $f$ est-elle continue en 0 ?` },
+  { id: "ch10-exemple-19", number: "3.4", source: "exemple", statement: r23`La fonction partie entière n'est pas continue en tout entier $k \in \mathbb{Z}$.
+En effet : $\displaystyle\lim_{x\to k^-} E(x) = k - 1$ et $\displaystyle\lim_{x\to k^+} E(x) = k$.` },
+  { id: "ch10-exemple-20", number: "3.11", source: "exemple", statement: r23`La fonction $f$, définie sur $]0;+\infty[$ par : $f(x) = x\ln x$ est prolongeable par continuité en 0 (à droite), en posant : $f(0) = 0$.` },
+  { id: "ch10-exemple-21", number: "3.15", source: "exemple", statement: r23`Soit $f$ la fonction définie pour tout $x \in [-1, 2]$ par $f(x) = x^3 + x^2 - x$.
+Montrer l'existence d'un réel $c \in [-1;2]$ tel que : $f(c) = 5$.` },
+  { id: "ch10-exemple-22", number: "3.23", source: "exemple", statement: r23`• Soit $f : \mathbb{R} \longrightarrow \mathbb{R}$ définie par $f(x) = 2x + 3$. Déterminer $f([1,2])$.
+
+• Déterminer $g([-1,3])$ où g est la fonction carré.` },
+  { id: "ch10-exemple-23", number: "3.26", source: "exemple", statement: r23`• La fonction ln est définie comme la primitive sur $\mathbb{R}^{+*}$ de la fonction $x \mapsto \dfrac{1}{x}$ s'annulant en 1. Elle est donc continue sur $]0;+\infty[$. Elle est également strictement croissante sur cet intervalle. Elle réalise une bijection de $]0;+\infty[$ vers $\mathbb{R}$. Sa réciproque, la fonction exp est donc continue sur $\mathbb{R}$.
+
+• La fonction tan est continue et strictement croissante sur $\left]-\dfrac{\pi}{2};\dfrac{\pi}{2}\right[$. Elle réalise donc une bijection de $\left]-\dfrac{\pi}{2};\dfrac{\pi}{2}\right[$ sur $\tan\left(\left]-\dfrac{\pi}{2};\dfrac{\pi}{2}\right[\right) = \mathbb{R}$. Sa réciproque, la fonction arctan est donc continue et strictement croissante sur $\mathbb{R}$.` },
+  { id: "ch10-exemple-24", number: "3.27", source: "exemple", statement: r23`Si $f$ est une fonction continue et strictement monotone sur un intervalle $[a;b]$ avec $a < b$, et si $f(a)f(b) \leq 0$ ($f(a)$ et $f(b)$ de signes opposés), alors l'équation $f(x) = 0$ admet une et une seule solution dans $[a;b]$.` },
+  { id: "ch10-exemple-25", number: "3.31", source: "exemple", statement: r23`1. La fonction $x \mapsto x^2$ définie sur $I = [-1;1]$ est uniformément continue. En effet, soit $\varepsilon > 0$, on cherche $\eta$ tel que $\forall (x,y) \in I^2, |x - y| \leq \eta \Rightarrow \left|x^2 - y^2\right| \leq \varepsilon$. Or $\left|x^2 - y^2\right| = |x + y|\,|x - y|$ sur $I$. Donc $\eta = \frac{\varepsilon}{2}$ convient.
+Par contre, $x \mapsto x^2$ n'est pas uniformément continue sur $\mathbb{R}$.
+
+2. La négation de continuité uniforme donne :
+$$\exists \varepsilon > 0, \forall \eta > 0, \exists (x,y) \in I^2, |x - y| \leq \eta \text{ et } |f(x) - f(y)| > \varepsilon$$
+Si on peut trouver deux suites $(x_n)$ et $(y_n)$ telles que $x_n - y_n \to 0$ et $f(x_n) - f(y_n) \not\to 0$, alors on a prouvé la non continuité uniforme de $f$ sur $I$.
+Par exemple, la fonction $x \mapsto \dfrac{1}{x}$ définie sur $\mathbb{R}^{+*}$ n'est pas uniformément continue. En effet, soit $x_n = \dfrac{1}{2n}$ et $y_n = \dfrac{1}{n}$. On a $\left|\dfrac{1}{x_n} - \dfrac{1}{y_n}\right| = |2n - n| = n$, donc quel que soit $\eta > 0$, $|x_n - y_n| \leq \eta$ n'empêchera pas d'avoir $\left|\dfrac{1}{x_n} - \dfrac{1}{y_n}\right| \to +\infty$.` },
+  { id: "ch10-exemple-26", number: "3.34", source: "exemple", statement: r23`Les fonctions suivantes sont-elles lipschitziennes ?
+
+1) $x \mapsto x$ sur $\mathbb{R}$
+
+2) $x \mapsto |x|$ sur $\mathbb{R}$
+
+3) $x \mapsto x^2$ sur $\mathbb{R}$
+
+4) $x \mapsto x^2$ sur $[0;1]$` },
+  { id: "ch10-exemple-27", number: "4.6", source: "exemple", statement: r23`Soit $f(t) = \ln(1+t)\left(1 + \dfrac{i}{t}\right)$. On a $\displaystyle\lim_{t\to 0} \mathrm{Re}(f(t)) = 0$ et $\displaystyle\lim_{t\to 0} \mathrm{Im}(f(t)) = 1$ donc $\displaystyle\lim_{t\to 0} f(t) = i$.` }
 ];
 
 // src/examples.ts
@@ -33973,7 +34180,8 @@ var courseExamplesByChapter = {
   6: chapitre6Exemples,
   7: chapitre7Exemples,
   8: chapitre8Exemples,
-  9: chapitre9Exemples
+  9: chapitre9Exemples,
+  10: chapitre10Exemples
 };
 
 // ../src/content/math/course-order.ts
@@ -33986,11 +34194,12 @@ var courseOrder = {
   6: ["ch6-exemple-1", "ch6-exemple-2", "ch6-cours-ex1", "ch6-cours-ex2", "ch6-exemple-3", "ch6-cours-ex3", "ch6-cours-ex4", "ch6-cours-ex5", "ch6-cours-ex6", "ch6-cours-ex7", "ch6-exemple-4", "ch6-exemple-5", "ch6-cours-ex8", "ch6-cours-ex9", "ch6-cours-ex10", "ch6-cours-ex11", "ch6-cours-ex12", "ch6-exemple-6", "ch6-cours-ex13", "ch6-exemple-7", "ch6-exemple-8", "ch6-exemple-9", "ch6-cours-ex14", "ch6-exemple-10", "ch6-cours-ex15", "ch6-exemple-11", "ch6-exemple-12", "ch6-cours-ex16"],
   7: ["ch7-exemple-1", "ch7-exemple-2", "ch7-exemple-3", "ch7-exemple-4", "ch7-exemple-5", "ch7-exemple-6", "ch7-exemple-7", "ch7-exemple-8", "ch7-exemple-9", "ch7-exemple-10", "ch7-exemple-11", "ch7-exemple-12", "ch7-exemple-13", "ch7-cours-ex1", "ch7-exemple-14", "ch7-cours-ex2", "ch7-exemple-15", "ch7-exemple-16", "ch7-cours-ex3", "ch7-exemple-17", "ch7-exemple-18", "ch7-exemple-19", "ch7-exemple-20"],
   8: ["ch8-cours-ex1", "ch8-cours-ex2", "ch8-cours-ex3", "ch8-exemple-1", "ch8-exemple-2", "ch8-exemple-3", "ch8-exemple-4", "ch8-exemple-5", "ch8-exemple-6", "ch8-exemple-7", "ch8-cours-ex4", "ch8-exemple-8", "ch8-exemple-9", "ch8-cours-ex5", "ch8-exemple-10", "ch8-exemple-11", "ch8-cours-ex6", "ch8-exemple-12", "ch8-cours-ex7", "ch8-cours-ex8", "ch8-exemple-13", "ch8-exemple-14", "ch8-exemple-15", "ch8-cours-ex9", "ch8-cours-ex10", "ch8-cours-ex11", "ch8-cours-ex12", "ch8-cours-ex13", "ch8-cours-ex14", "ch8-cours-ex15", "ch8-cours-ex16", "ch8-exemple-16", "ch8-cours-ex17", "ch8-cours-ex18", "ch8-cours-ex19", "ch8-exemple-17", "ch8-cours-ex20", "ch8-cours-ex21"],
-  9: ["ch9-cours-ex1", "ch9-exemple-1", "ch9-cours-ex2", "ch9-cours-ex3", "ch9-cours-ex4", "ch9-exemple-2", "ch9-cours-ex5", "ch9-exemple-3", "ch9-cours-ex6", "ch9-exemple-4", "ch9-cours-ex7", "ch9-exemple-5", "ch9-cours-ex8", "ch9-cours-ex9", "ch9-exemple-6", "ch9-exemple-7", "ch9-cours-ex10", "ch9-exemple-8", "ch9-cours-ex11", "ch9-cours-ex12", "ch9-cours-ex13", "ch9-exemple-9", "ch9-exemple-10", "ch9-cours-ex14", "ch9-cours-ex15", "ch9-exemple-11", "ch9-cours-ex16", "ch9-exemple-12", "ch9-cours-ex17", "ch9-exemple-13", "ch9-exemple-14", "ch9-exemple-15", "ch9-exemple-16", "ch9-exemple-17", "ch9-exemple-18", "ch9-cours-ex18", "ch9-exemple-19", "ch9-cours-ex19", "ch9-cours-ex20", "ch9-exemple-20", "ch9-cours-ex21", "ch9-cours-ex22"]
+  9: ["ch9-cours-ex1", "ch9-exemple-1", "ch9-cours-ex2", "ch9-cours-ex3", "ch9-cours-ex4", "ch9-exemple-2", "ch9-cours-ex5", "ch9-exemple-3", "ch9-cours-ex6", "ch9-exemple-4", "ch9-cours-ex7", "ch9-exemple-5", "ch9-cours-ex8", "ch9-cours-ex9", "ch9-exemple-6", "ch9-exemple-7", "ch9-cours-ex10", "ch9-exemple-8", "ch9-cours-ex11", "ch9-cours-ex12", "ch9-cours-ex13", "ch9-exemple-9", "ch9-exemple-10", "ch9-cours-ex14", "ch9-cours-ex15", "ch9-exemple-11", "ch9-cours-ex16", "ch9-exemple-12", "ch9-cours-ex17", "ch9-exemple-13", "ch9-exemple-14", "ch9-exemple-15", "ch9-exemple-16", "ch9-exemple-17", "ch9-exemple-18", "ch9-cours-ex18", "ch9-exemple-19", "ch9-cours-ex19", "ch9-cours-ex20", "ch9-exemple-20", "ch9-cours-ex21", "ch9-cours-ex22"],
+  10: ["ch10-exemple-1", "ch10-exemple-2", "ch10-exemple-3", "ch10-exemple-4", "ch10-exemple-5", "ch10-exemple-6", "ch10-exemple-7", "ch10-exemple-8", "ch10-exemple-9", "ch10-exemple-10", "ch10-cours-ex1", "ch10-cours-ex2", "ch10-cours-ex3", "ch10-cours-ex4", "ch10-exemple-11", "ch10-cours-ex5", "ch10-exemple-12", "ch10-cours-ex6", "ch10-cours-ex7", "ch10-exemple-13", "ch10-cours-ex8", "ch10-exemple-14", "ch10-exemple-15", "ch10-exemple-16", "ch10-exemple-17", "ch10-exemple-18", "ch10-exemple-19", "ch10-exemple-20", "ch10-cours-ex9", "ch10-exemple-21", "ch10-cours-ex10", "ch10-exemple-22", "ch10-cours-ex11", "ch10-exemple-23", "ch10-exemple-24", "ch10-exemple-25", "ch10-exemple-26", "ch10-exemple-27"]
 };
 
 // src/data.ts
-var chapters = [chapitre_1_default, chapitre_2_default, chapitre_3_default, chapitre_4_default, chapitre_5_default, chapitre_6_default, chapitre_7_default, chapitre_8_default, chapitre_9_default].map((c) => ({
+var chapters = [chapitre_1_default, chapitre_2_default, chapitre_3_default, chapitre_4_default, chapitre_5_default, chapitre_6_default, chapitre_7_default, chapitre_8_default, chapitre_9_default, chapitre_10_default].map((c) => ({
   ...c,
   exercises: (() => {
     const list = [...courseExamplesByChapter[c.number] ?? [], ...c.exercises];
@@ -34439,10 +34648,69 @@ var FROZEN_REGISTRY = {
   "ch9-exemple-17": 431,
   "ch9-exemple-18": 432,
   "ch9-exemple-19": 433,
-  "ch9-exemple-20": 434
+  "ch9-exemple-20": 434,
+  "ch10-cours-ex1": 435,
+  "ch10-cours-ex2": 436,
+  "ch10-cours-ex3": 437,
+  "ch10-cours-ex4": 438,
+  "ch10-cours-ex5": 439,
+  "ch10-cours-ex6": 440,
+  "ch10-cours-ex7": 441,
+  "ch10-cours-ex8": 442,
+  "ch10-cours-ex9": 443,
+  "ch10-cours-ex10": 444,
+  "ch10-cours-ex11": 445,
+  "ch10-ex1": 446,
+  "ch10-ex2": 447,
+  "ch10-ex3": 448,
+  "ch10-ex4": 449,
+  "ch10-ex5": 450,
+  "ch10-ex6": 451,
+  "ch10-ex7": 452,
+  "ch10-ex8": 453,
+  "ch10-ex9": 454,
+  "ch10-ex10": 455,
+  "ch10-ex11": 456,
+  "ch10-ex12": 457,
+  "ch10-ex13": 458,
+  "ch10-ex14": 459,
+  "ch10-ex15": 460,
+  "ch10-ex16": 461,
+  "ch10-ex17": 462,
+  "ch10-ex18": 463,
+  "ch10-ex19": 464,
+  "ch10-exemple-1": 465,
+  "ch10-exemple-2": 466,
+  "ch10-exemple-3": 467,
+  "ch10-exemple-4": 468,
+  "ch10-exemple-5": 469,
+  "ch10-exemple-6": 470,
+  "ch10-exemple-7": 471,
+  "ch10-exemple-8": 472,
+  "ch10-exemple-9": 473,
+  "ch10-exemple-10": 474,
+  "ch10-exemple-11": 475,
+  "ch10-exemple-12": 476,
+  "ch10-exemple-13": 477,
+  "ch10-exemple-14": 478,
+  "ch10-exemple-15": 479,
+  "ch10-exemple-16": 480,
+  "ch10-exemple-17": 481,
+  "ch10-exemple-18": 482,
+  "ch10-exemple-19": 483,
+  "ch10-exemple-20": 484,
+  "ch10-exemple-21": 485,
+  "ch10-exemple-22": 486,
+  "ch10-exemple-23": 487,
+  "ch10-exemple-24": 488,
+  "ch10-exemple-25": 489,
+  "ch10-exemple-26": 490,
+  "ch10-exemple-27": 491,
+  "dm4-e1": 492,
+  "dm4-e2": 493
 };
 var chapterExercises = chapters.flatMap(
-  (chapter10) => chapter10.exercises.map((e) => {
+  (chapter11) => chapter11.exercises.map((e) => {
     const src = e.source === "cours" ? "cours" : e.source === "exemple" ? "exemple" : "td";
     const uid = FROZEN_REGISTRY[e.id] ?? 999;
     return {
@@ -34452,15 +34720,15 @@ var chapterExercises = chapters.flatMap(
       formattedUid: `#${String(uid).padStart(3, "0")}`,
       url: `https://foroagora.org/maths/exo/${uid}`,
       chapter: {
-        id: chapter10.id,
-        number: chapter10.number,
-        title: chapter10.title
+        id: chapter11.id,
+        number: chapter11.number,
+        title: chapter11.title
       }
     };
   })
 );
 var dmExercises = devoirs.flatMap((d) => {
-  const chapter10 = chapters.find((c) => c.number === d.chapter) ?? chapters[0];
+  const chapter11 = chapters.find((c) => c.number === d.chapter) ?? chapters[0];
   return d.questions.map((q) => {
     const uid = FROZEN_REGISTRY[q.id] ?? 999;
     return {
@@ -34471,15 +34739,15 @@ var dmExercises = devoirs.flatMap((d) => {
       formattedUid: `#${String(uid).padStart(3, "0")}`,
       url: `https://foroagora.org/maths/exo/${uid}`,
       chapter: {
-        id: chapter10.id,
-        number: chapter10.number,
-        title: chapter10.title
+        id: chapter11.id,
+        number: chapter11.number,
+        title: chapter11.title
       }
     };
   });
 });
 var bonusExercises = bonusSheets.flatMap((b) => {
-  const chapter10 = chapters.find((c) => c.number === b.chapter) ?? chapters[0];
+  const chapter11 = chapters.find((c) => c.number === b.chapter) ?? chapters[0];
   return b.questions.map((q) => {
     const uid = FROZEN_REGISTRY[q.id] ?? 999;
     return {
@@ -34490,7 +34758,7 @@ var bonusExercises = bonusSheets.flatMap((b) => {
       uid,
       formattedUid: `#${String(uid).padStart(3, "0")}`,
       url: `https://foroagora.org/maths/exo/${uid}`,
-      chapter: { id: chapter10.id, number: chapter10.number, title: chapter10.title }
+      chapter: { id: chapter11.id, number: chapter11.number, title: chapter11.title }
     };
   });
 });
@@ -34519,12 +34787,12 @@ var getExercise = (identifier) => {
 };
 var stripAccents = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 var searchExercises = (query, options = {}) => {
-  const { chapter: chapter10, source, limit = 20 } = options;
+  const { chapter: chapter11, source, limit = 20 } = options;
   const rawQuery = query.trim();
   const cleanQuery = stripAccents(rawQuery).replace(/^#/, "");
   let list = allExercises;
-  if (chapter10 !== void 0) {
-    list = list.filter((e) => e.chapter.number === chapter10);
+  if (chapter11 !== void 0) {
+    list = list.filter((e) => e.chapter.number === chapter11);
   }
   if (source !== void 0) {
     list = list.filter((e) => e.source === source);
@@ -34827,11 +35095,11 @@ function loadClassroomDb(slug) {
   }
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
-function findClassroomChapter(db, chapter10) {
-  if (typeof chapter10 === "number") {
-    return db.chapters.find((c) => c.number === chapter10);
+function findClassroomChapter(db, chapter11) {
+  if (typeof chapter11 === "number") {
+    return db.chapters.find((c) => c.number === chapter11);
   }
-  const normalized = String(chapter10).trim().toLowerCase();
+  const normalized = String(chapter11).trim().toLowerCase();
   const num = parseInt(normalized.replace(/^chapitre-/, ""), 10);
   return db.chapters.find(
     (c) => c.id.toLowerCase() === normalized || !Number.isNaN(num) && c.number === num
@@ -34850,10 +35118,10 @@ function findClassroomExercise(db, identifier) {
   return db.exercises.find((e) => e.id.toLowerCase() === raw.toLowerCase());
 }
 function searchClassroomExercises(db, query, options = {}) {
-  const { chapter: chapter10, source, limit = 10 } = options;
+  const { chapter: chapter11, source, limit = 10 } = options;
   const terms = stripAccents2(query).split(/\s+/).filter((t) => t.length > 0);
   let pool = db.exercises;
-  if (chapter10 !== void 0) pool = pool.filter((e) => e.chapterNumber === chapter10);
+  if (chapter11 !== void 0) pool = pool.filter((e) => e.chapterNumber === chapter11);
   if (source !== void 0) pool = pool.filter((e) => e.source === source);
   if (terms.length === 0) return pool.slice(0, limit);
   const scored = pool.map((e) => {
@@ -34871,9 +35139,9 @@ function searchClassroomExercises(db, query, options = {}) {
   }).filter((x) => x.score > 0).sort((a, b) => b.score - a.score || a.e.uid - b.e.uid);
   return scored.slice(0, limit).map((x) => x.e);
 }
-function getClassroomDailyWorkout(db, date4, chapter10, count = 5) {
+function getClassroomDailyWorkout(db, date4, chapter11, count = 5) {
   const targetDate = date4 || parisDateString2();
-  const pool = chapter10 !== void 0 ? db.exercises.filter((e) => e.chapterNumber === chapter10 && e.source !== "exemple") : db.exercises.filter((e) => e.source !== "exemple");
+  const pool = chapter11 !== void 0 ? db.exercises.filter((e) => e.chapterNumber === chapter11 && e.source !== "exemple") : db.exercises.filter((e) => e.source !== "exemple");
   const fallbackPool = pool.length > 0 ? pool : db.exercises;
   const exercises = seededShuffle2(fallbackPool, `${db.slug}:${targetDate}`).slice(0, count);
   return { date: targetDate, exercises };
@@ -34978,12 +35246,12 @@ ${db.description}
       chapter: external_exports4.union([external_exports4.number(), external_exports4.string()]).describe("Chapter number (1, 2, ...) or ID"),
       include_statements: external_exports4.boolean().optional().default(false).describe("Include full LaTeX statements")
     },
-    async ({ classroom, chapter: chapter10, include_statements }) => {
+    async ({ classroom, chapter: chapter11, include_statements }) => {
       const db = getDb(classroom);
-      const ch = findClassroomChapter(db, chapter10);
+      const ch = findClassroomChapter(db, chapter11);
       if (!ch) {
         return {
-          content: [{ type: "text", text: `Chapter '${chapter10}' not found in classroom '${db.slug}'.` }],
+          content: [{ type: "text", text: `Chapter '${chapter11}' not found in classroom '${db.slug}'.` }],
           isError: true
         };
       }
@@ -35048,9 +35316,9 @@ ${ch.summary}
       source: external_exports4.string().optional().describe("Optional source filter (td, cours, exo, dm, bonus)"),
       limit: external_exports4.number().optional().default(10).describe("Maximum results")
     },
-    async ({ classroom, query, chapter: chapter10, source, limit }) => {
+    async ({ classroom, query, chapter: chapter11, source, limit }) => {
       const db = getDb(classroom);
-      const results = searchClassroomExercises(db, query, { chapter: chapter10, source, limit });
+      const results = searchClassroomExercises(db, query, { chapter: chapter11, source, limit });
       if (results.length === 0) {
         return { content: [{ type: "text", text: `No exercises matched '${query}' in '${db.slug}'.` }] };
       }
@@ -35066,9 +35334,9 @@ ${ch.summary}
       date: external_exports4.string().optional().describe("Optional YYYY-MM-DD date (defaults to today in Europe/Paris)"),
       chapter: external_exports4.number().optional().describe("Optional chapter number filter")
     },
-    async ({ classroom, date: date4, chapter: chapter10 }) => {
+    async ({ classroom, date: date4, chapter: chapter11 }) => {
       const db = getDb(classroom);
-      const workout = getClassroomDailyWorkout(db, date4, chapter10);
+      const workout = getClassroomDailyWorkout(db, date4, chapter11);
       let md = `# Daily Workout (${workout.date}) \u2014 ${db.fullName}
 
 `;
@@ -35200,15 +35468,15 @@ server.tool(
     chapter: external_exports4.union([external_exports4.number(), external_exports4.string()]).describe("Chapter number (1 to 7) or ID ('chapitre-1', 'chapitre-2', etc.)"),
     include_statements: external_exports4.boolean().optional().default(false).describe("If true, includes the complete LaTeX statements of all exercises in the chapter")
   },
-  async ({ chapter: chapter10, include_statements }) => {
-    const chap = getChapter(chapter10);
+  async ({ chapter: chapter11, include_statements }) => {
+    const chap = getChapter(chapter11);
     if (!chap) {
       return {
         isError: true,
         content: [
           {
             type: "text",
-            text: `Chapter '${chapter10}' not found. Please specify a chapter number between 1 and 7, or an ID like 'chapitre-1'.`
+            text: `Chapter '${chapter11}' not found. Please specify a chapter number between 1 and 7, or an ID like 'chapitre-1'.`
           }
         ]
       };
@@ -35308,14 +35576,14 @@ server.tool(
     source: external_exports4.enum(["cours", "td", "dm"]).optional().describe("Filter by exercise origin: 'cours' (embedded lecture exercise), 'td' (worksheet), 'dm' (homework)"),
     limit: external_exports4.number().int().min(1).max(50).optional().default(10).describe("Maximum number of results to return (default: 10)")
   },
-  async ({ query, chapter: chapter10, source, limit }) => {
-    const results = searchExercises(query, { chapter: chapter10, source, limit });
+  async ({ query, chapter: chapter11, source, limit }) => {
+    const results = searchExercises(query, { chapter: chapter11, source, limit });
     if (results.length === 0) {
       return {
         content: [
           {
             type: "text",
-            text: `Aucun exercice ne correspond \xE0 la recherche "${query}"${chapter10 ? ` dans le chapitre ${chapter10}` : ""}${source ? ` (source: ${source})` : ""}.`
+            text: `Aucun exercice ne correspond \xE0 la recherche "${query}"${chapter11 ? ` dans le chapitre ${chapter11}` : ""}${source ? ` (source: ${source})` : ""}.`
           }
         ]
       };
@@ -35343,13 +35611,13 @@ server.tool(
     date: external_exports4.string().optional().describe("Date in YYYY-MM-DD format (defaults to today in Europe/Paris timezone)"),
     chapter: external_exports4.union([external_exports4.number(), external_exports4.string()]).optional().default("all").describe("Filter to a specific chapter number (1-7) or 'all'")
   },
-  async ({ date: date4, chapter: chapter10 }) => {
+  async ({ date: date4, chapter: chapter11 }) => {
     const resolvedDate = date4 || parisDateString();
-    const workout = getDailyWorkout(resolvedDate, chapter10);
+    const workout = getDailyWorkout(resolvedDate, chapter11);
     let md = `# Entra\xEEnement du Jour \u2014 ${resolvedDate}
 
 `;
-    md += `S\xE9lection quotidienne de 5 exercices (${chapter10 === "all" ? "tous chapitres confondus" : `chapitre ${chapter10}`}).
+    md += `S\xE9lection quotidienne de 5 exercices (${chapter11 === "all" ? "tous chapitres confondus" : `chapitre ${chapter11}`}).
 
 `;
     for (let i = 0; i < workout.length; i++) {

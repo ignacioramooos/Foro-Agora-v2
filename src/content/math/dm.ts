@@ -14,6 +14,17 @@ export interface Devoir {
 
 export const devoirs: Devoir[] = [
   {
+    id: "dm-4",
+    title: "DM n°4",
+    due: "À rendre (facultatif) pour le 30/11/2026",
+    chapter: 9,
+    docId: "1O4hSX8iluHwqtCu2mftm4hp6Zj_UEToW",
+    questions: [
+      { id: "dm4-e1", number: "1", source: "dm", statement: "Exercice 1\n\nSoit $a > 2$ et $(u_n)_{n\\geq 0}$ la suite définie par récurrence par : $u_0 = a$ et $u_{n+1} = 2\\sqrt{u_n - 1}$ pour $n \\geq 0$.\n\n1. Soit $g(x) = 2\\sqrt{x - 1} - x$ pour $x \\geq 1$. Etudier le signe de $g$.\n\n2. Etudier la convergence de la suite $(u_n)$.\n\n3. On pose $v_n = u_n - 2$. Montrer que : $\\displaystyle\\lim_{n\\to+\\infty} \\frac{1}{v_{n+1}} - \\frac{1}{v_n} = \\frac{1}{4}$." },
+      { id: "dm4-e2", number: "2", source: "dm", statement: "Exercice 2\n\nSoient $f : \\mathbb{R} \\to \\mathbb{R}$ la fonction définie par :\n\n$$f(t) = \\frac{1}{2}\\int_0^1 \\max(x,t)\\mathrm{d}x$$\n\n, pour tout $t \\in \\mathbb{R}$.\n\n1. Montrer que $f(t) = \\dfrac{1}{4} + \\dfrac{t^2}{4}$ pour $0 \\leq t \\leq 1$.\n\n2. Représenter le graphe de $f$ sur $\\mathbb{R}$.\n\n3. On définit la suite $(a_n)$ par $a_0 \\in \\mathbb{R}$ et : $\\forall n \\in \\mathbb{N}, a_{n+1} = f(a_n)$. Etudier la convergence de la suite $(a_n)$ (on distinguera les cas selon la valeur de $a_0$)." },
+    ],
+  },
+  {
     id: "dm-3",
     title: "DM n°3",
     due: "À rendre pour le 02/11/2026",

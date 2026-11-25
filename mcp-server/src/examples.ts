@@ -8,6 +8,7 @@ import { chapitre6Exemples } from "../../src/content/math/course-examples/chapit
 import { chapitre7Exemples } from "../../src/content/math/course-examples/chapitre-7.js";
 import { chapitre8Exemples } from "../../src/content/math/course-examples/chapitre-8.js";
 import { chapitre9Exemples } from "../../src/content/math/course-examples/chapitre-9.js";
+import { chapitre10Exemples } from "../../src/content/math/course-examples/chapitre-10.js";
 
 export const courseExamplesByChapter: Record<number, MathExercise[]> = {
   1: chapitre1Exemples,
@@ -19,4 +20,5 @@ export const courseExamplesByChapter: Record<number, MathExercise[]> = {
   7: chapitre7Exemples,
   8: chapitre8Exemples,
   9: chapitre9Exemples,
+  10: chapitre10Exemples,
 };
